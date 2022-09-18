@@ -1,4 +1,4 @@
-//#include "slide.h"  
+
 #include "slideNew.h"
 #include "PCB_PinMap.h"
 #include "HX711.h"
@@ -204,9 +204,13 @@ void loop() {
         sevenSeg::setInt( 1, abs ((int) round (Distance/1.096*10)), 1);
         sevenSeg::setInt( 2, abs ((int) round (Load*98)), 1);
         sevseg = DIG1;
+        Serial.print("0");
+        Serial.print("\t");
         Serial.print(Distance/1.096);
-        Serial.print(", ");
-        Serial.println(Load*9.8);
+        Serial.print("\t");
+        Serial.print(Load*9.8);        
+        Serial.print("\t");
+        Serial.println("0");
         //Serial.println();
         loopcount ++;
         break;
