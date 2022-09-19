@@ -5,7 +5,7 @@ public class ControlFrame extends PApplet {
 
   int w, h;
 
-  float mmtkVel = 50.0;
+  float mmtkVel = 1.0;
   int bgColor = 200;
 
   public void settings() {

@@ -225,11 +225,11 @@ void draw()
       if (tempData.length == 16) {
         // This is a normal data frame
         // SPEED POSITION LOADCELL FEEDBACK_COUNT STATE ESTOP STALL DIRECTION INPUT_VOLTAGE BT_FWD BT_BAK BT_TARE BT_START BT_AUX and a space
-        
+        //System.out.println(tempData);
         try {
           newLoadcellData = Integer.parseInt(trim(tempData[0]));
           velocity = Float.parseFloat(trim(tempData[1]));
-          position = Float.parseFloat(trim(tempData[2]));
+          position = - Float.parseFloat(trim(tempData[2]));
           loadCell = Float.parseFloat(trim(tempData[3]));
           feedBack = Integer.parseInt(trim(tempData[4]));
           MMTKState = Integer.parseInt(trim(tempData[5]));
@@ -302,15 +302,15 @@ void draw()
       }
       
       
-      // Print out the data for debugging and logging
-      if (printAllData || newLoadcellData == 1) { 
-        System.out.print(myString); 
-      }
+       //Print out the data for debugging and logging
+      //if (printAllData || newLoadcellData == 1) { 
+      //  System.out.print(myString); 
+      //}
       
-      if (logAllData || newLoadcellData == 1) { 
-        logFile.print(myString);
-        logFile.flush(); // Writes the remaining data to the file
-      }
+      //if (logAllData || newLoadcellData == 1) { 
+      //  logFile.print(myString);
+      //  logFile.flush(); // Writes the remaining data to the file
+      //}
     }
   }
   // == Finish Reading Data From Serial

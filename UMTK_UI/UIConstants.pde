@@ -32,7 +32,7 @@ int[] velocityIndicatorOrigin = {x=x+dx, y=y+dy};
 int[] velocityTextLocation = {velocityIndicatorOrigin[0] + textIndicatorSize[0]/2, velocityIndicatorOrigin[1] + 60};
 
 // MMTK States
-String[] MMTKstateEnum = {"Running", "Stopped", "Hold", "Jog Forward", "Jog Back", "Fast Jog Forward", "Fast Jog Back", " - "};
+String[] MMTKstateEnum = {"Jog Up", "Jog Down", "Recording", "Standby", " - ", " - ", " - ", " - ", " - "};
 int[] stateIndicatorOrigin = {x=x+dx, y=y+dy};
 int[] stateTextLocation = {stateIndicatorOrigin[0] + textIndicatorSize[0]/2, stateIndicatorOrigin[1] + 60};
 
