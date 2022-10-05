@@ -8,10 +8,16 @@
 #include "dispmeow.h"
 
 
-void slideISR();
-void PID_Control();
-void Move_Down(long Control_Signal);
-void Move_Up(long Control_Signal);
+void inline slideISR();
+void inline PID_Control();
+void inline Move_Down(long Control_Signal);
+void inline Move_Up(long Control_Signal);
+void inline tareAll();
+void inline Update_Display();
+void inline Determine_Next_State();
+void inline Transistion_State();
+void inline Send_to_UI();
+
 
 
 #define POWER_SENSE_SCALE 51.2
@@ -81,11 +87,16 @@ float Kp = 50;
 float Ki = 0;  
 float Kd = 0; 
 
+
+// String[] MMTKstateEnum = {"Running", "Stopped", "Hold", "Jog Forward", "Jog Back", "Fast Jog Forward", "Fast Jog Back", " - "};
 enum UMTKStates_t {
-  JOG_UP,
-  JOG_DOWN,
   RUNNING,
   STANDBY,
+  UNUSED1,
+  JOG_UP,
+  JOG_DOWN,
+  UNUSED2,
+  UNUSED3,
   noChange,
 };
 
@@ -283,7 +294,7 @@ void loop() {
 //     delay(300);  
 // }
 
-void inline tareAll()
+void tareAll()
 {
   sevenSeg::refresh(5);
   LoadCell.tare();
@@ -292,7 +303,7 @@ void inline tareAll()
   Serial.print(HEADER_TEXT);
 }
 
-void inline Update_Display()
+void Update_Display()
 {
   switch (sevseg){
     case DIG1:
@@ -328,7 +339,7 @@ void inline Update_Display()
   }
 }
 
-void inline Determine_Next_State()
+void Determine_Next_State()
 {
   switch (UMTKState){
     case JOG_UP:
@@ -388,7 +399,7 @@ void inline Determine_Next_State()
 
 }
 
-void inline Transistion_State()
+void Transistion_State()
 {
   switch (UMTKNextState)
   {
@@ -420,7 +431,7 @@ void inline Transistion_State()
   UMTKNextState = noChange;
 }
 
-void inline Send_to_UI()
+void Send_to_UI()
 {
   // Logging
   // Logging format
