@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name "S2_UserInterface-altium-import")(type "KiCad")(uri "${KIPRJMOD}/S2_UserInterface-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "S3_Arduino-altium-import")(type "KiCad")(uri "${KIPRJMOD}/S3_Arduino-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "S4_MotorDriver-altium-import")(type "KiCad")(uri "${KIPRJMOD}/S4_MotorDriver-altium-import.kicad_sym")(options "")(descr ""))
+)
