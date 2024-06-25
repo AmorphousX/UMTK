@@ -1,0 +1,7 @@
+Mar 29 2019
+
+- Motor driver Disable pin label swapped with nFault in PCB design
+	- Disable Pin is D12, nFault pin is D8
+
+- Should change motor control mode to PH/EN (tie MODE to GND), currently it is fixed to be PWM mode
+- Should disregard slew rate control pin and tie to +5

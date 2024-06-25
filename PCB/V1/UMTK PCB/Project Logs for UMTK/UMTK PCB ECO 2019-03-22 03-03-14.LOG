@@ -1,0 +1,9 @@
+Added Component: Designator=C13(Ceramic Cap 5mm)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=M_ISENS Pin=C13-1
+Added Pin To Net: NetName=GND Pin=C13-2
+Added Member To Class: ClassName=S4_MotorDriver Member=Component C13 0.1u
+Added Room: Name=S1_Connections
+Added Room: Name=S2_UserInterface
+Added Room: Name=S3_Arduino
+Added Room: Name=S4_MotorDriver

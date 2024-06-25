@@ -1,0 +1,8 @@
+Change Component Footprint: Designator=U1 Old Footprint=TO220 New Footprint=TO220_Side Mount
+Change Component Comment : Designator=U1 Old Comment=L7805CV New Comment=L7805_Side
+Change component parameters: Designator = "U1"; Footprint = "TO220_Side Mount"; UniqueID = "\SFTTLGST"
+Change component parameters. Clean all parameters for all variants
+Added Room: Name=S1_Connections
+Added Room: Name=S2_UserInterface
+Added Room: Name=S3_Arduino
+Added Room: Name=S4_MotorDriver
