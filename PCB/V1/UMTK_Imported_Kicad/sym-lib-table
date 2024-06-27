@@ -1,5 +1,4 @@
 (sym_lib_table
-  (version 7)
+  (version 0)
   (lib (name "UMTK-altium-import")(type "KiCad")(uri "${KIPRJMOD}/UMTK-altium-import.kicad_sym")(options "")(descr ""))
-  (lib (name "UMTK-Costom")(type "KiCad")(uri "${KIPRJMOD}/UMTK-Costom.kicad_sym")(options "")(descr ""))
 )
