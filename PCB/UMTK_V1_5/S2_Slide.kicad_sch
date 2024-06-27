@@ -2,7 +2,7 @@
 	(version 20231120)
 	(generator "eeschema")
 	(generator_version "8.0")
-	(uuid "9742f016-9a42-4114-9122-e506c77dbbea")
+	(uuid "8884bafe-7def-4502-bd02-87952975d243")
 	(paper "A4")
 	(lib_symbols
 		(symbol "Jumper:Jumper_3_Bridged12"
