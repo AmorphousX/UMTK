@@ -307,6 +307,36 @@
 				(justify left top)
 			)
 		)
+		(pin "CS" input
+			(at 54.102 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "67a3ad1b-d2cd-4efa-b60f-d1de7c016a69")
+		)
+		(pin "DIN" input
+			(at 54.102 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "8ea875c2-a14c-4167-90fc-ff1cd7f6e987")
+		)
+		(pin "CLK" input
+			(at 54.102 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "3b75beea-58f5-4710-997f-4e894dc96f6d")
+		)
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf"
