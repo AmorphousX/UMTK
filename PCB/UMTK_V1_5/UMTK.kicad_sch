@@ -6,8 +6,8 @@
 	(paper "A4")
 	(lib_symbols)
 	(sheet
-		(at 66.421 58.547)
-		(size 15.875 17.145)
+		(at 18.034 99.822)
+		(size 18.288 25.146)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -16,9 +16,9 @@
 		(fill
 			(color 0 0 0 0.0000)
 		)
-		(uuid "33a70529-8716-48f9-b187-5322d32dbf5a")
-		(property "Sheetname" "Connections"
-			(at 66.421 57.8354 0)
+		(uuid "2a108526-cc67-4813-b443-9c33235e24c0")
+		(property "Sheetname" "Linear Slide"
+			(at 18.034 99.1104 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26,8 +26,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "S1_Connections.kicad_sch"
-			(at 66.421 76.2766 0)
+		(property "Sheetfile" "S2_Slide.kicad_sch"
+			(at 18.034 125.5526 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -35,17 +35,37 @@
 				(justify left top)
 			)
 		)
+		(pin "SLIDE_DAT" input
+			(at 36.322 103.886 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "2314da02-1691-4925-920a-d7096f8002b2")
+		)
+		(pin "SLIDE_CLK" input
+			(at 36.322 107.696 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "0bed45dc-1b24-4ca3-97ca-3d387d77dc7f")
+		)
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf"
-					(page "5")
+					(page "8")
 				)
 			)
 		)
 	)
 	(sheet
-		(at 93.599 48.768)
-		(size 14.605 10.16)
+		(at 56.007 59.436)
+		(size 24.257 59.436)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -56,7 +76,7 @@
 		)
 		(uuid "429db1c7-ec58-4147-903c-f97ceea1f1c2")
 		(property "Sheetname" "MotorDriver"
-			(at 93.599 48.0564 0)
+			(at 56.007 58.7244 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -65,13 +85,113 @@
 			)
 		)
 		(property "Sheetfile" "S4_MotorDriver.kicad_sch"
-			(at 93.599 59.5126 0)
+			(at 56.007 119.4566 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
 			)
+		)
+		(pin "nFAULT" input
+			(at 80.264 67.564 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "314f6cf1-5333-4044-bd42-494395191153")
+		)
+		(pin "nSLEEP" input
+			(at 80.264 70.104 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "933b0265-83d6-4dae-9d92-1ebdec96f60d")
+		)
+		(pin "nOL" input
+			(at 80.264 72.644 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "37644617-30e8-47de-a08a-ca6e76a6ca42")
+		)
+		(pin "nTRIP" input
+			(at 80.264 75.184 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "ebd1b327-a372-40f6-920f-0a2caf39b446")
+		)
+		(pin "MODE" input
+			(at 80.264 77.724 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "b4a319b2-cfba-45ad-abcf-5ea97ff71bae")
+		)
+		(pin "EN{slash}IN1" input
+			(at 80.264 80.264 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "01e20a15-9046-476c-b29b-d503f6c0bad1")
+		)
+		(pin "DISABLE" input
+			(at 80.264 82.804 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "b9294a54-c3a5-4809-a9ff-859112363c3b")
+		)
+		(pin "PH{slash}IN2" input
+			(at 80.264 85.344 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "3e2dbac4-f2da-45be-a6d3-528587b30948")
+		)
+		(pin "SENSE2" input
+			(at 80.264 87.884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "110a599a-f3c4-4cb5-acc5-79ab0cba114b")
+		)
+		(pin "SENSE1" input
+			(at 80.264 90.424 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "f5e193be-8c5b-4839-9edb-4cd463990c92")
 		)
 		(instances
 			(project "UMTK"
@@ -115,6 +235,44 @@
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf"
 					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 20.574 81.534)
+		(size 18.034 8.382)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "9034045e-70ca-44cd-84b0-62f91947c95b")
+		(property "Sheetname" "Power"
+			(at 20.574 80.8224 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "S0_Power.kicad_sch"
+			(at 20.574 90.5006 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf"
+					(page "7")
 				)
 			)
 		)

@@ -192,33 +192,38 @@
 				)
 			)
 		)
-		(symbol "UMTK-altium-import:+5_BAR"
-			(power)
+		(symbol "DRV8873SPWPRQ1:DRV8873SPWPRQ1"
+			(pin_names
+				(offset 1.016)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "#PWR"
+			(property "Reference" "U"
+				(at -12.7 26.162 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "DRV8873SPWPRQ1"
+				(at -12.7 -27.94 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Footprint" "DRV8873SPWPRQ1:IC_DRV8873SPWPRQ1"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-				)
-			)
-			(property "Value" "+5"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
+					(justify bottom)
 					(hide yes)
 				)
 			)
@@ -231,7 +236,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Power symbol creates a global label with name '+5'"
+			(property "Description" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -240,51 +245,1360 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "power-flag"
+			(property "MF" "Texas Instruments"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify bottom)
 					(hide yes)
 				)
 			)
-			(symbol "+5_BAR_0_0"
-				(polyline
-					(pts
-						(xy -1.27 -2.54) (xy 1.27 -2.54)
+			(property "Description_1" "\nAutomotive 40-V, 10-A H-bridge motor driver with integrated current sensing & feedback\n"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
+					(justify bottom)
+					(hide yes)
 				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -2.54)
+			)
+			(property "Package" "HTSSOP-24 Texas Instruments"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Price" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Check_prices" "https://www.snapeda.com/parts/DRV8873SPWPRQ1/Texas+Instruments/view-part/?ref=eda"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "STANDARD" "Manufacturer Recommendations"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PARTREV" "A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/DRV8873SPWPRQ1/Texas+Instruments/view-part/?ref=snap"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "DRV8873SPWPRQ1"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Availability" "In Stock"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MANUFACTURER" "TEXAS INSTRUMENTS"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "DRV8873SPWPRQ1_0_0"
+				(rectangle
+					(start -12.7 -25.4)
+					(end 12.7 25.4)
 					(stroke
 						(width 0.254)
-						(type solid)
+						(type default)
 					)
 					(fill
-						(type none)
+						(type background)
 					)
 				)
 				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "+5"
+					(at 17.78 22.86 180)
+					(length 5.08)
+					(name "DVDD"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 5.08 180)
+					(length 5.08)
+					(name "IPROPI1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -17.78 5.08 0)
+					(length 5.08)
+					(name "~{SLEEP}"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 2.54 180)
+					(length 5.08)
+					(name "IPROPI2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 20.32 180)
+					(length 5.08)
+					(name "VM"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 10.16 180)
+					(length 5.08)
+					(name "OUT2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 10.16 180)
+					(length 5.08)
+					(name "OUT2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 -2.54 180)
+					(length 5.08)
+					(name "SRC"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 -2.54 180)
+					(length 5.08)
+					(name "SRC"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 12.7 180)
+					(length 5.08)
+					(name "OUT1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 12.7 180)
+					(length 5.08)
+					(name "OUT1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "19"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 17.78 -5.08 180)
+					(length 5.08)
+					(name "~{FAULT}"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 20.32 180)
+					(length 5.08)
+					(name "VM"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "20"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 17.78 180)
+					(length 5.08)
+					(name "VCP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "21"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -12.7 0)
+					(length 5.08)
+					(name "CPH"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "22"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -15.24 0)
+					(length 5.08)
+					(name "CPL"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "23"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -22.86 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "24"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 17.78 -20.32 180)
+					(length 5.08)
+					(name "EP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "25.9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at -17.78 -7.62 0)
+					(length 5.08)
+					(name "SDO"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -17.78 -5.08 0)
+					(length 5.08)
+					(name "SDI"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input clock
+					(at -17.78 -2.54 0)
+					(length 5.08)
+					(name "SCLK"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -17.78 0 0)
+					(length 5.08)
+					(name "~{SCS}"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -17.78 12.7 0)
+					(length 5.08)
+					(name "EN/IN1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -17.78 10.16 0)
+					(length 5.08)
+					(name "PH/IN2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -17.78 7.62 0)
+					(length 5.08)
+					(name "DISABLE"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "Device:C"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C"
+				(at 0.635 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.9652 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C_0_1"
+				(polyline
+					(pts
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 0.762) (xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name "~"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number ""
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "Device:C_Polarized_US"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0.254) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C_Polarized_US"
+				(at 0.635 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Polarized capacitor, US symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "CP_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C_Polarized_US_0_1"
+				(polyline
+					(pts
+						(xy -2.032 0.762) (xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 2.286) (xy -0.762 2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 1.778) (xy -1.27 2.794)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 2.032 -1.27)
+					(mid 0 -0.5572)
+					(end -2.032 -1.27)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_Polarized_US_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 3.302)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "Device:R_US"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R_US"
+				(at -2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 1.016 -0.254 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor, US symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_US_0_1"
+				(polyline
+					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_US_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -432,2502 +1746,6 @@
 				)
 			)
 		)
-		(symbol "UMTK-altium-import:M_DISABLE_CIRCLE"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "M_DISABLE"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'M_DISABLE'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "M_DISABLE_CIRCLE_0_0"
-				(circle
-					(center 0 -1.905)
-					(radius 0.635)
-					(stroke
-						(width 0.127)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "M_DISABLE"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:M_EN/IN1_CIRCLE"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "M_EN/IN1"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'M_EN/IN1'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "M_EN/IN1_CIRCLE_0_0"
-				(circle
-					(center 0 -1.905)
-					(radius 0.635)
-					(stroke
-						(width 0.127)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "M_EN/IN1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:M_FAULT_CIRCLE"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "M_FAULT"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'M_FAULT'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "M_FAULT_CIRCLE_0_0"
-				(circle
-					(center 0 -1.905)
-					(radius 0.635)
-					(stroke
-						(width 0.127)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "M_FAULT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:M_ISENS_CIRCLE"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "M_ISENS"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'M_ISENS'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "M_ISENS_CIRCLE_0_0"
-				(circle
-					(center 0 -1.905)
-					(radius 0.635)
-					(stroke
-						(width 0.127)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "M_ISENS"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:M_ITRIP_CIRCLE"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "M_ITRIP"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'M_ITRIP'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "M_ITRIP_CIRCLE_0_0"
-				(circle
-					(center 0 -1.905)
-					(radius 0.635)
-					(stroke
-						(width 0.127)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "M_ITRIP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:M_OL_CIRCLE"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "M_OL"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'M_OL'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "M_OL_CIRCLE_0_0"
-				(circle
-					(center 0 -1.905)
-					(radius 0.635)
-					(stroke
-						(width 0.127)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "M_OL"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:M_PH/IN2_CIRCLE"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "M_PH/IN2"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'M_PH/IN2'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "M_PH/IN2_CIRCLE_0_0"
-				(circle
-					(center 0 -1.905)
-					(radius 0.635)
-					(stroke
-						(width 0.127)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "M_PH/IN2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:M_SLEEP_CIRCLE"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "M_SLEEP"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'M_SLEEP'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "M_SLEEP_CIRCLE_0_0"
-				(circle
-					(center 0 -1.905)
-					(radius 0.635)
-					(stroke
-						(width 0.127)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "M_SLEEP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:VM+_BAR"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "VM+"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'VM+'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "VM+_BAR_0_0"
-				(polyline
-					(pts
-						(xy -1.27 -2.54) (xy 1.27 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "VM+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:VM-_BAR"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "VM-"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'VM-'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "VM-_BAR_0_0"
-				(polyline
-					(pts
-						(xy -1.27 -2.54) (xy 1.27 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "VM-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:Vmot_BAR"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Vmot"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name 'Vmot'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Vmot_BAR_0_0"
-				(polyline
-					(pts
-						(xy -1.27 -2.54) (xy 1.27 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "Vmot"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:root_0_CAP_0"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "CAP 1uF 25V ±10% 1206 (3216 Metric) Thickness 1.3mm SMD"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*CAPC1206(3216)130_M*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "root_0_CAP_0_1_0"
-				(polyline
-					(pts
-						(xy 0 -2.54) (xy 0.762 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 -4.572) (xy 0.762 -0.508)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.778 -0.508) (xy 1.778 -4.572)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -2.54) (xy 1.778 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -2.54 -2.54 0)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -2.54 180)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:root_0_Cap"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*Ceramic{space}Cap{space}5mm*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "root_0_Cap_1_0"
-				(polyline
-					(pts
-						(xy -2.032 -4.445) (xy 2.032 -4.445)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -3.175) (xy 2.032 -3.175)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -4.445) (xy 0 -5.08)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -2.54) (xy 0 -3.175)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 0 0 270)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:root_0_DRV8873"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "DRV8873-Q1 Automotive H-Bridge Motor Driver\rThis one is the H version, with Hbridge gate controls (no SPI)"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*DRV8873*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "root_0_DRV8873_1_0"
-				(rectangle
-					(start 16.51 21.59)
-					(end -20.32 -26.67)
-					(stroke
-						(width 0.0254)
-						(type solid)
-						(color 128 0 0 1)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin passive line
-					(at -27.94 17.78 0)
-					(length 7.62)
-					(name "DVDD"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 -12.7 180)
-					(length 7.62)
-					(name "IPROPI1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "10"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 -2.54 0)
-					(length 7.62)
-					(name "nSLEEP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "11"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 -15.24 180)
-					(length 7.62)
-					(name "IPROPI2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "12"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 15.24 180)
-					(length 7.62)
-					(name "VM"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "13"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 0 180)
-					(length 7.62)
-					(name "OUT2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "14"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 2.54 180)
-					(length 7.62)
-					(name "OUT2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "15"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 -7.62 180)
-					(length 7.62)
-					(name "SRC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "16"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 -5.08 180)
-					(length 7.62)
-					(name "SRC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "17"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 7.62 180)
-					(length 7.62)
-					(name "OUT2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "18"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 10.16 180)
-					(length 7.62)
-					(name "OUT1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "19"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 -17.78 0)
-					(length 7.62)
-					(name "nFAULT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 17.78 180)
-					(length 7.62)
-					(name "VM"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "20"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 12.7 0)
-					(length 7.62)
-					(name "VCP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "21"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 10.16 0)
-					(length 7.62)
-					(name "CPH"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "22"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 7.62 0)
-					(length 7.62)
-					(name "CPL"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "23"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 -20.32 180)
-					(length 7.62)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "24"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 24.13 -22.86 180)
-					(length 7.62)
-					(name "PPAD"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "25"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 -10.16 0)
-					(length 7.62)
-					(name "MODE"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 -12.7 0)
-					(length 7.62)
-					(name "SR"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 -20.32 0)
-					(length 7.62)
-					(name "nITRIP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 -22.86 0)
-					(length 7.62)
-					(name "nOL"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 2.54 0)
-					(length 7.62)
-					(name "EN/IN1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 0 0)
-					(length 7.62)
-					(name "PH/IN2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -27.94 -5.08 0)
-					(length 7.62)
-					(name "DISABLE"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "9"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:root_0_Res1"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Resistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*AXIAL-0.3-3D*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "root_0_Res1_1_0"
-				(polyline
-					(pts
-						(xy 5.08 -2.54) (xy 4.064 -2.54) (xy 3.81 -3.048) (xy 3.302 -2.032) (xy 2.794 -3.048) (xy 2.286 -2.032)
-						(xy 1.778 -3.048) (xy 1.27 -2.032) (xy 1.016 -2.54) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -2.54 -2.54 0)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 -2.54 180)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:root_1_CAP_0"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "CAP 47nF 50V ±20% 1206 (3216 Metric) Thickness 1.2mm SMD"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*CAPC1206(3216)130_L*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "root_1_CAP_0_1_0"
-				(polyline
-					(pts
-						(xy 0.508 1.778) (xy 4.572 1.778)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 0) (xy 2.54 0.762)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 2.54) (xy 2.54 1.778)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 4.572 0.762) (xy 0.508 0.762)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 2.54 -2.54 90)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 5.08 270)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:root_1_Res1"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Resistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*AXIAL-0.3-3D*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "root_1_Res1_1_0"
-				(polyline
-					(pts
-						(xy 2.54 5.08) (xy 2.54 4.064) (xy 3.048 3.81) (xy 2.032 3.302) (xy 3.048 2.794) (xy 2.032 2.286)
-						(xy 3.048 1.778) (xy 2.032 1.27) (xy 2.54 1.016) (xy 2.54 0)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 2.54 -2.54 90)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 7.62 270)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:root_2_Res1"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Resistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*AXIAL-0.3-3D*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "root_2_Res1_1_0"
-				(polyline
-					(pts
-						(xy -5.08 2.54) (xy -4.064 2.54) (xy -3.81 3.048) (xy -3.302 2.032) (xy -2.794 3.048) (xy -2.286 2.032)
-						(xy -1.778 3.048) (xy -1.27 2.032) (xy -1.016 2.54) (xy 0 2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 2.54 2.54 180)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -7.62 2.54 0)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "UMTK-altium-import:root_3_Res1"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Resistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*AXIAL-0.3-3D*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "root_3_Res1_1_0"
-				(polyline
-					(pts
-						(xy -2.54 -5.08) (xy -2.54 -4.064) (xy -3.048 -3.81) (xy -2.032 -3.302) (xy -3.048 -2.794) (xy -2.032 -2.286)
-						(xy -3.048 -1.778) (xy -2.032 -1.27) (xy -2.54 -1.016) (xy -2.54 0)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -2.54 2.54 270)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -2.54 -7.62 90)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "power:+12V"
 			(power)
 			(pin_names
@@ -3048,166 +1866,364 @@
 				)
 			)
 		)
+		(symbol "power:+5V"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+5V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+5V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+5V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+5V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "power:VDD"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "VDD"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"VDD\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "VDD_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "VDD_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 	)
 	(junction
-		(at 168.91 125.73)
+		(at 93.98 140.97)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "12ec7081-edaf-450c-bf9e-36ebbc20f4d7")
+		(uuid "0419b54d-9a79-4bfc-a386-5c0a003302fe")
 	)
 	(junction
-		(at 196.85 107.95)
+		(at 113.03 156.21)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "23d15a46-949b-4579-b31f-4e081fd3092d")
+		(uuid "34cf6e9e-c2ec-47ad-9d21-b00fbf75fca8")
 	)
 	(junction
-		(at 69.85 130.81)
+		(at 215.9 130.81)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "282579e1-6772-4388-98d1-41c34cc9b7cd")
+		(uuid "46d48cf5-6a36-46de-9e56-0666d0ed8dde")
 	)
 	(junction
-		(at 203.2 146.05)
+		(at 100.33 143.51)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "33cbd8a6-0452-46c3-8c2a-0c44a1df1f36")
+		(uuid "470450d0-7693-46be-89fb-43438ada26a6")
 	)
 	(junction
-		(at 58.42 105.41)
+		(at 208.28 156.21)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "33d86703-6537-4d49-8f01-8d878adf9f4f")
+		(uuid "524d4df0-1259-4b74-b0e2-0322c670d010")
 	)
 	(junction
-		(at 85.09 163.83)
+		(at 231.14 130.81)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "6c02672e-f26a-4c86-a929-82185da1f56e")
+		(uuid "706686f6-915d-42b0-b6ac-af4cca80f6b0")
 	)
 	(junction
-		(at 168.91 133.35)
+		(at 208.28 130.81)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "7d1a13de-5ab2-4f27-8998-434beede703c")
+		(uuid "77c9ad3c-7062-474b-86b1-1d8f09850760")
 	)
 	(junction
-		(at 171.45 92.71)
+		(at 199.39 156.21)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "982ffd90-3fcd-4a6d-a5d9-72ca37e23e99")
+		(uuid "7bed8edd-9482-403d-b4db-e2599438da3a")
 	)
 	(junction
-		(at 243.84 118.11)
+		(at 93.98 119.38)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "9c7cf3d4-4b40-4d77-8b6b-5864a03201ef")
+		(uuid "7cc122a7-9eda-431c-805f-03f6f05ddd71")
 	)
 	(junction
-		(at 203.2 135.89)
+		(at 208.28 123.19)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "a3c60ceb-bb59-4b56-a779-23da98ceab25")
+		(uuid "92d59486-1958-4295-b588-876073275d6c")
 	)
 	(junction
-		(at 184.15 100.33)
+		(at 201.93 123.19)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "c280d5e2-0100-4216-81a4-8c9b0b3501e2")
+		(uuid "96c1a991-ffa7-46f1-a001-b0f51a3dde23")
 	)
 	(junction
-		(at 220.98 135.89)
+		(at 81.28 154.94)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "cd87558a-47eb-4f71-abfb-1e42fdc14656")
+		(uuid "99f4276c-9bf3-4402-8d2f-f2621bc247db")
 	)
 	(junction
-		(at 85.09 148.59)
+		(at 215.9 123.19)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "dc5ffe56-99c2-4f2f-a327-fd47a0aa6936")
+		(uuid "a24b639b-2950-405c-9e24-b27785790c57")
 	)
 	(junction
-		(at 184.15 146.05)
+		(at 87.63 135.89)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "e2702279-dfec-4c69-8e5a-5844d6e647de")
-	)
-	(junction
-		(at 90.17 161.29)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e55fb0ba-f9f7-437c-a878-aa1e6773f630")
-	)
-	(junction
-		(at 80.01 166.37)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fc539558-1569-44ee-803b-8f50404e0b0b")
+		(uuid "cdeadba6-3565-4128-9e53-d9a509eb8aaa")
 	)
 	(wire
 		(pts
-			(xy 78.74 110.49) (xy 116.84 110.49)
+			(xy 124.46 163.83) (xy 134.62 163.83)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "054b1db4-5e0f-420b-aefe-597d74048cb9")
+		(uuid "098c88ac-f81e-456e-ad43-0d2b9ca5a23c")
 	)
 	(wire
 		(pts
-			(xy 203.2 146.05) (xy 220.98 146.05)
+			(xy 199.39 156.21) (xy 199.39 143.51)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0892191d-82f9-47b6-b032-9405132b758a")
+		(uuid "0ecb63b0-b99a-4421-89b3-7082380a8796")
 	)
 	(wire
 		(pts
-			(xy 184.15 100.33) (xy 184.15 102.87)
+			(xy 201.93 130.81) (xy 208.28 130.81)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0b97770f-7eb6-4a89-8ac4-08be744f533e")
+		(uuid "19fa3686-741c-471c-8ef4-304683dc4fc5")
 	)
 	(wire
 		(pts
-			(xy 80.01 148.59) (xy 85.09 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "12c95201-0160-4056-84f3-7c0eb6b2e460")
-	)
-	(wire
-		(pts
-			(xy 81.28 97.79) (xy 81.28 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "164e12ed-bec5-49c1-a044-7fd7c78cf0df")
-	)
-	(wire
-		(pts
-			(xy 196.85 97.79) (xy 196.85 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1f33b6d8-a46a-496c-a5dd-6eb773e115c2")
-	)
-	(wire
-		(pts
-			(xy 236.22 63.5) (xy 236.22 66.04)
+			(xy 233.68 67.31) (xy 233.68 69.85)
 		)
 		(stroke
 			(width 0)
@@ -3217,207 +2233,247 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 102.87) (xy 78.74 110.49)
+			(xy 113.03 156.21) (xy 113.03 160.02)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "2581a633-3d41-4c8f-a69d-17c622cf2873")
+		(uuid "229566f2-1256-4a7d-ac56-91eeba7f01b0")
 	)
 	(wire
 		(pts
-			(xy 168.91 146.05) (xy 184.15 146.05)
+			(xy 215.9 123.19) (xy 208.28 123.19)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "25c79958-c64f-4ed8-bd7f-614fd2342702")
+		(uuid "29ef77cc-2259-46d2-80fd-e315ac338bd1")
 	)
 	(wire
 		(pts
-			(xy 116.84 128.27) (xy 101.6 128.27)
+			(xy 186.69 123.19) (xy 201.93 123.19)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "271d45c1-c603-40ee-8017-038cfc60848c")
+		(uuid "2a7dd746-8c0f-4bae-9fa4-1e0ed596dade")
 	)
 	(wire
 		(pts
-			(xy 58.42 115.57) (xy 116.84 115.57)
+			(xy 97.79 156.21) (xy 101.6 156.21)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "29ab2aeb-ef9a-4b18-8f66-d537e88a046c")
+		(uuid "2be6cc83-6b61-4d2f-8dec-e40f92739860")
 	)
 	(wire
 		(pts
-			(xy 168.91 115.57) (xy 243.84 115.57)
+			(xy 59.69 158.75) (xy 66.04 158.75)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "31183b2e-ab22-4e48-8f12-e5e7ce2d7e5e")
+		(uuid "2ebd28b4-fa18-430f-9900-61f8f9a98e17")
 	)
 	(wire
 		(pts
-			(xy 171.45 80.01) (xy 171.45 92.71)
+			(xy 201.93 123.19) (xy 208.28 123.19)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3226ee3e-f810-431e-b82a-28a74ee889a8")
+		(uuid "2fe72ea8-e9fe-4624-9655-a63965355314")
 	)
 	(wire
 		(pts
-			(xy 196.85 107.95) (xy 196.85 110.49)
+			(xy 219.71 135.89) (xy 173.99 135.89)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "39c16da5-6dd0-4f6c-b235-a36f6a92f935")
+		(uuid "315e9bc5-9d70-483c-9f17-a9b36066da1a")
 	)
 	(wire
 		(pts
-			(xy 80.01 166.37) (xy 71.12 166.37)
+			(xy 231.14 118.11) (xy 173.99 118.11)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3b96f7ef-4dba-48f1-b21b-a7054c3d8fc1")
+		(uuid "36b16eb1-30c0-4619-a4e0-c5b54d3add92")
 	)
 	(wire
 		(pts
-			(xy 106.68 133.35) (xy 116.84 133.35)
+			(xy 93.98 115.57) (xy 93.98 119.38)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3d9cbbf3-58f2-4a5a-8fb0-8b2316dd9de8")
+		(uuid "37402e81-ad8b-4006-ad74-3c7bf0cb50bf")
 	)
 	(wire
 		(pts
-			(xy 58.42 100.33) (xy 58.42 105.41)
+			(xy 87.63 119.38) (xy 93.98 119.38)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "44a6370a-6993-44f1-8be1-7b5aaa5a3b15")
+		(uuid "37fff4a6-4919-41e9-9d93-fd498ce9a704")
 	)
 	(wire
 		(pts
-			(xy 106.68 100.33) (xy 106.68 95.25)
+			(xy 173.99 120.65) (xy 215.9 120.65)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "460df1bb-dea6-453b-8b47-4fc201580a4b")
+		(uuid "39562bc3-6e4a-49c8-b228-60f497a22fea")
 	)
 	(wire
 		(pts
-			(xy 106.68 95.25) (xy 93.98 95.25)
+			(xy 59.69 152.4) (xy 59.69 154.94)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "47a0fe1b-b369-4346-b4d4-38838808fc3c")
+		(uuid "3c29cf62-3377-48f3-896f-ba4fcf724869")
 	)
 	(wire
 		(pts
-			(xy 168.91 130.81) (xy 168.91 133.35)
+			(xy 93.98 119.38) (xy 100.33 119.38)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "49393413-eac6-48ef-9435-bc54e528ad2b")
+		(uuid "4572f671-28bf-4df3-b9d7-52554769bb89")
 	)
 	(wire
 		(pts
-			(xy 220.98 135.89) (xy 236.22 135.89)
+			(xy 113.03 156.21) (xy 113.03 148.59)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "525a00f4-41e2-4dfd-a59d-7bdf937a65d9")
+		(uuid "4b1d6b7a-b27d-4669-b239-f8b3c83b2a6b")
 	)
 	(wire
 		(pts
-			(xy 80.01 158.75) (xy 80.01 166.37)
+			(xy 173.99 138.43) (xy 208.28 138.43)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "589c45c9-2ff9-4c02-b952-4b62b2303ac8")
+		(uuid "56d428cd-b2fa-4bd3-8686-2d343beb2c6a")
 	)
 	(wire
 		(pts
-			(xy 180.34 135.89) (xy 203.2 135.89)
+			(xy 219.71 156.21) (xy 219.71 152.4)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "5aad09bb-d331-4620-b320-0548f4f76636")
+		(uuid "5731cd3c-33c3-4c20-9698-a72897b1b3c9")
 	)
 	(wire
 		(pts
-			(xy 116.84 67.31) (xy 58.42 67.31)
+			(xy 231.14 125.73) (xy 231.14 130.81)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "5efb49b3-6578-45cd-b409-4406169a1fb2")
+		(uuid "5a1e07ae-7002-49d7-a744-48a9774b622e")
 	)
 	(wire
 		(pts
-			(xy 116.84 92.71) (xy 116.84 67.31)
+			(xy 220.98 72.39) (xy 245.11 72.39)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "611eeccb-8c5a-42d2-bf3e-a2d063a42ac3")
+		(uuid "5fb6470e-d9f2-4e71-ab27-4524b1e2eddd")
 	)
 	(wire
 		(pts
-			(xy 184.15 146.05) (xy 203.2 146.05)
+			(xy 97.79 153.67) (xy 97.79 156.21)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "68ae329f-527f-4d7a-9d07-612aea088bdc")
+		(uuid "5fd204eb-a24a-4f49-9173-e612552ee6ac")
 	)
 	(wire
 		(pts
-			(xy 58.42 105.41) (xy 58.42 113.03)
+			(xy 93.98 119.38) (xy 93.98 123.19)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6ffb0240-f9d2-4b1c-9cd3-d4537388b4ed")
+		(uuid "6109ebd1-32c7-462c-bd42-54e5848f388d")
 	)
 	(wire
 		(pts
-			(xy 242.57 48.26) (xy 248.92 48.26)
+			(xy 134.62 156.21) (xy 138.43 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "618e5ef9-0145-4422-aac8-02bbf2f21013")
+	)
+	(wire
+		(pts
+			(xy 125.73 128.27) (xy 138.43 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "63cbd931-b41f-4314-9c79-2c69ee1c15fd")
+	)
+	(wire
+		(pts
+			(xy 173.99 128.27) (xy 181.61 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6744b900-ce34-4ac6-a0d4-aa34911d1c33")
+	)
+	(wire
+		(pts
+			(xy 100.33 119.38) (xy 100.33 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6dd91e09-5b56-46a9-b9b3-20446dbe356c")
+	)
+	(wire
+		(pts
+			(xy 240.03 52.07) (xy 246.38 52.07)
 		)
 		(stroke
 			(width 0)
@@ -3427,127 +2483,87 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 135.89) (xy 210.82 135.89)
+			(xy 81.28 140.97) (xy 93.98 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "7173a107-4ccc-4062-826f-49c93c8e34da")
+		(uuid "75ef5ddb-09ad-4779-94f5-85f570d2bb80")
 	)
 	(wire
 		(pts
-			(xy 85.09 163.83) (xy 85.09 158.75)
+			(xy 208.28 130.81) (xy 215.9 130.81)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "72103a94-373f-4621-9c26-7bfdae754abd")
+		(uuid "7e5605a1-e2b3-4726-b71b-190f7c0bacec")
 	)
 	(wire
 		(pts
-			(xy 104.14 130.81) (xy 104.14 163.83)
+			(xy 59.69 154.94) (xy 66.04 154.94)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "7e69bc82-f722-471f-a3ab-ac926f71dc3e")
+		(uuid "7fabb2a9-b155-4e66-9e52-4e39c8eee4cf")
 	)
 	(wire
 		(pts
-			(xy 168.91 133.35) (xy 168.91 146.05)
+			(xy 182.88 163.83) (xy 182.88 166.37)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "81493092-95b9-4c8d-bf5a-85abe4f26ee9")
+		(uuid "81e0b59a-e642-4a21-9e04-e9f039f62f2e")
 	)
 	(wire
 		(pts
-			(xy 101.6 128.27) (xy 101.6 161.29)
+			(xy 100.33 130.81) (xy 100.33 143.51)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "81c22622-1592-4aa8-8772-33b7d69c114d")
+		(uuid "8669783c-843b-4326-9d09-6db3cca55e55")
 	)
 	(wire
 		(pts
-			(xy 243.84 115.57) (xy 243.84 118.11)
+			(xy 109.22 156.21) (xy 113.03 156.21)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "82884657-4917-43da-9747-887c14d92433")
+		(uuid "8a4595c2-4678-442f-86b8-108d9c0d0dbc")
 	)
 	(wire
 		(pts
-			(xy 168.91 100.33) (xy 184.15 100.33)
+			(xy 81.28 143.51) (xy 100.33 143.51)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "8470ff91-40d4-482e-b777-7b4ff8cdbe9f")
+		(uuid "8aeb8df9-4965-4b58-a422-149d81c8f680")
 	)
 	(wire
 		(pts
-			(xy 106.68 166.37) (xy 106.68 133.35)
+			(xy 81.28 158.75) (xy 81.28 154.94)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "84727a75-3639-483c-bef3-1977a17d325e")
+		(uuid "8c7e55aa-c386-4db9-ad57-36c429fe8993")
 	)
 	(wire
 		(pts
-			(xy 109.22 97.79) (xy 109.22 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "86481796-519c-45a7-9656-63afa01ce839")
-	)
-	(wire
-		(pts
-			(xy 220.98 138.43) (xy 220.98 135.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "873c6437-bf66-404e-b117-d514acb60520")
-	)
-	(wire
-		(pts
-			(xy 184.15 87.63) (xy 184.15 100.33)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "88afdf03-b1e3-4319-b2a1-68a42d87287b")
-	)
-	(wire
-		(pts
-			(xy 90.17 161.29) (xy 71.12 161.29)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8a4ad0f6-06e2-44fd-bec9-a24dde3c5cbc")
-	)
-	(wire
-		(pts
-			(xy 236.22 66.04) (xy 247.65 66.04)
+			(xy 233.68 69.85) (xy 245.11 69.85)
 		)
 		(stroke
 			(width 0)
@@ -3557,37 +2573,77 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 123.19) (xy 116.84 123.19)
+			(xy 81.28 146.05) (xy 81.28 154.94)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "8ed51a5a-7559-488c-95e4-004c7fbf07de")
+		(uuid "8eba4edb-82f0-4ca8-8083-41bfdce97e49")
 	)
 	(wire
 		(pts
-			(xy 109.22 82.55) (xy 93.98 82.55)
+			(xy 199.39 156.21) (xy 208.28 156.21)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "8f22cdcd-4fde-437f-920a-c68fd26df592")
+		(uuid "92f17b1d-ebf5-4b97-9468-06a0e641f90d")
 	)
 	(wire
 		(pts
-			(xy 104.14 163.83) (xy 85.09 163.83)
+			(xy 208.28 156.21) (xy 219.71 156.21)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a00e7a68-75de-4663-8828-19d6dd29ee76")
+		(uuid "9341431e-77a0-4604-b4b4-9269ad554230")
 	)
 	(wire
 		(pts
-			(xy 242.57 50.8) (xy 248.92 50.8)
+			(xy 208.28 152.4) (xy 208.28 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "947d2f7a-44ec-43c7-be0b-92a5dfa6b7fb")
+	)
+	(wire
+		(pts
+			(xy 93.98 130.81) (xy 93.98 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9911e838-4d93-497c-a295-3d57cdb37219")
+	)
+	(wire
+		(pts
+			(xy 173.99 130.81) (xy 181.61 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9a073480-e7ac-4d65-82a9-8941f82a39f6")
+	)
+	(wire
+		(pts
+			(xy 100.33 143.51) (xy 138.43 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ce855a6-5cb2-4bbc-8e3b-e040fa3c2e5c")
+	)
+	(wire
+		(pts
+			(xy 240.03 54.61) (xy 246.38 54.61)
 		)
 		(stroke
 			(width 0)
@@ -3597,260 +2653,312 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 100.33) (xy 106.68 100.33)
+			(xy 59.69 160.02) (xy 59.69 158.75)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a398cf38-ab1f-42d6-8e55-5a673ff3e93b")
+		(uuid "a76f2c03-a2ae-412f-8bcb-f28e5524796d")
 	)
 	(wire
 		(pts
-			(xy 184.15 102.87) (xy 168.91 102.87)
+			(xy 87.63 123.19) (xy 87.63 119.38)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a6eef9cd-0e06-4608-bc03-769cd85ca7e2")
+		(uuid "a7f77650-86bf-4a70-bb9a-43de72d4b03a")
 	)
 	(wire
 		(pts
-			(xy 85.09 163.83) (xy 71.12 163.83)
+			(xy 173.99 146.05) (xy 180.34 146.05)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a805bf2b-0cb0-4341-b867-773ddfbe0183")
+		(uuid "ad5c7897-d6a1-4cd7-a429-924bd3b4e19f")
 	)
 	(wire
 		(pts
-			(xy 101.6 161.29) (xy 90.17 161.29)
+			(xy 215.9 124.46) (xy 215.9 123.19)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a8cecb5b-10c4-4fb8-b5cc-5f802f2ada79")
+		(uuid "b1ed8fed-eb9a-4d51-b45f-2eaa1d5cf2c8")
 	)
 	(wire
 		(pts
-			(xy 80.01 166.37) (xy 106.68 166.37)
+			(xy 199.39 143.51) (xy 173.99 143.51)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ae0a156d-29f9-4826-8897-13839a74c865")
+		(uuid "b25295c8-bdee-4ce7-ab39-b5288b3763a9")
 	)
 	(wire
 		(pts
-			(xy 180.34 125.73) (xy 180.34 135.89)
+			(xy 208.28 138.43) (xy 208.28 144.78)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b54d2af1-1aa0-4cf7-95ae-3d0da9c5b8fd")
+		(uuid "b3c166a5-73ff-46a6-a8b3-e285b638cb1d")
 	)
 	(wire
 		(pts
-			(xy 243.84 118.11) (xy 243.84 119.38)
+			(xy 215.9 130.81) (xy 231.14 130.81)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "bbb8010c-4997-4769-a83f-4ea5006660da")
+		(uuid "b8de01c6-5254-4aad-a909-07a03f9f17d1")
 	)
 	(wire
 		(pts
-			(xy 81.28 107.95) (xy 116.84 107.95)
+			(xy 125.73 130.81) (xy 138.43 130.81)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "bcf6bcbd-f3d3-4fca-817b-8b3fd6992643")
+		(uuid "b8f47c3b-f5ba-477b-bc24-e342035b60c8")
 	)
 	(wire
 		(pts
-			(xy 196.85 110.49) (xy 168.91 110.49)
+			(xy 124.46 153.67) (xy 138.43 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c8334ed9-ac7f-477f-9335-6cab81b57ff8")
+		(uuid "b9d6a911-b06e-4cf2-a88e-f867a79b7e20")
 	)
 	(wire
 		(pts
-			(xy 69.85 130.81) (xy 69.85 123.19)
+			(xy 87.63 135.89) (xy 138.43 135.89)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c87c2d6f-4d13-45e1-bf0c-fc2a8546eec7")
+		(uuid "ba86daee-3212-4541-8bfe-a4039a72914f")
 	)
 	(wire
 		(pts
-			(xy 116.84 130.81) (xy 104.14 130.81)
+			(xy 134.62 163.83) (xy 134.62 156.21)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ca111eef-3a1d-4e3d-9d99-3478b8fe80c0")
+		(uuid "c020d275-9179-4f55-b9eb-f20970b7a792")
 	)
 	(wire
 		(pts
-			(xy 168.91 123.19) (xy 168.91 125.73)
+			(xy 81.28 146.05) (xy 138.43 146.05)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "cab25345-3b75-4093-a933-7e1227965aa0")
+		(uuid "c0363a05-0a04-44fe-98ac-681e5709c063")
 	)
 	(wire
 		(pts
-			(xy 69.85 135.89) (xy 69.85 130.81)
+			(xy 73.66 158.75) (xy 81.28 158.75)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ce4cc5f4-b0d0-4e39-b553-067f8ec61a0c")
+		(uuid "c9142e78-b4ea-40fd-a01d-d26695ab36aa")
 	)
 	(wire
 		(pts
-			(xy 90.17 161.29) (xy 90.17 158.75)
+			(xy 173.99 163.83) (xy 182.88 163.83)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "cec89699-f640-43ce-b820-346cb861596e")
+		(uuid "cdc7177b-66bc-4180-b9f7-c62564dd2fc8")
 	)
 	(wire
 		(pts
-			(xy 243.84 118.11) (xy 168.91 118.11)
+			(xy 199.39 157.48) (xy 199.39 156.21)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d036d0bb-b215-44a8-a5f8-8dbf35032481")
+		(uuid "cfc299b9-121f-41da-87db-f52aad46f5c8")
 	)
 	(wire
 		(pts
-			(xy 171.45 95.25) (xy 168.91 95.25)
+			(xy 124.46 162.56) (xy 124.46 163.83)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d82f97f7-b5f2-4c82-b15d-d123848357b1")
+		(uuid "d018db4e-2d83-4bb9-a904-d2d8fccbe934")
 	)
 	(wire
 		(pts
-			(xy 85.09 148.59) (xy 90.17 148.59)
+			(xy 81.28 154.94) (xy 73.66 154.94)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d9818903-f799-4eb5-9f64-cdc5fd7e03e6")
+		(uuid "d58ca2cd-6f44-436d-ac8e-7734340fd1cf")
 	)
 	(wire
 		(pts
-			(xy 168.91 125.73) (xy 180.34 125.73)
+			(xy 113.03 160.02) (xy 102.87 160.02)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "dc105782-63cc-4359-8976-95c19eb8da10")
+		(uuid "d9eb751c-9424-43be-8808-82e7c4f49d31")
 	)
 	(wire
 		(pts
-			(xy 171.45 92.71) (xy 168.91 92.71)
+			(xy 173.99 123.19) (xy 179.07 123.19)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "dc3eb56c-ad5b-4096-9129-a72f1c07878e")
+		(uuid "daed41cb-5ae1-42cc-801f-68fdb200cf3a")
 	)
 	(wire
 		(pts
-			(xy 116.84 97.79) (xy 109.22 97.79)
+			(xy 124.46 154.94) (xy 124.46 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e20ca635-1048-464b-8738-205252efd1b5")
+		(uuid "e0c214d9-25ac-4bb2-995a-53589342294a")
 	)
 	(wire
 		(pts
-			(xy 171.45 92.71) (xy 171.45 95.25)
+			(xy 87.63 130.81) (xy 87.63 135.89)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e55d7a99-1b24-436a-9140-b3d1122c42b2")
+		(uuid "e18a967c-01a3-4a2b-8f11-5bd852a7e617")
 	)
 	(wire
 		(pts
-			(xy 58.42 113.03) (xy 116.84 113.03)
+			(xy 82.55 135.89) (xy 87.63 135.89)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ebdd7074-862d-4887-bf8d-a0dfc616fe99")
+		(uuid "e1a927de-5c00-4d8c-bec6-d7385a8e9c5a")
 	)
 	(wire
 		(pts
-			(xy 168.91 107.95) (xy 196.85 107.95)
+			(xy 231.14 130.81) (xy 231.14 135.89)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f962a03e-9b33-42c9-986c-02aae1997667")
+		(uuid "e56c2797-2231-4392-b523-36ae87936bcf")
 	)
 	(wire
 		(pts
-			(xy 116.84 102.87) (xy 93.98 102.87)
+			(xy 93.98 140.97) (xy 138.43 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f9d01872-9b78-4327-b37d-43c303ff8d5a")
+		(uuid "f1501884-9919-4b3f-9398-888a7121d1af")
 	)
 	(wire
 		(pts
-			(xy 58.42 67.31) (xy 58.42 69.85)
+			(xy 125.73 133.35) (xy 138.43 133.35)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fb0a71ce-4732-4390-b4f1-65edd389d0f8")
+		(uuid "f4066e19-d8a3-4f13-a368-1534b5e00f64")
+	)
+	(wire
+		(pts
+			(xy 113.03 148.59) (xy 138.43 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5c64fc6-8e7c-44dd-869d-6f6e26df9058")
+	)
+	(wire
+		(pts
+			(xy 219.71 144.78) (xy 219.71 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5df0088-164a-48bc-ab98-b49cd55e61e4")
+	)
+	(wire
+		(pts
+			(xy 215.9 120.65) (xy 215.9 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff3ba6b6-1c9f-4a72-9e15-df0f8fea5d2c")
+	)
+	(text_box "HW VERSION (DRV8873H)\n3 - MODE -		Input mode pin. Sets the PH/EN, PWM, or independent-PWM mode.\n\n4 - SR - 		Slew rate adjust. This pin sets the slew rate of the H-bridge outputs.\n\n5 - nITRIP -	Internal current-regulation control pin (ITRIP). To enable the ITRIP feature,\n				do not connect this pin (or tie it to GND). To disable the ITRIP feature,\n				connect this pin to the DVDD pin.\n\n6 - nOL -		Open-load diagnostic control pin. To run the open-load diagnostic at power\n				up, tie it to ground. Connect it to DVDD, open-load diagnostic will be\n				disabled.\n\n\nSPI VERSION (DRV8873S)\n3 - SDO -		Serial data output. Data is shifted out on the rising edge of the SCLK pin.\n				This is a push-pull output.\n\n4 - SDI - 		Serial data input. Data is captured on the falling edge of the SCLK pin.\n\n5 - SCLK -		Serial clock input. Serial data is shifted out and captured on the\n				corresponding rising and falling edge on this pin.\n\n6 - nSCS -		Serial chip select. An active low on this pin enables the serial interface\n				communications. Internal pullup to nSLEEP."
+		(exclude_from_sim no)
+		(at 14.732 25.146 0)
+		(size 120.396 57.15)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type color)
+			(color 255 246 52 1)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "2d540618-dd3a-4a62-87f1-0b295958f100")
 	)
 	(text "Motor Connections"
 		(exclude_from_sim no)
-		(at 217.17 29.21 0)
+		(at 210.82 38.1 0)
 		(effects
 			(font
 				(size 4.572 4.572)
+				(thickness 0.9144)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
@@ -3858,40 +2966,97 @@
 	)
 	(text "Motor Driver (DRV8873)"
 		(exclude_from_sim no)
-		(at 15.24 39.37 0)
+		(at 13.716 20.32 0)
 		(effects
 			(font
 				(size 6.096 6.096)
+				(thickness 1.2192)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
 		(uuid "f9dae52f-5e4a-4c6d-ba3e-00e07541ddb7")
 	)
-	(global_label "VM-"
-		(shape input)
-		(at 248.92 50.8 0)
+	(label "VM-"
+		(at 246.38 54.61 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify left bottom)
 		)
-		(uuid "558851fe-e0d6-4f20-9ac9-b02c005679ca")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 255.4455 50.8794 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
+		(uuid "044e891f-a273-46d0-9024-f78521da018a")
 	)
-	(global_label "VM+"
+	(label "SR - Slew Rate Adjust"
+		(at 85.09 146.05 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1e24a8fb-3ebe-4fc6-8019-10bd3e598dc8")
+	)
+	(label "VM+"
+		(at 181.61 128.27 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3c39e7b1-7569-4d55-a624-481ae365b8b9")
+	)
+	(label "VM-"
+		(at 181.61 130.81 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "af4d03c4-1b8f-4b62-9b17-6053b559294d")
+	)
+	(label "MOTOR_POWER"
+		(at 195.58 120.65 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "de5bdc27-0d3e-42ab-a2ce-e5352d5eb8e0")
+	)
+	(label "VM+"
+		(at 246.38 52.07 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e6c6cefd-5616-4595-9d54-deaa26932081")
+	)
+	(label "MOTOR_POWER"
+		(at 220.98 72.39 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "f606dce0-6c10-4e4a-abc3-e5fa76bc35a9")
+	)
+	(hierarchical_label "SENSE2"
 		(shape input)
-		(at 248.92 48.26 0)
+		(at 208.28 138.43 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3899,56 +3064,154 @@
 			)
 			(justify left)
 		)
-		(uuid "915efc7e-debd-4f33-93ff-390768937c63")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 255.4455 48.3394 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
+		(uuid "151fad24-08cf-43ae-9ddc-42bca3800f7c")
+	)
+	(hierarchical_label "DISABLE"
+		(shape input)
+		(at 125.73 133.35 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
 			)
+			(justify right)
 		)
+		(uuid "1b862557-69b4-44b8-ab6d-c8760a9239c1")
+	)
+	(hierarchical_label "nFAULT"
+		(shape input)
+		(at 180.34 146.05 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "42778217-0157-437e-9ed5-03baeeaaafaa")
+	)
+	(hierarchical_label "nTRIP"
+		(shape input)
+		(at 81.28 143.51 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "461412d5-fca7-4429-8b51-136fc3f39efe")
+	)
+	(hierarchical_label "MODE"
+		(shape input)
+		(at 102.87 160.02 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "80b597e1-63ec-4a47-a86a-7ac5954ae7f8")
+	)
+	(hierarchical_label "PH{slash}IN2"
+		(shape input)
+		(at 125.73 130.81 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "85c34918-9b1f-4a40-b6d2-aee7cf90e720")
+	)
+	(hierarchical_label "nSLEEP"
+		(shape input)
+		(at 82.55 135.89 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "abf66329-d21c-43af-b406-cd05b9d34c88")
+	)
+	(hierarchical_label "nOL"
+		(shape input)
+		(at 81.28 140.97 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d2bbb96c-5113-4cad-a728-eaddc819aa05")
+	)
+	(hierarchical_label "SENSE1"
+		(shape input)
+		(at 219.71 135.89 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dadca569-fd24-4b4f-854b-da4f756e7d6f")
+	)
+	(hierarchical_label "EN{slash}IN1"
+		(shape input)
+		(at 125.73 128.27 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "db665d79-8afc-4f3d-acc6-d23024386269")
 	)
 	(symbol
-		(lib_id "UMTK-altium-import:M_ITRIP_CIRCLE")
-		(at 71.12 163.83 270)
+		(lib_id "DRV8873SPWPRQ1:DRV8873SPWPRQ1")
+		(at 156.21 140.97 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "125ed000-35a7-4da3-a0f9-c70f56bf14b9")
-		(property "Reference" "#PWR046"
-			(at 71.12 163.83 0)
+		(fields_autoplaced yes)
+		(uuid "04d8ceb1-b47c-4132-8e71-a4b5dff9eb11")
+		(property "Reference" "U6"
+			(at 156.21 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Value" "M_ITRIP"
-			(at 67.31 163.83 90)
+		(property "Value" "DRV8873SPWPRQ1"
+			(at 156.21 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(property "Footprint" ""
-			(at 71.12 163.83 0)
+		(property "Footprint" "DRV8873SPWPRQ1:IC_DRV8873SPWPRQ1"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify bottom)
 				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
-			(at 71.12 163.83 0)
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3957,7 +3220,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 71.12 163.83 0)
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3965,186 +3228,284 @@
 				(hide yes)
 			)
 		)
-		(pin ""
-			(uuid "a8c28d2c-d014-4f7a-8828-708204a64388")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR046")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_2_Res1")
-		(at 218.44 138.43 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "22f94fbf-a559-4be2-ab96-8891ab08101e")
-		(property "Reference" "R32"
-			(at 213.106 135.128 0)
+		(property "MF" "Texas Instruments"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Res1"
-			(at 210.312 135.128 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Footprint" "AXIAL-0.3-3D"
-			(at 218.44 138.43 0)
+		(property "Description_1" "\nAutomotive 40-V, 10-A H-bridge motor driver with integrated current sensing & feedback\n"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 218.44 138.43 0)
+		(property "Package" "HTSSOP-24 Texas Instruments"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Description" "Resistor"
-			(at 218.44 138.43 0)
+		(property "Price" "None"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "PUBLISHED" "8-Jun-2000"
-			(at 210.312 135.128 0)
+		(property "Check_prices" "https://www.snapeda.com/parts/DRV8873SPWPRQ1/Texas+Instruments/view-part/?ref=eda"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "LATESTREVISIONDATE" "17-Jul-2002"
-			(at 210.312 135.128 0)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "LATESTREVISIONNOTE" "Re-released for DXP Platform."
-			(at 210.312 135.128 0)
+		(property "PARTREV" "A"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "PACKAGEREFERENCE" "AXIAL-0.3"
-			(at 210.312 135.128 0)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/DRV8873SPWPRQ1/Texas+Instruments/view-part/?ref=snap"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "PUBLISHER" "Altium Limited"
-			(at 210.312 135.128 0)
+		(property "MP" "DRV8873SPWPRQ1"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "PACKAGEDESCRIPTION" "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"
-			(at 210.312 135.128 0)
+		(property "Availability" "In Stock"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "ALTIUM_VALUE" "10K"
-			(at 213.106 139.192 0)
+		(property "MANUFACTURER" "TEXAS INSTRUMENTS"
+			(at 156.21 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(justify bottom)
+				(hide yes)
 			)
 		)
-		(pin "2"
-			(uuid "08652bda-e9a8-4e7f-a6d7-4b858cb43f97")
+		(pin "25.11"
+			(uuid "d0a78b71-d963-41c5-88b4-5023e959fee5")
+		)
+		(pin "25.16"
+			(uuid "f8b98160-ca54-4238-8feb-0e27d0a4b872")
+		)
+		(pin "25.1"
+			(uuid "8a3e0ddc-86be-48d7-8768-50529d7ab31a")
+		)
+		(pin "25.12"
+			(uuid "a5f4ef65-8965-4d45-9627-b8cf1f073e23")
+		)
+		(pin "25.6"
+			(uuid "59ba66ac-23ab-4d6b-9035-51b8975d9467")
+		)
+		(pin "25.14"
+			(uuid "ddbc48b5-d5fe-4c80-be49-b70dd77449ce")
+		)
+		(pin "9"
+			(uuid "52cf33de-55b1-4d37-a4d9-be57cdf21f9b")
+		)
+		(pin "25.10"
+			(uuid "18eee8ed-b5bc-41a0-a87f-6e5af445b6b8")
+		)
+		(pin "16"
+			(uuid "17a3c854-5d4c-4215-8220-e88a3f563c8a")
+		)
+		(pin "24"
+			(uuid "facaa542-7ccb-4fe1-8610-be2922eaffa0")
+		)
+		(pin "25.17"
+			(uuid "469a9630-14c5-445c-9904-e2e9f1724452")
+		)
+		(pin "25.2"
+			(uuid "0d235949-be3c-43ae-8519-7443c25cf7f4")
+		)
+		(pin "23"
+			(uuid "ae08a817-d461-4391-839c-d4d2d1ffd2e5")
+		)
+		(pin "25.4"
+			(uuid "4632d4be-9823-4e16-8af5-9ae09d01894f")
+		)
+		(pin "25.7"
+			(uuid "5e5b8d81-5c08-489b-bf9b-1f65c63419fc")
+		)
+		(pin "15"
+			(uuid "8bafee96-fb78-4496-af64-e9151868a830")
+		)
+		(pin "25.8"
+			(uuid "553bc638-876c-4a1f-8e20-f8f065b60e80")
+		)
+		(pin "8"
+			(uuid "a60f6859-bd17-40ac-aea2-b7c2470d8450")
+		)
+		(pin "14"
+			(uuid "e06fec32-6315-481b-b615-2f0f7a9f3d15")
+		)
+		(pin "17"
+			(uuid "30ef6351-db83-4af6-ac2c-1c62a789bb66")
+		)
+		(pin "25.3"
+			(uuid "4552e8e9-41bd-4986-b458-d80e253493cb")
+		)
+		(pin "7"
+			(uuid "7c0d6b27-7590-466e-8b58-869b86ee4573")
+		)
+		(pin "4"
+			(uuid "6e1a6b72-1f98-4ea6-95d8-93e036287fe8")
+		)
+		(pin "18"
+			(uuid "e4221769-68c4-4c30-9719-f9a8513e01b2")
+		)
+		(pin "19"
+			(uuid "8e313243-f4a8-4cac-99f8-7199f0f20caf")
+		)
+		(pin "25"
+			(uuid "c96e2839-7841-4193-a654-1b2a1b730eec")
+		)
+		(pin "6"
+			(uuid "e357d2d6-0456-4980-9a30-db16b8f55843")
+		)
+		(pin "25.18"
+			(uuid "2650c103-26a9-4be8-941b-ba51e110982c")
 		)
 		(pin "1"
-			(uuid "12dd9132-a284-4f0e-be6e-0c061312df09")
+			(uuid "1ed86259-4ce7-4cea-8681-d42f68e97a2f")
+		)
+		(pin "25.15"
+			(uuid "b8d2ffc2-513d-4ca3-bdb1-1e05b791ca07")
+		)
+		(pin "25.9"
+			(uuid "c0275e95-34e3-4348-b51e-9bd93b82a5a6")
+		)
+		(pin "3"
+			(uuid "56a29253-38de-43f6-bf07-a9da7d3955cb")
+		)
+		(pin "12"
+			(uuid "ddaf4ad1-cc9e-4038-9062-068b07b8584e")
+		)
+		(pin "11"
+			(uuid "96f1d8b4-070f-4780-b519-aa0108f6ab8b")
+		)
+		(pin "10"
+			(uuid "2329a4fb-4457-47b8-ab01-48778cee029b")
+		)
+		(pin "21"
+			(uuid "61de0104-0fa4-42d8-90e1-7804f57c1410")
+		)
+		(pin "5"
+			(uuid "852668dd-4b97-4507-87e1-244c3a4304b5")
+		)
+		(pin "20"
+			(uuid "73a258a5-0a17-4829-a3e3-0ba435274c4a")
+		)
+		(pin "2"
+			(uuid "ee7e0cce-ca4c-4a7c-9845-ccd1b6579f74")
+		)
+		(pin "13"
+			(uuid "518d416c-0a22-4323-879a-2f9a5fddc163")
+		)
+		(pin "22"
+			(uuid "ba8eefc0-b764-4a6f-a41b-d41936c33ba6")
+		)
+		(pin "25.5"
+			(uuid "0a257274-9e56-46fa-a82d-2048cd327c55")
+		)
+		(pin "25.13"
+			(uuid "bcfbfdbe-f414-42c9-b462-fdad4ebd617d")
 		)
 		(instances
-			(project "UMTK"
+			(project ""
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "R32")
+					(reference "U6")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "UMTK-altium-import:M_ISENS_CIRCLE")
-		(at 236.22 135.89 90)
+		(lib_id "Device:C")
+		(at 124.46 158.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "23dc728f-6119-4694-ad73-252d25195c4e")
-		(property "Reference" "#PWR057"
-			(at 236.22 135.89 0)
+		(fields_autoplaced yes)
+		(uuid "24bca353-b302-4fbc-a705-6fd6a4dc9b68")
+		(property "Reference" "C21"
+			(at 128.27 157.4799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
+				(justify left)
 			)
 		)
-		(property "Value" "M_ISENS"
-			(at 240.03 135.89 90)
+		(property "Value" "47n"
+			(at 128.27 160.0199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
-			(at 236.22 135.89 0)
+			(at 125.4252 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4152,8 +3513,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 236.22 135.89 0)
+		(property "Datasheet" "~"
+			(at 124.46 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4161,8 +3522,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 236.22 135.89 0)
+		(property "Description" "Unpolarized capacitor"
+			(at 124.46 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4170,13 +3531,84 @@
 				(hide yes)
 			)
 		)
-		(pin ""
-			(uuid "de3b4438-6dab-4b78-acf0-aa34316d7fc4")
+		(pin "1"
+			(uuid "4c7818ad-5008-4cf5-b7c4-53b8e57e23d9")
+		)
+		(pin "2"
+			(uuid "2c89d02b-17ad-43bd-ac49-0f5f9d84ba4d")
+		)
+		(instances
+			(project ""
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "C21")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 69.85 154.94 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2c9c9c99-0823-4c13-8e21-007f0ff573ac")
+		(property "Reference" "R63"
+			(at 69.85 148.59 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "DNP"
+			(at 69.85 151.13 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 69.596 155.956 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 69.85 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 69.85 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "817ab766-a754-4cb4-8b3d-0a1de9d60560")
+		)
+		(pin "2"
+			(uuid "1e37e040-5747-40c7-9db0-ab74ba1c4b07")
 		)
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR057")
+					(reference "R63")
 					(unit 1)
 				)
 			)
@@ -4184,15 +3616,15 @@
 	)
 	(symbol
 		(lib_id "UMTK-altium-import:GND_POWER_GROUND")
-		(at 59.69 135.89 270)
+		(at 199.39 157.48 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "259266ec-3375-46ee-a0e0-54ba9982955c")
-		(property "Reference" "#PWR044"
-			(at 59.69 135.89 0)
+		(uuid "4720b3b8-a335-4662-b99f-0c4ad439e300")
+		(property "Reference" "#PWR0160"
+			(at 199.39 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4201,16 +3633,15 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 53.34 135.89 90)
+			(at 199.39 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 59.69 135.89 0)
+			(at 199.39 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4219,7 +3650,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 59.69 135.89 0)
+			(at 199.39 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4228,7 +3659,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 59.69 135.89 0)
+			(at 199.39 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4237,423 +3668,12 @@
 			)
 		)
 		(pin ""
-			(uuid "35abef51-4b78-45fc-8b97-b29fd2eef62a")
+			(uuid "8bd5ed37-dbf8-4fc3-a135-eb5af13b2e04")
 		)
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR044")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_2_Res1")
-		(at 67.31 133.35 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "2608411d-119e-402b-9d1a-3017e517f03e")
-		(property "Reference" "R26"
-			(at 58.42 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Res1"
-			(at 59.182 130.048 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "AXIAL-0.3-3D"
-			(at 67.31 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 67.31 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 67.31 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHED" "8-Jun-2000"
-			(at 59.182 130.048 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONDATE" "17-Jul-2002"
-			(at 59.182 130.048 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONNOTE" "Re-released for DXP Platform."
-			(at 59.182 130.048 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEREFERENCE" "AXIAL-0.3"
-			(at 59.182 130.048 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHER" "Altium Limited"
-			(at 59.182 130.048 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEDESCRIPTION" "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"
-			(at 59.182 130.048 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "ALTIUM_VALUE" "DNP"
-			(at 63.5 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(pin "1"
-			(uuid "a1937c50-e613-4d44-8e9f-c15c7bae3a6e")
-		)
-		(pin "2"
-			(uuid "1c31370e-d178-421c-9f9f-c97fac8ca638")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "R26")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:VM+_BAR")
-		(at 184.15 87.63 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "38bf3d43-ba34-4f0c-b3c7-c0cd57cc84ba")
-		(property "Reference" "#PWR054"
-			(at 184.15 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VM+"
-			(at 187.96 87.63 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 184.15 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 184.15 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 184.15 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "a39038e2-ad99-43ac-b5f2-2a76ae9bbe4d")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR054")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_1_CAP_0")
-		(at 55.88 74.93 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "43a43d16-d2cb-48b9-8f2c-54ecb281824d")
-		(property "Reference" "C1"
-			(at 60.706 74.676 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "CAP 1uF 6.3V 1206(3216)"
-			(at 60.706 77.216 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "CAPC1206(3216)130_M"
-			(at 55.88 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 55.88 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "CAP 1uF 6.3V ±20% 1206 (3216 Metric) Thickness 1.2mm SMD"
-			(at 55.88 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MAX THICKNESS" "1.2 mm"
-			(at 56.134 69.342 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "TECHNOLOGY" "SMT"
-			(at 56.134 69.342 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "RATED VOLTAGE" "6.3 V"
-			(at 56.134 69.342 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "TOLERANCE" "Â±20%"
-			(at 56.134 69.342 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "CASE-METRIC" "3216"
-			(at 56.134 69.342 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "CASE-EIA" "1206"
-			(at 56.134 69.342 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "ALTIUM_VALUE" "1uF"
-			(at 56.134 69.342 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a5488975-f894-4a49-a4a7-2bb4c58fd61e")
-		)
-		(pin "2"
-			(uuid "9273924a-5aee-4136-9ff3-c9b0a1d632b7")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "C1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:M_EN/IN1_CIRCLE")
-		(at 81.28 97.79 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "529b68d7-7518-4642-a5f5-f8f3ba70b589")
-		(property "Reference" "#PWR049"
-			(at 81.28 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "M_EN/IN1"
-			(at 77.47 97.79 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 81.28 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 81.28 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 81.28 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "7a068b8e-33b2-46de-a9fe-c15161e559bc")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR049")
+					(reference "#PWR0160")
 					(unit 1)
 				)
 			)
@@ -4661,7 +3681,7 @@
 	)
 	(symbol
 		(lib_id "power:+12V")
-		(at 236.22 63.5 0)
+		(at 233.68 67.31 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4670,7 +3690,7 @@
 		(fields_autoplaced yes)
 		(uuid "54312043-79ac-4a2a-909c-78514f4e2c7c")
 		(property "Reference" "#PWR0140"
-			(at 236.22 67.31 0)
+			(at 233.68 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4679,7 +3699,7 @@
 			)
 		)
 		(property "Value" "+12V"
-			(at 236.22 58.42 0)
+			(at 233.68 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4687,7 +3707,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 236.22 63.5 0)
+			(at 233.68 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4696,7 +3716,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 236.22 63.5 0)
+			(at 233.68 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4705,7 +3725,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 236.22 63.5 0)
+			(at 233.68 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4726,365 +3746,24 @@
 		)
 	)
 	(symbol
-		(lib_id "UMTK-altium-import:Vmot_BAR")
-		(at 86.36 82.55 270)
+		(lib_id "Device:C")
+		(at 231.14 121.92 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "59647f6d-35e8-4182-835e-da4730a6e710")
-		(property "Reference" "#PWR051"
-			(at 86.36 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "Vmot"
-			(at 82.55 82.55 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 86.36 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 86.36 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 86.36 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "0da5dc41-d633-4db9-b050-d196f978b1e5")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR051")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_0_CAP_0")
-		(at 88.9 80.01 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "5d2d2472-f802-46d1-b759-e983e1a0f66a")
-		(property "Reference" "C2"
-			(at 88.646 80.264 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "CAP 1uF 25V 1206(3216)"
-			(at 88.646 87.376 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "CAPC1206(3216)130_M"
-			(at 88.9 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 88.9 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "CAP 1uF 25V ±10% 1206 (3216 Metric) Thickness 1.3mm SMD"
-			(at 88.9 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "ALTIUM_VALUE" "1uF"
-			(at 85.852 77.724 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "RATED VOLTAGE" "25 V"
-			(at 85.852 77.724 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "MAX THICKNESS" "1.3 mm"
-			(at 85.852 77.724 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "TECHNOLOGY" "SMT"
-			(at 85.852 77.724 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "TOLERANCE" "Â±10%"
-			(at 85.852 77.724 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "CASE-METRIC" "3216"
-			(at 85.852 77.724 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "CASE-EIA" "1206"
-			(at 85.852 77.724 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f504a1cc-d0d5-4dfa-963e-72a0e1376d44")
-		)
-		(pin "2"
-			(uuid "5743048a-54f9-4153-9fa3-61055c2ccad5")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "C2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:+5_BAR")
-		(at 48.26 100.33 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "61a6df93-c667-4a1f-a272-c0e9065bd173")
-		(property "Reference" "#PWR039"
-			(at 48.26 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5"
-			(at 44.45 100.33 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 48.26 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 48.26 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 48.26 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "69a5ec39-a49c-409a-834e-e7d3f6763712")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR039")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_0_Cap")
-		(at 220.98 138.43 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "651ac1a4-0d25-4ced-943f-f9d99efdafd1")
-		(property "Reference" "C4"
-			(at 223.266 143.256 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "0.1u"
-			(at 223.266 145.796 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "Ceramic Cap 5mm"
-			(at 220.98 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 220.98 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 220.98 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "c32138b8-fdd8-4042-a271-0c8a4aa0077c")
-		)
-		(pin "2"
-			(uuid "bfdebf29-c9d4-4c7a-90ce-b6ee9541a4b7")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "C4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 237.49 50.8 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "66419261-90ba-498b-908b-f1df15e31679")
-		(property "Reference" "J2"
-			(at 237.49 53.34 0)
+		(uuid "58eabae6-d817-43b2-95a1-ba53dbd2d83b")
+		(property "Reference" "C20"
+			(at 225.806 122.682 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "Motor Out"
-			(at 237.49 45.72 0)
+		(property "Value" "1u"
+			(at 225.806 120.904 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5092,7 +3771,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 237.49 50.8 0)
+			(at 232.1052 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5101,7 +3780,144 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 237.49 50.8 0)
+			(at 231.14 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 231.14 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7cfc8e03-d93f-4f14-a759-8f6c7245432d")
+		)
+		(pin "2"
+			(uuid "3da36c04-7503-4545-96ac-b145b3949b83")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "C20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 208.28 148.59 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5a7cecc3-5488-4a31-a7e9-b32428b59add")
+		(property "Reference" "R61"
+			(at 210.82 147.3199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "680R"
+			(at 210.82 149.8599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 207.264 148.336 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 208.28 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 208.28 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "89b4b932-4e5a-4854-9f62-1038dc164247")
+		)
+		(pin "2"
+			(uuid "99f7baa5-182e-4dca-9989-5463a068a3a4")
+		)
+		(instances
+			(project ""
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "R61")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Screw_Terminal_01x02")
+		(at 234.95 54.61 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "66419261-90ba-498b-908b-f1df15e31679")
+		(property "Reference" "J2"
+			(at 234.95 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Motor Out"
+			(at 234.95 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 234.95 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 234.95 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5110,7 +3926,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 237.49 50.8 0)
+			(at 234.95 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5134,25 +3950,24 @@
 		)
 	)
 	(symbol
-		(lib_id "UMTK-altium-import:GND_POWER_GROUND")
-		(at 243.84 119.38 0)
+		(lib_id "Device:C")
+		(at 201.93 127 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6937c51c-2726-473e-b86c-2f3a47e88f07")
-		(property "Reference" "#PWR058"
-			(at 243.84 119.38 0)
+		(uuid "77eaf155-6cef-4455-ade5-e53c32543ad2")
+		(property "Reference" "C25"
+			(at 205.74 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 243.84 125.73 0)
+		(property "Value" "1u"
+			(at 204.978 124.714 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5160,1767 +3975,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 243.84 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 243.84 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 243.84 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "00d59fb7-d625-462c-9da4-eb48fb92ea7c")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR058")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:GND_POWER_GROUND")
-		(at 58.42 77.47 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "6e886d05-4b2e-4577-97dd-cd4e7226bfc8")
-		(property "Reference" "#PWR040"
-			(at 58.42 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 58.42 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 58.42 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 58.42 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 58.42 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "c03f7381-69f7-4b9d-b2f6-e72bdd249e31")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR040")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_1_CAP_0")
-		(at 91.44 100.33 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "77485719-163e-41e2-a008-33426adea091")
-		(property "Reference" "C3"
-			(at 96.266 100.076 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "CAP 47nF 50V 1206(3216)"
-			(at 96.266 102.616 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "CAPC1206(3216)130_L"
-			(at 91.44 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 91.44 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "CAP 47nF 50V ±20% 1206 (3216 Metric) Thickness 1.2mm SMD"
-			(at 91.44 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "CASE-EIA" "1206"
-			(at 91.694 94.742 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "TECHNOLOGY" "SMT"
-			(at 91.694 94.742 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "MAX THICKNESS" "1.2 mm"
-			(at 91.694 94.742 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "RATED VOLTAGE" "50 V"
-			(at 91.694 94.742 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "ALTIUM_VALUE" "47nF"
-			(at 91.694 94.742 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "CASE-METRIC" "3216"
-			(at 91.694 94.742 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "TOLERANCE" "Â±20%"
-			(at 91.694 94.742 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5fb31750-0cf2-4fc6-a0e9-bdc504088630")
-		)
-		(pin "2"
-			(uuid "9cda3d50-2419-458d-aaa8-c0bd067efb84")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "C3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:M_DISABLE_CIRCLE")
-		(at 71.12 161.29 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "796eb7a0-d527-44b6-81ae-b4b07e091fd5")
-		(property "Reference" "#PWR045"
-			(at 71.12 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "M_DISABLE"
-			(at 67.31 161.29 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 71.12 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 71.12 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 71.12 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "a0c1f913-8ca0-4fd5-818c-373bb4139ef0")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR045")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:M_FAULT_CIRCLE")
-		(at 58.42 115.57 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "8280b352-4f5f-41ce-98f2-d21ed8f6fdd3")
-		(property "Reference" "#PWR042"
-			(at 58.42 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "M_FAULT"
-			(at 54.61 115.57 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 58.42 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 58.42 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 58.42 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "bad7806e-25f0-4930-82ed-f141973ec04f")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR042")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:VM-_BAR")
-		(at 196.85 97.79 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "95ac0203-96f1-4696-bf65-5e2b52d88d98")
-		(property "Reference" "#PWR056"
-			(at 196.85 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VM-"
-			(at 200.66 97.79 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 196.85 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 196.85 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 196.85 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "c8fcb764-0f51-446c-8517-d9e8b52f3b48")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR056")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:M_SLEEP_CIRCLE")
-		(at 58.42 105.41 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "9a2b713c-4c6c-4b28-af60-ef8a417fe406")
-		(property "Reference" "#PWR041"
-			(at 58.42 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "M_SLEEP"
-			(at 54.61 105.41 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 58.42 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 58.42 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 58.42 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "3cfad48c-f18d-4ed6-ad66-8f75c3cf4b2e")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR041")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:GND_POWER_GROUND")
-		(at 184.15 146.05 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a4d2ec2b-482d-47cb-8a2c-9f9e88ff8ac9")
-		(property "Reference" "#PWR055"
-			(at 184.15 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 184.15 152.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 184.15 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 184.15 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 184.15 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "2ab3eca5-9568-4a3b-89a1-122a80441233")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR055")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_0_DRV8873")
-		(at 144.78 110.49 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a51c2adc-3b02-4b9b-af90-0fb1f49a2054")
-		(property "Reference" "X3"
-			(at 124.46 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "DRV8873H"
-			(at 124.46 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "DRV8873"
-			(at 144.78 110.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 144.78 110.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "DRV8873-Q1 Automotive H-Bridge Motor Driver\rThis one is the H version, with Hbridge gate controls (no SPI)"
-			(at 144.78 110.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "24"
-			(uuid "8bf9412c-19f4-4f3a-b2df-96061a6b7bcc")
-		)
-		(pin "2"
-			(uuid "59a44115-c31f-40cd-9e43-2254b458b2f8")
-		)
-		(pin "8"
-			(uuid "0e2c6192-31fe-46e5-b304-72f5a661d8c2")
-		)
-		(pin "13"
-			(uuid "3c3f2f82-bc08-46ec-be37-9389bc5f0959")
-		)
-		(pin "17"
-			(uuid "68322597-f3d5-46db-aae3-cee20b7f670c")
-		)
-		(pin "12"
-			(uuid "be926763-abee-41af-afcc-ed1e75a3dd38")
-		)
-		(pin "21"
-			(uuid "b02455c7-6aa4-40ac-b0c4-e82035dae0e1")
-		)
-		(pin "22"
-			(uuid "77bdbf40-eabf-40dd-b058-a9d734aa88ef")
-		)
-		(pin "6"
-			(uuid "aa61aafb-d57a-4d39-a368-bb510977f51c")
-		)
-		(pin "14"
-			(uuid "3b10af95-048f-4344-b869-d84ac0976281")
-		)
-		(pin "15"
-			(uuid "f306d509-6da3-4831-9492-19d55fa356d6")
-		)
-		(pin "23"
-			(uuid "a46cd5e3-179c-4e86-99fb-52358cae0985")
-		)
-		(pin "10"
-			(uuid "e98a19da-3902-4151-b3d1-3753bf3a57aa")
-		)
-		(pin "18"
-			(uuid "e11a1dd1-aeb6-4acf-89b6-f182850d273a")
-		)
-		(pin "20"
-			(uuid "554228a9-d6ea-4938-abdd-7f6bbd85b645")
-		)
-		(pin "19"
-			(uuid "b819cc87-c43f-4818-9df9-d54921669886")
-		)
-		(pin "11"
-			(uuid "b1f7ecf3-2763-48f9-9254-f1c38049f28f")
-		)
-		(pin "9"
-			(uuid "c50bda25-9674-463c-aeab-e4bd5adcd871")
-		)
-		(pin "4"
-			(uuid "5fca9e0f-27d5-473d-9cf1-49c7b9b4b8ec")
-		)
-		(pin "3"
-			(uuid "abe742d1-735a-435a-99cc-9d527db6f99b")
-		)
-		(pin "16"
-			(uuid "064f8f9e-625a-4725-9a71-6faa0d99202e")
-		)
-		(pin "5"
-			(uuid "69d9dbad-531b-4630-aaef-be56772efb8e")
-		)
-		(pin "1"
-			(uuid "10516c6a-132b-4f11-bd08-37a78d881615")
-		)
-		(pin "7"
-			(uuid "40c9ef84-05be-42f7-86f3-7b28a47e39e8")
-		)
-		(pin "25"
-			(uuid "4a463fdd-2bc0-4d5e-ae68-939c0f4ae04e")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "X3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:Vmot_BAR")
-		(at 171.45 80.01 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a693b0e2-8d64-465e-a2f1-d7567830d61b")
-		(property "Reference" "#PWR053"
-			(at 171.45 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "Vmot"
-			(at 175.26 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 171.45 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 171.45 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 171.45 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "165f0ed1-7973-4ba4-86cb-687d57f0498e")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR053")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_1_Res1")
-		(at 77.47 156.21 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b06799e2-b418-4b9a-8d5b-3f8825342723")
-		(property "Reference" "R28"
-			(at 80.772 153.416 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Res1"
-			(at 79.248 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "AXIAL-0.3-3D"
-			(at 77.47 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 77.47 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 77.47 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHED" "8-Jun-2000"
-			(at 79.248 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONDATE" "17-Jul-2002"
-			(at 79.248 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONNOTE" "Re-released for DXP Platform."
-			(at 79.248 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEREFERENCE" "AXIAL-0.3"
-			(at 79.248 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHER" "Altium Limited"
-			(at 79.248 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEDESCRIPTION" "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"
-			(at 79.248 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "ALTIUM_VALUE" "10K"
-			(at 80.772 155.956 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(pin "2"
-			(uuid "38b45dc9-38e4-46f3-b9d8-e1efe7813499")
-		)
-		(pin "1"
-			(uuid "b3d134ef-cf96-454c-baa7-70262b102dc0")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "R28")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:M_PH/IN2_CIRCLE")
-		(at 78.74 102.87 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b0be913e-42b6-4a28-930a-3ec4c148339b")
-		(property "Reference" "#PWR048"
-			(at 78.74 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "M_PH/IN2"
-			(at 74.93 102.87 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 78.74 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 78.74 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 78.74 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "9a523548-d536-4a8b-b386-5c48cb7345f4")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR048")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_3_Res1")
-		(at 205.74 138.43 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b169a294-e422-4377-a7bc-fd1305707858")
-		(property "Reference" "R31"
-			(at 203.962 140.716 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Res1"
-			(at 202.438 135.382 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "AXIAL-0.3-3D"
-			(at 205.74 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 205.74 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 205.74 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHED" "8-Jun-2000"
-			(at 202.438 135.382 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONDATE" "17-Jul-2002"
-			(at 202.438 135.382 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONNOTE" "Re-released for DXP Platform."
-			(at 202.438 135.382 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEREFERENCE" "AXIAL-0.3"
-			(at 202.438 135.382 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHER" "Altium Limited"
-			(at 202.438 135.382 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEDESCRIPTION" "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"
-			(at 202.438 135.382 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "ALTIUM_VALUE" "1K"
-			(at 203.962 143.256 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(pin "2"
-			(uuid "f28b0288-4664-43d2-b0de-fd9cfd33f9de")
-		)
-		(pin "1"
-			(uuid "6478226b-f2b1-40aa-9645-2dcfc276e2c6")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "R31")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:+5_BAR")
-		(at 116.84 120.65 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b744e1a3-4b7a-4ed1-99fa-5e3a8fe8583b")
-		(property "Reference" "#PWR052"
-			(at 116.84 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5"
-			(at 113.03 120.65 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 116.84 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 116.84 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 116.84 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "a5eb269c-54c9-4906-bb91-5de182e23a28")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR052")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_1_Res1")
-		(at 87.63 156.21 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c63e5a0e-0424-4466-84f5-197c1fecd184")
-		(property "Reference" "R30"
-			(at 90.932 153.416 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Res1"
-			(at 89.408 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "AXIAL-0.3-3D"
-			(at 87.63 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 87.63 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 87.63 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHED" "8-Jun-2000"
-			(at 89.408 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONDATE" "17-Jul-2002"
-			(at 89.408 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONNOTE" "Re-released for DXP Platform."
-			(at 89.408 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEREFERENCE" "AXIAL-0.3"
-			(at 89.408 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHER" "Altium Limited"
-			(at 89.408 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEDESCRIPTION" "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"
-			(at 89.408 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "ALTIUM_VALUE" "10K"
-			(at 90.932 155.956 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(pin "2"
-			(uuid "6026b77f-d3e8-4b02-8c05-a7f0aaed8f32")
-		)
-		(pin "1"
-			(uuid "260c845f-5e2a-42f6-8e11-066d43cf9f34")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "R30")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:M_OL_CIRCLE")
-		(at 71.12 166.37 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "d13149c4-2cdd-4fef-892f-e6ac42b4a643")
-		(property "Reference" "#PWR047"
-			(at 71.12 166.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "M_OL"
-			(at 67.31 166.37 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 71.12 166.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 71.12 166.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 71.12 166.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "f0370c21-b522-4c08-808a-99e0a2ac3602")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR047")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_1_Res1")
-		(at 82.55 156.21 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "d422af0a-737b-4de8-aaaf-f4d34baa751c")
-		(property "Reference" "R29"
-			(at 85.852 153.416 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Res1"
-			(at 84.328 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "AXIAL-0.3-3D"
-			(at 82.55 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 82.55 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 82.55 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHED" "8-Jun-2000"
-			(at 84.328 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONDATE" "17-Jul-2002"
-			(at 84.328 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONNOTE" "Re-released for DXP Platform."
-			(at 84.328 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEREFERENCE" "AXIAL-0.3"
-			(at 84.328 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHER" "Altium Limited"
-			(at 84.328 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEDESCRIPTION" "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"
-			(at 84.328 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "ALTIUM_VALUE" "10K"
-			(at 85.852 155.956 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(pin "2"
-			(uuid "af546267-5293-4053-bfa2-4a1867e3ada7")
-		)
-		(pin "1"
-			(uuid "ee0136a9-664f-40ac-a7e5-855ef258931a")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "R29")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:+5_BAR")
-		(at 85.09 148.59 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "d98bfb59-bc53-41c7-9218-99857380801a")
-		(property "Reference" "#PWR050"
-			(at 85.09 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5"
-			(at 85.09 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 85.09 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 85.09 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 85.09 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "b672f79a-e013-4137-9bd5-6a47e0cd4ced")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR050")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:root_2_Res1")
-		(at 67.31 138.43 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e0c324bc-806a-4fa5-9e9f-71254d00098a")
-		(property "Reference" "R27"
-			(at 58.42 135.89 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Res1"
-			(at 59.182 135.128 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "AXIAL-0.3-3D"
-			(at 67.31 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 67.31 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 67.31 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHED" "8-Jun-2000"
-			(at 59.182 135.128 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONDATE" "17-Jul-2002"
-			(at 59.182 135.128 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONNOTE" "Re-released for DXP Platform."
-			(at 59.182 135.128 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEREFERENCE" "AXIAL-0.3"
-			(at 59.182 135.128 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHER" "Altium Limited"
-			(at 59.182 135.128 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEDESCRIPTION" "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"
-			(at 59.182 135.128 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "ALTIUM_VALUE" "DNP"
-			(at 63.5 135.89 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(pin "2"
-			(uuid "efc38b88-d80c-4c0b-8954-c45ba537bb5f")
-		)
-		(pin "1"
-			(uuid "778f17db-b35d-4fae-8c3d-bff74255d9f7")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "R27")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 252.73 66.04 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e778dfe8-fce5-4a3a-b43f-290786ef50d6")
-		(property "Reference" "J3"
-			(at 252.73 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Motor Shunt"
-			(at 252.73 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 252.73 66.04 0)
+			(at 200.9648 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6929,7 +3984,408 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 252.73 66.04 0)
+			(at 201.93 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 201.93 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2c10d78e-acc4-4c5c-992a-e9136486d072")
+		)
+		(pin "2"
+			(uuid "e5b42e41-abc3-4583-b644-14118b9fcbeb")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "C25")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VDD")
+		(at 93.98 115.57 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "810695fd-92a7-409e-8896-52e605e77e88")
+		(property "Reference" "#PWR039"
+			(at 93.98 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VDD"
+			(at 93.98 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 93.98 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.98 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VDD\""
+			(at 93.98 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "239b7617-8fb6-4f41-b300-f48393e2e125")
+		)
+		(instances
+			(project ""
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "#PWR039")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 59.69 152.4 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "858ee79b-99ce-4659-85fc-690a3bb67e7c")
+		(property "Reference" "#PWR0162"
+			(at 59.69 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 59.69 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 59.69 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 59.69 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 59.69 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "743d3d75-87a1-40fb-9fbc-3665016b2432")
+		)
+		(instances
+			(project ""
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "#PWR0162")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 182.88 123.19 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "87857b8b-605b-4c09-ab5a-13ff34427fec")
+		(property "Reference" "C22"
+			(at 179.324 124.968 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1u"
+			(at 186.436 124.968 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 186.69 122.2248 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 182.88 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 182.88 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "69ee7f2a-f010-427a-9bf6-15899c3d3f02")
+		)
+		(pin "2"
+			(uuid "5d030276-af32-4a93-bb4d-7474af6425dc")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "C22")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 69.85 158.75 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a8c96ab2-22a7-4570-bc32-7626d86791d8")
+		(property "Reference" "RDNP"
+			(at 69.85 164.084 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R_US"
+			(at 69.596 161.798 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 70.104 157.734 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 69.85 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 69.85 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "54e095f7-f806-4611-a388-51ce0bede617")
+		)
+		(pin "2"
+			(uuid "0f5a9e4e-7c73-4e82-bd46-54007fac6b72")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "RDNP")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 208.28 127 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ad155f70-9027-410e-8c0f-3ec05d5b9e77")
+		(property "Reference" "C23"
+			(at 212.09 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1u"
+			(at 211.328 124.714 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 207.3148 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 208.28 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 208.28 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e1cc5a05-2678-4c68-b781-45900b16c2ba")
+		)
+		(pin "2"
+			(uuid "8c6fc446-abc3-40b6-b016-6ca844cddd0f")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "C23")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "UMTK-altium-import:GND_POWER_GROUND")
+		(at 231.14 135.89 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cc135d9b-558a-4f22-b022-d0d6c3f2aea7")
+		(property "Reference" "#PWR0158"
+			(at 231.14 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 231.14 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 231.14 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 231.14 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6938,7 +4394,338 @@
 			)
 		)
 		(property "Description" ""
-			(at 252.73 66.04 0)
+			(at 231.14 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin ""
+			(uuid "99762c7e-f912-47e0-9bba-55952352056f")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "#PWR0158")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "UMTK-altium-import:GND_POWER_GROUND")
+		(at 182.88 166.37 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ce7e6baa-8830-4b47-8783-cafbf4b5af14")
+		(property "Reference" "#PWR0159"
+			(at 182.88 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 182.88 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 182.88 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 182.88 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 182.88 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin ""
+			(uuid "5695a866-9cca-43be-a022-ba4afc1d922d")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "#PWR0159")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "UMTK-altium-import:GND_POWER_GROUND")
+		(at 59.69 160.02 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d315c2ae-89d4-4c75-a32c-d1fdf5bb49ea")
+		(property "Reference" "#PWR0161"
+			(at 59.69 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 59.69 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 59.69 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 59.69 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 59.69 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin ""
+			(uuid "c04ce98f-189c-427d-930c-9dc82098b693")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "#PWR0161")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 100.33 127 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e0906122-6bbb-4859-b783-b6a609d899ca")
+		(property "Reference" "R67"
+			(at 95.504 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10k"
+			(at 95.504 125.476 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 99.314 126.746 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 100.33 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 100.33 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ca400b6c-1a5c-49a6-a7c4-9e04fdef1d1f")
+		)
+		(pin "2"
+			(uuid "c70bb7bb-3386-4cad-81ed-e9791a020f29")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "R67")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 105.41 156.21 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e16f1951-3764-4421-b0d1-5c29831578f5")
+		(property "Reference" "R64"
+			(at 105.41 149.86 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 105.41 152.4 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 105.664 155.194 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 105.41 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 105.41 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f5c13ed9-c736-49d3-9bbf-e03bc60ca530")
+		)
+		(pin "2"
+			(uuid "52db3e97-ca85-4e95-be9c-d02fec420b0a")
+		)
+		(instances
+			(project ""
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "R64")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Screw_Terminal_01x02")
+		(at 250.19 69.85 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e778dfe8-fce5-4a3a-b43f-290786ef50d6")
+		(property "Reference" "J3"
+			(at 250.19 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Motor Shunt"
+			(at 250.19 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 250.19 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 250.19 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 250.19 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6962,164 +4749,25 @@
 		)
 	)
 	(symbol
-		(lib_id "UMTK-altium-import:root_0_Res1")
-		(at 50.8 97.79 0)
+		(lib_id "Device:R_US")
+		(at 87.63 127 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f5527791-ce8b-4599-9e5b-be811bd6cb51")
-		(property "Reference" "R25"
-			(at 50.546 99.568 0)
+		(uuid "ebe8bbb2-0946-443b-89a0-4c0b4f9d0a55")
+		(property "Reference" "R65"
+			(at 82.804 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(justify right)
 			)
 		)
-		(property "Value" "Res1"
-			(at 47.752 99.568 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "AXIAL-0.3-3D"
-			(at 50.8 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 50.8 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 50.8 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHED" "8-Jun-2000"
-			(at 47.752 99.568 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONDATE" "17-Jul-2002"
-			(at 47.752 99.568 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "LATESTREVISIONNOTE" "Re-released for DXP Platform."
-			(at 47.752 99.568 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEREFERENCE" "AXIAL-0.3"
-			(at 47.752 99.568 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PUBLISHER" "Altium Limited"
-			(at 47.752 99.568 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "PACKAGEDESCRIPTION" "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"
-			(at 47.752 99.568 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-				(hide yes)
-			)
-		)
-		(property "ALTIUM_VALUE" "10K"
-			(at 50.546 103.632 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(pin "2"
-			(uuid "8d5b825a-5e7f-4331-8393-686da7f316f6")
-		)
-		(pin "1"
-			(uuid "10f124ea-6299-4f6c-a9a6-7b23970f76f8")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "R25")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:+5_BAR")
-		(at 59.69 130.81 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "fea041ac-89a4-47db-bfa6-72541bd535d1")
-		(property "Reference" "#PWR043"
-			(at 59.69 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5"
-			(at 55.88 130.81 90)
+		(property "Value" "10k"
+			(at 82.804 125.476 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7128,7 +4776,146 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 59.69 130.81 0)
+			(at 86.614 126.746 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 87.63 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 87.63 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d8c8b677-2b97-4fe3-9900-fb47fa63f505")
+		)
+		(pin "2"
+			(uuid "821fce78-c262-4eb3-b8bf-ea6cd303b30e")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "R65")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 219.71 148.59 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f065d8ce-5935-40c5-ace7-6e88b0e41c66")
+		(property "Reference" "R62"
+			(at 222.25 147.3199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "680R"
+			(at 222.25 149.8599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 218.694 148.336 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 219.71 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 219.71 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6590d9c4-a616-4208-ae68-64a4dcd4ed39")
+		)
+		(pin "2"
+			(uuid "0712bfeb-e352-4370-b8ab-a7a87a0ec136")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "R62")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VDD")
+		(at 97.79 153.67 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f8ec6ae6-ea47-497a-bc12-8fd42f77a69a")
+		(property "Reference" "#PWR040"
+			(at 97.79 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VDD"
+			(at 97.79 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 97.79 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7137,7 +4924,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 59.69 130.81 0)
+			(at 97.79 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7145,8 +4932,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 59.69 130.81 0)
+		(property "Description" "Power symbol creates a global label with name \"VDD\""
+			(at 97.79 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7154,13 +4941,152 @@
 				(hide yes)
 			)
 		)
-		(pin ""
-			(uuid "e88e640e-1764-4747-af0c-20997f5eb759")
+		(pin "1"
+			(uuid "ddd3f612-cb17-46a3-a244-a4df40a98cba")
+		)
+		(instances
+			(project ""
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "#PWR040")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized_US")
+		(at 215.9 127 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f942e5e9-cd67-4377-b18a-45a0f495373c")
+		(property "Reference" "C24"
+			(at 219.71 125.0949 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100u"
+			(at 219.71 127.6349 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 215.9 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 215.9 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Polarized capacitor, US symbol"
+			(at 215.9 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "14d3335f-bdfd-4885-ab49-0638e0bbe3de")
+		)
+		(pin "2"
+			(uuid "8b2df7dd-433d-46bd-a62b-989a48d0f73f")
+		)
+		(instances
+			(project ""
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "C24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 93.98 127 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fb8ea5ad-ae13-4abe-8642-923b32260dcf")
+		(property "Reference" "R66"
+			(at 89.154 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10k"
+			(at 89.154 125.476 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 92.964 126.746 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 93.98 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 93.98 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fffd674f-a492-4bef-abbe-ff4744b8acd1")
+		)
+		(pin "2"
+			(uuid "2c33bb46-e491-4dc8-b02e-e095c952f059")
 		)
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "#PWR043")
+					(reference "R66")
 					(unit 1)
 				)
 			)

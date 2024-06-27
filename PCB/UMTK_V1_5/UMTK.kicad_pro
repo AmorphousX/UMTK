@@ -414,10 +414,6 @@
       "Arduino"
     ],
     [
-      "33a70529-8716-48f9-b187-5322d32dbf5a",
-      "Connections"
-    ],
-    [
       "429db1c7-ec58-4147-903c-f97ceea1f1c2",
       "MotorDriver"
     ],
@@ -428,6 +424,14 @@
     [
       "96966801-b9b1-4005-b7bb-fead645709bc",
       "7Seg_Display"
+    ],
+    [
+      "9034045e-70ca-44cd-84b0-62f91947c95b",
+      "Power"
+    ],
+    [
+      "2a108526-cc67-4813-b443-9c33235e24c0",
+      "Linear Slide"
     ],
     [
       "2bf3ea67-58b8-47b3-a768-ea6950b40edf",
