@@ -2186,6 +2186,12 @@
 		(uuid "a24b639b-2950-405c-9e24-b27785790c57")
 	)
 	(junction
+		(at 215.9 120.65)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a4f345b6-82a5-4852-8e55-703374c35810")
+	)
+	(junction
 		(at 87.63 135.89)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2360,6 +2366,16 @@
 			(type default)
 		)
 		(uuid "4572f671-28bf-4df3-b9d7-52554769bb89")
+	)
+	(wire
+		(pts
+			(xy 215.9 110.49) (xy 215.9 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "499842c2-a9fe-470b-ad8d-aba7c55759ac")
 	)
 	(wire
 		(pts
@@ -3043,16 +3059,49 @@
 		)
 		(uuid "e6c6cefd-5616-4595-9d54-deaa26932081")
 	)
-	(label "MOTOR_POWER"
+	(global_label "VMOTOR"
+		(shape input)
 		(at 220.98 72.39 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
-		(uuid "f606dce0-6c10-4e4a-abc3-e5fa76bc35a9")
+		(uuid "2d6d415a-be5e-458d-a063-845354a59fad")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 210.5562 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "VMOTOR"
+		(shape input)
+		(at 215.9 110.49 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "7e54e59c-2505-4f39-a099-fc430897cc57")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 205.4762 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
 	)
 	(hierarchical_label "SENSE2"
 		(shape input)
@@ -3090,7 +3139,7 @@
 		)
 		(uuid "42778217-0157-437e-9ed5-03baeeaaafaa")
 	)
-	(hierarchical_label "nTRIP"
+	(hierarchical_label "nITRIP"
 		(shape input)
 		(at 81.28 143.51 180)
 		(fields_autoplaced yes)

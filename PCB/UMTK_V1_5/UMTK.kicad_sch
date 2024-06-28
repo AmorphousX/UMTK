@@ -5,9 +5,189 @@
 	(uuid "2bf3ea67-58b8-47b3-a768-ea6950b40edf")
 	(paper "A4")
 	(lib_symbols)
+	(wire
+		(pts
+			(xy 88.9 93.98) (xy 101.6 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13828b07-98cd-4d8a-93cf-6676beae70ca")
+	)
+	(wire
+		(pts
+			(xy 88.9 91.44) (xy 101.6 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1bf9e015-fa19-4848-8439-4f99d1849710")
+	)
+	(wire
+		(pts
+			(xy 88.9 99.06) (xy 101.6 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2661d765-ed6f-437b-b13c-65e2c1c4eee0")
+	)
+	(wire
+		(pts
+			(xy 88.9 83.82) (xy 101.6 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4e1e7deb-2adc-4d94-8375-3c7a3eefce6e")
+	)
+	(wire
+		(pts
+			(xy 88.9 86.36) (xy 101.6 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5d9d9a46-0b51-4412-8572-e8c25adedb27")
+	)
+	(wire
+		(pts
+			(xy 88.9 96.52) (xy 101.6 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b27597a-8947-4b42-bbed-e154924c17cf")
+	)
+	(wire
+		(pts
+			(xy 88.9 48.26) (xy 101.6 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9281d0f0-0ba7-4e54-a188-0e1b0643a3b2")
+	)
+	(wire
+		(pts
+			(xy 152.4 96.52) (xy 165.1 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "93f2bc31-41ec-4c04-9e92-773723413dbe")
+	)
+	(wire
+		(pts
+			(xy 88.9 104.14) (xy 101.6 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ada1be23-534a-4da3-83cb-abbc050f0468")
+	)
+	(wire
+		(pts
+			(xy 152.4 99.06) (xy 165.1 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b53c871e-9079-4fc9-923d-159d8b1c1f6d")
+	)
+	(wire
+		(pts
+			(xy 88.9 81.28) (xy 101.6 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bcf3f6b8-3fcb-4d30-97f5-850a27f0377c")
+	)
+	(wire
+		(pts
+			(xy 88.9 101.6) (xy 101.6 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bee57d3d-d553-4dc2-9b8d-63373d8dfcca")
+	)
+	(wire
+		(pts
+			(xy 152.4 45.72) (xy 165.1 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9431d5d-9915-4b55-b163-0e5bcd442e85")
+	)
+	(wire
+		(pts
+			(xy 152.4 43.18) (xy 165.1 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d5999f4e-7b30-48d9-9a8a-d7b28acd9f8d")
+	)
+	(wire
+		(pts
+			(xy 88.9 88.9) (xy 101.6 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d951428c-9c59-4de5-a86b-0f69f3c2ed54")
+	)
+	(wire
+		(pts
+			(xy 88.9 43.18) (xy 101.6 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6f88d71-11f3-4fcb-9aec-736ea4bf6647")
+	)
+	(wire
+		(pts
+			(xy 152.4 93.98) (xy 165.1 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e7445abf-b371-48e9-ae18-2ab161e6c1ab")
+	)
+	(wire
+		(pts
+			(xy 88.9 45.72) (xy 101.6 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e8d63d33-b8b7-459e-9a54-464c9c122f21")
+	)
 	(sheet
-		(at 18.034 99.822)
-		(size 18.288 25.146)
+		(at 165.1 38.1)
+		(size 25.4 38.1)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -18,7 +198,7 @@
 		)
 		(uuid "2a108526-cc67-4813-b443-9c33235e24c0")
 		(property "Sheetname" "Linear Slide"
-			(at 18.034 99.1104 0)
+			(at 165.1 37.3884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27,7 +207,7 @@
 			)
 		)
 		(property "Sheetfile" "S2_Slide.kicad_sch"
-			(at 18.034 125.5526 0)
+			(at 165.1 76.7846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -36,22 +216,22 @@
 			)
 		)
 		(pin "SLIDE_DAT" input
-			(at 36.322 103.886 0)
+			(at 165.1 43.18 180)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 			(uuid "2314da02-1691-4925-920a-d7096f8002b2")
 		)
 		(pin "SLIDE_CLK" input
-			(at 36.322 107.696 0)
+			(at 165.1 45.72 180)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 			(uuid "0bed45dc-1b24-4ca3-97ca-3d387d77dc7f")
 		)
@@ -64,8 +244,8 @@
 		)
 	)
 	(sheet
-		(at 56.007 59.436)
-		(size 24.257 59.436)
+		(at 63.5 71.12)
+		(size 25.4 68.58)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -76,7 +256,7 @@
 		)
 		(uuid "429db1c7-ec58-4147-903c-f97ceea1f1c2")
 		(property "Sheetname" "MotorDriver"
-			(at 56.007 58.7244 0)
+			(at 63.5 70.4084 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -85,7 +265,7 @@
 			)
 		)
 		(property "Sheetfile" "S4_MotorDriver.kicad_sch"
-			(at 56.007 119.4566 0)
+			(at 63.5 140.2846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -94,7 +274,7 @@
 			)
 		)
 		(pin "nFAULT" input
-			(at 80.264 67.564 0)
+			(at 88.9 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -104,7 +284,7 @@
 			(uuid "314f6cf1-5333-4044-bd42-494395191153")
 		)
 		(pin "nSLEEP" input
-			(at 80.264 70.104 0)
+			(at 88.9 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -114,7 +294,7 @@
 			(uuid "933b0265-83d6-4dae-9d92-1ebdec96f60d")
 		)
 		(pin "nOL" input
-			(at 80.264 72.644 0)
+			(at 88.9 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -123,8 +303,8 @@
 			)
 			(uuid "37644617-30e8-47de-a08a-ca6e76a6ca42")
 		)
-		(pin "nTRIP" input
-			(at 80.264 75.184 0)
+		(pin "nITRIP" input
+			(at 88.9 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -134,7 +314,7 @@
 			(uuid "ebd1b327-a372-40f6-920f-0a2caf39b446")
 		)
 		(pin "MODE" input
-			(at 80.264 77.724 0)
+			(at 88.9 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -144,7 +324,7 @@
 			(uuid "b4a319b2-cfba-45ad-abcf-5ea97ff71bae")
 		)
 		(pin "EN{slash}IN1" input
-			(at 80.264 80.264 0)
+			(at 88.9 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -154,7 +334,7 @@
 			(uuid "01e20a15-9046-476c-b29b-d503f6c0bad1")
 		)
 		(pin "DISABLE" input
-			(at 80.264 82.804 0)
+			(at 88.9 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -164,7 +344,7 @@
 			(uuid "b9294a54-c3a5-4809-a9ff-859112363c3b")
 		)
 		(pin "PH{slash}IN2" input
-			(at 80.264 85.344 0)
+			(at 88.9 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -174,7 +354,7 @@
 			(uuid "3e2dbac4-f2da-45be-a6d3-528587b30948")
 		)
 		(pin "SENSE2" input
-			(at 80.264 87.884 0)
+			(at 88.9 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -184,7 +364,7 @@
 			(uuid "110a599a-f3c4-4cb5-acc5-79ab0cba114b")
 		)
 		(pin "SENSE1" input
-			(at 80.264 90.424 0)
+			(at 88.9 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -202,8 +382,8 @@
 		)
 	)
 	(sheet
-		(at 112.903 20.955)
-		(size 18.415 16.51)
+		(at 101.6 38.1)
+		(size 50.8 101.6)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -214,7 +394,7 @@
 		)
 		(uuid "5307a5c4-d831-4669-9d3e-75e94c372d80")
 		(property "Sheetname" "Arduino"
-			(at 112.903 20.2434 0)
+			(at 101.6 37.3884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -223,13 +403,193 @@
 			)
 		)
 		(property "Sheetfile" "S3_Arduino.kicad_sch"
-			(at 112.903 38.0496 0)
+			(at 101.6 140.2846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
 			)
+		)
+		(pin "LC_RATE" input
+			(at 101.6 48.26 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "da20c806-a07d-4a46-8374-bb1827529467")
+		)
+		(pin "MOT_SENSE2" input
+			(at 101.6 101.6 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "81b588d5-3974-41b4-88b7-f0e53b9b83f8")
+		)
+		(pin "MOT_SENSE1" input
+			(at 101.6 104.14 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "b29bb294-9fc1-4495-bb42-8923a9a4c70c")
+		)
+		(pin "7SEG_CS" input
+			(at 152.4 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "21924c5b-8c34-47f8-9b78-658f0bc83c44")
+		)
+		(pin "7SEG_DIN" input
+			(at 152.4 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "7a83feb0-adba-491b-8c24-7a417971b5d9")
+		)
+		(pin "SLIDE_CLK" input
+			(at 152.4 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "8c8177e3-6a37-4d63-be18-f1c5133db452")
+		)
+		(pin "SLIDE_DAT" input
+			(at 152.4 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "821c5ea2-608f-41b7-b7f2-4fbbd5d22f7f")
+		)
+		(pin "7SEG_CLK" input
+			(at 152.4 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "5344b51b-3a93-40d1-b96f-3347bfcfc1b7")
+		)
+		(pin "MOT_nFAULT" input
+			(at 101.6 81.28 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "99a74000-7a1c-46b8-b499-ee9cc049c9cd")
+		)
+		(pin "MOT_nSLEEP" input
+			(at 101.6 83.82 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "8bd7219b-4321-4abb-9b5f-d401829e662f")
+		)
+		(pin "MOT_nOL" input
+			(at 101.6 86.36 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "9f51cee1-d176-4422-a83a-a991289d0e92")
+		)
+		(pin "MOT_MODE" input
+			(at 101.6 91.44 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "de2be684-5ed7-4e98-add6-880efbd0579c")
+		)
+		(pin "MOT_EN_N1" input
+			(at 101.6 93.98 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "4cdf8465-63ba-4d2c-be9a-bc97410afbc9")
+		)
+		(pin "MOT_DISABLE" input
+			(at 101.6 96.52 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "42ed4e5b-ff17-4dde-9f88-2b5eb7dfeb69")
+		)
+		(pin "MOT_PH_IN2" input
+			(at 101.6 99.06 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "fd2c8231-a494-46f5-b41d-e6a19dc13e57")
+		)
+		(pin "LC_DT" input
+			(at 101.6 43.18 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "672a6956-91dd-4fe1-bc76-a6410efafe1e")
+		)
+		(pin "LC_SCK" input
+			(at 101.6 45.72 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "3408b465-1c2c-4b1c-9d85-34e5733e7ad9")
+		)
+		(pin "MOT_nITRIP" input
+			(at 101.6 88.9 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "821caac9-aaae-43cc-a693-1c02ad52c2d8")
 		)
 		(instances
 			(project "UMTK"
@@ -240,7 +600,7 @@
 		)
 	)
 	(sheet
-		(at 20.574 81.534)
+		(at 254.762 179.578)
 		(size 18.034 8.382)
 		(fields_autoplaced yes)
 		(stroke
@@ -252,7 +612,7 @@
 		)
 		(uuid "9034045e-70ca-44cd-84b0-62f91947c95b")
 		(property "Sheetname" "Power"
-			(at 20.574 80.8224 0)
+			(at 254.762 178.8664 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -261,7 +621,7 @@
 			)
 		)
 		(property "Sheetfile" "S0_Power.kicad_sch"
-			(at 20.574 90.5006 0)
+			(at 254.762 188.5446 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -278,8 +638,8 @@
 		)
 	)
 	(sheet
-		(at 19.558 14.478)
-		(size 34.544 16.002)
+		(at 165.1 88.9)
+		(size 25.4 50.8)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -290,7 +650,7 @@
 		)
 		(uuid "96966801-b9b1-4005-b7bb-fead645709bc")
 		(property "Sheetname" "7Seg_Display"
-			(at 19.558 13.7664 0)
+			(at 165.1 88.1884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -299,7 +659,7 @@
 			)
 		)
 		(property "Sheetfile" "S1_7Seg_Display.kicad_sch"
-			(at 19.558 31.0646 0)
+			(at 165.1 140.2846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -308,32 +668,32 @@
 			)
 		)
 		(pin "CS" input
-			(at 54.102 17.78 0)
+			(at 165.1 93.98 180)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 			(uuid "67a3ad1b-d2cd-4efa-b60f-d1de7c016a69")
 		)
 		(pin "DIN" input
-			(at 54.102 20.32 0)
+			(at 165.1 96.52 180)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 			(uuid "8ea875c2-a14c-4167-90fc-ff1cd7f6e987")
 		)
 		(pin "CLK" input
-			(at 54.102 22.86 0)
+			(at 165.1 99.06 180)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 			(uuid "3b75beea-58f5-4710-997f-4e894dc96f6d")
 		)
@@ -346,8 +706,8 @@
 		)
 	)
 	(sheet
-		(at 19.05 49.276)
-		(size 17.78 21.59)
+		(at 63.5 38.1)
+		(size 25.4 25.4)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -358,7 +718,7 @@
 		)
 		(uuid "b421850b-f091-436d-99dc-672cc95b7600")
 		(property "Sheetname" "HX711"
-			(at 19.05 48.5644 0)
+			(at 63.5 37.3884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -367,7 +727,7 @@
 			)
 		)
 		(property "Sheetfile" "S4_HX711.kicad_sch"
-			(at 19.05 71.4506 0)
+			(at 63.5 64.0846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -376,7 +736,7 @@
 			)
 		)
 		(pin "LC_DT" input
-			(at 36.83 53.086 0)
+			(at 88.9 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -386,7 +746,7 @@
 			(uuid "74eae676-30e4-4fd1-bc65-17fbadf8179b")
 		)
 		(pin "LC_RATE" input
-			(at 36.83 55.626 0)
+			(at 88.9 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -396,7 +756,7 @@
 			(uuid "dbc545db-8831-4de1-b31d-71595846c230")
 		)
 		(pin "LC_SCK" input
-			(at 36.83 58.166 0)
+			(at 88.9 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
