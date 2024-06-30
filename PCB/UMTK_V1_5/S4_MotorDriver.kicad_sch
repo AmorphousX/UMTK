@@ -2155,9 +2155,11 @@
 		(color 0 0 0 0)
 		(uuid "cdeadba6-3565-4128-9e53-d9a509eb8aaa")
 	)
-	(no_connect
-		(at 173.99 161.29)
-		(uuid "3c3f6868-f1a3-47b4-8f1f-04086fd669c2")
+	(junction
+		(at 182.88 163.83)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "efcf2faa-66ec-4fa1-9e96-c6fde7181ef9")
 	)
 	(wire
 		(pts
@@ -2401,6 +2403,16 @@
 	)
 	(wire
 		(pts
+			(xy 173.99 161.29) (xy 182.88 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6024790a-76b1-4485-9d22-4414340cab56")
+	)
+	(wire
+		(pts
 			(xy 93.98 119.38) (xy 93.98 123.19)
 		)
 		(stroke
@@ -2558,6 +2570,16 @@
 			(type default)
 		)
 		(uuid "8eba4edb-82f0-4ca8-8083-41bfdce97e49")
+	)
+	(wire
+		(pts
+			(xy 182.88 161.29) (xy 182.88 163.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90d00835-d1fe-4923-aaba-e7bf7b0ff87e")
 	)
 	(wire
 		(pts
@@ -3702,6 +3724,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:Screw_Terminal_01x02")
+		(at 234.95 52.07 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "54116c60-9df2-41bc-a640-8994e004d16a")
+		(property "Reference" "J1"
+			(at 234.95 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Motor Out"
+			(at 234.95 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "TerminalBlock_Altech:Altech_AK100_1x02_P5.00mm"
+			(at 234.95 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 234.95 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 234.95 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "08bea581-ad67-4be9-8cb5-c6f834fca44c")
+		)
+		(pin "2"
+			(uuid "576f5a4b-1ec9-4e27-96f7-aaaebd472650")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
+					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 231.14 121.92 0)
 		(unit 1)
@@ -3726,7 +3816,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 232.1052 125.73 0)
 			(effects
 				(font
@@ -3905,73 +3995,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 234.95 54.61 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "66419261-90ba-498b-908b-f1df15e31679")
-		(property "Reference" "J1"
-			(at 234.95 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Motor Out"
-			(at 234.95 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "TerminalBlock_Altech:Altech_AK100_1x02_P5.00mm"
-			(at 234.95 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 234.95 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 234.95 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f99cb3a9-4f3c-44c1-9fac-e9095524c5e0")
-		)
-		(pin "2"
-			(uuid "bd28088b-0a2a-40f1-8ae2-761d7dac4a66")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/429db1c7-ec58-4147-903c-f97ceea1f1c2"
-					(reference "J1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+12V")
 		(at 233.68 67.31 0)
 		(unit 1)
@@ -4062,7 +4085,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 200.9648 123.19 0)
 			(effects
 				(font
@@ -4261,7 +4284,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 186.69 122.2248 0)
 			(effects
 				(font
@@ -4461,7 +4484,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 207.3148 123.19 0)
 			(effects
 				(font
@@ -4723,7 +4746,7 @@
 				)
 			)
 		)
-		(property "Value" "Motor Shunt"
+		(property "Value" "ESTOP"
 			(at 250.19 74.93 0)
 			(effects
 				(font
