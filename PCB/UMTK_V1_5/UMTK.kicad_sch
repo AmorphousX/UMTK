@@ -47,6 +47,16 @@
 	)
 	(wire
 		(pts
+			(xy 152.4 50.8) (xy 165.1 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5b7a9466-0be1-44e0-9e6e-504d759971d3")
+	)
+	(wire
+		(pts
 			(xy 88.9 86.36) (xy 101.6 86.36)
 		)
 		(stroke
@@ -147,6 +157,16 @@
 	)
 	(wire
 		(pts
+			(xy 152.4 48.26) (xy 165.1 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d80a4d81-e8c1-49e7-8ffe-701b7032547e")
+	)
+	(wire
+		(pts
 			(xy 88.9 88.9) (xy 101.6 88.9)
 		)
 		(stroke
@@ -234,6 +254,26 @@
 				(justify left)
 			)
 			(uuid "0bed45dc-1b24-4ca3-97ca-3d387d77dc7f")
+		)
+		(pin "SLIDE_CLK_DIR" input
+			(at 165.1 48.26 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "fe8d247d-4b39-412c-801b-8c25042721d6")
+		)
+		(pin "SLIDE_DAT_DIR" input
+			(at 165.1 50.8 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "bcb7ada0-f66f-4158-b027-064a4a564c65")
 		)
 		(instances
 			(project "UMTK"
@@ -591,6 +631,26 @@
 			)
 			(uuid "821caac9-aaae-43cc-a693-1c02ad52c2d8")
 		)
+		(pin "SLIDE_CLK_DIR" input
+			(at 152.4 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "fd84da8f-bcaa-488d-9561-e724b4c1fce2")
+		)
+		(pin "SLIDE_DAT_DIR" input
+			(at 152.4 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "d55cdda8-3e72-4b28-af77-464b431e763d")
+		)
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf"
@@ -600,8 +660,8 @@
 		)
 	)
 	(sheet
-		(at 254.762 179.578)
-		(size 18.034 8.382)
+		(at 63.5 22.86)
+		(size 87.63 8.89)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -612,7 +672,7 @@
 		)
 		(uuid "9034045e-70ca-44cd-84b0-62f91947c95b")
 		(property "Sheetname" "Power"
-			(at 254.762 178.8664 0)
+			(at 63.5 22.1484 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -621,7 +681,7 @@
 			)
 		)
 		(property "Sheetfile" "S0_Power.kicad_sch"
-			(at 254.762 188.5446 0)
+			(at 63.5 32.3346 0)
 			(effects
 				(font
 					(size 1.27 1.27)

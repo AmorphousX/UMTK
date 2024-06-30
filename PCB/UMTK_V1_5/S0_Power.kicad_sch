@@ -494,191 +494,6 @@
 				)
 			)
 		)
-		(symbol "Jumper:Jumper_3_Bridged12"
-			(pin_names
-				(offset 0) hide)
-			(exclude_from_sim yes)
-			(in_bom no)
-			(on_board yes)
-			(property "Reference" "JP"
-				(at -2.54 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Jumper_3_Bridged12"
-				(at 0 2.794 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Jumper, 3-pole, pins 1+2 closed/bridged"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "Jumper SPDT"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Jumper* TestPoint*3Pads* TestPoint*Bridge*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Jumper_3_Bridged12_0_0"
-				(circle
-					(center -3.302 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 0 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 3.302 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Jumper_3_Bridged12_0_1"
-				(arc
-					(start -0.254 0.508)
-					(mid -1.651 0.9912)
-					(end -3.048 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -1.27) (xy 0 -0.508)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Jumper_3_Bridged12_1_1"
-				(pin passive line
-					(at -6.35 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 6.35 0 180)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Regulator_Switching:LM2576HVS-5"
 			(pin_names
 				(offset 0.254)
@@ -1988,126 +1803,6 @@
 				)
 			)
 		)
-		(symbol "power:VDD"
-			(power)
-			(pin_numbers hide)
-			(pin_names
-				(offset 0) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "VDD"
-				(at 0 3.556 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"VDD\""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "VDD_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "VDD_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 	)
 	(junction
 		(at 71.12 149.86)
@@ -2246,16 +1941,6 @@
 			(type default)
 		)
 		(uuid "15b83245-4381-428a-a8cb-998fbd54b76b")
-	)
-	(wire
-		(pts
-			(xy 152.4 97.79) (xy 152.4 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1b2c4c94-74cf-4dc9-a09e-22a48a0bbb69")
 	)
 	(wire
 		(pts
@@ -2519,16 +2204,6 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 106.68) (xy 158.75 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8ee2f38b-da97-4353-917b-0a89688bc820")
-	)
-	(wire
-		(pts
 			(xy 67.31 105.41) (xy 67.31 113.03)
 		)
 		(stroke
@@ -2586,16 +2261,6 @@
 			(type default)
 		)
 		(uuid "bbbbcd42-a28b-45d3-a9a3-125967394c1f")
-	)
-	(wire
-		(pts
-			(xy 142.24 106.68) (xy 146.05 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c3053e9b-9014-48dd-b601-54efac6f2ed0")
 	)
 	(wire
 		(pts
@@ -2669,16 +2334,6 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 102.87) (xy 162.56 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f38354eb-b415-42ea-8155-ab47fdb9dd9a")
-	)
-	(wire
-		(pts
 			(xy 93.98 100.33) (xy 91.44 100.33)
 		)
 		(stroke
@@ -2696,16 +2351,6 @@
 			(type default)
 		)
 		(uuid "f6a64f94-2255-4ff7-80f1-b233e74d5038")
-	)
-	(wire
-		(pts
-			(xy 142.24 102.87) (xy 142.24 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fd8779dd-7f80-4ae0-ab85-232c9b0b0d9e")
 	)
 	(text "Power Supply"
 		(exclude_from_sim no)
@@ -2729,7 +2374,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0b8fde2d-13bc-4c76-959a-ac1458290197")
-		(property "Reference" "C19"
+		(property "Reference" "C20"
 			(at 101.346 143.764 0)
 			(effects
 				(font
@@ -2783,7 +2428,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "C19")
+					(reference "C20")
 					(unit 1)
 				)
 			)
@@ -3141,7 +2786,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "185cae16-1391-472e-9c04-68e654427f5e")
-		(property "Reference" "#PWR0151"
+		(property "Reference" "#PWR058"
 			(at 107.95 60.96 0)
 			(effects
 				(font
@@ -3191,7 +2836,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR0151")
+					(reference "#PWR058")
 					(unit 1)
 				)
 			)
@@ -3206,7 +2851,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1ff0590a-8ba7-4139-bf99-f3aacde1a786")
-		(property "Reference" "#PWR0147"
+		(property "Reference" "#PWR054"
 			(at 67.31 116.84 0)
 			(effects
 				(font
@@ -3256,139 +2901,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR0147")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VDD")
-		(at 152.4 97.79 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "259c0d5b-8b69-4142-8348-01662fc9d159")
-		(property "Reference" "#PWR043"
-			(at 152.4 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VDD"
-			(at 152.4 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 152.4 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 152.4 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 152.4 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "612f5115-7e61-4cb6-b26e-53867aeff84f")
-		)
-		(instances
-			(project ""
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR043")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 162.56 102.87 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "27227f54-a505-416f-9296-cbe181f0e94f")
-		(property "Reference" "#PWR044"
-			(at 162.56 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 162.56 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 162.56 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 162.56 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 162.56 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "77d26f11-5381-4afe-a0b0-f6052fec3888")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR044")
+					(reference "#PWR054")
 					(unit 1)
 				)
 			)
@@ -3470,7 +2983,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "32187510-2a1e-4a5a-8d94-daf6a59848cf")
-		(property "Reference" "C17"
+		(property "Reference" "C19"
 			(at 91.186 144.526 0)
 			(effects
 				(font
@@ -3524,7 +3037,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "C17")
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -3540,7 +3053,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "54a28e55-88d3-4e22-a3c6-d6024ea6c050")
-		(property "Reference" "#PWR0150"
+		(property "Reference" "#PWR056"
 			(at 97.79 139.7 0)
 			(effects
 				(font
@@ -3590,7 +3103,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR0150")
+					(reference "#PWR056")
 					(unit 1)
 				)
 			)
@@ -3606,7 +3119,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "592a6f79-8210-4da2-b769-0214d82bce33")
-		(property "Reference" "#PWR0149"
+		(property "Reference" "#PWR057"
 			(at 100.33 95.25 0)
 			(effects
 				(font
@@ -3656,7 +3169,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR0149")
+					(reference "#PWR057")
 					(unit 1)
 				)
 			)
@@ -3672,7 +3185,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "62180c2b-59f3-4833-9922-418376add6e3")
-		(property "Reference" "U4"
+		(property "Reference" "U10"
 			(at 67.31 87.63 0)
 			(effects
 				(font
@@ -3735,7 +3248,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "U4")
+					(reference "U10")
 					(unit 1)
 				)
 			)
@@ -3817,7 +3330,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "714549a7-4583-490e-a990-4063af113b5c")
-		(property "Reference" "C15"
+		(property "Reference" "C17"
 			(at 45.466 99.314 0)
 			(effects
 				(font
@@ -3871,73 +3384,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "C15")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 142.24 102.87 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "811a66c7-2253-4d99-862d-893eacd585f2")
-		(property "Reference" "#PWR045"
-			(at 142.24 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 142.24 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 142.24 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 142.24 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 142.24 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bbb83d7a-ff23-48b5-88de-de11b94601ba")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR045")
+					(reference "C17")
 					(unit 1)
 				)
 			)
@@ -3952,7 +3399,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "907cba1e-9d88-41c7-a4a7-ef7b13e5d371")
-		(property "Reference" "C18"
+		(property "Reference" "C21"
 			(at 102.616 101.854 0)
 			(effects
 				(font
@@ -4006,7 +3453,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "C18")
+					(reference "C21")
 					(unit 1)
 				)
 			)
@@ -4021,7 +3468,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9953fad3-f177-414d-b0bd-c3978743e60a")
-		(property "Reference" "C16"
+		(property "Reference" "C18"
 			(at 48.006 141.224 0)
 			(effects
 				(font
@@ -4075,7 +3522,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "C16")
+					(reference "C18")
 					(unit 1)
 				)
 			)
@@ -4090,7 +3537,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9c7f5b2f-5d1d-4d6d-8f07-192c7418ab78")
-		(property "Reference" "#PWR0148"
+		(property "Reference" "#PWR055"
 			(at 71.12 149.86 0)
 			(effects
 				(font
@@ -4140,78 +3587,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR0148")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Jumper:Jumper_3_Bridged12")
-		(at 152.4 106.68 180)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a3fa1e9d-0bc5-471a-842f-f927499bef20")
-		(property "Reference" "JP4"
-			(at 152.4 110.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "MCU_LOGIC_VOLTAGE_SELECT"
-			(at 152.4 113.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 152.4 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 152.4 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Jumper, 3-pole, pins 1+2 closed/bridged"
-			(at 152.4 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "c099d05b-f3c6-411d-8716-c439071a36b6")
-		)
-		(pin "2"
-			(uuid "472cc7ad-34f8-4690-812b-83a9d56a571d")
-		)
-		(pin "3"
-			(uuid "ce52fcbf-e953-4159-a48c-1eb9267b9b97")
-		)
-		(instances
-			(project ""
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "JP4")
+					(reference "#PWR055")
 					(unit 1)
 				)
 			)
@@ -4226,7 +3602,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c0b8495b-979e-4819-8ca3-b7b5713658c1")
-		(property "Reference" "#PWR0152"
+		(property "Reference" "#PWR059"
 			(at 107.95 62.23 0)
 			(effects
 				(font
@@ -4276,7 +3652,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR0152")
+					(reference "#PWR059")
 					(unit 1)
 				)
 			)
@@ -4292,7 +3668,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c0f765e6-f8e2-4b77-b028-10d7808da357")
-		(property "Reference" "#PWR0144"
+		(property "Reference" "#PWR052"
 			(at 44.45 58.42 0)
 			(effects
 				(font
@@ -4342,7 +3718,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR0144")
+					(reference "#PWR052")
 					(unit 1)
 				)
 			)
@@ -4427,7 +3803,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d4b7d97c-98d0-4cd6-b44c-0de810004457")
-		(property "Reference" "U5"
+		(property "Reference" "U9"
 			(at 63.5 134.62 0)
 			(effects
 				(font
@@ -4567,7 +3943,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "U5")
+					(reference "U9")
 					(unit 1)
 				)
 			)
@@ -4583,7 +3959,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "db0d4048-611e-447c-ae7e-3a9cb4286348")
-		(property "Reference" "#PWR0146"
+		(property "Reference" "#PWR050"
 			(at 35.56 139.7 0)
 			(effects
 				(font
@@ -4633,7 +4009,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR0146")
+					(reference "#PWR050")
 					(unit 1)
 				)
 			)
@@ -4648,7 +4024,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "dc8fbed4-924a-475d-91a3-22ac220cb239")
-		(property "Reference" "#PWR0145"
+		(property "Reference" "#PWR053"
 			(at 44.45 62.23 0)
 			(effects
 				(font
@@ -4698,7 +4074,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR0145")
+					(reference "#PWR053")
 					(unit 1)
 				)
 			)
@@ -4714,7 +4090,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e608947b-3614-46d2-8530-359ccf71f6b8")
-		(property "Reference" "#PWR0143"
+		(property "Reference" "#PWR051"
 			(at 39.37 93.98 0)
 			(effects
 				(font
@@ -4764,7 +4140,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
-					(reference "#PWR0143")
+					(reference "#PWR051")
 					(unit 1)
 				)
 			)

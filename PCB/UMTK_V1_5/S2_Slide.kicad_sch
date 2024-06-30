@@ -2317,12 +2317,6 @@
 		(uuid "58dd3600-8332-4f22-8211-3fafee9d266c")
 	)
 	(junction
-		(at 64.77 96.52)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "707a52db-242b-4c52-802d-54f5e5ee349e")
-	)
-	(junction
 		(at 170.18 114.3)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2341,12 +2335,6 @@
 		(uuid "bd9dff0e-b4e6-49f1-9662-3118cacb0af7")
 	)
 	(junction
-		(at 64.77 143.51)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "dbbb09d7-07a9-4086-b147-a010bbc2d7e7")
-	)
-	(junction
 		(at 170.18 111.76)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2360,6 +2348,16 @@
 	)
 	(wire
 		(pts
+			(xy 50.8 134.62) (xy 54.61 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "001fe3d2-7f45-46f2-b748-a8d41e9735ec")
+	)
+	(wire
+		(pts
 			(xy 62.23 68.58) (xy 62.23 73.66)
 		)
 		(stroke
@@ -2370,7 +2368,7 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 93.98) (xy 64.77 96.52)
+			(xy 64.77 93.98) (xy 64.77 99.06)
 		)
 		(stroke
 			(width 0)
@@ -2380,23 +2378,13 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 139.7) (xy 64.77 143.51)
+			(xy 64.77 139.7) (xy 64.77 144.78)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "08fac1d4-c602-4ca6-922a-1caaf0560aa6")
-	)
-	(wire
-		(pts
-			(xy 34.29 143.51) (xy 64.77 143.51)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1135239c-9f29-4ee9-8245-3244b13137c7")
 	)
 	(wire
 		(pts
@@ -2440,16 +2428,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 96.52) (xy 34.29 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "247faa03-e824-4d55-8095-df57314a5efa")
-	)
-	(wire
-		(pts
 			(xy 144.78 115.57) (xy 147.32 115.57)
 		)
 		(stroke
@@ -2490,7 +2468,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 129.54) (xy 54.61 129.54)
+			(xy 50.8 129.54) (xy 54.61 129.54)
 		)
 		(stroke
 			(width 0)
@@ -2540,26 +2518,6 @@
 	)
 	(wire
 		(pts
-			(xy 34.29 96.52) (xy 34.29 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4efae0f1-fcfd-4647-b3cd-2c8434f377b5")
-	)
-	(wire
-		(pts
-			(xy 34.29 140.97) (xy 34.29 143.51)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "51c36437-d83b-461c-ac99-7dc36aabb1cb")
-	)
-	(wire
-		(pts
 			(xy 167.64 91.44) (xy 170.18 91.44)
 		)
 		(stroke
@@ -2580,7 +2538,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 83.82) (xy 54.61 83.82)
+			(xy 50.8 83.82) (xy 54.61 83.82)
 		)
 		(stroke
 			(width 0)
@@ -2597,16 +2555,6 @@
 			(type default)
 		)
 		(uuid "610fca6a-cedb-43f9-b02c-d01c01a5a306")
-	)
-	(wire
-		(pts
-			(xy 64.77 143.51) (xy 64.77 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "63209bca-9a5d-45a3-91f1-aeb13da51c6e")
 	)
 	(wire
 		(pts
@@ -2680,16 +2628,6 @@
 	)
 	(wire
 		(pts
-			(xy 38.1 134.62) (xy 54.61 134.62)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99f22669-a384-44dd-b0ae-5944fe0e2a2a")
-	)
-	(wire
-		(pts
 			(xy 205.74 81.28) (xy 167.64 81.28)
 		)
 		(stroke
@@ -2710,26 +2648,6 @@
 	)
 	(wire
 		(pts
-			(xy 34.29 121.92) (xy 34.29 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a762a3a5-cb0b-4149-a4f5-9a9544f9033e")
-	)
-	(wire
-		(pts
-			(xy 34.29 78.74) (xy 34.29 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b2912742-67a4-4d13-bd98-46b65218a4d5")
-	)
-	(wire
-		(pts
 			(xy 147.32 91.44) (xy 167.64 91.44)
 		)
 		(stroke
@@ -2737,6 +2655,16 @@
 			(type default)
 		)
 		(uuid "b96f9c34-6e75-409e-aa9e-b65f6ac41fdc")
+	)
+	(wire
+		(pts
+			(xy 50.8 88.9) (xy 54.61 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bda8c21c-718a-4248-865b-710fb18e1880")
 	)
 	(wire
 		(pts
@@ -2760,16 +2688,6 @@
 	)
 	(wire
 		(pts
-			(xy 38.1 88.9) (xy 54.61 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ca0707b6-eb8d-4dc8-9fbe-90eaf7ac5150")
-	)
-	(wire
-		(pts
 			(xy 121.92 91.44) (xy 147.32 91.44)
 		)
 		(stroke
@@ -2787,16 +2705,6 @@
 			(type default)
 		)
 		(uuid "cd3801cc-5467-4b7f-af4c-b2cc37b17ab2")
-	)
-	(wire
-		(pts
-			(xy 64.77 96.52) (xy 64.77 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d3bd7da3-45fa-4ee0-82eb-16dc874500f4")
 	)
 	(wire
 		(pts
@@ -2970,9 +2878,33 @@
 		)
 		(uuid "f01178a3-b887-4d4c-ba1e-422db6a8dc28")
 	)
+	(hierarchical_label "SLIDE_DAT_DIR"
+		(shape input)
+		(at 50.8 134.62 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "24606153-2597-4f89-988e-a4916b02add4")
+	)
+	(hierarchical_label "SLIDE_CLK_DIR"
+		(shape input)
+		(at 50.8 88.9 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5aa417a4-bfef-4538-bf1a-26e44688c619")
+	)
 	(hierarchical_label "SLIDE_CLK"
 		(shape input)
-		(at 52.07 83.82 180)
+		(at 50.8 83.82 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2984,7 +2916,7 @@
 	)
 	(hierarchical_label "SLIDE_DAT"
 		(shape input)
-		(at 52.07 129.54 180)
+		(at 50.8 129.54 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3003,7 +2935,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "10a9356d-998a-4d0d-99e7-b943c1be0b68")
-		(property "Reference" "#PWR033"
+		(property "Reference" "#PWR062"
 			(at 75.946 100.33 0)
 			(effects
 				(font
@@ -3052,7 +2984,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR033")
+					(reference "#PWR062")
 					(unit 1)
 				)
 			)
@@ -3068,7 +3000,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1843ad86-c311-45cd-a84f-d57fe3b1b5f7")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR060"
 			(at 62.23 72.39 0)
 			(effects
 				(font
@@ -3118,7 +3050,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR030")
+					(reference "#PWR060")
 					(unit 1)
 				)
 			)
@@ -3134,7 +3066,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2455a275-1a39-49b5-8a8f-2d9bcb4d8e0b")
-		(property "Reference" "#PWR0154"
+		(property "Reference" "#PWR067"
 			(at 111.76 90.17 0)
 			(effects
 				(font
@@ -3184,7 +3116,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR0154")
+					(reference "#PWR067")
 					(unit 1)
 				)
 			)
@@ -3199,7 +3131,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "298d0a4f-b404-4139-993a-fda9e1b1fb26")
-		(property "Reference" "#PWR0156"
+		(property "Reference" "#PWR069"
 			(at 170.18 119.38 0)
 			(effects
 				(font
@@ -3249,7 +3181,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR0156")
+					(reference "#PWR069")
 					(unit 1)
 				)
 			)
@@ -3325,78 +3257,6 @@
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
 					(reference "J6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Jumper:Jumper_3_Bridged12")
-		(at 34.29 134.62 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "339e56a9-3e6f-447c-b911-3fde80a71d74")
-		(property "Reference" "JP2"
-			(at 31.75 133.3499 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "SLIDE_CLK_DIR"
-			(at 50.038 136.906 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 34.29 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 34.29 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 34.29 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e047e15a-8d9a-48cf-88de-13ae2005c604")
-		)
-		(pin "2"
-			(uuid "a753721b-a549-4bd5-b56b-faed279b11c3")
-		)
-		(pin "3"
-			(uuid "24114b34-3b76-4332-961e-cc7514224d2b")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "JP2")
 					(unit 1)
 				)
 			)
@@ -3781,7 +3641,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "65008429-221e-4339-a348-911369e5f9c3")
-		(property "Reference" "#PWR031"
+		(property "Reference" "#PWR061"
 			(at 62.23 118.11 0)
 			(effects
 				(font
@@ -3831,7 +3691,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR031")
+					(reference "#PWR061")
 					(unit 1)
 				)
 			)
@@ -3847,7 +3707,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "72418b3b-f2cf-482a-b064-f2cbafad0c5d")
-		(property "Reference" "#PWR036"
+		(property "Reference" "#PWR064"
 			(at 67.31 72.39 0)
 			(effects
 				(font
@@ -3897,7 +3757,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR036")
+					(reference "#PWR064")
 					(unit 1)
 				)
 			)
@@ -3912,7 +3772,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "744e659f-23db-4d32-8ca3-4adac17ac9b1")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR063"
 			(at 75.946 146.05 0)
 			(effects
 				(font
@@ -3961,146 +3821,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR034")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VDD")
-		(at 34.29 78.74 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8412bb5f-d818-4872-b254-511b27bff8a4")
-		(property "Reference" "#PWR027"
-			(at 34.29 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VDD"
-			(at 34.29 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 34.29 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 34.29 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 34.29 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2ba6a051-6aae-4d8b-9100-cd663ba223b6")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR027")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Jumper:Jumper_3_Bridged12")
-		(at 34.29 88.9 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "8e4e1aaa-e46f-46d3-8511-5dabfa0061b5")
-		(property "Reference" "JP1"
-			(at 31.75 90.1701 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "SLIDE_DAT_DIR"
-			(at 50.038 86.614 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 34.29 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 34.29 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 34.29 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2c2e278d-51d9-448d-b0bb-3d44e3f7a37c")
-		)
-		(pin "2"
-			(uuid "178633f5-56a1-438b-9fc8-87b3c615a2ce")
-		)
-		(pin "3"
-			(uuid "07b9c9cb-6022-4d0f-97df-d3d69f2f06d7")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "JP1")
+					(reference "#PWR063")
 					(unit 1)
 				)
 			)
@@ -4115,7 +3836,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "91bb15e2-28ee-41a2-9bd3-ff77c36d2ee9")
-		(property "Reference" "#PWR037"
+		(property "Reference" "#PWR065"
 			(at 67.31 118.11 0)
 			(effects
 				(font
@@ -4165,7 +3886,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR037")
+					(reference "#PWR065")
 					(unit 1)
 				)
 			)
@@ -4180,7 +3901,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ab81b584-31e0-4775-826c-3f7387256ea2")
-		(property "Reference" "JP3"
+		(property "Reference" "JP2"
 			(at 115.57 90.1699 90)
 			(effects
 				(font
@@ -4237,7 +3958,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "JP3")
+					(reference "JP2")
 					(unit 1)
 				)
 			)
@@ -4628,7 +4349,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bec4cdbb-a565-489e-a500-717f61dcaaa2")
-		(property "Reference" "#PWR0155"
+		(property "Reference" "#PWR068"
 			(at 144.78 115.57 0)
 			(effects
 				(font
@@ -4678,7 +4399,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR0155")
+					(reference "#PWR068")
 					(unit 1)
 				)
 			)
@@ -4694,7 +4415,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cb7bf98b-49e9-4c5b-9b5f-0b9d8b4d1883")
-		(property "Reference" "#PWR0153"
+		(property "Reference" "#PWR066"
 			(at 109.22 101.6 0)
 			(effects
 				(font
@@ -4744,7 +4465,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR0153")
+					(reference "#PWR066")
 					(unit 1)
 				)
 			)
@@ -4825,72 +4546,6 @@
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
 					(reference "U11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VDD")
-		(at 34.29 121.92 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e8779e36-4491-49b6-849d-a5a14211ab07")
-		(property "Reference" "#PWR028"
-			(at 34.29 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VDD"
-			(at 34.29 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 34.29 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 34.29 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 34.29 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8a37355b-3e3d-49d0-abb8-7dc87368418f")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -4985,7 +4640,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ff81a61f-81fa-4aaf-a84e-36b9baa5a795")
-		(property "Reference" "#PWR0157"
+		(property "Reference" "#PWR070"
 			(at 205.74 119.38 0)
 			(effects
 				(font
@@ -5035,7 +4690,7 @@
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
-					(reference "#PWR0157")
+					(reference "#PWR070")
 					(unit 1)
 				)
 			)
