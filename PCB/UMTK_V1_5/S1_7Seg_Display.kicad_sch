@@ -3287,7 +3287,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
 			(at 40.64 88.9 0)
 			(effects
 				(font
@@ -3426,7 +3426,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "9k53"
+		(property "Value" "10k"
 			(at 96.52 88.8999 0)
 			(effects
 				(font
@@ -3435,7 +3435,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 94.996 87.884 90)
 			(effects
 				(font
@@ -4161,7 +4161,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
 			(at 40.64 181.61 0)
 			(effects
 				(font
@@ -4699,7 +4699,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
 			(at 40.64 134.62 0)
 			(effects
 				(font

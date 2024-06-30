@@ -2270,7 +2270,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 91.694 104.394 90)
 			(effects
 				(font
@@ -2403,7 +2403,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 146.304 94.234 90)
 			(effects
 				(font
@@ -2470,7 +2470,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 109.474 118.364 90)
 			(effects
 				(font
@@ -2537,7 +2537,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 109.474 125.984 90)
 			(effects
 				(font
@@ -2718,7 +2718,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 116.5352 127 0)
 			(effects
 				(font
@@ -2788,7 +2788,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 130.81 95.25 0)
 			(effects
 				(font
@@ -2859,7 +2859,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_1206_3216Metric"
 			(at 179.07 86.6648 0)
 			(effects
 				(font
@@ -2928,7 +2928,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 150.8252 139.7 0)
 			(effects
 				(font
@@ -3196,7 +3196,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_1206_3216Metric"
 			(at 51.1048 97.79 0)
 			(effects
 				(font
@@ -3263,7 +3263,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 91.694 112.014 90)
 			(effects
 				(font
@@ -3398,7 +3398,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "4Pin JST"
+		(property "Footprint" "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical"
 			(at 69.85 78.74 0)
 			(effects
 				(font

@@ -1811,16 +1811,16 @@
 		(uuid "0d447ed0-88cf-402c-877b-f65a55eb769c")
 	)
 	(junction
+		(at 100.33 113.03)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1f99d68f-1647-4df8-83d5-3ba52c410634")
+	)
+	(junction
 		(at 67.31 113.03)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2fb5a3c8-fc0b-4405-8249-60345eba7992")
-	)
-	(junction
-		(at 43.18 95.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3c93540c-e813-4d7b-8549-43f2f96a97a0")
 	)
 	(junction
 		(at 97.79 137.16)
@@ -1833,6 +1833,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "48e5c9d6-b630-48d1-aedb-b41234390167")
+	)
+	(junction
+		(at 39.37 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "533df062-9dab-44f8-892b-b6d92c9d3c7c")
 	)
 	(junction
 		(at 100.33 95.25)
@@ -1944,7 +1950,7 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 102.87) (xy 43.18 113.03)
+			(xy 39.37 105.41) (xy 39.37 113.03)
 		)
 		(stroke
 			(width 0)
@@ -1971,6 +1977,16 @@
 			(type default)
 		)
 		(uuid "25934466-5d0c-413c-8cf2-3d40285eb22d")
+	)
+	(wire
+		(pts
+			(xy 100.33 95.25) (xy 111.76 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26265fbe-df21-45d2-b71e-acf814510f0f")
 	)
 	(wire
 		(pts
@@ -2031,16 +2047,6 @@
 			(type default)
 		)
 		(uuid "51344b5e-6339-414f-bef4-baa08b11f17c")
-	)
-	(wire
-		(pts
-			(xy 43.18 95.25) (xy 54.61 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "527d49cf-2342-41c3-869c-bc9c15174401")
 	)
 	(wire
 		(pts
@@ -2184,6 +2190,16 @@
 	)
 	(wire
 		(pts
+			(xy 111.76 95.25) (xy 111.76 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8432ff12-632d-4628-b9e5-9a73275770e7")
+	)
+	(wire
+		(pts
 			(xy 88.9 147.32) (xy 88.9 149.86)
 		)
 		(stroke
@@ -2264,7 +2280,7 @@
 	)
 	(wire
 		(pts
-			(xy 39.37 95.25) (xy 43.18 95.25)
+			(xy 39.37 95.25) (xy 54.61 95.25)
 		)
 		(stroke
 			(width 0)
@@ -2284,6 +2300,26 @@
 	)
 	(wire
 		(pts
+			(xy 39.37 97.79) (xy 39.37 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cde5f967-0cd9-4485-9d28-edb61a4ce20e")
+	)
+	(wire
+		(pts
+			(xy 100.33 113.03) (xy 111.76 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d136164c-a17f-4b1e-80e3-6cdbc1bdbcd4")
+	)
+	(wire
+		(pts
 			(xy 44.45 57.15) (xy 55.88 57.15)
 		)
 		(stroke
@@ -2291,6 +2327,16 @@
 			(type default)
 		)
 		(uuid "d6d3ebc6-d2fc-4ebf-a3b9-79f79ae3b26b")
+	)
+	(wire
+		(pts
+			(xy 111.76 105.41) (xy 111.76 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e05ac60a-a087-49c4-9918-f95054a3f3fd")
 	)
 	(wire
 		(pts
@@ -2304,7 +2350,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 113.03) (xy 43.18 113.03)
+			(xy 52.07 113.03) (xy 39.37 113.03)
 		)
 		(stroke
 			(width 0)
@@ -2392,7 +2438,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Alu Cap 6.3x2.5mm"
+		(property "Footprint" "Capacitor_SMD:CP_Elec_10x10"
 			(at 99.06 139.7 0)
 			(effects
 				(font
@@ -2461,7 +2507,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "CUI-PJ-102BH_V"
+		(property "Footprint" "digikey-footprints:Barrel_Jack_5.5mmODx2.1mmID_PJ-102A"
 			(at 85.09 57.15 0)
 			(effects
 				(font
@@ -2932,7 +2978,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TerminalBlock_Altech:Altech_AK100_1x02_P5.00mm"
 			(at 60.96 57.15 0)
 			(effects
 				(font
@@ -3001,7 +3047,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Ceramic Cap 5mm"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 88.9 139.7 0)
 			(effects
 				(font
@@ -3038,6 +3084,75 @@
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
 					(reference "C19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "UMTK-altium-import:0_Polar Cap")
+		(at 111.76 97.79 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "46d656eb-40b3-4101-a446-64ec36e1c86a")
+		(property "Reference" "C22"
+			(at 114.046 101.854 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "1000u"
+			(at 113.03 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "Alu Cap 6.3x2.5mm"
+			(at 111.76 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 111.76 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 111.76 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "25f1c8e7-636e-4e6f-a8ba-50e63caffe8f")
+		)
+		(pin "2"
+			(uuid "aa627a3b-acfe-498e-8ae7-6c281b1f259b")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/9034045e-70ca-44cd-84b0-62f91947c95b"
+					(reference "C22")
 					(unit 1)
 				)
 			)
@@ -3279,7 +3394,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_Sunlord_MWSA1206S-101"
 			(at 87.63 100.33 0)
 			(effects
 				(font
@@ -3323,7 +3438,7 @@
 	)
 	(symbol
 		(lib_id "UMTK-altium-import:0_Polar Cap")
-		(at 43.18 95.25 0)
+		(at 39.37 97.79 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3331,7 +3446,7 @@
 		(dnp no)
 		(uuid "714549a7-4583-490e-a990-4063af113b5c")
 		(property "Reference" "C17"
-			(at 45.466 99.314 0)
+			(at 41.656 101.854 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3340,7 +3455,7 @@
 			)
 		)
 		(property "Value" "100u 24v"
-			(at 45.466 101.854 0)
+			(at 41.656 104.394 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3348,8 +3463,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Alu Cap 6.3x2.5mm"
-			(at 43.18 95.25 0)
+		(property "Footprint" "Capacitor_SMD:CP_Elec_10x10.5"
+			(at 39.37 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3358,7 +3473,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 43.18 95.25 0)
+			(at 39.37 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3367,7 +3482,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 43.18 95.25 0)
+			(at 39.37 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3417,7 +3532,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Alu Cap 6.3x2.5mm"
+		(property "Footprint" "Capacitor_SMD:CP_Elec_10x10"
 			(at 100.33 97.79 0)
 			(effects
 				(font
@@ -3486,7 +3601,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Alu Cap 6.3x2.5mm"
+		(property "Footprint" "Capacitor_SMD:CP_Elec_8x6.5"
 			(at 45.72 137.16 0)
 			(effects
 				(font
@@ -3821,7 +3936,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "SOT-223_M"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-223"
 			(at 63.5 134.62 0)
 			(effects
 				(font

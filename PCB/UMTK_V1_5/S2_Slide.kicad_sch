@@ -3214,7 +3214,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "4Pin JST"
+		(property "Footprint" "Connector_JST:JST_XH_B2B-XH-AM_1x02_P2.50mm_Vertical"
 			(at 152.4 105.41 0)
 			(effects
 				(font
@@ -3289,7 +3289,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "FCI-10033526-N3212LF_V"
+		(property "Footprint" "digikey-footprints:USB_Mini_B_Female_548190519"
 			(at 210.82 88.9 0)
 			(effects
 				(font
@@ -3919,7 +3919,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Bridged12_Pad1.0x1.5mm"
 			(at 118.11 91.44 0)
 			(effects
 				(font
@@ -3991,7 +3991,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "MOLX-47589-0001_V"
+		(property "Footprint" "digikey-footprints:USB_Micro_AB_Female_0475890001"
 			(at 175.26 88.9 0)
 			(effects
 				(font
@@ -4497,7 +4497,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
 			(at 64.77 95.25 0)
 			(effects
 				(font
@@ -4577,7 +4577,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
 			(at 64.77 140.97 0)
 			(effects
 				(font
