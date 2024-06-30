@@ -1495,31 +1495,31 @@
 		)
 	)
 	(junction
-		(at 154.94 109.22)
+		(at 184.15 114.3)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "0d30ffe7-6892-46dd-b929-e6757d630533")
 	)
 	(junction
-		(at 154.94 111.76)
+		(at 184.15 116.84)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "15f6a563-91e8-4edd-929d-a8466d98b355")
 	)
 	(junction
-		(at 154.94 114.3)
+		(at 184.15 119.38)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "44bb8402-f203-4133-ac9b-c95bab8c82f6")
 	)
 	(junction
-		(at 154.94 116.84)
+		(at 184.15 121.92)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "adeb2e18-04ae-480f-b62e-91f265b8ffc9")
 	)
 	(no_connect
-		(at 154.94 104.14)
+		(at 184.15 109.22)
 		(uuid "81775403-29e7-44bc-bfff-2419c6c77641")
 	)
 	(wire
@@ -1531,6 +1531,16 @@
 			(type default)
 		)
 		(uuid "001fe3d2-7f45-46f2-b748-a8d41e9735ec")
+	)
+	(wire
+		(pts
+			(xy 147.32 101.6) (xy 184.15 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0382d01d-d6e4-4995-8233-6d06b95c3922")
 	)
 	(wire
 		(pts
@@ -1574,7 +1584,7 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 124.46) (xy 154.94 116.84)
+			(xy 184.15 129.54) (xy 184.15 121.92)
 		)
 		(stroke
 			(width 0.254)
@@ -1584,7 +1594,17 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 114.3) (xy 154.94 111.76)
+			(xy 147.32 91.44) (xy 147.32 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "183b9949-5f77-49d7-93db-d0471c2a2e3a")
+	)
+	(wire
+		(pts
+			(xy 184.15 119.38) (xy 184.15 116.84)
 		)
 		(stroke
 			(width 0.254)
@@ -1594,7 +1614,7 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 99.06) (xy 154.94 99.06)
+			(xy 181.61 104.14) (xy 184.15 104.14)
 		)
 		(stroke
 			(width 0)
@@ -1714,7 +1734,7 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 111.76) (xy 154.94 109.22)
+			(xy 184.15 116.84) (xy 184.15 114.3)
 		)
 		(stroke
 			(width 0.254)
@@ -1731,16 +1751,6 @@
 			(type default)
 		)
 		(uuid "86db5147-7282-47a4-a4a1-283ca17d81c9")
-	)
-	(wire
-		(pts
-			(xy 151.13 91.44) (xy 121.92 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8c6b45c8-50a0-44f1-bd38-6892ea3fcda8")
 	)
 	(wire
 		(pts
@@ -1764,17 +1774,7 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 96.52) (xy 151.13 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bf0ccc1a-b72e-470a-8e68-c3d25fcad543")
-	)
-	(wire
-		(pts
-			(xy 152.4 101.6) (xy 154.94 101.6)
+			(xy 181.61 106.68) (xy 184.15 106.68)
 		)
 		(stroke
 			(width 0)
@@ -1784,7 +1784,7 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 96.52) (xy 154.94 96.52)
+			(xy 121.92 91.44) (xy 147.32 91.44)
 		)
 		(stroke
 			(width 0)
@@ -1814,7 +1814,7 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 109.22) (xy 154.94 106.68)
+			(xy 184.15 114.3) (xy 184.15 111.76)
 		)
 		(stroke
 			(width 0.254)
@@ -1824,7 +1824,7 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 116.84) (xy 154.94 114.3)
+			(xy 184.15 121.92) (xy 184.15 119.38)
 		)
 		(stroke
 			(width 0.254)
@@ -1899,7 +1899,7 @@
 		(uuid "89efe8db-cec3-48dd-b4b0-471c417df9f1")
 	)
 	(label "_SLIDE_DAT_"
-		(at 152.4 99.06 180)
+		(at 181.61 104.14 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1921,7 +1921,7 @@
 		(uuid "d369d0c3-3806-4c48-85bc-6071b4412644")
 	)
 	(label "_SLIDE_CLK_"
-		(at 152.4 101.6 180)
+		(at 181.61 106.68 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2337,7 +2337,7 @@
 	)
 	(symbol
 		(lib_id "UMTK-altium-import:0_USB-5-4SHLD")
-		(at 160.02 93.98 0)
+		(at 189.23 99.06 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2345,7 +2345,7 @@
 		(dnp no)
 		(uuid "54825f45-5d6e-4d65-8548-ed0b9df816b6")
 		(property "Reference" "J8"
-			(at 159.766 93.726 0)
+			(at 188.976 98.806 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2354,7 +2354,7 @@
 			)
 		)
 		(property "Value" "10033526-N3212LF"
-			(at 159.766 122.174 0)
+			(at 188.976 127.254 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2363,7 +2363,7 @@
 			)
 		)
 		(property "Footprint" "Connector_USB:USB_Mini-B_Wuerth_65100516121_Horizontal"
-			(at 160.02 93.98 0)
+			(at 189.23 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2372,7 +2372,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 160.02 93.98 0)
+			(at 189.23 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2381,7 +2381,7 @@
 			)
 		)
 		(property "Description" "Mini USB B-Type, 5-Pin SMD, RoHS, Tape and Reel"
-			(at 160.02 93.98 0)
+			(at 189.23 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2390,7 +2390,7 @@
 			)
 		)
 		(property "PARTNUMBER" "10033526-N3212LF"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2400,7 +2400,7 @@
 			)
 		)
 		(property "DATASHEETVERSION" "Rev. N"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2410,7 +2410,7 @@
 			)
 		)
 		(property "TERMINATION STYLE" "Solder Pad"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2420,7 +2420,7 @@
 			)
 		)
 		(property "PACKAGING" "Reel"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2430,7 +2430,7 @@
 			)
 		)
 		(property "SHELL PLATING" "Nickel"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2440,7 +2440,7 @@
 			)
 		)
 		(property "STANDARD" "USB"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2450,7 +2450,7 @@
 			)
 		)
 		(property "COLOR" "Black"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2460,7 +2460,7 @@
 			)
 		)
 		(property "COMPONENTLINK1DESCRIPTION" "Manufacturer URL"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2470,7 +2470,7 @@
 			)
 		)
 		(property "MOUNTING TECHNOLOGY" "Surface Mount"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2480,7 +2480,7 @@
 			)
 		)
 		(property "FACTORY PACK QUANTITY" "750"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2490,7 +2490,7 @@
 			)
 		)
 		(property "MOUNTING ANGLE" "Right"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2500,7 +2500,7 @@
 			)
 		)
 		(property "CONTACT MATERIAL" "Copper Alloy"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2510,7 +2510,7 @@
 			)
 		)
 		(property "NUMBER OF PORTS" "1 Port"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2520,7 +2520,7 @@
 			)
 		)
 		(property "PRODUCT CATEGORY" "USB Connectors"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2530,7 +2530,7 @@
 			)
 		)
 		(property "MANUFACTURER" "FCI"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2540,7 +2540,7 @@
 			)
 		)
 		(property "COMPONENTLINK2URL" "http://portal.fciconnect.com/Comergent//fci/drawing/10033526.pdf"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2550,7 +2550,7 @@
 			)
 		)
 		(property "FLAMMABILITY RATING" "UL 94 V-0"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2560,7 +2560,7 @@
 			)
 		)
 		(property "PRODUCT" "Mini USB Type B Connectors"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2570,7 +2570,7 @@
 			)
 		)
 		(property "CONTACT PLATING" "Gold"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2580,7 +2580,7 @@
 			)
 		)
 		(property "COMPONENTLINK2DESCRIPTION" "Datasheet"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2590,7 +2590,7 @@
 			)
 		)
 		(property "BRAND" "FCI"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2600,7 +2600,7 @@
 			)
 		)
 		(property "NUMBER OF CONTACTS" "5 Contact"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2610,7 +2610,7 @@
 			)
 		)
 		(property "ROHS" "Details"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2620,7 +2620,7 @@
 			)
 		)
 		(property "CONNECTOR TYPE" "Mini USB Type B Receptacle"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2630,7 +2630,7 @@
 			)
 		)
 		(property "COMPONENTLINK1URL" "http://portal.fciconnect.com/"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2640,7 +2640,7 @@
 			)
 		)
 		(property "GENDER" "Female"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2650,7 +2650,7 @@
 			)
 		)
 		(property "INSULATION RESISTANCE" "100 MOhms"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2660,7 +2660,7 @@
 			)
 		)
 		(property "PACKAGEDESCRIPTION" "5-Pin Surface Mount Device, Body 9.2 x 7.7 mm, Pitch 0.8 mm"
-			(at 154.432 90.17 0)
+			(at 183.642 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3200,7 +3200,7 @@
 	)
 	(symbol
 		(lib_id "UMTK-altium-import:GND")
-		(at 154.94 124.46 0)
+		(at 184.15 129.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3208,7 +3208,7 @@
 		(dnp no)
 		(uuid "ff81a61f-81fa-4aaf-a84e-36b9baa5a795")
 		(property "Reference" "#PWR070"
-			(at 154.94 124.46 0)
+			(at 184.15 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3217,7 +3217,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 154.94 130.81 0)
+			(at 184.15 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3225,7 +3225,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 154.94 124.46 0)
+			(at 184.15 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3234,7 +3234,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 154.94 124.46 0)
+			(at 184.15 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3243,7 +3243,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name 'GND'"
-			(at 154.94 124.46 0)
+			(at 184.15 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
