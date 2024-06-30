@@ -1859,7 +1859,7 @@
 	(footprint "Package_SO:SOIC-24W_7.5x15.4mm_P1.27mm"
 		(layer "F.Cu")
 		(uuid "130c5c7c-f872-4a88-86e6-fe76100e65d6")
-		(at 106.02 52.28)
+		(at 106.02 47.625)
 		(descr "SOIC, 24 Pin (JEDEC MS-013AD, https://www.analog.com/media/en/package-pcb-resources/package/pkg_pdf/soic_wide-rw/RW_24.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "SOIC SO")
 		(property "Reference" "U6"
@@ -9399,7 +9399,7 @@
 	(footprint "Package_SO:SOP-16_3.9x9.9mm_P1.27mm"
 		(layer "F.Cu")
 		(uuid "4f22d011-7928-40ca-91b0-4a72904e5114")
-		(at 135.89 135.43)
+		(at 134.58 137.795)
 		(descr "SOP, 16 Pin (https://www.diodes.com/assets/Datasheets/PAM8403.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "SOP SO")
 		(property "Reference" "U2"
