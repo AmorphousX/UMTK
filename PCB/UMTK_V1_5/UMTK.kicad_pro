@@ -58,7 +58,27 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "courtyards_overlap|32852001|52743001|0feaf054-0b09-4422-84ce-69e28f7ace01|b5979748-f0af-4379-a856-70d503828191",
+        "courtyards_overlap|32852001|54775001|2c2a38f9-4678-49fe-a626-87c0c26d6d07|b5979748-f0af-4379-a856-70d503828191",
+        "courtyards_overlap|32852001|56807001|6d4e4cb7-c7b2-415a-b01d-c143ee169b24|b5979748-f0af-4379-a856-70d503828191",
+        "courtyards_overlap|36406001|52785001|51cea522-769c-44f8-898d-463d9ab9eaa7|b5979748-f0af-4379-a856-70d503828191",
+        "courtyards_overlap|36406001|57225115|b5979748-f0af-4379-a856-70d503828191|c0ea877a-2549-4aa2-a1dc-68d92b64d7e4",
+        "courtyards_overlap|36567594|54775001|20ac5a3e-3d99-4e3a-860e-6232db014eb5|b5979748-f0af-4379-a856-70d503828191",
+        "courtyards_overlap|38824979|23148001|889082a0-1d4c-4078-8ed3-430b9bcbe98d|b5979748-f0af-4379-a856-70d503828191",
+        "silk_edge_clearance|100370000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|2f4f0017-f188-4a68-b3fe-8e06350367a3",
+        "silk_edge_clearance|140551000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|7affcdf3-4a78-48bc-b532-0e1f8b2eb8be",
+        "silk_edge_clearance|150931000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|3dc47213-14f4-401d-aab6-b71a008fd31b",
+        "silk_edge_clearance|159238095|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|a979280c-eeec-45dc-8908-d35caa19327b",
+        "silk_edge_clearance|169257200|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|34a16061-7659-41f6-8b9c-cb0159b1ffe6",
+        "silk_edge_clearance|179637200|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|3210a787-2506-4e89-a2bb-61bde6cf3984",
+        "silk_edge_clearance|83520000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|6e2ce0d2-4b16-456a-8a7c-9a91dd6078d4",
+        "starved_thermal|146304000|69215000|6721a74a-28b4-4c76-a0e7-0a509ae72acb|0ffd6412-628a-4c35-91b7-09ace05958bf|F.Cu",
+        "starved_thermal|164957667|32372500|4de128b7-01e2-4784-9af7-c9b3848c32f0|4afea726-2a7d-4dd7-9553-6a6aa9172e1b|F.Cu",
+        "starved_thermal|169564000|34397000|4de128b7-01e2-4784-9af7-c9b3848c32f0|2d919dc4-71be-44d2-9ce4-e81516190b7c|F.Cu",
+        "starved_thermal|172164000|34397000|cbb205f9-b072-43f4-8a84-a5cba757c7e3|55eb3659-d674-4bc0-90c7-756317579442|F.Cu",
+        "starved_thermal|50164000|83141000|4de128b7-01e2-4784-9af7-c9b3848c32f0|851cff44-f1de-4a23-b795-4a1ea1931785|F.Cu"
+      ],
       "meta": {
         "version": 2
       },
@@ -580,7 +600,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "OUTPUT_JLC/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
@@ -641,11 +661,371 @@
           "label": "DNP",
           "name": "${DNP}",
           "show": true
+        },
+        {
+          "group_by": false,
+          "label": "#",
+          "name": "${ITEM_NUMBER}",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Availability",
+          "name": "Availability",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "BRAND",
+          "name": "BRAND",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "COLOR",
+          "name": "COLOR",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "COMPONENTLINK1DESCRIPTION",
+          "name": "COMPONENTLINK1DESCRIPTION",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "COMPONENTLINK1URL",
+          "name": "COMPONENTLINK1URL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "COMPONENTLINK2DESCRIPTION",
+          "name": "COMPONENTLINK2DESCRIPTION",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "COMPONENTLINK2URL",
+          "name": "COMPONENTLINK2URL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "CONNECTOR TYPE",
+          "name": "CONNECTOR TYPE",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "CONTACT GENDER",
+          "name": "CONTACT GENDER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "CONTACT MATERIAL",
+          "name": "CONTACT MATERIAL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "CONTACT PLATING",
+          "name": "CONTACT PLATING",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "CURRENT RATING",
+          "name": "CURRENT RATING",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Category",
+          "name": "Category",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Check_prices",
+          "name": "Check_prices",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "DATASHEET URL",
+          "name": "DATASHEET URL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "DATASHEET VERSION",
+          "name": "DATASHEET VERSION",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "DATASHEETVERSION",
+          "name": "DATASHEETVERSION",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "DK_Datasheet_Link",
+          "name": "DK_Datasheet_Link",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "DK_Detail_Page",
+          "name": "DK_Detail_Page",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Description_1",
+          "name": "Description_1",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Digi-Key_PN",
+          "name": "Digi-Key_PN",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "FACTORY PACK QUANTITY",
+          "name": "FACTORY PACK QUANTITY",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "FLAMMABILITY RATING",
+          "name": "FLAMMABILITY RATING",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Family",
+          "name": "Family",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "GENDER",
+          "name": "GENDER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "HOUSING MATERIAL",
+          "name": "HOUSING MATERIAL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "INSIDE CONTACT DIAMETER",
+          "name": "INSIDE CONTACT DIAMETER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "INSULATION RESISTANCE",
+          "name": "INSULATION RESISTANCE",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MANUFACTURER",
+          "name": "MANUFACTURER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MANUFACTURER URL",
+          "name": "MANUFACTURER URL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MF",
+          "name": "MF",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MOUNTING ANGLE",
+          "name": "MOUNTING ANGLE",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MOUNTING STYLE",
+          "name": "MOUNTING STYLE",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MOUNTING TECHNOLOGY",
+          "name": "MOUNTING TECHNOLOGY",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MP",
+          "name": "MP",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MPN",
+          "name": "MPN",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Manufacturer",
+          "name": "Manufacturer",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "NUMBER OF CONTACTS",
+          "name": "NUMBER OF CONTACTS",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "NUMBER OF PORTS",
+          "name": "NUMBER OF PORTS",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "OPERATING TEMPERATURE RANGE",
+          "name": "OPERATING TEMPERATURE RANGE",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "OUTSIDE CONTACT DIAMETER",
+          "name": "OUTSIDE CONTACT DIAMETER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PACKAGE DESCRIPTION",
+          "name": "PACKAGE DESCRIPTION",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PACKAGE REFERENCE",
+          "name": "PACKAGE REFERENCE",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PACKAGEDESCRIPTION",
+          "name": "PACKAGEDESCRIPTION",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PACKAGING",
+          "name": "PACKAGING",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PARTNUMBER",
+          "name": "PARTNUMBER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PARTREV",
+          "name": "PARTREV",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PRODUCT",
+          "name": "PRODUCT",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "PRODUCT CATEGORY",
+          "name": "PRODUCT CATEGORY",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Package",
+          "name": "Package",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Price",
+          "name": "Price",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "ROHS",
+          "name": "ROHS",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "SHELL PLATING",
+          "name": "SHELL PLATING",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "STANDARD",
+          "name": "STANDARD",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "SnapEDA_Link",
+          "name": "SnapEDA_Link",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Status",
+          "name": "Status",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "TERMINATION STYLE",
+          "name": "TERMINATION STYLE",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "VOLTAGE RATING",
+          "name": "VOLTAGE RATING",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Description",
+          "name": "Description",
+          "show": false
         }
       ],
       "filter_string": "",
       "group_symbols": true,
-      "name": "Grouped By Value",
+      "name": "",
       "sort_asc": true,
       "sort_field": "Reference"
     },
