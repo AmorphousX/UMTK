@@ -58,27 +58,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        "courtyards_overlap|32852001|52743001|0feaf054-0b09-4422-84ce-69e28f7ace01|b5979748-f0af-4379-a856-70d503828191",
-        "courtyards_overlap|32852001|54775001|2c2a38f9-4678-49fe-a626-87c0c26d6d07|b5979748-f0af-4379-a856-70d503828191",
-        "courtyards_overlap|32852001|56807001|6d4e4cb7-c7b2-415a-b01d-c143ee169b24|b5979748-f0af-4379-a856-70d503828191",
-        "courtyards_overlap|36406001|52785001|51cea522-769c-44f8-898d-463d9ab9eaa7|b5979748-f0af-4379-a856-70d503828191",
-        "courtyards_overlap|36406001|57225115|b5979748-f0af-4379-a856-70d503828191|c0ea877a-2549-4aa2-a1dc-68d92b64d7e4",
-        "courtyards_overlap|36567594|54775001|20ac5a3e-3d99-4e3a-860e-6232db014eb5|b5979748-f0af-4379-a856-70d503828191",
-        "courtyards_overlap|38824979|23148001|889082a0-1d4c-4078-8ed3-430b9bcbe98d|b5979748-f0af-4379-a856-70d503828191",
-        "silk_edge_clearance|100370000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|2f4f0017-f188-4a68-b3fe-8e06350367a3",
-        "silk_edge_clearance|140551000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|7affcdf3-4a78-48bc-b532-0e1f8b2eb8be",
-        "silk_edge_clearance|150931000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|3dc47213-14f4-401d-aab6-b71a008fd31b",
-        "silk_edge_clearance|159238095|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|a979280c-eeec-45dc-8908-d35caa19327b",
-        "silk_edge_clearance|169257200|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|34a16061-7659-41f6-8b9c-cb0159b1ffe6",
-        "silk_edge_clearance|179637200|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|3210a787-2506-4e89-a2bb-61bde6cf3984",
-        "silk_edge_clearance|83520000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|6e2ce0d2-4b16-456a-8a7c-9a91dd6078d4",
-        "starved_thermal|146304000|69215000|6721a74a-28b4-4c76-a0e7-0a509ae72acb|0ffd6412-628a-4c35-91b7-09ace05958bf|F.Cu",
-        "starved_thermal|164957667|32372500|4de128b7-01e2-4784-9af7-c9b3848c32f0|4afea726-2a7d-4dd7-9553-6a6aa9172e1b|F.Cu",
-        "starved_thermal|169564000|34397000|4de128b7-01e2-4784-9af7-c9b3848c32f0|2d919dc4-71be-44d2-9ce4-e81516190b7c|F.Cu",
-        "starved_thermal|172164000|34397000|cbb205f9-b072-43f4-8a84-a5cba757c7e3|55eb3659-d674-4bc0-90c7-756317579442|F.Cu",
-        "starved_thermal|50164000|83141000|4de128b7-01e2-4784-9af7-c9b3848c32f0|851cff44-f1de-4a23-b795-4a1ea1931785|F.Cu"
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },

@@ -4152,7 +4152,7 @@
 				)
 			)
 		)
-		(property "Value" "1u"
+		(property "Value" "1u 16v"
 			(at 225.806 120.904 0)
 			(effects
 				(font
@@ -4424,8 +4424,8 @@
 				)
 			)
 		)
-		(property "Value" "1u"
-			(at 204.978 124.714 0)
+		(property "Value" "1u 100v"
+			(at 198.12 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4623,7 +4623,7 @@
 				)
 			)
 		)
-		(property "Value" "1u"
+		(property "Value" "1u 16v"
 			(at 186.436 124.968 90)
 			(effects
 				(font
@@ -4823,8 +4823,8 @@
 				)
 			)
 		)
-		(property "Value" "1u"
-			(at 211.328 124.714 0)
+		(property "Value" "1u 100v"
+			(at 209.296 124.714 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4891,7 +4891,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "DNP"
+		(property "Value" "10K"
 			(at 68.834 125.476 0)
 			(effects
 				(font
@@ -5026,7 +5026,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "DNP"
 			(at 95.504 125.476 0)
 			(effects
 				(font
