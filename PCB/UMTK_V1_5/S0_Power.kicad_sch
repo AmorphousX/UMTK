@@ -2874,7 +2874,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "100u 24v"
+		(property "Value" "100u hv"
 			(at 41.656 104.394 0)
 			(effects
 				(font

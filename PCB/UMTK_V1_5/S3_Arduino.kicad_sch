@@ -3878,16 +3878,6 @@
 	)
 	(wire
 		(pts
-			(xy 25.4 129.54) (xy 25.4 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "112ee642-60fd-4533-9377-aaa632faaf99")
-	)
-	(wire
-		(pts
 			(xy 215.9 66.04) (xy 217.17 66.04)
 		)
 		(stroke
@@ -3965,16 +3955,6 @@
 			(type default)
 		)
 		(uuid "2c4c8ae9-afdb-430a-aafa-37c1b8f7e93d")
-	)
-	(wire
-		(pts
-			(xy 40.64 138.43) (xy 40.64 139.7)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2db15580-0fb2-4c38-a197-01c9827cb040")
 	)
 	(wire
 		(pts
@@ -4288,23 +4268,13 @@
 	)
 	(wire
 		(pts
-			(xy 25.4 116.84) (xy 25.4 121.92)
+			(xy 25.4 116.84) (xy 25.4 132.08)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "89778331-fd20-40a9-94b3-768a2e1e5b11")
-	)
-	(wire
-		(pts
-			(xy 40.64 129.54) (xy 40.64 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8ac1977c-cb80-4e6d-a6c4-d4962d7fbb1d")
 	)
 	(wire
 		(pts
@@ -4315,6 +4285,16 @@
 			(type default)
 		)
 		(uuid "8bbc466c-4d62-413c-809c-0b4d0ba9b81c")
+	)
+	(wire
+		(pts
+			(xy 40.64 139.7) (xy 40.64 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c60fec0-b080-417f-89da-f8b92fa49001")
 	)
 	(wire
 		(pts
@@ -4335,26 +4315,6 @@
 			(type default)
 		)
 		(uuid "8ebc2c88-1483-4c7f-a40a-553ebbfe160a")
-	)
-	(wire
-		(pts
-			(xy 25.4 147.32) (xy 25.4 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "927a02e3-090e-4c34-ace2-48bfcdb1f4fc")
-	)
-	(wire
-		(pts
-			(xy 40.64 147.32) (xy 40.64 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "973ebd5f-c965-4d3c-9b61-7a70cb67f161")
 	)
 	(wire
 		(pts
@@ -4388,7 +4348,7 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 116.84) (xy 40.64 121.92)
+			(xy 40.64 116.84) (xy 40.64 132.08)
 		)
 		(stroke
 			(width 0)
@@ -4445,16 +4405,6 @@
 			(type default)
 		)
 		(uuid "b0d556c5-c1d8-4074-9ad7-9b929ec1d58d")
-	)
-	(wire
-		(pts
-			(xy 25.4 138.43) (xy 25.4 139.7)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b491d0a4-ed09-405a-933e-0836e489866b")
 	)
 	(wire
 		(pts
@@ -4655,6 +4605,16 @@
 			(type default)
 		)
 		(uuid "e9a877af-cf94-4873-97df-8dd4be009a3e")
+	)
+	(wire
+		(pts
+			(xy 25.4 139.7) (xy 25.4 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea747d5e-9c41-456a-9fcd-69bd86697214")
 	)
 	(wire
 		(pts
@@ -6878,73 +6838,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 25.4 134.62 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "7f5c637b-b8ed-43fc-9f54-ed0e86886cd1")
-		(property "Reference" "R2"
-			(at 23.114 133.604 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 21.336 134.62 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 26.416 134.874 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 25.4 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 25.4 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "2aa2b610-ac42-4feb-ab7a-9406ad8ff1fc")
-		)
-		(pin "1"
-			(uuid "7ff9c29b-24d9-4677-8f61-ceabdba0e8b4")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/5307a5c4-d831-4669-9d3e-75e94c372d80"
-					(reference "R2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:VDD")
 		(at 273.05 64.77 0)
 		(unit 1)
@@ -7714,7 +7607,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
-		(at 40.64 125.73 0)
+		(at 40.64 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7722,15 +7615,15 @@
 		(dnp no)
 		(uuid "b1d9c172-7d61-48d0-b20e-ae69f3b002c0")
 		(property "Reference" "R5"
-			(at 38.354 124.714 90)
+			(at 38.354 134.874 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "10k"
-			(at 36.576 125.73 90)
+		(property "Value" "100k"
+			(at 36.576 135.89 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7738,7 +7631,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 41.656 125.984 90)
+			(at 41.656 136.144 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7747,7 +7640,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 40.64 125.73 0)
+			(at 40.64 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7756,7 +7649,7 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
-			(at 40.64 125.73 0)
+			(at 40.64 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8047,73 +7940,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 40.64 143.51 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c4f39cbc-5350-49b1-ac27-24fad7214112")
-		(property "Reference" "R7"
-			(at 38.354 142.494 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 36.576 143.51 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 41.656 143.764 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 40.64 143.51 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 40.64 143.51 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "9b3ea435-6d1a-4609-9f06-096344c5cfc3")
-		)
-		(pin "1"
-			(uuid "b2696779-1f80-4b55-82ad-760c8bac9511")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/5307a5c4-d831-4669-9d3e-75e94c372d80"
-					(reference "R7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:VDD")
 		(at 273.05 92.71 0)
 		(unit 1)
@@ -8174,73 +8000,6 @@
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/5307a5c4-d831-4669-9d3e-75e94c372d80"
 					(reference "#PWR020")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 40.64 134.62 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "cbfa6078-711a-4d1f-ac5a-1dbcd909b961")
-		(property "Reference" "R6"
-			(at 38.354 133.604 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 36.576 134.62 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 41.656 134.874 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 40.64 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 40.64 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "1db67b9b-c32c-416a-89d3-bd4c1fdeadd8")
-		)
-		(pin "1"
-			(uuid "d6a9b2a9-4fe4-4403-a572-a78ca27be606")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/5307a5c4-d831-4669-9d3e-75e94c372d80"
-					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -8614,73 +8373,6 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
-		(at 25.4 143.51 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e49d242e-e53e-4431-989d-e2cdd9dd6d8d")
-		(property "Reference" "R3"
-			(at 23.114 142.494 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 21.336 143.51 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 26.416 143.764 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 25.4 143.51 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 25.4 143.51 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "e1b6ba01-ddf4-4fda-bf55-fd11169644a2")
-		)
-		(pin "1"
-			(uuid "b37e6174-c1d8-4fd1-9163-c75472d539af")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/5307a5c4-d831-4669-9d3e-75e94c372d80"
-					(reference "R3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
 		(at 220.98 66.04 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8981,7 +8673,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
-		(at 25.4 125.73 0)
+		(at 25.4 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8989,15 +8681,15 @@
 		(dnp no)
 		(uuid "fb0c279a-b275-40ab-a760-b1fd2ed49bd4")
 		(property "Reference" "R1"
-			(at 23.114 124.714 90)
+			(at 23.114 134.874 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "10k"
-			(at 21.336 125.73 90)
+		(property "Value" "100k"
+			(at 21.336 135.89 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9005,7 +8697,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 26.416 125.984 90)
+			(at 26.416 136.144 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9014,7 +8706,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 25.4 125.73 0)
+			(at 25.4 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9023,7 +8715,7 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
-			(at 25.4 125.73 0)
+			(at 25.4 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)

@@ -4424,7 +4424,7 @@
 				)
 			)
 		)
-		(property "Value" "1u 100v"
+		(property "Value" "1u hv"
 			(at 198.12 124.46 0)
 			(effects
 				(font
@@ -4432,7 +4432,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 200.9648 123.19 0)
 			(effects
 				(font
@@ -4823,7 +4823,7 @@
 				)
 			)
 		)
-		(property "Value" "1u 100v"
+		(property "Value" "1u hv"
 			(at 209.296 124.714 0)
 			(effects
 				(font
@@ -4831,7 +4831,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 207.3148 123.19 0)
 			(effects
 				(font
@@ -5437,7 +5437,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100u"
+		(property "Value" "100u hv"
 			(at 219.71 127.6349 0)
 			(effects
 				(font
