@@ -1650,16 +1650,6 @@
 			)
 			(uuid "de2be684-5ed7-4e98-add6-880efbd0579c")
 		)
-		(pin "MOT_EN_N1" input
-			(at 101.6 93.98 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "4cdf8465-63ba-4d2c-be9a-bc97410afbc9")
-		)
 		(pin "MOT_DISABLE" input
 			(at 101.6 96.52 180)
 			(effects
@@ -1729,6 +1719,16 @@
 				(justify right)
 			)
 			(uuid "d55cdda8-3e72-4b28-af77-464b431e763d")
+		)
+		(pin "MOT_EN_IN1" input
+			(at 101.6 93.98 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "effb1753-a455-42d1-abbb-9854a3a76760")
 		)
 		(instances
 			(project "UMTK"

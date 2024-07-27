@@ -5165,7 +5165,7 @@
 		)
 		(uuid "d834e158-0f33-415a-b26a-25806563be46")
 	)
-	(hierarchical_label "MOT_EN_N1"
+	(hierarchical_label "MOT_EN_IN1"
 		(shape input)
 		(at 147.32 59.69 0)
 		(fields_autoplaced yes)
@@ -6594,7 +6594,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:Fiducial")
-		(at 219.71 163.83 0)
+		(at 262.89 156.21 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -6603,7 +6603,7 @@
 		(fields_autoplaced yes)
 		(uuid "5f0c4264-2cc5-4c23-a047-e80e045ed2ca")
 		(property "Reference" "HD4"
-			(at 222.25 162.5599 0)
+			(at 265.43 154.9399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6612,7 +6612,7 @@
 			)
 		)
 		(property "Value" "Header 2x16"
-			(at 222.25 165.0999 0)
+			(at 265.43 157.4799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6621,7 +6621,7 @@
 			)
 		)
 		(property "Footprint" "AMX_Logo:Dummy_Header_2x16"
-			(at 219.71 163.83 0)
+			(at 262.89 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6630,7 +6630,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 219.71 163.83 0)
+			(at 262.89 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6639,7 +6639,7 @@
 			)
 		)
 		(property "Description" "Fiducial Marker"
-			(at 219.71 163.83 0)
+			(at 262.89 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8212,7 +8212,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:Fiducial")
-		(at 198.12 163.83 0)
+		(at 241.3 156.21 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -8221,7 +8221,7 @@
 		(fields_autoplaced yes)
 		(uuid "be6e0d23-ea6c-41f9-9eb4-054ac5f558dc")
 		(property "Reference" "HD3"
-			(at 200.66 162.5599 0)
+			(at 243.84 154.9399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8230,7 +8230,7 @@
 			)
 		)
 		(property "Value" "Header 2x21"
-			(at 200.66 165.0999 0)
+			(at 243.84 157.4799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8239,7 +8239,7 @@
 			)
 		)
 		(property "Footprint" "AMX_Logo:Dummy_Header_2x21"
-			(at 198.12 163.83 0)
+			(at 241.3 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8248,7 +8248,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 198.12 163.83 0)
+			(at 241.3 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8257,7 +8257,7 @@
 			)
 		)
 		(property "Description" "Fiducial Marker"
-			(at 198.12 163.83 0)
+			(at 241.3 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
