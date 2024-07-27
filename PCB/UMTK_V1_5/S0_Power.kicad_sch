@@ -2132,7 +2132,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "digikey-footprints:Barrel_Jack_5.5mmODx2.1mmID_PJ-102A"
+		(property "Footprint" "digikey-footprints:Barrel_Jack_5.5mmODx2.1mmID_PJ-202A"
 			(at 85.09 57.15 0)
 			(effects
 				(font
