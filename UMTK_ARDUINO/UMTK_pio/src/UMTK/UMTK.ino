@@ -5,7 +5,7 @@
 #include "PCB_PinMap.h"
 #include "HX711.h"
 #include "setup.h"
-#include "MAX2219.h"
+#include "MAX7219.h"
 
 
 void inline slideISR();
@@ -36,10 +36,12 @@ long SLIDE_DATA_TIME = 0; // Last time a bit was read, this handles start and if
 bool SLIDE_NEW_DATA = false;  // Stored if data is updated
 
 typedef enum {down, up, press, release} ButtonState_t;
-ButtonState_t startButton, stopButton, zeroButton, upButton, downButton, auxButton;
+ButtonState_t startButton, zeroButton, upButton, downButton, auxButton;
 
 slide Slide(SLIDE_DATA, SLIDE_CLOCK);
 HX711 LoadCell(LOADCELL_DATA, LOADCELL_CLOCK);
+MAX7219 SevenSeg(DISP_CS);
+
 
 //Change this calibration factor as per your load cell once it is found you many need to vary it in thousands
 long calibration_factor_load = 22025; //-106600 worked for my 40Kg max scale setup 
@@ -66,8 +68,6 @@ float last_error;
 float error;
 bool control_direction = false;
 
-int sevenseg_loop_count = 0;
-int sevenseg_hold_time = 10;
 unsigned long LC_divider = 0;
 long LC_offset = 0;
 
@@ -130,7 +130,6 @@ void setup() {
   Slide.set_scale(calibration_factor_displacement);
   Slide.tare(); //Reset the scale to 0
 
-
   // #############
   // Setup HX711
   // #############
@@ -154,32 +153,34 @@ void setup() {
   LoadCell.set_offset(LC_offset);
   LoadCell.tare(); //Reset the scale to 0
 
-
-  digitalWrite(MOTOR_DISABLE, LOW);
-  digitalWrite(DISP1_OE, LOW);
-  digitalWrite(DISP2_OE, LOW);
+  digitalWrite(MOTOR_nSLEEP, LOW);
   
   UMTKState = STANDBY;
   UMTKNextState = noChange;
-  sevseg = DIG_OFF;
-
   // Enable Interrupts
   sei();
+  
+  // #############
+  // Setup Display
+  // #############
+  SevenSeg.init(true);
+  SevenSeg.setIntensity(8);
+  SevenSeg.writeNumeric(0,(int)0);
 }
  
-//==============u===============================================================================
+//=============================================================================================
 //                         LOOP
 //=============================================================================================
+
 void loop() {
 
   Slide.set_scale(calibration_factor_displacement); //Adjust to this calibration factor
 
   {
     startButton = updateButtonState(SWITCH_START, startButton);
-    stopButton = updateButtonState(SWITCH_STOP, stopButton);
-    zeroButton = updateButtonState(SWITCH_ZERO, zeroButton);
-    upButton = updateButtonState(SWITCH_MVUP, upButton);
-    downButton = updateButtonState(SWITCH_MVDOWN, downButton);
+    zeroButton = updateButtonState(SWITCH_TARE, zeroButton);
+    upButton = updateButtonState(SWITCH_JOGUP, upButton);
+    downButton = updateButtonState(SWITCH_JOGDOWN, downButton);
     auxButton = updateButtonState(SWITCH_AUX, auxButton);
   }
 
@@ -198,7 +199,7 @@ void loop() {
   // Remove the if statement if you wish to print slower and only new new LoadCell value is available
 
   // Get input voltage
-  powerInput = (float)(analogRead(VIN_SENSE)) / POWER_SENSE_SCALE;
+  powerInput = (float)(analogRead(VIN_SENSE)) / VSENSE_iK;
   
   if (Slide.is_ready())
   {
@@ -283,7 +284,6 @@ void loop() {
 
 void tareAll()
 {
-  sevenSeg::refresh(5);
   LoadCell.tare();
   Slide.tare();
   Serial.println(" ========= TARE ==========");
@@ -292,38 +292,8 @@ void tareAll()
 
 void Update_Display()
 {
-  switch (sevseg){
-    case DIG1:
-        sevenSeg::refresh(0);
-        sevseg = DIG2;
-        delay(2);
-        break;
-        
-    case DIG2:
-        sevenSeg::refresh(1);
-        sevseg = DIG3;
-        delay(2);
-        break;
-        
-    case DIG3:
-        sevenSeg::refresh(2);
-        sevseg = DIG4;
-        delay(2);
-        break;
-        
-    case DIG4:
-        sevenSeg::refresh(3);
-        sevseg = DIG_OFF;
-        delay(2);
-        break;
-
-    case DIG_OFF:
-        sevenSeg::refresh(5);
-        sevenSeg::setInt( 1, abs ((int) round (dis_now * 10)), 1);
-        sevenSeg::setInt( 2, abs ((int) round (Load * 10)), 1);
-        sevseg = DIG1;
-        break;
-  }
+  SevenSeg.writeNumeric(0, (int)(Load*10), 0x02);
+  SevenSeg.writeNumeric(1, (int)dis_now);
 }
 
 void Determine_Next_State()
@@ -373,7 +343,15 @@ void Determine_Next_State()
 
     case RUNNING:
     {
-      if(stopButton == press){
+      if(upButton == press){
+        UMTKNextState = STANDBY;
+        break;
+      }
+      if(downButton == press){
+        UMTKNextState = STANDBY;
+        break;
+      }
+      if(auxButton == press){
         UMTKNextState = STANDBY;
         break;
       }
