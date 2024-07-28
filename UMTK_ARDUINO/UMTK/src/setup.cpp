@@ -3,50 +3,31 @@
 
 void setPins()
 {
-  pinMode(M_IN1, OUTPUT);
-  pinMode(M_IN2, OUTPUT);
-  pinMode(MOTOR_DISABLE, OUTPUT);
-  
-  pinMode(DISP1_OE, OUTPUT);
-  pinMode(DISP2_OE, OUTPUT);  
-  pinMode(DISP_D1, OUTPUT);
-  pinMode(DISP_D2, OUTPUT);  
-  pinMode(DISP_D3, OUTPUT);
-  pinMode(DISP_D4, OUTPUT);  
-  pinMode(DISP1_D1, OUTPUT);
-  pinMode(DISP1_D2, OUTPUT);  
-  pinMode(DISP1_D3, OUTPUT);
-  pinMode(DISP1_D4, OUTPUT);
-  pinMode(DISP2_D1, OUTPUT);
-  pinMode(DISP2_D2, OUTPUT);  
-  pinMode(DISP2_D3, OUTPUT);
-  pinMode(DISP2_D4, OUTPUT);
-  pinMode(DISP1_A, OUTPUT);
-  pinMode(DISP1_B, OUTPUT);  
-  pinMode(DISP1_C, OUTPUT);
-  pinMode(DISP1_D, OUTPUT);
-  pinMode(DISP1_E, OUTPUT);
-  pinMode(DISP1_F, OUTPUT);  
-  pinMode(DISP1_G, OUTPUT);
-  pinMode(DISP1_OE, OUTPUT);
-  pinMode(DISP1_DP, OUTPUT);
-  
-  pinMode(DISP2_A, OUTPUT);
-  pinMode(DISP2_B, OUTPUT);  
-  pinMode(DISP2_C, OUTPUT);
-  pinMode(DISP2_D, OUTPUT);
-  pinMode(DISP2_E, OUTPUT);
-  pinMode(DISP2_F, OUTPUT);  
-  pinMode(DISP2_G, OUTPUT);
-  pinMode(DISP2_OE, OUTPUT); 
-  pinMode(DISP2_DP, OUTPUT);
-
-  
-
-    
-  pinMode(SWITCH_START, INPUT);
-  pinMode(SWITCH_STOP, INPUT);
-  pinMode(SWITCH_ZERO, INPUT);
-  pinMode(SWITCH_MVUP, INPUT);
-  pinMode(SWITCH_MVDOWN, INPUT);
+  pinMode(SLIDE_CLOCK, OUTPUT)
+  pinMode(SLIDE_DATA, OUTPUT)
+  pinMode(SLIDE_CLOCK_DIR, OUTPUT)
+  pinMode(SLIDE_DATA_DIR, OUTPUT)
+  pinMode(LOADCELL_CLOCK, OUTPUT)
+  pinMode(LOADCELL_DATA, OUTPUT)
+  pinMode(LOADCELL_RATE, OUTPUT)
+  pinMode(MOTOR_DISABLE, OUTPUT)
+  pinMode(M_IN1, OUTPUT)
+  pinMode(M_IN2, OUTPUT)
+  pinMode(MOTOR_nITRIP, OUTPUT)
+  pinMode(MOTOR_OPENLOAD, OUTPUT)
+  pinMode(MOTOR_nFAULT, OUTPUT)
+  pinMode(MOTOR_nSLEEP, OUTPUT)
+  pinMode(MOTOR_MODE, OUTPUT)
+  pinMode(DISP_CS, OUTPUT)
+  pinMode(DISP_DIN, OUTPUT)
+  pinMode(DISP_CLK, OUTPUT)
+  pinMode(VIN_SENSE, OUTPUT)
+  pinMode(VMOT_SENSE, OUTPUT)
+  pinMode(MOTOR_ISENSE_1, OUTPUT)
+  pinMode(MOTOR_ISENSE_2, OUTPUT)
+  pinMode(SWITCH_JOGUP, INPUT)
+  pinMode(SWITCH_JOGDOWN, INPUT)
+  pinMode(SWITCH_TARE, INPUT)
+  pinMode(SWITCH_START, INPUT)
+  pinMode(SWITCH_AUX, INPUT)
 }

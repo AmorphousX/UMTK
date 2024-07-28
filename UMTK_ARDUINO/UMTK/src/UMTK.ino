@@ -5,7 +5,7 @@
 #include "PCB_PinMap.h"
 #include "HX711.h"
 #include "setup.h"
-#include "dispmeow.h"
+#include "MAX2219.h"
 
 
 void inline slideISR();
@@ -18,9 +18,6 @@ void inline Determine_Next_State();
 void inline Transistion_State();
 void inline Send_to_UI();
 
-
-
-#define POWER_SENSE_SCALE 51.2
 #define printWhileStopped 1
 #define HEADER_TEXT "NEW_DATA\tSPEED\tPOSITION\tLOADCELL\tFEEDBACK_COUNT\tSTATE\tESTOP\tSTALL\tDIRECTION\tINPUT_VOLTAGE\tBT_FWD\tBT_BAK\tBT_TARE\tBT_START\tBT_AUX\n"
 
@@ -99,16 +96,6 @@ enum UMTKStates_t {
   UNUSED3,
   noChange,
 };
-
-
-
-enum sevseg {
-  DIG1,
-  DIG2,
-  DIG3,
-  DIG4,
-  DIG_OFF
-  } sevseg;
 
 
 UMTKStates_t UMTKState = STANDBY;
