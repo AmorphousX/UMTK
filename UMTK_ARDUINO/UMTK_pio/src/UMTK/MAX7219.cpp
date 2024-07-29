@@ -109,9 +109,11 @@ MAX7219::writeNumeric(uint8_t display_id, float val)
 }
 
 void
-MAX7219::writeNumeric(uint8_t display_id, int val, uint8_t decimal_bits)
+MAX7219::writeNumeric(uint8_t display_id, int val, uint8_t decimal_location)
 {
     uint8_t digit_start = 0;
+    Serial.println("==========");
+    Serial.println(val);
     if (display_id > 0)
     {
         digit_start = 4;
@@ -133,47 +135,67 @@ MAX7219::writeNumeric(uint8_t display_id, int val, uint8_t decimal_bits)
     }
     else
     {
+        int tempval = 0;
         // Negative Number
         if (val < 0)
         {
-            displayBuf[digit_start] =   0x0A; // 0x0A is "-"
-            int tempval = 0;
-            for (int i = 1; i < 4; i++)
-            {
-                tempval =  (val / (4-1)*10) % 10;
-                // If this value is a zero, and previous digit was a ignored zero
-                // We turn this digit off also
-                if (!(MAX7219_WITH_LEADING_ZEROS && tempval))
-                {
-                    if (displayBuf[digit_start+i-1] & 0x8)
-                    {
-                        displayBuf[digit_start+i] = tempval | 0x08;
-                    }
-                }
-                else
-                {
-                    displayBuf[digit_start+i] = tempval;
-                }
-            }
-
-            // Last digit is never turned off
-            displayBuf[digit_start+3] = displayBuf[digit_start+3] & 0xF;
-
+            displayBuf[digit_start] = 0x0A; // 0x0A is "-"
         }
         // Positive
         else
         {
-            displayBuf[digit_start] =   (val / 1000) % 10;
-            displayBuf[digit_start+1] = (val / 100) % 10;
-            displayBuf[digit_start+2] = (val / 10) % 10;
-            displayBuf[digit_start+3] = val % 10;
+            // Blank if leading zero enabled and this value is zero
+            tempval = (val / 1000) % 10;
+            Serial.println(tempval);
+            if (MAX7219_WITH_LEADING_ZEROS)
+            {
+                displayBuf[digit_start] = tempval;
+            }
+            else if (tempval == 0)
+            {
+                displayBuf[digit_start] = 0x0F;
+            }
+            else
+            {
+                displayBuf[digit_start] = tempval;
+            }
         }
 
-        // Add decimals
-        displayBuf[digit_start] = displayBuf[digit_start] & 0x0F | (decimal_bits & 0x08) << 4;
-        displayBuf[digit_start+1] = displayBuf[digit_start+1] & 0x0F | (decimal_bits & 0x04) << 5;
-        displayBuf[digit_start+2] = displayBuf[digit_start+2] & 0x0F | (decimal_bits & 0x02) << 6;
-        displayBuf[digit_start+3] = displayBuf[digit_start+3] & 0x0F | (decimal_bits & 0x01) << 7;
+        for (int i = 1; i < 4; i++)
+        {
+            if (i == 1)
+            {
+                tempval = (val/100) % 10;
+            }
+            else if (i == 2)
+            {
+                tempval = (val/10) % 10;
+            }
+            else if (i == 3)
+            {
+                tempval = val % 10;
+            }
+            Serial.println(tempval);
+
+            if (MAX7219_WITH_LEADING_ZEROS || i >= (3-decimal_location))
+            {
+                displayBuf[digit_start + i] = tempval;
+            }
+            else if (tempval == 0 && ( displayBuf[digit_start + i-1] == 0x0F || displayBuf[digit_start + i-1] == 0x0A ))
+            {
+                displayBuf[digit_start + i] = 0x0F;
+            }
+            else
+            {
+                displayBuf[digit_start + i] = tempval;
+            }
+        }
+
+        // Add decimal point, don't add if value is outside 0 to 3
+        if (decimal_location >= 0 && decimal_location < 3)
+        {
+            displayBuf[digit_start+(3-decimal_location)] = displayBuf[digit_start+(3-decimal_location)] | 0x80;
+        }
     }
     updateDisplay();
     return;

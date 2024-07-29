@@ -8,7 +8,7 @@
 
 #include "SPI.h"
 
-#define MAX7219_WITH_LEADING_ZEROS 1
+#define MAX7219_WITH_LEADING_ZEROS 0
 
 class MAX7219
 {
@@ -40,7 +40,7 @@ class MAX7219
         void init(bool initSPI = true);
         uint8_t setIntensity(uint8_t intensity);
         void  writeNumeric(uint8_t display_id, float val);
-        void  writeNumeric(uint8_t display_id, int val, uint8_t decimal_bits = 0x00);
+        void  writeNumeric(uint8_t display_id, int val, uint8_t decimal_location = 0x00);
 
         static constexpr uint8_t MODE_NODECODE = 0x00;
         static constexpr uint8_t MODE_DECODEALL = 0xFF;

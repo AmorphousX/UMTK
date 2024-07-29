@@ -292,8 +292,9 @@ void tareAll()
 
 void Update_Display()
 {
-  SevenSeg.writeNumeric(0, (int)(Load*10), 0x02);
-  SevenSeg.writeNumeric(1, (int)dis_now);
+  SevenSeg.writeNumeric(0, (int)(Load*10), 1);
+//  SevenSeg.writeNumeric(1, (int)dis_now);
+  SevenSeg.writeNumeric(1, (int)(millis()/100), 1);
 }
 
 void Determine_Next_State()
