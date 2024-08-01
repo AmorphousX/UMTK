@@ -3,8 +3,8 @@
 
 #define SLIDE_CLOCK 4
 #define SLIDE_DATA 3
-#define SLIDE_CLOCK_DIR 23 // High for normal op, Reserved for flipping pin assignments 
-#define SLIDE_DATA_DIR 24 // Low for normal op, Reserved for flipping pin assignments 
+#define SLIDE_CLOCK_DIR 23 // Low, Input only
+#define SLIDE_DATA_DIR 24 // Low,Input only
 
 #define LOADCELL_CLOCK 5
 #define LOADCELL_DATA 6
@@ -36,4 +36,3 @@
 
 #define VSENSE_iK 18.6181818182
 #define VMOT_ISENSE_iK  126.603636364
-

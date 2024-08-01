@@ -112,8 +112,8 @@ void
 MAX7219::writeNumeric(uint8_t display_id, int val, uint8_t decimal_location)
 {
     uint8_t digit_start = 0;
-    Serial.println("==========");
-    Serial.println(val);
+//    Serial.println("==========");
+//    Serial.println(val);
     if (display_id > 0)
     {
         digit_start = 4;
@@ -146,7 +146,7 @@ MAX7219::writeNumeric(uint8_t display_id, int val, uint8_t decimal_location)
         {
             // Blank if leading zero enabled and this value is zero
             tempval = (val / 1000) % 10;
-            Serial.println(tempval);
+//            Serial.println(tempval);
             if (MAX7219_WITH_LEADING_ZEROS)
             {
                 displayBuf[digit_start] = tempval;
@@ -175,7 +175,7 @@ MAX7219::writeNumeric(uint8_t display_id, int val, uint8_t decimal_location)
             {
                 tempval = val % 10;
             }
-            Serial.println(tempval);
+//            Serial.println(tempval);
 
             if (MAX7219_WITH_LEADING_ZEROS || i >= (3-decimal_location))
             {

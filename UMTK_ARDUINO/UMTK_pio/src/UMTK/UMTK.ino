@@ -126,6 +126,8 @@ void setup() {
   // #############
   // Setup Slide
   // #############
+  digitalWrite(SLIDE_CLOCK_DIR, LOW);
+  digitalWrite(SLIDE_DATA_DIR, LOW);
   attachInterrupt(digitalPinToInterrupt(SLIDE_CLOCK), slideISR, FALLING);
   Slide.set_scale(calibration_factor_displacement);
   Slide.tare(); //Reset the scale to 0
@@ -293,8 +295,8 @@ void tareAll()
 void Update_Display()
 {
   SevenSeg.writeNumeric(0, (int)(Load*10), 1);
-//  SevenSeg.writeNumeric(1, (int)dis_now);
-  SevenSeg.writeNumeric(1, (int)(millis()/100), 1);
+  SevenSeg.writeNumeric(1, (int)dis_now);
+//  SevenSeg.writeNumeric(1, (int)(millis()/100), 1);
 }
 
 void Determine_Next_State()
@@ -399,6 +401,7 @@ void Transistion_State()
 
 void Send_to_UI()
 {
+  return;
   // Logging
   // Logging format
   // NEW_DATA SPEED POSITION LOADCELL FEEDBACK_COUNT STATE ESTOP STALL DIRECTION INPUT_VOLTAGE
@@ -635,6 +638,7 @@ ButtonState_t updateButtonState (int buttonToCheck, ButtonState_t lastState) {
 // SLIDE CODE FOR NEW SLIDE
 
 void slideISR() {
+  Serial.println("SLIDE ISR");
   // Immidiately Latch Bit for data
   bool this_bit = digitalRead(SLIDE_DATA);
 

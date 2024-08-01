@@ -3714,6 +3714,10 @@
 		(uuid "2f7855a8-5796-40bd-8156-8e5e02ded636")
 	)
 	(no_connect
+		(at 147.32 87.63)
+		(uuid "33eb666a-d215-4b24-821b-90982af4685e")
+	)
+	(no_connect
 		(at 81.28 92.71)
 		(uuid "39a3eebf-ef8f-464d-a5d7-89dfdb6b0576")
 	)
@@ -3810,10 +3814,6 @@
 		(uuid "8f9b9263-450c-41eb-b502-fe62ae9c105b")
 	)
 	(no_connect
-		(at 147.32 87.63)
-		(uuid "989c6a23-cf34-4716-abea-7c48ecfcd253")
-	)
-	(no_connect
 		(at 247.65 66.04)
 		(uuid "a4126018-c098-4343-a69c-81b6a65b17de")
 	)
@@ -3890,6 +3890,10 @@
 		(uuid "f2896184-1fc6-4b27-be58-c53e5818430a")
 	)
 	(no_connect
+		(at 147.32 72.39)
+		(uuid "f5a388c9-60f4-4720-ba49-b93e20e26792")
+	)
+	(no_connect
 		(at 147.32 128.27)
 		(uuid "f65c92ae-dc70-43c8-b74a-1ffbf025723e")
 	)
@@ -3900,10 +3904,6 @@
 	(no_connect
 		(at 113.03 33.02)
 		(uuid "f79a83a8-8f68-4ade-9839-3962972104ca")
-	)
-	(no_connect
-		(at 81.28 62.23)
-		(uuid "fb057ff6-c806-42c7-bb44-48d7828da80e")
 	)
 	(wire
 		(pts
@@ -4774,6 +4774,17 @@
 		)
 		(uuid "3de88974-8035-4ca1-a492-969195639382")
 	)
+	(text "SLIDE REQUIRE INTERRUPT\nON MEGA ONLY THESE PINS\nCAN INTERRUPT:\n2, 3, 18, 19"
+		(exclude_from_sim no)
+		(at 149.606 32.258 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "58141d7a-6fed-4699-87f3-9d1250f24bf0")
+	)
 	(text "Buttons"
 		(exclude_from_sim no)
 		(at 194.31 30.48 0)
@@ -4928,6 +4939,17 @@
 		)
 		(uuid "ccd4af15-0336-42e4-992f-82dafa3d8d4f")
 	)
+	(label "13 IS INDICATOR LED"
+		(at 148.59 73.66 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e7837733-4fbc-4b44-bac5-9aa34f5c6bf7")
+	)
 	(label "Vin_Sense"
 		(at 26.67 149.86 0)
 		(fields_autoplaced yes)
@@ -4997,6 +5019,18 @@
 		)
 		(uuid "17c010bd-8070-4217-b4ad-eebac22bb024")
 	)
+	(hierarchical_label "SLIDE_CLK"
+		(shape input)
+		(at 147.32 46.99 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "290d72ec-18fe-4af8-8bc3-39269f5d3e82")
+	)
 	(hierarchical_label "MOT_MODE"
 		(shape input)
 		(at 147.32 74.93 0)
@@ -5008,18 +5042,6 @@
 			(justify left)
 		)
 		(uuid "30570f6f-0735-44a6-b925-c63c4050f65f")
-	)
-	(hierarchical_label "SLIDE_CLK"
-		(shape input)
-		(at 147.32 49.53 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "3b98ba26-598a-46e1-988f-4af132f1f183")
 	)
 	(hierarchical_label "MOT_SENSE2"
 		(shape input)
@@ -5057,9 +5079,9 @@
 		)
 		(uuid "57eea470-6b4a-4022-a4d0-3e8fa0881fed")
 	)
-	(hierarchical_label "MOT_nSLEEP"
+	(hierarchical_label "SLIDE_DAT"
 		(shape input)
-		(at 147.32 72.39 0)
+		(at 147.32 49.53 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5067,7 +5089,7 @@
 			)
 			(justify left)
 		)
-		(uuid "620a999a-a526-4963-b3e9-36366fd536d4")
+		(uuid "5bcc0e3c-0051-4a2a-b034-30b7e7d5a70a")
 	)
 	(hierarchical_label "SLIDE_CLK_DIR"
 		(shape input)
@@ -5177,6 +5199,18 @@
 		)
 		(uuid "de641b12-40ef-4e5a-9edf-790815740e60")
 	)
+	(hierarchical_label "MOT_nSLEEP"
+		(shape input)
+		(at 81.28 62.23 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "df373588-716a-4138-a33f-c6507bd9618f")
+	)
 	(hierarchical_label "MOT_PH_IN2"
 		(shape input)
 		(at 147.32 62.23 0)
@@ -5188,18 +5222,6 @@
 			(justify left)
 		)
 		(uuid "e37f4e77-3e29-442a-80ae-9a3ae09038f6")
-	)
-	(hierarchical_label "SLIDE_DAT"
-		(shape input)
-		(at 147.32 46.99 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "fc26c6b9-db58-4e5a-9644-4480f1c05c4e")
 	)
 	(symbol
 		(lib_id "Mechanical:Fiducial")
