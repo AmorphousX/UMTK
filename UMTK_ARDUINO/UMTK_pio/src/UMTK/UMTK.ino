@@ -128,7 +128,7 @@ void setup() {
   // #############
   digitalWrite(SLIDE_CLOCK_DIR, LOW);
   digitalWrite(SLIDE_DATA_DIR, LOW);
-  attachInterrupt(digitalPinToInterrupt(SLIDE_CLOCK), slideISR, FALLING);
+  attachInterrupt(digitalPinToInterrupt(SLIDE_CLOCK), slideISR, RISING);
   Slide.set_scale(calibration_factor_displacement);
   Slide.tare(); //Reset the scale to 0
 
@@ -205,7 +205,7 @@ void loop() {
   
   if (Slide.is_ready())
   {
-    dis_now = Slide.get_units(1) / 1.096 ;
+    dis_now = Slide.get_units() / 1.096 ;
     t_now = SLIDE_DATA_TIME;
 
     d_t = t_now - t_last;
@@ -242,47 +242,7 @@ void loop() {
   }
 
   Update_Display();
-
-  
-//
-  //Print disp, force data to serial (so python can save to .csv file)
-
-  /*
-  Serial.print(t_now);
-  Serial.print(", ");
-  Serial.print(control_signal);
-  Serial.print(", ");
-  Serial.print(cur_speed);
-  Serial.print(", ");
-  Serial.print(-Slide.get_units(), 3);
-  Serial.print(", ");
-  Serial.println(-LoadCell.get_units(), 3);
-  */
-
-  /*
-  if(Serial.available()){
-    char temp = Serial.read();
-    if(temp == 't'){
-      LoadCell.tare();
-      Slide.tare(); //Reset to zero
-    }
-  }
-  */
-  
-
 }
-
-// void Move_Up(long Control_Signal){
-//     analogWrite(M_IN1, Control_Signal);
-//     analogWrite(M_IN2, 0);
-//     delay(300);
-// }
-
-// void Move_Down(long Control_Signal){
-//     analogWrite(M_IN1, 0);
-//     analogWrite(M_IN2, Control_Signal);
-//     delay(300);  
-// }
 
 void tareAll()
 {
@@ -401,6 +361,8 @@ void Transistion_State()
 
 void Send_to_UI()
 {
+    Serial.println(dis_now); // Position
+  
   return;
   // Logging
   // Logging format
@@ -638,7 +600,6 @@ ButtonState_t updateButtonState (int buttonToCheck, ButtonState_t lastState) {
 // SLIDE CODE FOR NEW SLIDE
 
 void slideISR() {
-  Serial.println("SLIDE ISR");
   // Immidiately Latch Bit for data
   bool this_bit = digitalRead(SLIDE_DATA);
 

@@ -1,8 +1,8 @@
 // Pin mapping for UMTK PCB V1.5
 #pragma once
 
-#define SLIDE_CLOCK 4
-#define SLIDE_DATA 3
+#define SLIDE_CLOCK 3
+#define SLIDE_DATA 4
 #define SLIDE_CLOCK_DIR 23 // Low, Input only
 #define SLIDE_DATA_DIR 24 // Low,Input only
 
