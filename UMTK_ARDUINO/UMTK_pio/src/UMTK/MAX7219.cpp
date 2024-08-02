@@ -140,6 +140,7 @@ MAX7219::writeNumeric(uint8_t display_id, int val, uint8_t decimal_location)
         if (val < 0)
         {
             displayBuf[digit_start] = 0x0A; // 0x0A is "-"
+            val = -val;
         }
         // Positive
         else

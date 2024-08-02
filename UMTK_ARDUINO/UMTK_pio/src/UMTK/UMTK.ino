@@ -106,7 +106,6 @@ UMTKStates_t UMTKNextState = noChange;
 //=============================================================================================
 void setup() {
 
-  pinMode(31, OUTPUT);
   cli(); //stop interrupts
 
 
@@ -156,7 +155,13 @@ void setup() {
   LoadCell.set_offset(LC_offset);
   LoadCell.tare(); //Reset the scale to 0
 
+  // #############
+  // Setup MOTOR
+  // #############
   digitalWrite(MOTOR_nSLEEP, LOW);
+  digitalWrite(MOTOR_MODE, HIGH);
+  delay(1);
+  digitalWrite(MOTOR_nSLEEP, HIGH);
   
   UMTKState = STANDBY;
   UMTKNextState = noChange;
@@ -206,7 +211,7 @@ void loop() {
   
   if (Slide.is_ready())
   {
-    dis_now = Slide.get_units() / 1.096 ;
+    dis_now = Slide.get_units() ;
     t_now = SLIDE_DATA_TIME;
 
     d_t = t_now - t_last;
@@ -255,8 +260,8 @@ void tareAll()
 
 void Update_Display()
 {
-  SevenSeg.writeNumeric(0, (int)(Load*10), 1);
-  SevenSeg.writeNumeric(1, (int)dis_now);
+  SevenSeg.writeNumeric(0, (int)(Load));
+  SevenSeg.writeNumeric(1, int(dis_now*10),1);
 //  SevenSeg.writeNumeric(1, (int)(millis()/100), 1);
 }
 
@@ -337,7 +342,7 @@ void Transistion_State()
 
     case JOG_UP:
       analogWrite(M_IN1, 0);
-      analogWrite(M_IN2, 1023);
+      analogWrite(M_IN2, 500);
       UMTKState = JOG_UP;
       break;
 
@@ -362,102 +367,52 @@ void Transistion_State()
 
 void Send_to_UI()
 {
-    Serial.println(SLIDE_VALID_DATA, HEX); // Position
-    Serial.println(dis_now); // Position
-  
+//  Serial.print((float)analogRead(VIN_SENSE)/18.6181818182);
+//  Serial.print(",");
+//  Serial.print((float)analogRead(VMOT_SENSE)/18.6181818182);
+//  Serial.print(",");
+  Serial.print(cur_speed); // Stepper Speed
+  Serial.print(",");
+  Serial.print((float)analogRead(MOTOR_ISENSE_1)/126.603636364);
+  Serial.print(",");
+  Serial.println((float)analogRead(MOTOR_ISENSE_2)/126.603636364);
+
   return;
   // Logging
   // Logging format
   // NEW_DATA SPEED POSITION LOADCELL FEEDBACK_COUNT STATE ESTOP STALL DIRECTION INPUT_VOLTAGE
   if (UMTKState != STANDBY || printWhileStopped) {  
 
-    Serial.print(newLsData ? 1:0);
-    Serial.print("\t");
-
-    Serial.print(cur_speed); // Stepper Speed
-    Serial.print("\t");
     Serial.print(dis_now); // Position
     Serial.print("\t");
     Serial.print(Load); // Load
     Serial.print("\t");
-    Serial.print(0);  // Stepper feedback pos
+    Serial.print(cur_speed); // Stepper Speed
     Serial.print("\t");
     Serial.print(UMTKState); // State
     Serial.print("\t");
-    Serial.print(0); // eStop Input
+    Serial.print(Load); // Load
     Serial.print("\t");
-    Serial.print(0); // Stepper Stall
+    Serial.print((float)analogRead(MOTOR_ISENSE_1)/126.603636364);  // Stepper feedback pos
     Serial.print("\t");
-    Serial.print(0); // Stepper Direction
+    Serial.print((float)analogRead(MOTOR_ISENSE_2)/126.603636364); // Stepper Stall
     Serial.print("\t");
-
-    Serial.print(powerInput);
-    Serial.print("\t");
-    
-    Serial.print(upButton);
-    Serial.print("\t");
-    Serial.print(downButton);
-    Serial.print("\t");
-    Serial.print(zeroButton);
-    Serial.print("\t");
-    Serial.print(startButton);
-    Serial.print("\t");
-    Serial.print(auxButton);
-    Serial.print("\t");
-
-    
-  #ifdef QAMODE
-  // QAMODE
-  if (buttonFwPressed) {  
-    Serial.print("OK");
-  } else {
-    Serial.print("-");
-  }
-  Serial.print("\t");
-  
-  if (buttonBkPressed) {  
-    Serial.print("OK");
-  } else {
-    Serial.print("-");
-  }
-  Serial.print("\t");
-  
-  if (buttonTarePressed) {  
-    Serial.print("OK");
-  } else {
-    Serial.print("-");
-  }
-  Serial.print("\t");
-  
-  if (buttonStartPressed) {  
-    Serial.print("OK");
-  } else {
-    Serial.print("-");
-  }
-  Serial.print("\t");
-  
-  if (buttonAuxPressed) {  
-    Serial.print("OK");
-  } else {
-    Serial.print("-");
-  }
-  Serial.print("\t");
-  
-  if (eStopOff) {  
-    Serial.print("OK");
-  } else {
-    Serial.print("-");
-  }
-  Serial.print("\t");
-  
-  if (eStopOn) {  
-    Serial.print("OK");
-  } else {
-    Serial.print("-");
-  }
-  Serial.print("\t");
-
-  #endif
+//    Serial.print(0); // Stepper Direction
+//    Serial.print("\t");
+//
+//    Serial.print(powerInput);
+//    Serial.print("\t");
+//    
+//    Serial.print(upButton);
+//    Serial.print("\t");
+//    Serial.print(downButton);
+//    Serial.print("\t");
+//    Serial.print(zeroButton);
+//    Serial.print("\t");
+//    Serial.print(startButton);
+//    Serial.print("\t");
+//    Serial.print(auxButton);
+//    Serial.print("\t");
     
     Serial.print("\n");
   }
@@ -533,6 +488,14 @@ void Read_Serial()
         set_speed = newSpeed;
       }
     }
+    if (incomingByte == 'D') {
+      // Set Speed Command
+      float newSpeed = Serial.parseFloat();
+      if (UMTKState == STANDBY) {
+        UMTKNextState = RUNNING;
+      }
+    }
+
 
     if (incomingByte == 'b' || incomingByte == 'B') {
       if (Serial.readStringUntil('\n') == "egin") {

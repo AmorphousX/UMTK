@@ -20,8 +20,8 @@ void setPins()
   pinMode(MOTOR_nITRIP, INPUT);
   pinMode(MOTOR_OPENLOAD, INPUT);
   pinMode(MOTOR_nFAULT, INPUT);
-  pinMode(MOTOR_nSLEEP, INPUT);
-  pinMode(MOTOR_MODE, INPUT);
+  pinMode(MOTOR_nSLEEP, OUTPUT);
+  pinMode(MOTOR_MODE, OUTPUT);
 
   pinMode(DISP_CS, OUTPUT);
   pinMode(DISP_DIN, OUTPUT);

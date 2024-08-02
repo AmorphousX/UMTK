@@ -5095,7 +5095,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "0R"
 			(at 105.41 152.4 90)
 			(effects
 				(font

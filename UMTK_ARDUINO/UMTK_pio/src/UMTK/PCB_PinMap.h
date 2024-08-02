@@ -28,8 +28,8 @@
 #define MOTOR_ISENSE_1 A2
 #define MOTOR_ISENSE_2 A3
 
-#define SWITCH_JOGUP A8 // SW1
-#define SWITCH_JOGDOWN A9 // SW2
+#define SWITCH_JOGUP A9 // SW1
+#define SWITCH_JOGDOWN A8 // SW2
 #define SWITCH_TARE A10 // SW3
 #define SWITCH_START A11 // SW4
 #define SWITCH_AUX A12 // SW5
