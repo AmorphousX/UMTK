@@ -105,7 +105,8 @@ UMTKStates_t UMTKNextState = noChange;
 //                         SETUP
 //=============================================================================================
 void setup() {
-  
+
+  pinMode(31, OUTPUT);
   cli(); //stop interrupts
 
 
@@ -361,6 +362,7 @@ void Transistion_State()
 
 void Send_to_UI()
 {
+    Serial.println(SLIDE_VALID_DATA, HEX); // Position
     Serial.println(dis_now); // Position
   
   return;
@@ -605,35 +607,41 @@ void slideISR() {
 
   // Check if this is first bit in series or one of many bits
   uint32_t SLIDE_THIS_BIT_TIME = millis();
-  if (SLIDE_THIS_BIT_TIME - SLIDE_LAST_BIT_TIME > 100 ) {
+  if (SLIDE_THIS_BIT_TIME - SLIDE_LAST_BIT_TIME > 20 ) {
     // If a long time has passed this is the first bit
     SLIDE_DATA_BUFFER = 0; // Clear buffer ready for more bits
     SLIDE_BIT_COUNT = 0;
-  }
+  } 
   SLIDE_LAST_BIT_TIME = SLIDE_THIS_BIT_TIME;
+  
+  //  Slide Data Structure, 6 Nibbles
+  //  dddd dddd dddd dddd xxxx Sxxx 
+  //  LSB first, S is sign bit
+  //  Sign bit seems to be bit number 21
 
-  if (SLIDE_BIT_COUNT <= 23) {  // Check if a read is in progress, if it is this is timing sensitive
+  if (SLIDE_BIT_COUNT <= 24) {  // Check if a read is in progress
     SLIDE_BIT_COUNT ++; // Increment bit coutner
-    if (!this_bit) { // incoming bit is 0, our logic is inverted
+    if (this_bit) {
       SLIDE_DATA_BUFFER = SLIDE_DATA_BUFFER | 0x80000000; // Set LSB 
     }
     SLIDE_DATA_BUFFER = SLIDE_DATA_BUFFER >> 1; // Shift buffer by one bit
-    if (SLIDE_BIT_COUNT == 23) { // This is last bit, do casting stuff
-      SLIDE_DATA_BUFFER = SLIDE_DATA_BUFFER >> 8;
-      if (SLIDE_DATA_BUFFER & 0x00100000) { // Check negative bit
-        // negative
-        SLIDE_VALID_DATA = 0 - (int32_t) (0x000FFFFF & SLIDE_DATA_BUFFER);
-        SLIDE_DATA_TIME = millis();
-        SLIDE_NEW_DATA = true;
-      } else {
-        // positive
-        SLIDE_VALID_DATA = (int32_t)(0x000FFFFF & SLIDE_DATA_BUFFER);
-        SLIDE_DATA_TIME = millis();
-        SLIDE_NEW_DATA = true;
-      }
-      SLIDE_DATA_BUFFER = 0; // Clear buffer ready for more bits
-      SLIDE_BIT_COUNT = 0;
-     // Serial.println(round(SLIDE_VALID_DATA/6.5));
+
+    // Bit 23 is the last bit, we perfectly shifted everything now
+    // Data after this doesn't matter
+    if (SLIDE_BIT_COUNT == 23)
+    {
+        SLIDE_DATA_BUFFER = SLIDE_DATA_BUFFER >> 8;
+        if (SLIDE_DATA_BUFFER & 0x00100000) { // Check sign bit
+          // negative
+          SLIDE_VALID_DATA = 0 - (int32_t)(0x000FFFFF & SLIDE_DATA_BUFFER);
+          SLIDE_DATA_TIME = millis();
+          SLIDE_NEW_DATA = true;
+        } else {
+          // positive
+          SLIDE_VALID_DATA = (int32_t)(0x000FFFFF & SLIDE_DATA_BUFFER);
+          SLIDE_DATA_TIME = millis();
+          SLIDE_NEW_DATA = true;
+        }
     }
   }
 }
