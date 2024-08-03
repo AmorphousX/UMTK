@@ -1325,7 +1325,7 @@
 		(path "/429db1c7-ec58-4147-903c-f97ceea1f1c2/68637840-9e80-492a-ab13-5efc15d2b409")
 		(sheetname "MotorDriver")
 		(sheetfile "S4_MotorDriver.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -0.237258 0.5225)
 			(end 0.237258 0.5225)
@@ -3822,7 +3822,7 @@
 		(path "/429db1c7-ec58-4147-903c-f97ceea1f1c2/2c9c9c99-0823-4c13-8e21-007f0ff573ac")
 		(sheetname "MotorDriver")
 		(sheetfile "S4_MotorDriver.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -0.237258 0.5225)
 			(end 0.237258 0.5225)
@@ -5490,7 +5490,7 @@
 		(path "/429db1c7-ec58-4147-903c-f97ceea1f1c2/11cf19a0-de07-47ba-9955-a504394fbf1a")
 		(sheetname "MotorDriver")
 		(sheetfile "S4_MotorDriver.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -0.237258 0.5225)
 			(end 0.237258 0.5225)
@@ -5916,7 +5916,7 @@
 		(path "/429db1c7-ec58-4147-903c-f97ceea1f1c2/a8c96ab2-22a7-4570-bc32-7626d86791d8")
 		(sheetname "MotorDriver")
 		(sheetfile "S4_MotorDriver.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -0.237258 -0.5225)
 			(end 0.237258 -0.5225)
@@ -7901,7 +7901,7 @@
 		(path "/5307a5c4-d831-4669-9d3e-75e94c372d80/be6e0d23-ea6c-41f9-9eb4-054ac5f558dc")
 		(sheetname "Arduino")
 		(sheetfile "S3_Arduino.kicad_sch")
-		(attr through_hole exclude_from_bom)
+		(attr through_hole)
 		(fp_rect
 			(start -1.27 -1.27)
 			(end 3.81 52.07)
@@ -15725,7 +15725,7 @@
 		(path "/5307a5c4-d831-4669-9d3e-75e94c372d80/5f0c4264-2cc5-4c23-a047-e80e045ed2ca")
 		(sheetname "Arduino")
 		(sheetfile "S3_Arduino.kicad_sch")
-		(attr through_hole exclude_from_bom)
+		(attr through_hole)
 		(fp_rect
 			(start -1.27 -1.27)
 			(end 3.81 39.37)
@@ -19403,7 +19403,7 @@
 		(path "/5307a5c4-d831-4669-9d3e-75e94c372d80/7a7209e1-b90a-4b6f-9d9c-119f29c5a101")
 		(sheetname "Arduino")
 		(sheetfile "S3_Arduino.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 0 38.1)
 			(end 54.61 38.1)
@@ -21371,7 +21371,7 @@
 		(path "/429db1c7-ec58-4147-903c-f97ceea1f1c2/e0906122-6bbb-4859-b783-b6a609d899ca")
 		(sheetname "MotorDriver")
 		(sheetfile "S4_MotorDriver.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -0.237258 -0.5225)
 			(end 0.237258 -0.5225)
@@ -22696,7 +22696,7 @@
 		(path "/5307a5c4-d831-4669-9d3e-75e94c372d80/006b19c7-d4f8-4fda-9b25-dab6965e9e47")
 		(sheetname "Arduino")
 		(sheetfile "S3_Arduino.kicad_sch")
-		(attr through_hole exclude_from_bom)
+		(attr through_hole)
 		(fp_rect
 			(start -1.27 -1.27)
 			(end 3.81 6.35)
@@ -27187,7 +27187,7 @@
 		(path "/5307a5c4-d831-4669-9d3e-75e94c372d80/24de744c-7b35-4890-9b6e-19971969e6db")
 		(sheetname "Arduino")
 		(sheetfile "S3_Arduino.kicad_sch")
-		(attr through_hole exclude_from_bom)
+		(attr through_hole)
 		(fp_rect
 			(start -1.27 -1.27)
 			(end 3.81 6.35)
