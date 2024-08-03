@@ -1,6 +1,5 @@
 #include "setup.h"
 
-
 void setPins()
 {
   pinMode(SLIDE_CLOCK, INPUT);

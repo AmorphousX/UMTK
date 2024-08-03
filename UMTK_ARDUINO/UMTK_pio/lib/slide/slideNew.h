@@ -1,12 +1,20 @@
 # pragma once
 
-#include "PCB_PinMap.h"
+#include <PCB_PinMap.h>
 
 #if ARDUINO >= 100
 #include "Arduino.h"
 #else
 #include "WProgram.h"
 #endif
+
+extern byte SLIDE_BIT_COUNT; // Count number of bits read
+extern uint32_t SLIDE_DATA_BUFFER; // Buffer To Shift Data Into
+extern int32_t SLIDE_VALID_DATA; // Valid data stored here
+extern uint32_t SLIDE_LAST_BIT_TIME; // Last time a bit was read, this handles start and if scale fall out of sync
+extern long SLIDE_DATA_TIME; // Time SLIDE_NEW_DATA is set
+extern bool SLIDE_NEW_DATA;  // Stored if data is updated
+
 
 class slide
 {

@@ -1,13 +1,6 @@
 #include <Arduino.h>
 #include "slideNew.h"
 
-extern byte SLIDE_BIT_COUNT; // Count number of bits read
-extern uint32_t SLIDE_DATA_BUFFER; // Buffer To Shift Data Into
-extern int32_t SLIDE_VALID_DATA; // Valid data stored here
-extern uint32_t SLIDE_LAST_BIT_TIME; // Last time a bit was read, this handles start and if scale fall out of sync
-extern long SLIDE_DATA_TIME; // Time SLIDE_NEW_DATA is set
-extern bool SLIDE_NEW_DATA;  // Stored if data is updated
-
 
 slide::slide(byte dout, byte pd_sck) {
 	begin(dout, pd_sck);
