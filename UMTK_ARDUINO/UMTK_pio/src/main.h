@@ -60,6 +60,9 @@ float last_error;
 float error;
 bool control_direction = false;
 
+uint8_t serial_jog_counter = 0;
+static constexpr uint8_t serial_jog_time = 20;
+
 unsigned long LC_divider = 0;
 long LC_offset = 0;
 
@@ -67,7 +70,10 @@ float d_dist = 0.0;
 long d_t = 0;
 
 bool newLsData = false;
-float powerInput = 0.0;
+float power_volts = 0.0;
+float vm_volts = 0.0;
+float mot1_amps = 0.0;
+float mot2_amps = 0.0;
 
 long pid_p = 0;
 long pid_i = 0;
@@ -89,7 +95,6 @@ enum UMTKStates_t {
   noChange,
 };
 
-
 UMTKStates_t UMTKState = STANDBY;
 UMTKStates_t UMTKNextState = noChange;
 
@@ -108,6 +113,7 @@ void Transistion_State();
 void Send_to_UI();
 void PID_Control();
 void Read_Serial();
+void Read_Slide();
 
 
 
