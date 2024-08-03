@@ -1595,268 +1595,6 @@
 				)
 			)
 		)
-		(symbol "Logic_LevelTranslator:SN74LVC1T45DCK"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at -6.35 8.89 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "SN74LVC1T45DCK"
-				(at 3.81 8.89 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
-				(at 0 -11.43 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/sn74lvc1t45.pdf"
-				(at -22.86 -16.51 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Single-Bit Dual-Supply Bus Transceiver With Configurable Voltage Translation and 3-State Outputs, SOT-363"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "Level-Shifter CMOS-TTL-Translation"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*SC?70*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "SN74LVC1T45DCK_0_1"
-				(rectangle
-					(start -7.62 7.62)
-					(end 7.62 -7.62)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.54 0) (xy -2.54 1.016) (xy -0.762 1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.794 0) (xy 2.794 -1.016) (xy 1.016 -1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 -1.016) (xy -2.54 -1.016) (xy -2.54 0) (xy -4.572 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 0) (xy -0.762 2.032) (xy 1.016 1.016) (xy -0.762 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 1.016) (xy 2.794 1.016) (xy 2.794 0) (xy 4.064 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 0) (xy 1.016 -1.778) (xy 1.016 -2.032) (xy -0.762 -1.016) (xy 1.016 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "SN74LVC1T45DCK_1_1"
-				(pin power_in line
-					(at -2.54 10.16 270)
-					(length 2.54)
-					(name "VCCA"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 -10.16 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -10.16 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 10.16 0 180)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -10.16 -5.08 0)
-					(length 2.54)
-					(name "DIR"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 2.54 10.16 270)
-					(length 2.54)
-					(name "VCCB"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "UMTK-altium-import:GND"
 			(power)
 			(exclude_from_sim no)
@@ -2115,126 +1853,6 @@
 				)
 			)
 		)
-		(symbol "power:VDD"
-			(power)
-			(pin_numbers hide)
-			(pin_names
-				(offset 0) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "VDD"
-				(at 0 3.556 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"VDD\""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "VDD_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "VDD_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 	)
 	(junction
 		(at 162.56 105.41)
@@ -2364,16 +1982,6 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 170.18) (xy 83.82 170.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1378bf8f-1cf2-4569-94fa-b32b6695d5e4")
-	)
-	(wire
-		(pts
 			(xy 167.64 185.42) (xy 173.99 185.42)
 		)
 		(stroke
@@ -2464,26 +2072,6 @@
 	)
 	(wire
 		(pts
-			(xy 15.24 82.55) (xy 30.48 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "22b42871-5936-4ed0-8faa-50cb664a19f7")
-	)
-	(wire
-		(pts
-			(xy 78.74 123.19) (xy 78.74 133.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "26678977-9384-4dc2-956a-0503c4d4198a")
-	)
-	(wire
-		(pts
 			(xy 119.38 115.57) (xy 240.03 115.57)
 		)
 		(stroke
@@ -2511,16 +2099,6 @@
 			(type default)
 		)
 		(uuid "2b8b5bf3-c2f4-4602-88cb-5570eb429f2e")
-	)
-	(wire
-		(pts
-			(xy 38.1 62.23) (xy 38.1 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2bd0aefb-526b-4941-b3a7-64a1378bd85c")
 	)
 	(wire
 		(pts
@@ -2624,26 +2202,6 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 77.47) (xy 85.09 77.47)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4e1b51c4-6188-4a73-a8cd-92002b0107c2")
-	)
-	(wire
-		(pts
-			(xy 40.64 87.63) (xy 40.64 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4fa55ee0-0438-449a-966b-6cf0dd511300")
-	)
-	(wire
-		(pts
 			(xy 154.94 97.79) (xy 154.94 172.72)
 		)
 		(stroke
@@ -2694,16 +2252,6 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 180.34) (xy 40.64 185.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "58ee4b57-a991-40d4-a2de-7bf770d4f5be")
-	)
-	(wire
-		(pts
 			(xy 119.38 113.03) (xy 170.18 113.03)
 		)
 		(stroke
@@ -2711,16 +2259,6 @@
 			(type default)
 		)
 		(uuid "5a301c63-352c-4c97-ab2c-f90f076e9617")
-	)
-	(wire
-		(pts
-			(xy 85.09 130.81) (xy 99.06 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5c32cf88-c780-434b-a56f-a3f28508dfa9")
 	)
 	(wire
 		(pts
@@ -2764,7 +2302,7 @@
 	)
 	(wire
 		(pts
-			(xy 25.4 77.47) (xy 30.48 77.47)
+			(xy 67.31 130.81) (xy 99.06 130.81)
 		)
 		(stroke
 			(width 0)
@@ -2854,16 +2392,6 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 133.35) (xy 99.06 133.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "83b89d6b-15e0-481e-95da-b2b633411a4e")
-	)
-	(wire
-		(pts
 			(xy 119.38 120.65) (xy 242.57 120.65)
 		)
 		(stroke
@@ -2894,7 +2422,7 @@
 	)
 	(wire
 		(pts
-			(xy 25.4 123.19) (xy 30.48 123.19)
+			(xy 60.96 133.35) (xy 99.06 133.35)
 		)
 		(stroke
 			(width 0)
@@ -2924,7 +2452,7 @@
 	)
 	(wire
 		(pts
-			(xy 25.4 170.18) (xy 30.48 170.18)
+			(xy 55.88 135.89) (xy 99.06 135.89)
 		)
 		(stroke
 			(width 0)
@@ -2964,16 +2492,6 @@
 	)
 	(wire
 		(pts
-			(xy 15.24 128.27) (xy 30.48 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9b1e8b96-49a7-43a3-94fe-fc5c5fa8c368")
-	)
-	(wire
-		(pts
 			(xy 175.26 91.44) (xy 162.56 91.44)
 		)
 		(stroke
@@ -2991,16 +2509,6 @@
 			(type default)
 		)
 		(uuid "a8249a46-3bbf-40ab-9ff7-f5e6e85273b8")
-	)
-	(wire
-		(pts
-			(xy 43.18 154.94) (xy 43.18 160.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a8d3e764-4e64-4b7e-af06-ad79b1074d40")
 	)
 	(wire
 		(pts
@@ -3024,16 +2532,6 @@
 	)
 	(wire
 		(pts
-			(xy 83.82 135.89) (xy 99.06 135.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "af5e4553-e6e1-449d-a02a-885658db01e6")
-	)
-	(wire
-		(pts
 			(xy 119.38 133.35) (xy 241.3 133.35)
 		)
 		(stroke
@@ -3041,16 +2539,6 @@
 			(type default)
 		)
 		(uuid "aff32f55-b679-45fd-8c1c-4fa2494d4bf5")
-	)
-	(wire
-		(pts
-			(xy 50.8 123.19) (xy 78.74 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b1d30e96-0c1b-4468-af75-69459d9f7f2f")
 	)
 	(wire
 		(pts
@@ -3064,16 +2552,6 @@
 	)
 	(wire
 		(pts
-			(xy 38.1 154.94) (xy 38.1 160.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b65ffc2a-0f7c-4cc2-bb93-dd390bd28bd2")
-	)
-	(wire
-		(pts
 			(xy 175.26 96.52) (xy 167.64 96.52)
 		)
 		(stroke
@@ -3081,16 +2559,6 @@
 			(type default)
 		)
 		(uuid "b806d1d9-5039-425c-8511-28da8bbbb60e")
-	)
-	(wire
-		(pts
-			(xy 15.24 175.26) (xy 30.48 175.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bafbd407-727f-421b-94fb-aa1c351933a4")
 	)
 	(wire
 		(pts
@@ -3114,26 +2582,6 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 77.47) (xy 85.09 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c02173d7-e886-4a5d-a114-8ab086eda0bf")
-	)
-	(wire
-		(pts
-			(xy 15.24 170.18) (xy 15.24 175.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c06393cd-4782-4ed9-9b2e-311516c6c73d")
-	)
-	(wire
-		(pts
 			(xy 236.22 128.27) (xy 236.22 182.88)
 		)
 		(stroke
@@ -3141,26 +2589,6 @@
 			(type default)
 		)
 		(uuid "c19d31d7-8485-4fad-847b-dd3275528232")
-	)
-	(wire
-		(pts
-			(xy 40.64 133.35) (xy 40.64 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c5f8bc23-c106-4c6c-b5b6-278c21a7f421")
-	)
-	(wire
-		(pts
-			(xy 43.18 107.95) (xy 43.18 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ce19ef61-69d5-4ad5-91b9-55a1f4a21588")
 	)
 	(wire
 		(pts
@@ -3174,16 +2602,6 @@
 	)
 	(wire
 		(pts
-			(xy 15.24 77.47) (xy 15.24 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cf6195b3-6a87-4793-8530-7ca31eb8f241")
-	)
-	(wire
-		(pts
 			(xy 240.03 91.44) (xy 231.14 91.44)
 		)
 		(stroke
@@ -3191,16 +2609,6 @@
 			(type default)
 		)
 		(uuid "d31c1bec-a731-4c33-bf2b-7d7624feb21a")
-	)
-	(wire
-		(pts
-			(xy 15.24 123.19) (xy 15.24 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d6d13567-7f16-4de6-afb7-a21a004ea53b")
 	)
 	(wire
 		(pts
@@ -3284,16 +2692,6 @@
 	)
 	(wire
 		(pts
-			(xy 83.82 170.18) (xy 83.82 135.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f1ca4e34-f4a6-4eca-8e04-286a993eb6ff")
-	)
-	(wire
-		(pts
 			(xy 119.38 97.79) (xy 154.94 97.79)
 		)
 		(stroke
@@ -3334,16 +2732,6 @@
 	)
 	(wire
 		(pts
-			(xy 38.1 107.95) (xy 38.1 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f958255a-55bb-48af-8bfe-4c5e32ad868a")
-	)
-	(wire
-		(pts
 			(xy 109.22 81.28) (xy 115.57 81.28)
 		)
 		(stroke
@@ -3351,16 +2739,6 @@
 			(type default)
 		)
 		(uuid "fc83029d-0e49-443a-8149-97e4c5d7896d")
-	)
-	(wire
-		(pts
-			(xy 43.18 62.23) (xy 43.18 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ff810d09-7a65-48d2-a9cd-540b2cf477de")
 	)
 	(text_box "The MAX7219/MAX7221 allow display brightness to be\ncontrolled with an external resistor (RSET) connected\nbetween V+ and ISET. The peak current sourced from\nthe segment drivers is nominally 100 times the current\nentering ISET. This resistor can either be fixed or variable to allow brightness adjustment from the front\npanel. Its minimum value should be 9.53kΩ, which typically sets the segment current at 40mA. Display brightness can also be controlled digitally by using the\nintensity register."
 		(exclude_from_sim no)
@@ -3397,7 +2775,7 @@
 	)
 	(hierarchical_label "CS"
 		(shape input)
-		(at 25.4 77.47 180)
+		(at 67.31 130.81 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3409,7 +2787,7 @@
 	)
 	(hierarchical_label "DIN"
 		(shape input)
-		(at 25.4 170.18 180)
+		(at 55.88 135.89 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3421,7 +2799,7 @@
 	)
 	(hierarchical_label "CLK"
 		(shape input)
-		(at 25.4 123.19 180)
+		(at 60.96 133.35 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3430,216 +2808,6 @@
 			(justify right)
 		)
 		(uuid "cf5e0291-9c13-4dab-b84b-77b52170f25c")
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:GND")
-		(at 40.64 185.42 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "0d2c98ea-6766-4fff-beb9-4857cfa5f048")
-		(property "Reference" "#PWR044"
-			(at 51.816 186.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 50.546 188.976 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 40.64 185.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 40.64 185.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name 'GND'"
-			(at 40.64 185.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "0afdd827-854f-4350-955c-f319c1768740")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR044")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Logic_LevelTranslator:SN74LVC1T45DCK")
-		(at 40.64 77.47 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1761274a-5da2-4f30-a9b1-87ce1719ad35")
-		(property "Reference" "U3"
-			(at 58.42 71.1514 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SN74LVC1T45DCK"
-			(at 58.42 73.6914 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
-			(at 40.64 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/sn74lvc1t45.pdf"
-			(at 17.78 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Single-Bit Dual-Supply Bus Transceiver With Configurable Voltage Translation and 3-State Outputs, SOT-363"
-			(at 40.64 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d58694d4-dd9e-4082-b883-dc67809cbd9f")
-		)
-		(pin "3"
-			(uuid "35471fce-65be-46d1-ae85-dce5d073dc6f")
-		)
-		(pin "2"
-			(uuid "4df42a30-5c65-4db6-92ee-fb5a990048ec")
-		)
-		(pin "6"
-			(uuid "f296fb02-ddbc-4d50-9d06-367a94a60bd1")
-		)
-		(pin "5"
-			(uuid "a6df29af-ee9b-44c0-8e69-74b574e130af")
-		)
-		(pin "4"
-			(uuid "53ac2042-666d-48b7-9d5c-1189b5fdad59")
-		)
-		(instances
-			(project ""
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "U3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VDD")
-		(at 38.1 154.94 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "472fa01b-81ef-43e9-8230-a5b024b0c00e")
-		(property "Reference" "#PWR041"
-			(at 38.1 158.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VDD"
-			(at 38.1 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 38.1 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 38.1 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 38.1 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d24b65bc-ae82-4266-b030-796cf2290b70")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR041")
-					(unit 1)
-				)
-			)
-		)
 	)
 	(symbol
 		(lib_id "Device:R_US")
@@ -3783,70 +2951,6 @@
 	)
 	(symbol
 		(lib_id "UMTK-altium-import:GND")
-		(at 40.64 138.43 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "5d8b0421-c5e9-4042-bf85-a8b8b6898cc2")
-		(property "Reference" "#PWR043"
-			(at 51.816 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 50.546 141.986 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 40.64 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 40.64 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name 'GND'"
-			(at 40.64 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "69d4d458-4d3d-4a72-b4e6-964deb9d63df")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR043")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:GND")
 		(at 147.32 87.63 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3904,70 +3008,6 @@
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
 					(reference "#PWR064")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "UMTK-altium-import:GND")
-		(at 40.64 92.71 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "60995791-b1b5-4d4c-8f88-829109ec9828")
-		(property "Reference" "#PWR042"
-			(at 51.816 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 50.546 96.266 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 40.64 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 40.64 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name 'GND'"
-			(at 40.64 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "0c0dd0c9-81ef-410e-a422-01ed70e30697")
-		)
-		(instances
-			(project ""
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR042")
 					(unit 1)
 				)
 			)
@@ -4104,138 +3144,6 @@
 			(project ""
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
 					(reference "U6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 43.18 154.94 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6dea9d7e-5627-4822-be9c-ee29de346b83")
-		(property "Reference" "#PWR047"
-			(at 43.18 158.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 43.18 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 43.18 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 43.18 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 43.18 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "876d6255-a553-4e9e-ab09-8d6540dbc98f")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR047")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VDD")
-		(at 15.24 170.18 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "865b2d3b-e3bd-4a47-943d-9d28f85c06be")
-		(property "Reference" "#PWR038"
-			(at 15.24 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VDD"
-			(at 15.24 165.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 15.24 170.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 15.24 170.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 15.24 170.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a361a2ae-a8f2-4aff-9c1d-f4a63bc5553a")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR038")
 					(unit 1)
 				)
 			)
@@ -4504,414 +3412,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Logic_LevelTranslator:SN74LVC1T45DCK")
-		(at 40.64 170.18 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a48090b8-f619-43e0-beef-12c41ee7d8cf")
-		(property "Reference" "U5"
-			(at 58.42 163.8614 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SN74LVC1T45DCK"
-			(at 58.42 166.4014 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
-			(at 40.64 181.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/sn74lvc1t45.pdf"
-			(at 17.78 186.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Single-Bit Dual-Supply Bus Transceiver With Configurable Voltage Translation and 3-State Outputs, SOT-363"
-			(at 40.64 170.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0c4c686c-2699-47ab-abee-140bfe209157")
-		)
-		(pin "3"
-			(uuid "b43a9997-1dfc-4527-ae73-bb44381477a3")
-		)
-		(pin "2"
-			(uuid "5354a601-bd81-4590-816b-9213052b6edc")
-		)
-		(pin "6"
-			(uuid "d3b43e15-f6ab-4e9a-a9e1-c1acc1c805a2")
-		)
-		(pin "5"
-			(uuid "5c995271-b33f-4885-b2e4-3d783a1ce8d5")
-		)
-		(pin "4"
-			(uuid "cd1aa4d2-4da2-41e3-a778-ca301b38561c")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "U5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 43.18 107.95 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c4d3305a-503a-4ddb-b701-6994876d1cf2")
-		(property "Reference" "#PWR046"
-			(at 43.18 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 41.91 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 43.18 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 43.18 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 43.18 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bd5a4b16-4087-4f49-93bb-b7fbd90a875b")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR046")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VDD")
-		(at 38.1 107.95 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c8db2dec-eeae-4599-afd2-baf173a9ce45")
-		(property "Reference" "#PWR040"
-			(at 38.1 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VDD"
-			(at 36.83 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 38.1 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 38.1 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 38.1 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0ad3e763-e2c3-478f-84a1-1147e013cfd0")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR040")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VDD")
-		(at 15.24 77.47 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "cd7d6112-d8c5-4594-9984-f59e9033bd8d")
-		(property "Reference" "#PWR036"
-			(at 15.24 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VDD"
-			(at 15.24 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 15.24 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 15.24 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 15.24 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f0c8c16c-3332-4f33-957c-7e11e139e9b6")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR036")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VDD")
-		(at 15.24 123.19 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e0a614c3-669c-4ee5-901f-c88eb90ad6ff")
-		(property "Reference" "#PWR037"
-			(at 15.24 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VDD"
-			(at 15.24 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 15.24 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 15.24 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 15.24 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "99cf3d15-6e3c-45d6-b97c-30d288d0e052")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR037")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VDD")
-		(at 38.1 62.23 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e701715d-f6ab-4059-b2aa-c244cbe454a3")
-		(property "Reference" "#PWR039"
-			(at 38.1 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VDD"
-			(at 38.1 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 38.1 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 38.1 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VDD\""
-			(at 38.1 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8647904d-5e3a-4175-9903-5c881884268b")
-		)
-		(instances
-			(project ""
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR039")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "UMTK-altium-import:GND")
 		(at 109.22 144.78 0)
 		(unit 1)
@@ -4992,7 +3492,7 @@
 				)
 			)
 		)
-		(property "Value" "0.1u"
+		(property "Value" "0u1"
 			(at 140.462 83.312 0)
 			(effects
 				(font
@@ -5037,152 +3537,6 @@
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
 					(reference "C20")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 43.18 62.23 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "f9b5a5e5-6103-4d54-bb51-36307e30ba8c")
-		(property "Reference" "#PWR045"
-			(at 43.18 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 43.18 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 43.18 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 43.18 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 43.18 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0fdaf7ab-0c86-4c4a-baee-2574dbc1fe8a")
-		)
-		(instances
-			(project ""
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "#PWR045")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Logic_LevelTranslator:SN74LVC1T45DCK")
-		(at 40.64 123.19 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ffed7974-a119-41e7-af5f-da5d40598d25")
-		(property "Reference" "U4"
-			(at 58.42 116.8714 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SN74LVC1T45DCK"
-			(at 58.42 119.4114 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
-			(at 40.64 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/sn74lvc1t45.pdf"
-			(at 17.78 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Single-Bit Dual-Supply Bus Transceiver With Configurable Voltage Translation and 3-State Outputs, SOT-363"
-			(at 40.64 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "dc618964-0025-416d-a02b-75d0507932c6")
-		)
-		(pin "3"
-			(uuid "bb0a5d36-0b8d-41df-a7c8-9e6feb69d68b")
-		)
-		(pin "2"
-			(uuid "2ad36b8d-e5b2-4c98-8450-f3789790e316")
-		)
-		(pin "6"
-			(uuid "0ab5a697-0da5-4413-a6ac-ed6c40128b13")
-		)
-		(pin "5"
-			(uuid "9437e61d-af49-4606-86a8-a7eef2bd7e77")
-		)
-		(pin "4"
-			(uuid "be7517f8-64ef-4a30-8760-e9bc9afc2c84")
-		)
-		(instances
-			(project "UMTK"
-				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/96966801-b9b1-4005-b7bb-fead645709bc"
-					(reference "U4")
 					(unit 1)
 				)
 			)
