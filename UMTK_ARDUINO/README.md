@@ -91,10 +91,10 @@ Some commands require a line ending character, they are denoted by `\n` in the c
 
 | Action            | Command               | Parameter(s)      | Description                    |
 | ----------------- | --------------------- | ----------------  | ------------------------------ |
-| Set Speed         | `V <new_speed>`       | float (32bit)     | Set commanded speed, mm/s      |
+| Set Speed         | `V<new_speed>\n`    | float (32bit)     | Set commanded speed, mm/s      |
 | Jog Up            | `U`                   | none              | Jog Up, Machine will jog for ~100ms after command. Send command continuously to jog longer distance |
 | Jog DOWN          | `D`                   | none              | Jog Up, Machine will jog for ~100ms after command. Send command continuously to jog longer distance |
 | Start Running     | `Begin\n`             | none              | Start Running Continuously At Commanded Speed |
-| Calibrate Load    | `C <calibration_load>` | float (32bit)    | Calibrate Loadcell, Calibration Values are persisted in EEPROM Supply The Refence load in Newtons  |
+| Calibrate Load    | `C<calibration_load>\n` | float (32bit)    | Calibrate Loadcell, Calibration Values are persisted in EEPROM Supply The Refence load in Newtons  |
 | Stop              | `S`                   | none              | Stop UMTK if it is running mode |
 | Tare              | `Tare\n`                | none              | Tare Load and Position, Resets position and load to zero |
