@@ -266,16 +266,16 @@ class Ui_MainWindow(object):
     def process_serial_data(self, data):
         try:
             values = list(map(float, data.split('\t')))
-            if len(values) >= 6:
+            if len(values) >= 14:
                 position, load, cur_speed, set_speed, state, f_amps, b_amps, bt_up, \
-                    bt_down, bt_tare, bt_aux, t_loop = values
+                    bt_down, bt_tare, bt_aux, v_in, v_mot, t_loop = values
                 self.displacementLCD.display(position)
                 self.forceLCD.display(load)
                 self.speedLCD.display(cur_speed)
                 self.umtkStateLCD.display(state)
                 self.maxForceLCD.display(load)
                 self.motorstallProgressBar.setValue(int(f_amps - b_amps))
-                self.estopProgressBar.setValue(int(estop))
+                self.estopProgressBar.setValue(int(v_mot))
         except ValueError as e:
             print(f"Error processing serial data: {e}")
 

@@ -64,7 +64,7 @@ int t_loop_last = 0;
 
 
 uint8_t serial_jog_counter = 255;
-static constexpr uint8_t serial_jog_time = 100;
+static constexpr uint8_t serial_jog_time = 250;
 
 unsigned long LC_divider = 0;
 long LC_offset = 0;

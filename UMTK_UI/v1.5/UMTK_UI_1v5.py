@@ -198,8 +198,14 @@ class Ui_MainWindow(object):
         self.graphDisplay.setLayout(QtWidgets.QVBoxLayout())
         self.graphDisplay.layout().addWidget(self.canvas)
 
-        self.up_but.clicked.connect(self.increase_speed)
-        self.down_but.clicked.connect(self.decrease_speed)
+        self.up_but.pressed.connect(self.increase_speed)
+        self.up_but.released.connect(self.stop_motor)
+        self.up_but.setAutoRepeat(True)
+        self.up_but.setAutoRepeatDelay(100)
+        self.down_but.pressed.connect(self.decrease_speed)
+        self.down_but.released.connect(self.stop_motor)
+        self.down_but.setAutoRepeat(True)
+        self.down_but.setAutoRepeatDelay(100)
         self.tare_but_2.clicked.connect(self.tare)
         self.speedDail.valueChanged.connect(self.update_speed)
         self.start_but_2.clicked.connect(self.start_motor)
@@ -210,7 +216,7 @@ class Ui_MainWindow(object):
 
         self.serialTimer = QtCore.QTimer()
         self.serialTimer.timeout.connect(self.read_serial)
-        self.serialTimer.start(100)  # Read serial every 100ms
+        self.serialTimer.start(50)  # Read serial continuously
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -266,15 +272,16 @@ class Ui_MainWindow(object):
     def process_serial_data(self, data):
         try:
             values = list(map(float, data.split('\t')))
-            if len(values) >= 6:
-                displacement, force, speed, umtk_state, max_force, motor_stall, estop = values
-                self.displacementLCD.display(displacement)
-                self.forceLCD.display(force)
-                self.speedLCD.display(speed)
-                self.umtkStateLCD.display(umtk_state)
-                self.maxForceLCD.display(max_force)
-                self.motorstallProgressBar.setValue(int(motor_stall))
-                self.estopProgressBar.setValue(int(estop))
+            if len(values) >= 14:
+                position, load, cur_speed, set_speed, state, f_amps, b_amps, bt_up, \
+                    bt_down, bt_tare, bt_tare, bt_aux, v_in, v_mot, t_loop = values
+                self.displacementLCD.display(position)
+                self.forceLCD.display(load)
+                self.speedLCD.display(cur_speed)
+                self.umtkStateLCD.display(state)
+                self.maxForceLCD.display(load)
+                self.motorstallProgressBar.setValue(int(f_amps - b_amps))
+                self.estopProgressBar.setValue(int(v_mot))
         except ValueError as e:
             print(f"Error processing serial data: {e}")
 

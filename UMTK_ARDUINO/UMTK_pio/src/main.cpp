@@ -134,7 +134,7 @@ void loop() {
     dist_read_count = 0;
   }
 
-  if (loopcount % 10 == 0)
+  if (loopcount % 50 == 0)
   {
     // Calculate Speed From Slide Feedback
     if (LoadCell.is_ready()) {
@@ -341,14 +341,11 @@ void Send_to_UI()
     Serial.print("\t");
     Serial.print(auxButton);   // Aux Button
     Serial.print("\t");
-    Serial.print(auxButton);   // Aux Button
-    Serial.print("\t");
     Serial.print(power_volts);   // Input Voltage
     Serial.print("\t");
     Serial.print(vm_volts);   // Motor Voltage
     Serial.print("\t");
     Serial.print(t_loop_this - t_loop_last);         // Loop Time
-    Serial.print("\t");
     Serial.print("\n");
   }
 }
@@ -455,10 +452,10 @@ void Read_Serial()
       EEPROM.put(EEPROM_LC_OFFSET_ADDRESS, LoadCell.get_offset());
     }
 
-    if (incomingByte == 's' || incomingByte == 'S') {      
-      if (UMTKState == RUNNING) {
-        UMTKNextState = STANDBY;
-      }
+    if (incomingByte == 's' || incomingByte == 'S') {
+      // Stop Running and stop hault serial jog
+      serial_jog_counter = 255;
+      UMTKNextState = STANDBY;
     }
 
     if (incomingByte == 't' || incomingByte == 'T') {
