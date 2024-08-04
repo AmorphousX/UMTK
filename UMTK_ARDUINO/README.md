@@ -97,4 +97,4 @@ Some commands require a line ending character, they are denoted by `\n` in the c
 | Start Running     | `Begin\n`             | none              | Start Running Continuously At Commanded Speed |
 | Calibrate Load    | `C <calibration_load>` | float (32bit)    | Calibrate Loadcell, Calibration Values are persisted in EEPROM Supply The Refence load in Newtons  |
 | Stop              | `S`                   | none              | Stop UMTK if it is running mode |
-| Tare              | `Tare`                | none              | Tare Load and Position, Resets position and load to zero |
+| Tare              | `Tare\n`                | none              | Tare Load and Position, Resets position and load to zero |
