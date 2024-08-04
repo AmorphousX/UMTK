@@ -419,7 +419,6 @@ void Read_Serial()
     }
     if (incomingByte == 'U') {
       // Up
-      Serial.println("UP");
       if (UMTKState == JOG_UP || UMTKState == STANDBY ) {
         UMTKNextState = JOG_UP;
         serial_jog_counter = 0;
@@ -427,7 +426,6 @@ void Read_Serial()
     }
     if (incomingByte == 'D') {
       // Down
-      Serial.println("DOWN");
       if (UMTKState == JOG_DOWN || UMTKState == STANDBY ) {
         UMTKNextState = JOG_DOWN;
         serial_jog_counter = 0;
@@ -441,8 +439,10 @@ void Read_Serial()
         }
       }
     }
-    if (incomingByte == 'c' || incomingByte == 'C') {      
-      LC_divider = LoadCell.get_value(10)/49;
+    if (incomingByte == 'c' || incomingByte == 'C') {  
+      // Calibrate Command
+      calLoad = Serial.parseFloat();
+      LC_divider = LoadCell.get_value(10)/calLoad;
       LoadCell.set_scale(LC_divider);
       EEPROM.put(EEPROM_MAGIC_VALUE_ADDRESS, (unsigned long)EEPROM_MAGIC_VALUE);
       EEPROM.put(EEPROM_LC_DIVIDER_ADDRESS, LC_divider);
