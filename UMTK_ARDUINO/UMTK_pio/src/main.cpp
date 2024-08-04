@@ -81,7 +81,7 @@ void setup() {
   // Setup Display
   // #############
   SevenSeg.init(true);
-  SevenSeg.setIntensity(2);
+  SevenSeg.setIntensity(10);
   SevenSeg.writeNumeric(0,(int)0);
 }
  
@@ -441,7 +441,7 @@ void Read_Serial()
     }
     if (incomingByte == 'c' || incomingByte == 'C') {  
       // Calibrate Command
-      calLoad = Serial.parseFloat();
+      float calLoad = Serial.parseFloat();
       LC_divider = LoadCell.get_value(10)/calLoad;
       LoadCell.set_scale(LC_divider);
       EEPROM.put(EEPROM_MAGIC_VALUE_ADDRESS, (unsigned long)EEPROM_MAGIC_VALUE);
