@@ -29040,7 +29040,7 @@
 		(uuid "e0d34eb8-3dac-400b-9f14-42633c9d5d1e")
 	)
 	(gr_text "LoadCell:\n\nIC: HX711, Channel: A\nExcitation: ~4.8V\nGain: 64x or 128x\n20mV FS for 128x\n\n"
-		(at 92 42 0)
+		(at 92 31 0)
 		(layer "B.SilkS")
 		(uuid "4f3afd87-a01c-4d65-a816-0dc246c9e1d0")
 		(effects
@@ -29048,7 +29048,7 @@
 				(size 1 1)
 				(thickness 0.15)
 			)
-			(justify left bottom mirror)
+			(justify left top mirror)
 		)
 	)
 	(gr_text "! CONNECT ARDUINO, AND ALL SENSORS !\n!  BEFORE APPLYING POWER TO BOARD  !"
@@ -29063,8 +29063,8 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "Microcontroller:\n\nUse Arduino Mega Pro Mini (Clone)\nDefault IO Voltage: 5V\nSwitchable to 3.3V By Cutting\nJP1 and Soldering 3.3V Side"
-		(at 92 58 0)
+	(gr_text "Microcontroller:\n\nUse Arduino Mega Pro Mini (Clone)\nIO Voltage: 5V"
+		(at 92 49 0)
 		(layer "B.SilkS")
 		(uuid "7d4fde2a-4f2a-4943-998c-ae1a6bd18291")
 		(effects
@@ -29072,11 +29072,11 @@
 				(size 1 1)
 				(thickness 0.15)
 			)
-			(justify left bottom mirror)
+			(justify left top mirror)
 		)
 	)
-	(gr_text "Digital Readout Slide:\n\nConnect to Mini USB Port\nDefault Power Voltage: 3.3V\nDefault Logic Level: 3.3v\nVoltage Switchable With JP2 and JP3\nCut 3.3V Side And Solder"
-		(at 92 74.5 0)
+	(gr_text "Digital Readout Slide:\n\nConnect to Mini USB Port\nPower Voltage: 3.3V\nLogic Level: 3.3v"
+		(at 92 64 0)
 		(layer "B.SilkS")
 		(uuid "ae71a889-e8db-4348-85a5-e389c850549c")
 		(effects
@@ -29084,7 +29084,7 @@
 				(size 1 1)
 				(thickness 0.15)
 			)
-			(justify left bottom mirror)
+			(justify left top mirror)
 		)
 	)
 	(gr_text "UMTK V1.5"
@@ -29111,7 +29111,7 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "Design By: Crystal Liu, Michael Ding\nJuly 2024"
+	(gr_text "Design By: Crystal Liu, Michael Ding\nAUG 2024"
 		(at 30 97 0)
 		(layer "B.SilkS")
 		(uuid "e739dd63-f053-4536-aa51-756b49a6aed0")
@@ -29123,8 +29123,8 @@
 			(justify right bottom mirror)
 		)
 	)
-	(gr_text "Motor Driver:\n\nTI DRV8873H\nMAX 10A Peak\nDesolder R24\nFor 6.5A Soft Limit"
-		(at 119 73 0)
+	(gr_text "Motor Driver:\n\nTI DRV8873H\nMAX 10A Peak\n6.5A Soft Limit Enabled\nBy Default"
+		(at 119 64 0)
 		(layer "B.SilkS")
 		(uuid "e97f6896-71a5-4a94-b740-f787912820de")
 		(effects
@@ -29132,7 +29132,7 @@
 				(size 1 1)
 				(thickness 0.15)
 			)
-			(justify left bottom mirror)
+			(justify left top mirror)
 		)
 	)
 	(gr_text "TARE"
