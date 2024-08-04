@@ -9,6 +9,8 @@ import random
 import serial.tools.list_ports
 
 class Ui_MainWindow(object):
+    desired_speed = 3.0
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1440, 800)
@@ -212,6 +214,8 @@ class Ui_MainWindow(object):
         self.stop_but.clicked.connect(self.stop_motor)
         # self.eStop.clicked.connect(self.estop_clicked)
 
+        self.setSpeed_but.clicked.connect(self.commit_speed)
+
         self.serialPort = self.initialize_serial_port()
 
         self.serialTimer = QtCore.QTimer()
@@ -297,10 +301,13 @@ class Ui_MainWindow(object):
         # Tare functionality
         self.serialPort.write(b'Tare')
 
+    def commit_speed(self):
+        self.serialPort.write(f'V {self.desired_speed}\n'.encode())
+        self.speedOutput.setText(str(self.desired_speed))
+
     def update_speed(self, value):
         # Update speed functionality
-        self.serialPort.write(f'V {value}\n'.encode())
-        self.speedOutput.setText(str(value))
+        self.desired_speed = value/10
 
     def start_motor(self):
         # Start motor functionality

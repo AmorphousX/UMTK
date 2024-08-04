@@ -43,15 +43,6 @@ int lastSWITCH_STARTState = 0;
 int loopcount = 0;
 int dist_read_count = 0;
 float set_speed = 2;
-int max_control = 1023;
-int min_control = 80;
-long control_signal = set_speed/3 * 1023;
-float dis_now = 0;
-float dis_last = 0;
-long t_now = 0;
-long t_last = 0;
-long t_last_PID;
-long T_sample = 100;
 long dt = 0;
 float Load = 0;
 float cur_speed = 0;
@@ -78,12 +69,22 @@ float vm_volts = 0.0;
 float mot1_amps = 0.0;
 float mot2_amps = 0.0;
 
+// PID Variables
 long pid_p = 0;
 long pid_i = 0;
 long pid_d = 0;
 float Kp = 50;
 float Ki = 0;  
 float Kd = 0; 
+int max_control = 1023;
+int min_control = 80;
+long control_signal = set_speed/3 * 1023;
+float dis_now = 0;
+float dis_last = 0;
+long t_now = 0;
+long t_last = 0;
+long t_last_PID;
+long T_sample = 200;
 
 
 // String[] MMTKstateEnum = {"Running", "Stopped", "Hold", "Jog Forward", "Jog Back", "Fast Jog Forward", "Fast Jog Back", " - "};
