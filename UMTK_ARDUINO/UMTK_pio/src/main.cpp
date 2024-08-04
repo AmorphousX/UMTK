@@ -341,6 +341,12 @@ void Send_to_UI()
     Serial.print("\t");
     Serial.print(auxButton);   // Aux Button
     Serial.print("\t");
+    Serial.print(auxButton);   // Aux Button
+    Serial.print("\t");
+    Serial.print(power_volts);   // Input Voltage
+    Serial.print("\t");
+    Serial.print(vm_volts);   // Motor Voltage
+    Serial.print("\t");
     Serial.print(t_loop_this - t_loop_last);         // Loop Time
     Serial.print("\t");
     Serial.print("\n");

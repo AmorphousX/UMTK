@@ -20,7 +20,7 @@ void inline Transistion_State();
 void inline Send_to_UI();
 
 #define printWhileStopped 1
-#define HEADER_TEXT "POSITION\tLOAD\tCUR_SPEED\tSET_SPEED\tSTATE\tMOTOR_F_AMPS\tMOTOR_R_AMPS\tBT_UP\tBT_DOWN\tBT_TARE\tBT_AUX\tLOOP_T\n"
+#define HEADER_TEXT "POSITION\tLOAD\tCUR_SPEED\tSET_SPEED\tSTATE\tMOTOR_F_AMPS\tMOTOR_R_AMPS\tBT_UP\tBT_DOWN\tBT_TARE\tBT_AUX\tIN_VOLTS\tVM_VOLTS\tLOOP_T\n"
 
 
 // EEPROM Constants

@@ -54,6 +54,8 @@ Data should be parsed from string into the apporiate types
 | BT_DOWN        | Int          | Button Enum   | Button Enum, See Below                       |
 | BT_TARE        | Int          | Button Enum   | Button Enum, See Below                       |
 | BT_AUX         | Int          | Button Enum   | Button Enum, See Below                       |
+| IN_VOLTS       | Float        | Volts         | Power Supply Voltage                         |
+| VM_VOLTS       | Float        | Volts         | Motor Driver Input Voltage                   |
 | LOOP_T         | Int          | Miliseconds   | Time elapsed for this control loop           |
 
 
