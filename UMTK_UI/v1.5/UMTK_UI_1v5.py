@@ -216,7 +216,7 @@ class Ui_MainWindow(object):
 
         self.serialTimer = QtCore.QTimer()
         self.serialTimer.timeout.connect(self.read_serial)
-        self.serialTimer.start(50)  # Read serial continuously
+        self.serialTimer.start(100)  # Read serial continuously
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

@@ -134,7 +134,7 @@ void loop() {
     dist_read_count = 0;
   }
 
-  if (loopcount % 50 == 0)
+  if (loopcount % 150 == 0)
   {
     // Calculate Speed From Slide Feedback
     if (LoadCell.is_ready()) {
