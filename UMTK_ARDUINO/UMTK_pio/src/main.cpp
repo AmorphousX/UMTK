@@ -6,7 +6,8 @@
 void setup() {
 
   cli(); //stop interrupts
-
+  t_loop_last = millis();
+  t_loop_this = millis();
 
   // #############
   // Pin Config
@@ -36,7 +37,8 @@ void setup() {
   // #############
   // Check EEPROM if there is a stored value. Do this by verifying eeprom magic value
   unsigned long eepromMagicRead = 0UL;
-  if (EEPROM.get(EEPROM_MAGIC_VALUE_ADDRESS, eepromMagicRead) == EEPROM_MAGIC_VALUE) {
+  if (EEPROM.get(EEPROM_MAGIC_VALUE_ADDRESS, eepromMagicRead) == EEPROM_MAGIC_VALUE)
+  {
     // eeprom magic match
     EEPROM.get(EEPROM_LC_DIVIDER_ADDRESS, LC_divider);
     EEPROM.get(EEPROM_LC_OFFSET_ADDRESS, LC_offset);
@@ -89,6 +91,9 @@ void setup() {
 
 void loop() {
 
+  t_loop_last = t_loop_this;
+  t_loop_this = millis();
+
   Slide.set_scale(calibration_factor_displacement); //Adjust to this calibration factor
 
   {
@@ -108,7 +113,6 @@ void loop() {
 
   // Process State Machine Actions
   Transistion_State();
-  
 
   // Read Loacell
   // Remove the if statement if you wish to print slower and only new new LoadCell value is available
@@ -119,14 +123,8 @@ void loop() {
   mot1_amps = (float)analogRead(MOTOR_ISENSE_1) / VMOT_ISENSE_iK;
   mot2_amps = (float)analogRead(MOTOR_ISENSE_2) / VMOT_ISENSE_iK;
   
+  Read_Slide();
 
-  Serial.print(cur_speed); // Stepper Speed
-  Serial.print(",");
-  Serial.print(126.603636364);
-  Serial.print(",");
-  Serial.println((float)analogRead(MOTOR_ISENSE_2)/126.603636364);
-
-  
   if (dist_read_count % 2 == 0)
   {
     if (UMTKState == RUNNING)
@@ -135,6 +133,19 @@ void loop() {
     }
     dist_read_count = 0;
   }
+
+  if (loopcount % 10 == 0)
+  {
+    // Calculate Speed From Slide Feedback
+    if (LoadCell.is_ready()) {
+      Load = fabs(LoadCell.get_units(1) * 9.8);
+      newLsData = true;
+    } else {
+      newLsData = false;
+    }
+    Send_to_UI();
+  }
+  loopcount ++;
 
   Update_Display();
 }
@@ -170,19 +181,6 @@ void Read_Slide()
     t_last = t_now;
     dist_read_count ++;
   }
-
-  if (loopcount % 10 == 0)
-  {
-    // Calculate Speed From Slide Feedback
-    if (LoadCell.is_ready()) {
-      Load = fabs(LoadCell.get_units(1) * 9.8);
-      newLsData = true;
-    } else {
-      newLsData = false;
-    }
-    Send_to_UI();
-  }
-  loopcount ++;
 }
 
 void Determine_Next_State()
@@ -194,6 +192,7 @@ void Determine_Next_State()
       {
         // If jog is invoked from serial, we hold it for a bit
         serial_jog_counter++;
+        UMTKNextState = JOG_UP;
       }
       else
       {
@@ -201,10 +200,6 @@ void Determine_Next_State()
           UMTKNextState = STANDBY;
           break;
         }
-      }
-      if(upButton == release){
-        UMTKNextState = STANDBY;
-        break;
       }
       break;
     }
@@ -215,7 +210,12 @@ void Determine_Next_State()
       {
         // If jog is invoked from serial, we hold it for a bit
         serial_jog_counter++;
+        UMTKNextState = JOG_DOWN;
       }
+      // if(downButton == release){
+      //   UMTKNextState = STANDBY;
+      //   break;
+      // }
       else
       {
         // If jog timer expired, it's up to the button
@@ -224,10 +224,10 @@ void Determine_Next_State()
           break;
         }
       }
-      if(downButton == release){
-        UMTKNextState = STANDBY;
-        break;
-      }
+      // if(downButton == release){
+      //   UMTKNextState = STANDBY;
+      //   break;
+      // }
       break;
     }
 
@@ -323,31 +323,26 @@ void Send_to_UI()
     Serial.print("\t");
     Serial.print(cur_speed); // Stepper Speed
     Serial.print("\t");
+    Serial.print(set_speed); // Commanded Speed
+    Serial.print("\t");
     Serial.print(UMTKState); // State
     Serial.print("\t");
-    Serial.print(Load); // Load
+    Serial.print(mot1_amps); // Motor Phase 1 Amps
     Serial.print("\t");
-    Serial.print((float)analogRead(MOTOR_ISENSE_1)/126.603636364);  // Stepper feedback pos
+    Serial.print(mot2_amps); // Motor Phase 2 Amps
     Serial.print("\t");
-    Serial.print((float)analogRead(MOTOR_ISENSE_2)/126.603636364); // Stepper Stall
+    Serial.print(upButton);  // Up Button State
     Serial.print("\t");
-//    Serial.print(0); // Stepper Direction
-//    Serial.print("\t");
-//
-//    Serial.print(power_volts);
-//    Serial.print("\t");
-//    
-//    Serial.print(upButton);
-//    Serial.print("\t");
-//    Serial.print(downButton);
-//    Serial.print("\t");
-//    Serial.print(zeroButton);
-//    Serial.print("\t");
-//    Serial.print(startButton);
-//    Serial.print("\t");
-//    Serial.print(auxButton);
-//    Serial.print("\t");
-    
+    Serial.print(downButton); // Down Button State
+    Serial.print("\t");
+    Serial.print(zeroButton); // Tare
+    Serial.print("\t");
+    Serial.print(startButton); // Start Button
+    Serial.print("\t");
+    Serial.print(auxButton);   // Aux Button
+    Serial.print("\t");
+    Serial.print(t_loop_this - t_loop_last);         // Loop Time
+    Serial.print("\t");
     Serial.print("\n");
   }
 }
@@ -414,7 +409,6 @@ void Read_Serial()
   if (Serial.available()) {
     float newSpeed = 0.0f;
     int incomingByte = Serial.read();
-    Serial.print(incomingByte);
 
     if (incomingByte == 'v' || incomingByte == 'V') {
       // Set Speed Command
@@ -425,6 +419,7 @@ void Read_Serial()
     }
     if (incomingByte == 'U') {
       // Up
+      Serial.println("UP");
       if (UMTKState == JOG_UP || UMTKState == STANDBY ) {
         UMTKNextState = JOG_UP;
         serial_jog_counter = 0;
@@ -432,6 +427,7 @@ void Read_Serial()
     }
     if (incomingByte == 'D') {
       // Down
+      Serial.println("DOWN");
       if (UMTKState == JOG_DOWN || UMTKState == STANDBY ) {
         UMTKNextState = JOG_DOWN;
         serial_jog_counter = 0;

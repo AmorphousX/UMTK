@@ -59,9 +59,12 @@ float total_error = 0;
 float last_error;
 float error;
 bool control_direction = false;
+int t_loop_this = 0;
+int t_loop_last = 0;
 
-uint8_t serial_jog_counter = 0;
-static constexpr uint8_t serial_jog_time = 20;
+
+uint8_t serial_jog_counter = 255;
+static constexpr uint8_t serial_jog_time = 100;
 
 unsigned long LC_divider = 0;
 long LC_offset = 0;
