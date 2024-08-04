@@ -51,7 +51,7 @@ float dis_last = 0;
 long t_now = 0;
 long t_last = 0;
 long t_last_PID;
-long T_sample = 50;
+long T_sample = 100;
 long dt = 0;
 float Load = 0;
 float cur_speed = 0;

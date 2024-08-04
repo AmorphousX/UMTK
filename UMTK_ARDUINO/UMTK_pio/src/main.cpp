@@ -134,15 +134,18 @@ void loop() {
     dist_read_count = 0;
   }
 
+  // Calculate Speed From Slide Feedback
+  if (LoadCell.is_ready()) {
+    // Very basic filter to filter data
+    Load = (Load + fabs(LoadCell.get_units(1) * 9.8)) / 2;
+    newLsData = true;
+  } else {
+    newLsData = false;
+  }
+
   if (loopcount % 150 == 0)
   {
-    // Calculate Speed From Slide Feedback
-    if (LoadCell.is_ready()) {
-      Load = fabs(LoadCell.get_units(1) * 9.8);
-      newLsData = true;
-    } else {
-      newLsData = false;
-    }
+
     Send_to_UI();
   }
   loopcount ++;
