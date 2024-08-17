@@ -83,6 +83,13 @@ void setup() {
   SevenSeg.init(true);
   SevenSeg.setIntensity(10);
   SevenSeg.writeNumeric(0,(int)0);
+
+  // Enable LED Indicator
+  #ifdef LED_BLINKABLE
+    pinMode(LED_BUILTIN, OUTPUT);
+    led_period_t = 1500;
+    led_last_transition_t = millis();
+  #endif
 }
  
 //=============================================================================================
@@ -125,13 +132,9 @@ void loop() {
   
   Read_Slide();
 
-  if (dist_read_count % 2 == 0)
+  if (UMTKState == RUNNING)
   {
-    if (UMTKState == RUNNING)
-    {
-      PID_Control();
-    }
-    dist_read_count = 0;
+    PID_Control();
   }
 
   // Calculate Speed From Slide Feedback
@@ -149,6 +152,26 @@ void loop() {
     Send_to_UI();
   }
   loopcount ++;
+
+// Blink LED to indicate status
+#ifdef LED_BLINKABLE
+  if (led_period_t < 0)
+  {
+    //  If negative value, LED always on
+    digitalWrite(LED_BUILTIN, HIGH); 
+  }
+  else if (led_period_t == 0)
+  {
+    //  If 0 LED always off
+    digitalWrite(LED_BUILTIN, LOW); 
+
+  }
+  else if (millis() >= (unsigned long)(led_last_transition_t + led_period_t))
+  {
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    led_last_transition_t = millis();
+  }
+#endif
 
   Update_Display();
 }
@@ -182,7 +205,6 @@ void Read_Slide()
 
     dis_last = dis_now;
     t_last = t_now;
-    dist_read_count ++;
   }
 }
 
@@ -292,22 +314,33 @@ void Transistion_State()
       analogWrite(M_IN1, 0);
       analogWrite(M_IN2, 500);
       UMTKState = JOG_UP;
+      led_period_t = -1;
       break;
 
     case JOG_DOWN:
       analogWrite(M_IN1, 1023);
       analogWrite(M_IN2, 0);
       UMTKState = JOG_DOWN;
+      led_period_t = -1;
       break;
 
     case STANDBY:
       analogWrite(M_IN1, 1023);
       analogWrite(M_IN2, 1023);
       UMTKState = STANDBY;
+      led_period_t = 0;
       break;
     
     case RUNNING:
+      // Clear PID Integral
+      total_error = 0.0;
+      pid_d_last = dis_now;
+      pid_t_last = t_now;
       UMTKState = RUNNING;
+      led_period_t = 100;
+      break;
+    
+    default:
       break;
   }
   UMTKNextState = noChange;
@@ -315,6 +348,11 @@ void Transistion_State()
 
 void Send_to_UI()
 {
+  // if (UMTKState == STANDBY)
+  // {
+  //   Serial.println(cur_speed); // Stepper Speed
+  // }
+  // return;
   // Logging
   // Logging format
   // NEW_DATA SPEED POSITION LOADCELL FEEDBACK_COUNT STATE ESTOP STALL DIRECTION INPUT_VOLTAGE
@@ -356,55 +394,65 @@ void Send_to_UI()
 
 void PID_Control(){
   
-  if (t_now - t_last_PID > T_sample){
-    dt = t_now - t_last_PID;
-    t_last_PID = t_now;
+  if (t_now - pid_t_last > T_sample){
+    pid_dt = t_now - pid_t_last;
+    pid_dx = dis_now - pid_d_last;
+    pid_d_last = dis_now;
+    pid_t_last = t_now;
 
-    error = (set_speed - cur_speed);
+    pid_speed = (pid_dx*1000) / (double)pid_dt;
+
+    error = (set_speed - pid_speed);
     pid_p = Kp*error;
-    pid_d = 0; //Kd*((error - last_error)/dt);
+    pid_d = (last_error - error)*100*Kd/pid_dt;
     pid_i = Ki*total_error;  
 
- /*   Serial.print("Control Parameters: ");
+    last_error = error;
+    total_error = error*(double)pid_dt + total_error;
+    // clamp intergral so it doesn't cause long running issues
+    total_error = constrain(total_error, -1e6, 1e6);
+
+    control_signal = pid_p + pid_d + pid_i;
+    
+    if (control_signal > max_control){
+      control_signal = max_control;
+    }
+    else if(control_signal < min_control){
+      control_signal = min_control;
+    }
+
+    analogWrite(M_IN1, 0);
+    analogWrite(M_IN2, control_signal);
+    
+    Serial.print(set_speed);
+    Serial.print(", ");
+    Serial.print(pid_speed);
+    Serial.print(", ");
+    Serial.print(error);
+    Serial.print(", ");
     Serial.print(pid_p);
     Serial.print(", ");
     Serial.print(pid_d);
     Serial.print(", ");
-    Serial.println(pid_i);
-*/
-    last_error = error;
-    total_error = error*dt + total_error;
-  }
-  control_signal = pid_p + pid_d + pid_i + 100;
-
-  if (control_signal > 0)
-  {
-    control_direction = true;
-  }
-  else
-  {
-    control_direction = false;
-    control_signal = -control_signal;
+    Serial.print(pid_i);
+    Serial.print(", ");
+    Serial.print(control_signal);
+    Serial.print(", ");
+    Serial.println();
   }
 
-  if (control_signal > max_control){
-    control_signal = max_control;
-  }
-  else if(control_signal < min_control){
-    control_signal = min_control;
-  }
 
   
-  if (control_direction)
-  {
-    analogWrite(M_IN1, 0);
-    analogWrite(M_IN2, control_signal);
-  }
-  else
-  {
-    analogWrite(M_IN1, control_signal);
-    analogWrite(M_IN2, 0);
-  }
+  // if (control_direction)
+  // {
+  //   analogWrite(M_IN1, 0);
+  //   analogWrite(M_IN2, control_signal);
+  // }
+  // else
+  // {
+  //   analogWrite(M_IN1, control_signal);
+  //   analogWrite(M_IN2, 0);
+  // }
 
 }
 

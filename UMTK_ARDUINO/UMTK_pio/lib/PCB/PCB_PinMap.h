@@ -16,7 +16,12 @@
 #define MOTOR_nITRIP 10
 #define MOTOR_OPENLOAD 11
 #define MOTOR_nFAULT 12
-#define MOTOR_nSLEEP 13
+
+// GREEN V1.5 HAS nSLEEP on 13
+// BACK V1.5 HAS nSLEEP on 14, 13 is used as indicator
+// #define MOTOR_nSLEEP 13
+#define MOTOR_nSLEEP 14
+#define LED_BLINKABLE 1
 #define MOTOR_MODE 22
 
 #define DISP_CS 26

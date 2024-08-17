@@ -42,8 +42,7 @@ float calibration_factor_displacement = -98.9;
 int lastSWITCH_STARTState = 0;
 int loopcount = 0;
 int dist_read_count = 0;
-float set_speed = 2;
-long dt = 0;
+float set_speed = 1;
 float Load = 0;
 float cur_speed = 0;
 float total_error = 0;
@@ -52,7 +51,10 @@ float error;
 bool control_direction = false;
 int t_loop_this = 0;
 int t_loop_last = 0;
-
+float d_dist = 0.0;
+long d_t = 0;
+float dis_now = 0;
+float dis_last = 0;
 
 uint8_t serial_jog_counter = 255;
 static constexpr uint8_t serial_jog_time = 250;
@@ -60,8 +62,6 @@ static constexpr uint8_t serial_jog_time = 250;
 unsigned long LC_divider = 0;
 long LC_offset = 0;
 
-float d_dist = 0.0;
-long d_t = 0;
 
 bool newLsData = false;
 float power_volts = 0.0;
@@ -69,22 +69,30 @@ float vm_volts = 0.0;
 float mot1_amps = 0.0;
 float mot2_amps = 0.0;
 
-// PID Variables
+// PID Constants
+long T_sample = 120;
+float Kp = 20;
+float Ki = 0.05;  
+float Kd = 1; 
+int max_control = 1023;
+int min_control = 20;
+
+// PID Vars
+long pid_dt = 0;
+float pid_dx = 0;
+float pid_speed = 0;
 long pid_p = 0;
 long pid_i = 0;
 long pid_d = 0;
-float Kp = 50;
-float Ki = 0;  
-float Kd = 0; 
-int max_control = 1023;
-int min_control = 80;
 long control_signal = set_speed/3 * 1023;
-float dis_now = 0;
-float dis_last = 0;
 long t_now = 0;
 long t_last = 0;
-long t_last_PID;
-long T_sample = 200;
+long pid_t_last = 0;
+float pid_d_last = 0;
+
+// LED Blink
+unsigned long led_last_transition_t = 0;
+long led_period_t = 1000;
 
 
 // String[] MMTKstateEnum = {"Running", "Stopped", "Hold", "Jog Forward", "Jog Back", "Fast Jog Forward", "Fast Jog Back", " - "};
