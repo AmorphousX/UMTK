@@ -140,15 +140,17 @@ void loop() {
   // Calculate Speed From Slide Feedback
   if (LoadCell.is_ready()) {
     // Very basic filter to filter data
-    Load = (Load + fabs(LoadCell.get_units(1) * 9.8)) / 2;
+    Load3 = Load2;
+    Load2 = Load1;
+    Load1 = LoadCell.get_units(1);
+    Load = (Load1 + Load2 + Load3)/3;
     newLsData = true;
   } else {
     newLsData = false;
   }
 
-  if (loopcount % 150 == 0)
+  if (loopcount % 50 == 0)
   {
-
     Send_to_UI();
   }
   loopcount ++;
@@ -424,21 +426,21 @@ void PID_Control(){
     analogWrite(M_IN1, 0);
     analogWrite(M_IN2, control_signal);
     
-    Serial.print(set_speed);
-    Serial.print(", ");
-    Serial.print(pid_speed);
-    Serial.print(", ");
-    Serial.print(error);
-    Serial.print(", ");
-    Serial.print(pid_p);
-    Serial.print(", ");
-    Serial.print(pid_d);
-    Serial.print(", ");
-    Serial.print(pid_i);
-    Serial.print(", ");
-    Serial.print(control_signal);
-    Serial.print(", ");
-    Serial.println();
+    // Serial.print(set_speed);
+    // Serial.print(", ");
+    // Serial.print(pid_speed);
+    // Serial.print(", ");
+    // Serial.print(error);
+    // Serial.print(", ");
+    // Serial.print(pid_p);
+    // Serial.print(", ");
+    // Serial.print(pid_d);
+    // Serial.print(", ");
+    // Serial.print(pid_i);
+    // Serial.print(", ");
+    // Serial.print(control_signal);
+    // Serial.print(", ");
+    // Serial.println();
   }
 
 

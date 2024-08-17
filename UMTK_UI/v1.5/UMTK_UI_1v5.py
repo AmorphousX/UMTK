@@ -2,14 +2,21 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
+import matplotlib.pyplot as plt 
 import numpy as np
 import serial
 import serial.tools.list_ports
 import random
 import serial.tools.list_ports
+import copy
+import logging
 
 class Ui_MainWindow(object):
     desired_speed = 3.0
+    serial_port_holder = dict(status = None, name = None, handle = None)
+    serialPort = None
+    X = []
+    Y = []
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -30,15 +37,15 @@ class Ui_MainWindow(object):
         self.portsDropdown.setObjectName("portsDropdown")
         self.verticalLayout_7.addWidget(self.portsDropdown)
 
-        self.textBrowser = QtWidgets.QTextBrowser(parent=self.horizontalLayoutWidget)
+        self.serialStatus = QtWidgets.QTextBrowser(parent=self.horizontalLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.textBrowser.sizePolicy().hasHeightForWidth())
-        self.textBrowser.setSizePolicy(sizePolicy)
-        self.textBrowser.setMaximumSize(QtCore.QSize(330, 25))
-        self.textBrowser.setObjectName("textBrowser")
-        self.verticalLayout_7.addWidget(self.textBrowser)
+        sizePolicy.setHeightForWidth(self.serialStatus.sizePolicy().hasHeightForWidth())
+        self.serialStatus.setSizePolicy(sizePolicy)
+        self.serialStatus.setMaximumSize(QtCore.QSize(330, 25))
+        self.serialStatus.setObjectName("serialStatus")
+        self.verticalLayout_7.addWidget(self.serialStatus)
         self.connectPort_but = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
         self.connectPort_but.setObjectName("connectPort_but")
         self.verticalLayout_7.addWidget(self.connectPort_but)
@@ -109,9 +116,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addItem(spacerItem2)
         self.verticalLayout_6 = QtWidgets.QVBoxLayout()
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.start_but_2 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
-        self.start_but_2.setObjectName("start_but_2")
-        self.verticalLayout_6.addWidget(self.start_but_2)
+        self.start2_but = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
+        self.start2_but.setObjectName("start2_but")
+        self.verticalLayout_6.addWidget(self.start2_but)
         self.stop_but = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
         self.stop_but.setObjectName("stop_but")
         self.verticalLayout_6.addWidget(self.stop_but)
@@ -231,25 +238,25 @@ class Ui_MainWindow(object):
         self.buttonStatus = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
         self.buttonStatus.setContentsMargins(0, 0, 0, 0)
         self.buttonStatus.setObjectName("buttonStatus")
-        self.fwd_but = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_3)
-        self.fwd_but.setEnabled(True)
-        self.fwd_but.setMaximumSize(QtCore.QSize(60, 70))
+        self.up_but = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_3)
+        self.up_but.setEnabled(True)
+        self.up_but.setMaximumSize(QtCore.QSize(60, 70))
 
         font = QtGui.QFont()
 
         font.setPointSize(9)
-        self.fwd_but.setFont(font)
-        self.fwd_but.setMouseTracking(False)
-        self.fwd_but.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhNone)
-        self.fwd_but.setObjectName("fwd_but")
-        self.buttonStatus.addWidget(self.fwd_but)
-        self.bck_but = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_3)
-        self.bck_but.setMaximumSize(QtCore.QSize(60, 70))
+        self.up_but.setFont(font)
+        self.up_but.setMouseTracking(False)
+        self.up_but.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhNone)
+        self.up_but.setObjectName("up_but")
+        self.buttonStatus.addWidget(self.up_but)
+        self.down_but = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_3)
+        self.down_but.setMaximumSize(QtCore.QSize(60, 70))
         font = QtGui.QFont()
         font.setPointSize(9)
-        self.bck_but.setFont(font)
-        self.bck_but.setObjectName("bck_but")
-        self.buttonStatus.addWidget(self.bck_but)
+        self.down_but.setFont(font)
+        self.down_but.setObjectName("down_but")
+        self.buttonStatus.addWidget(self.down_but)
         self.tare_but = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_3)
         self.tare_but.setMaximumSize(QtCore.QSize(60, 70))
         font = QtGui.QFont()
@@ -287,38 +294,47 @@ class Ui_MainWindow(object):
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
         self.ax = self.figure.add_subplot(111)
-        self.ax.set_title("Sample Graph")
-        self.ax.set_xlabel("X Axis")
-        self.ax.set_ylabel("Y Axis")
+        self.ax.set_title("Force Displacement Graph")
+        self.ax.set_xlabel("Displacement (mm)")
+        self.ax.set_ylabel("Force (N)")
+        self.sp, = self.ax.plot([],[],label='',ms=10,color='blue',marker='.',ls='')
         self.graphDisplay.setLayout(QtWidgets.QVBoxLayout())
         self.graphDisplay.layout().addWidget(self.canvas)
 
-        # self.up_but.pressed.connect(self.increase_speed)
-        # self.up_but.released.connect(self.stop_motor)
-        # self.up_but.setAutoRepeat(True)
-        # self.up_but.setAutoRepeatDelay(100)
-        # # self.down_but.pressed.connect(self.decrease_speed)
-        # self.down_but.released.connect(self.stop_motor)
-        # self.down_but.setAutoRepeat(True)
-        # self.down_but.setAutoRepeatDelay(100)
-        # self.tare_but_2.clicked.connect(self.tare)
-        #self.speedDail.valueChanged.connect(self.update_speed)
-        self.start_but_2.clicked.connect(self.start_motor)
+
+        self.connectPort_but.pressed.connect(self.connect_serial_port)
+        self.disconnectPort_but.pressed.connect(self.disconnect_serial_port)
+
+        self.up_but.pressed.connect(self.increase_speed)
+        self.up_but.released.connect(self.stop_motor)
+        self.up_but.setAutoRepeat(True)
+        self.up_but.setAutoRepeatDelay(100)
+        self.down_but.pressed.connect(self.decrease_speed)
+        self.down_but.released.connect(self.stop_motor)
+        self.down_but.setAutoRepeat(True)
+        self.down_but.setAutoRepeatDelay(100)
+        self.tare_but.clicked.connect(self.tare)
+        # self.speedDail.valueChanged.connect(self.update_speed)
+        self.start_but.clicked.connect(self.start_motor)
+        self.start2_but.clicked.connect(self.start_motor)
         self.stop_but.clicked.connect(self.stop_motor)
+        self.aux_but.clicked.connect(self.stop_motor)
+        self.aux_but.released.connect(self.stop_motor)
         # self.eStop.clicked.connect(self.estop_clicked)
 
         self.setSpeed_but.clicked.connect(self.commit_speed)
 
-        self.serialPort = self.initialize_serial_port()
+        self.initialize_serial_port()
 
-        self.serialTimer = QtCore.QTimer()
-        self.serialTimer.timeout.connect(self.read_serial)
-        self.serialTimer.start(100)  # Read serial continuously
+        
+        QtCore.QTimer().singleShot(10, self.connect_serial_port)
+        QtCore.QTimer().singleShot(100, self.read_serial)
+        # Auto Connect Serial Port
+        # self.serialTimer.start(100)  # Read serial continuously
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.portsDropdown.addItem("Select you port")
         self.connectPort_but.setText(_translate("MainWindow", "Connect"))
         self.disconnectPort_but.setText(_translate("MainWindow", "Disconnect"))
         self.calibration.setText(_translate("MainWindow", "Calibration"))
@@ -327,7 +343,8 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Set Speed"))
         self.setSpeed_but.setText(_translate("MainWindow", "Set Speed"))
 
-        self.start_but_2.setText(_translate("MainWindow", "Start"))
+        self.start2_but.setText(_translate("MainWindow", "Start"))
+        self.start_but.setText(_translate("MainWindow", "Start"))
         self.stop_but.setText(_translate("MainWindow", "Stop"))
         self.bannerName.setText(_translate("MainWindow", "Test Stand GUI"))
         self.displacement.setText(_translate("MainWindow", "Displacement"))
@@ -339,8 +356,8 @@ class Ui_MainWindow(object):
         self.motorSpeed.setText(_translate("MainWindow", "Motor Speed"))
 
         self.eStop_but.setText(_translate("MainWindow", "eStop"))
-        self.fwd_but.setText(_translate("MainWindow", "FWD"))
-        self.bck_but.setText(_translate("MainWindow", "BCK"))
+        self.up_but.setText(_translate("MainWindow", "JOG\nUP"))
+        self.down_but.setText(_translate("MainWindow", "JOG\nDOWN"))
         self.tare_but.setText(_translate("MainWindow", "TARE"))
         self.start_but.setText(_translate("MainWindow", "START"))
         self.aux_but.setText(_translate("MainWindow", "AUX"))
@@ -348,21 +365,45 @@ class Ui_MainWindow(object):
 
     def initialize_serial_port(self):
         # List all available serial ports
-        # ports = serial.tools.list_ports.list_ports()
+        ports = serial.tools.list_ports.comports()
+        self.portsDropdown.clear()
         
-        # if ports:
-            # Use the first available serial port
-        port_name = "COM7"
-        print(f"Using serial port: {port_name}")
+        if ports:
+            for this_port in ports:
+                self.portsDropdown.addItem(this_port.device)
+        else:
+            self.portsDropdown.addItem("NO PORTS AVAILABLE")
+    
+    def connect_serial_port(self):
+        picked_port = self.portsDropdown.currentText()
+        if picked_port == "NO PORTS AVAILABLE" or picked_port is None:
+            return
+        print(f"Connecting serial port: {picked_port}")
+        self.serialStatus.setText(f"{picked_port} Connecting......")
+
         try:
-            return serial.Serial(port_name, 250000, timeout=1)
+            this_port = serial.Serial(picked_port, 250000, timeout=1)
+            self.serial_port_holder = dict (
+                handle = this_port,
+                status = True,
+                name = picked_port
+                )
+            self.serialPort = this_port
+            return
         except serial.SerialException as e:
             print(f"Error opening serial port: {e}")
             return None
-        # else:
-        #     # No serial ports found, use default mode
-        #     print("No serial ports found. Using default mode.")
-        #     return None
+        
+    def disconnect_serial_port(self):
+        if self.serial_port_holder["status"]:
+            print(f"Disconnecting serial port: {self.serial_port_holder['name']}")
+            self.serial_port_holder["handle"].close()
+            self.serial_port_holder["status"] = False
+            logging.info("Port {} disconnected".format(self.serial_port_holder["name"]))
+        else:
+            logging.debug("Port not connected")
+
+        return
 
     def read_serial(self):
         if self.serialPort and self.serialPort.is_open:
@@ -374,24 +415,72 @@ class Ui_MainWindow(object):
                 if data:
                     # print(f"Received: {data}")
                     self.process_serial_data(data)
+                self.serialStatus.setText("Connected: {}".format(self.serial_port_holder["name"]))
             except serial.SerialException as e:
                 print(f"Error reading serial port: {e}")
+                self.serialStatus.setText("ERROR: {}".format(self.serial_port_holder["name"]))
+            finally:
+                # Schedule Next Serial Read
+                QtCore.QTimer().singleShot(10, self.read_serial)
+        else:
+            self.serialStatus.setText("Disonnected")
+
 
     def process_serial_data(self, data):
         try:
-            values = list(map(float, data.split('\t')))
+            values = list(data.split('\t'))
             if len(values) >= 14:
-                position, load, cur_speed, set_speed, state, f_amps, b_amps, bt_up, \
-                    bt_down, bt_tare, bt_tare, bt_aux, v_in, v_mot, t_loop = values
+                i_position, i_load, i_cur_speed, i_set_speed, i_state, \
+                i_f_amps, i_b_amps, i_bt_up, i_bt_down, i_bt_tare, i_bt_start,\
+                i_bt_aux, i_v_in, i_v_mot, i_t_loop = values
+                
+                position = float(i_position)
+                load = float(i_load)
+                cur_speed = float(i_cur_speed)
+                set_speed = float(i_set_speed)
+                state = int(i_state)
+                f_amps = float(i_f_amps)
+                b_amps = float(i_b_amps)
+                bt_up = True if i_bt_up == "1" else False
+                bt_down = True if i_bt_down == "1" else False
+                bt_tare = True if i_bt_tare == "1" else False
+                bt_start = True if i_bt_start == "1" else False
+                bt_aux = True if i_bt_aux == "1" else False
+                v_in = float(i_v_in)
+                v_mot = float(i_v_mot)
+                t_loop = int(i_t_loop)
+
                 self.displacementLCD.display(position)
                 self.forceLCD.display(load)
                 self.speedLCD.display(cur_speed)
                 self.umtkStateLCD.display(state)
                 self.maxForceLCD.display(load)
-                self.motorstallProgressBar.setValue(int(f_amps - b_amps))
-                self.estopProgressBar.setValue(int(v_mot))
+
+                self.up_but.setStyleSheet("background-color: green") if bt_up else self.up_but.setStyleSheet("background-color: red")
+                self.down_but.setStyleSheet("background-color: green") if bt_down else self.down_but.setStyleSheet("background-color: red")
+                self.tare_but.setStyleSheet("background-color: green") if bt_tare else self.tare_but.setStyleSheet("background-color: red")
+                self.start_but.setStyleSheet("background-color: green") if bt_start else self.start_but.setStyleSheet("background-color: red")
+                self.aux_but.setStyleSheet("background-color: green") if bt_aux else self.aux_but.setStyleSheet("background-color: red")
+                
+                print(values)
+                    
+                # self.motorstall_eStop.setValue(int(f_amps - b_amps))
+                # self.estopProgressBar.setValue(int(v_mot))
+
+                self.X.append(position)
+                self.Y.append(load)
+                if len(self.X) > 1500:
+                    self.X = self.X[:1000]
+                    self.Y = self.Y[:1000]      
+                self.sp.set_data(self.X, self.Y)
+                self.ax.set_xlim(min(min(self.X), -10),max(max(self.X), 10))
+                self.ax.set_ylim(min(min(self.Y), -10), max(max(self.Y), 10))          
+                self.figure.canvas.draw()
+                
+
         except ValueError as e:
             print(f"Error processing serial data: {e}")
+            print(data)
 
     def increase_speed(self):
         # Increase speed functionality
@@ -403,7 +492,7 @@ class Ui_MainWindow(object):
 
     def tare(self):
         # Tare functionality
-        self.serialPort.write(b'Tare')
+        self.serialPort.write(b'Tare\n')
 
     def commit_speed(self):
         self.serialPort.write(f'V {self.desired_speed}\n'.encode())
@@ -415,7 +504,7 @@ class Ui_MainWindow(object):
 
     def start_motor(self):
         # Start motor functionality
-        self.serialPort.write(b'Begin')
+        self.serialPort.write(b'Begin\n')
 
     def stop_motor(self):
         # Stop motor functionality
@@ -424,21 +513,21 @@ class Ui_MainWindow(object):
     def estop_clicked(self):
         self.serialPort.write(b's')
 
-    def generate_random_data_for_demo(self):
-        # Generate and display random data for demo purposes
-        displacement = random.uniform(0, 100)
-        force = random.uniform(0, 500)
-        speed = random.uniform(0, 200)
-        umtk_state = random.randint(0, 5)
-        max_force = random.uniform(0, 500)
-        motor_stall = random.randint(0, 100)
+    # def generate_random_data_for_demo(self):
+    #     # Generate and display random data for demo purposes
+    #     displacement = random.uniform(0, 100)
+    #     force = random.uniform(0, 500)
+    #     speed = random.uniform(0, 200)
+    #     umtk_state = random.randint(0, 5)
+    #     max_force = random.uniform(0, 500)
+    #     motor_stall = random.randint(0, 100)
         
-        self.displacementLCD.display(displacement)
-        self.forceLCD.display(force)
-        self.speedLCD.display(speed)
-        self.umtkStateLCD.display(umtk_state)
-        self.maxForceLCD.display(max_force)
-        self.motorstallProgressBar.setValue(motor_stall)
+    #     self.displacementLCD.display(displacement)
+    #     self.forceLCD.display(force)
+    #     self.speedLCD.display(speed)
+    #     self.umtkStateLCD.display(umtk_state)
+    #     self.maxForceLCD.display(max_force)
+    #     self.motorstall_eStop.setValue(motor_stall)
 
 if __name__ == "__main__":
     import sys
