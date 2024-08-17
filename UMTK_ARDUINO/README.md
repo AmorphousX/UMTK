@@ -41,22 +41,23 @@ Data is tab seperated values, with these columns:
 All values are send over serial as strings. 
 Data should be parsed from string into the apporiate types
 
-| Column         | Data Type    | Units         | Description                                  |
-| -------------- | ------------ | ------------- | -------------------------------------------  |
-| POSITION       | Float        | Milimeters    | Position offset from zero point. Milimeters  |
-| LOAD           | Float        | Newtons       | Loadcell Force from Current Calibration      |
-| CUR_SPEED      | Float        | mm/s          | Current Speed                                |
-| SET_SPEED      | Float        | mm/s          | Commanded Speed                              |
-| STATE          | Int          | State Enum    | State Enum, See Below                        |
-| MOTOR_F_AMPS   | Float        | Amps          | Motor Forward Current                        |
-| MOTOR_R_AMPS   | Float        | Amps          | Motor Reverse Current                        |
-| BT_UP          | Int          | Button Enum   | Button Enum, See Below                       |
-| BT_DOWN        | Int          | Button Enum   | Button Enum, See Below                       |
-| BT_TARE        | Int          | Button Enum   | Button Enum, See Below                       |
-| BT_AUX         | Int          | Button Enum   | Button Enum, See Below                       |
-| IN_VOLTS       | Float        | Volts         | Power Supply Voltage                         |
-| VM_VOLTS       | Float        | Volts         | Motor Driver Input Voltage                   |
-| LOOP_T         | Int          | Miliseconds   | Time elapsed for this control loop           |
+| Column         | Data Type    | Units             | Description                                  |
+| -------------- | ------------ | ----------------- | -------------------------------------------  |
+| RUN_DIRECTION  | Int          | Direction Enum    | Direction to run motor when in Run mode      |
+| POSITION       | Float        | Milimeters        | Position offset from zero point. Milimeters  |
+| LOAD           | Float        | Newtons           | Loadcell Force from Current Calibration      |
+| CUR_SPEED      | Float        | mm/s              | Current Speed                                |
+| SET_SPEED      | Float        | mm/s              | Commanded Speed                              |
+| STATE          | Int          | State Enum        | State Enum, See Below                        |
+| MOTOR_F_AMPS   | Float        | Amps              | Motor Forward Current                        |
+| MOTOR_R_AMPS   | Float        | Amps              | Motor Reverse Current                        |
+| BT_UP          | Int          | Button Enum       | Button Enum, See Below                       |
+| BT_DOWN        | Int          | Button Enum       | Button Enum, See Below                       |
+| BT_TARE        | Int          | Button Enum       | Button Enum, See Below                       |
+| BT_AUX         | Int          | Button Enum       | Button Enum, See Below                       |
+| IN_VOLTS       | Float        | Volts             | Power Supply Voltage                         |
+| VM_VOLTS       | Float        | Volts             | Motor Driver Input Voltage                   |
+| LOOP_T         | Int          | Miliseconds       | Time elapsed for this control loop           |
 
 
 ### State Enum Definitions
@@ -80,6 +81,13 @@ Data should be parsed from string into the apporiate types
 | 2             | Just Pressed      |
 | 3             | Just Released     |
 
+
+
+### Direction Enum Definitions
+| Enum Value    | State             |
+| ------------- | ----------------- |
+| 0             | Down              |
+| 1             | Up                |
 
 ## Serial Control Interface
 

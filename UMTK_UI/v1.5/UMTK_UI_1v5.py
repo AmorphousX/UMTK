@@ -186,9 +186,10 @@ class Ui_MainWindow(object):
         self.umtkSate.setFont(font)
         self.umtkSate.setObjectName("umtkSate")
         self.display.addWidget(self.umtkSate)
-        self.umtkStateLCD = QtWidgets.QLCDNumber(parent=self.verticalLayoutWidget_2)
-        self.umtkStateLCD.setObjectName("umtkStateLCD")
-        self.display.addWidget(self.umtkStateLCD)
+        self.umtkStateDisplay = QtWidgets.QLineEdit(parent=self.verticalLayoutWidget_2)
+        self.umtkStateDisplay.setObjectName("umtkStateDisplay")
+        self.umtkStateDisplay.setEnabled(False)
+        self.display.addWidget(self.umtkStateDisplay)
         self.maxForce = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
         font = QtGui.QFont()
         font.setBold(True)
@@ -214,7 +215,9 @@ class Ui_MainWindow(object):
         self.motorEffort.setObjectName("motorEffort")
         self.motorstall_eStop.addWidget(self.motorEffort)
         self.motorEffortProgressBar = QtWidgets.QProgressBar(parent=self.verticalLayoutWidget)
-        self.motorEffortProgressBar.setProperty("value", 24)
+        self.motorEffortProgressBar.setProperty("value", 5)
+        self.motorEffortProgressBar.setMinimum(-10000)
+        self.motorEffortProgressBar.setMaximum(10000)
         self.motorEffortProgressBar.setObjectName("motorEffortProgressBar")
         self.motorstall_eStop.addWidget(self.motorEffortProgressBar)
         self.motorSpeed = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
@@ -225,7 +228,9 @@ class Ui_MainWindow(object):
         self.motorSpeed.setObjectName("motorSpeed")
         self.motorstall_eStop.addWidget(self.motorSpeed)
         self.motorSpeedProgessBar = QtWidgets.QProgressBar(parent=self.verticalLayoutWidget)
-        self.motorSpeedProgessBar.setProperty("value", 24)
+        self.motorSpeedProgessBar.setProperty("value", 5)
+        self.motorSpeedProgessBar.setMinimum(-1000)
+        self.motorSpeedProgessBar.setMaximum(1000)
         self.motorSpeedProgessBar.setObjectName("motorSpeedProgessBar")
         self.motorstall_eStop.addWidget(self.motorSpeedProgessBar)
         
@@ -324,11 +329,18 @@ class Ui_MainWindow(object):
 
         self.setSpeed_but.clicked.connect(self.commit_speed)
 
+        self.calibration_but.pressed.connect(self.commit_calibrate)
+
         self.initialize_serial_port()
 
         
         QtCore.QTimer().singleShot(10, self.connect_serial_port)
         QtCore.QTimer().singleShot(100, self.read_serial)
+
+        self.screen_rescale_timer = QtCore.QTimer()
+        self.screen_rescale_timer.timeout.connect(self.scale_ui_to_screen)
+        self.screen_rescale_timer.start(1000)
+        
         # Auto Connect Serial Port
         # self.serialTimer.start(100)  # Read serial continuously
 
@@ -362,6 +374,15 @@ class Ui_MainWindow(object):
         self.start_but.setText(_translate("MainWindow", "START"))
         self.aux_but.setText(_translate("MainWindow", "AUX"))
 
+    def scale_ui_to_screen(self):
+        screen = QtWidgets.QApplication.primaryScreen()
+        screen_size = screen.size()
+        screen_width = screen_size.width()
+        screen_height = screen_size.height()
+
+        # Resize the window to a percentage of the screen size
+        MainWindow.resize(int(screen_width * 0.8), int(screen_height * 0.8))
+                          
 
     def initialize_serial_port(self):
         # List all available serial ports
@@ -427,60 +448,77 @@ class Ui_MainWindow(object):
 
 
     def process_serial_data(self, data):
-        try:
-            values = list(data.split('\t'))
-            if len(values) >= 14:
-                i_position, i_load, i_cur_speed, i_set_speed, i_state, \
-                i_f_amps, i_b_amps, i_bt_up, i_bt_down, i_bt_tare, i_bt_start,\
-                i_bt_aux, i_v_in, i_v_mot, i_t_loop = values
-                
-                position = float(i_position)
-                load = float(i_load)
-                cur_speed = float(i_cur_speed)
-                set_speed = float(i_set_speed)
-                state = int(i_state)
-                f_amps = float(i_f_amps)
-                b_amps = float(i_b_amps)
-                bt_up = True if i_bt_up == "1" else False
-                bt_down = True if i_bt_down == "1" else False
-                bt_tare = True if i_bt_tare == "1" else False
-                bt_start = True if i_bt_start == "1" else False
-                bt_aux = True if i_bt_aux == "1" else False
-                v_in = float(i_v_in)
-                v_mot = float(i_v_mot)
-                t_loop = int(i_t_loop)
-
-                self.displacementLCD.display(position)
-                self.forceLCD.display(load)
-                self.speedLCD.display(cur_speed)
-                self.umtkStateLCD.display(state)
-                self.maxForceLCD.display(load)
-
-                self.up_but.setStyleSheet("background-color: green") if bt_up else self.up_but.setStyleSheet("background-color: red")
-                self.down_but.setStyleSheet("background-color: green") if bt_down else self.down_but.setStyleSheet("background-color: red")
-                self.tare_but.setStyleSheet("background-color: green") if bt_tare else self.tare_but.setStyleSheet("background-color: red")
-                self.start_but.setStyleSheet("background-color: green") if bt_start else self.start_but.setStyleSheet("background-color: red")
-                self.aux_but.setStyleSheet("background-color: green") if bt_aux else self.aux_but.setStyleSheet("background-color: red")
-                
-                print(values)
+        if ("== TARE ==" in data):
+            # Tare
+            self.X = []
+            self.Y = []
+            print("T", end="")
+        elif ("DIRECTION" in data):
+            # Header
+            print("H", end="")
+        else:
+            try:
+            # Data
+                values = list(data.split('\t'))
+                if len(values) >= 14:
+                    i_direction, i_position, i_load, i_cur_speed, i_set_speed, i_state, \
+                    i_f_amps, i_b_amps, i_bt_up, i_bt_down, i_bt_tare, i_bt_start,\
+                    i_bt_aux, i_v_in, i_v_mot, i_t_loop = values
                     
-                # self.motorstall_eStop.setValue(int(f_amps - b_amps))
-                # self.estopProgressBar.setValue(int(v_mot))
+                    diection = int(i_direction)
+                    position = float(i_position)
+                    load = float(i_load)
+                    cur_speed = float(i_cur_speed)
+                    set_speed = float(i_set_speed)
+                    state = int(i_state)
+                    f_amps = float(i_f_amps)
+                    b_amps = float(i_b_amps)
+                    bt_up = True if i_bt_up == "1" else False
+                    bt_down = True if i_bt_down == "1" else False
+                    bt_tare = True if i_bt_tare == "1" else False
+                    bt_start = True if i_bt_start == "1" else False
+                    bt_aux = True if i_bt_aux == "1" else False
+                    v_in = float(i_v_in)
+                    v_mot = float(i_v_mot)
+                    t_loop = int(i_t_loop)
 
-                self.X.append(position)
-                self.Y.append(load)
-                if len(self.X) > 1500:
-                    self.X = self.X[:1000]
-                    self.Y = self.Y[:1000]      
-                self.sp.set_data(self.X, self.Y)
-                self.ax.set_xlim(min(min(self.X), -10),max(max(self.X), 10))
-                self.ax.set_ylim(min(min(self.Y), -10), max(max(self.Y), 10))          
-                self.figure.canvas.draw()
-                
+                    self.displacementLCD.display(position)
+                    self.forceLCD.display(load)
+                    self.speedLCD.display(cur_speed)
+                    self.umtkStateDisplay.setText(self.umtk_state_to_str(state))
+                    self.maxForceLCD.display(load)
 
-        except ValueError as e:
-            print(f"Error processing serial data: {e}")
-            print(data)
+                    self.up_but.setStyleSheet("background-color: green") if bt_up else self.up_but.setStyleSheet("background-color: red")
+                    self.down_but.setStyleSheet("background-color: green") if bt_down else self.down_but.setStyleSheet("background-color: red")
+                    self.tare_but.setStyleSheet("background-color: green") if bt_tare else self.tare_but.setStyleSheet("background-color: red")
+                    self.start_but.setStyleSheet("background-color: green") if bt_start else self.start_but.setStyleSheet("background-color: red")
+                    self.aux_but.setStyleSheet("background-color: green") if bt_aux else self.aux_but.setStyleSheet("background-color: red")
+                    
+                    # print(values)
+                        
+                    # self.motorstall_eStop.setValue(int(f_amps - b_amps))
+                    # self.estopProgressBar.setValue(int(v_mot))
+
+                    self.X.append(position)
+                    self.Y.append(load)
+                    if len(self.X) > 1500:
+                        self.X = self.X[:1000]
+                        self.Y = self.Y[:1000]      
+                    self.sp.set_data(self.X, self.Y)
+                    self.ax.set_xlim(min(min(self.X), -10),max(max(self.X), 10))
+                    self.ax.set_ylim(min(min(self.Y), -10), max(max(self.Y), 10))
+                    self.figure.canvas.draw()
+
+                    # Motor Effort, AMPs
+                    motorAmp = f_amps - b_amps
+                    self.motorEffortProgressBar.setValue(int(motorAmp*1000))
+                    
+                    # Speed
+                    self.motorSpeedProgessBar.setValue(int(cur_speed*100))
+
+            except ValueError as e:
+                print(f"Error processing serial data: {e}")
+                print(data)
 
     def increase_speed(self):
         # Increase speed functionality
@@ -495,8 +533,17 @@ class Ui_MainWindow(object):
         self.serialPort.write(b'Tare\n')
 
     def commit_speed(self):
-        self.serialPort.write(f'V {self.desired_speed}\n'.encode())
-        self.speedOutput.setText(str(self.desired_speed))
+        try:
+            self.serialPort.write(f'V {str(float(self.setSpeed_inLine.text()))}\n'.encode())
+        except:
+            print("Error parsing set speed")
+        # self.speedOutput.setText(str(self.desired_speed))
+
+    def commit_calibrate(self):
+        try:
+            self.serialPort.write(f'C {str(float(self.calibration_inLine.text()))}\n'.encode())
+        except:
+            print("Error parsing calibration load")
 
     def update_speed(self, value):
         # Update speed functionality
@@ -510,8 +557,29 @@ class Ui_MainWindow(object):
         # Stop motor functionality
         self.serialPort.write(b's')
         
+    def set_direction_down(self):
+        self.serialPort.write(b'q')
+
+    def set_direction_up(self):
+        self.serialPort.write(b'p')
+        
     def estop_clicked(self):
         self.serialPort.write(b's')
+
+    def umtk_state_to_str(self, state):
+        match state:
+            case 0:
+                return "RUNNING"
+            case 1:
+                return "IDLE"
+            case 3:
+                return "JOG UP"
+            case 4:
+                return "JOG DOWN"
+            case _:
+                return "UNKNOWN"
+
+
 
     # def generate_random_data_for_demo(self):
     #     # Generate and display random data for demo purposes
@@ -525,7 +593,7 @@ class Ui_MainWindow(object):
     #     self.displacementLCD.display(displacement)
     #     self.forceLCD.display(force)
     #     self.speedLCD.display(speed)
-    #     self.umtkStateLCD.display(umtk_state)
+    #     self.umtkStateDisplay.display(umtk_state)
     #     self.maxForceLCD.display(max_force)
     #     self.motorstall_eStop.setValue(motor_stall)
 

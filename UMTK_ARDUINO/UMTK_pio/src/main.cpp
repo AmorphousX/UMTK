@@ -260,6 +260,17 @@ void Determine_Next_State()
 
     case STANDBY:
     {
+      if(auxButton == press){
+        if (run_direction == UP)
+        {
+          run_direction = DOWN;
+        }
+        else
+        {
+          run_direction = UP;
+        }
+      }
+
       if(upButton == press || upButton == down){
         UMTKNextState = JOG_UP;
         break;
@@ -359,7 +370,8 @@ void Send_to_UI()
   // Logging format
   // NEW_DATA SPEED POSITION LOADCELL FEEDBACK_COUNT STATE ESTOP STALL DIRECTION INPUT_VOLTAGE
   if (UMTKState != STANDBY || printWhileStopped) {  
-
+    Serial.print(run_direction); //Run Direction
+    Serial.print("\t");
     Serial.print(dis_now); // Position
     Serial.print("\t");
     Serial.print(Load); // Load
@@ -402,7 +414,7 @@ void PID_Control(){
     pid_d_last = dis_now;
     pid_t_last = t_now;
 
-    pid_speed = (pid_dx*1000) / (double)pid_dt;
+    pid_speed = abs((pid_dx*1000) / (double)pid_dt);
 
     error = (set_speed - pid_speed);
     pid_p = Kp*error;
@@ -423,8 +435,16 @@ void PID_Control(){
       control_signal = min_control;
     }
 
-    analogWrite(M_IN1, 0);
-    analogWrite(M_IN2, control_signal);
+    if (run_direction == UP)
+    {
+      analogWrite(M_IN1, 0);
+      analogWrite(M_IN2, control_signal);
+    }
+    else
+    {
+      analogWrite(M_IN1, control_signal);
+      analogWrite(M_IN2, 0);
+    }
     
     // Serial.print(set_speed);
     // Serial.print(", ");
@@ -518,6 +538,22 @@ void Read_Serial()
         }
       }
     }
+
+    // q for reverse of p, set direction to down
+    if (incomingByte == 'q' || incomingByte == 'Q')
+    {
+      UMTKNextState = STANDBY;
+      run_direction = DOWN;
+    }
+
+    // p for pull, set direction to up
+    if (incomingByte == 'p' || incomingByte == 'P')
+    {
+      UMTKNextState = STANDBY;
+      run_direction = UP;
+    }
+
+
     
     // Other start symbols ignored
   }
