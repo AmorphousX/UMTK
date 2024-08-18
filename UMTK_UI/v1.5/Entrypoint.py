@@ -2,24 +2,21 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
+from lib.UMTKSerial import UMTKSerial as UMTKSerial_t
 import matplotlib.pyplot as plt 
 import numpy as np
-import serial
-import serial.tools.list_ports
 import random
-import serial.tools.list_ports
 import copy
 import logging
 
 class Ui_MainWindow(object):
     desired_speed = 3.0
-    serial_port_holder = dict(status = None, name = None, handle = None)
-    serialPort = None
     X = []
     Y = []
     test_direction = 1
     theme_btn_red = "background-color: red"
     theme_btn_green = "background-color: green"
+    UMTKSerial = UMTKSerial_t()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -354,8 +351,11 @@ class Ui_MainWindow(object):
 
         self.initialize_serial_port()
 
+        # Set Serial Rate to 25Hz
+        self.UMTKSerial.write(f'r20\n'.encode())
+
         QtCore.QTimer().singleShot(10, self.connect_serial_port)
-        QtCore.QTimer().singleShot(100, self.read_serial)
+        QtCore.QTimer().singleShot(10, self.read_serial)
 
         self.rescan_serial_timer = QtCore.QTimer()
         self.rescan_serial_timer.timeout.connect(self.initialize_serial_port)
@@ -407,172 +407,92 @@ class Ui_MainWindow(object):
                           
 
     def initialize_serial_port(self):
-        # List all available serial ports
-        ports = serial.tools.list_ports.comports()
-        if ports:
-            self.portsDropdown.clear()
-            for this_port in ports:
-                self.portsDropdown.addItem(this_port.device)
-        else:
-            self.portsDropdown.clear()
-            self.portsDropdown.addItem("NO PORTS AVAILABLE")
+        self.portsDropdown.clear()
+        self.portsDropdown.addItems(self.UMTKSerial.init_serial())
+        self.serialStatus.setText(self.UMTKSerial.status_text)
     
     def connect_serial_port(self):
         picked_port = self.portsDropdown.currentText()
-        if picked_port == "NO PORTS AVAILABLE" or picked_port is None:
-            return
-        print(f"Connecting serial port: {picked_port}")
-        self.serialStatus.setText(f"{picked_port} Connecting......")
-
-        try:
-            this_port = serial.Serial(picked_port, 250000, timeout=1)
-            self.serial_port_holder = dict (
-                handle = this_port,
-                status = True,
-                name = picked_port
-                )
-            self.serialPort = this_port
-            return
-        except serial.SerialException as e:
-            print(f"Error opening serial port: {e}")
-            return None
+        self.UMTKSerial.connect(picked_port)
+        self.serialStatus.setText(self.UMTKSerial.status_text)
         
     def disconnect_serial_port(self):
-        if self.serial_port_holder["status"]:
-            print(f"Disconnecting serial port: {self.serial_port_holder['name']}")
-            self.serial_port_holder["handle"].close()
-            self.serial_port_holder["status"] = False
-            logging.info("Port {} disconnected".format(self.serial_port_holder["name"]))
-        else:
-            logging.debug("Port not connected")
-
-        return
-
+        self.UMTKSerial.disconnect()
+        self.serialStatus.setText(self.UMTKSerial.status_text)
+        
     def read_serial(self):
-        if self.serialPort and self.serialPort.is_open:
-            try:
-                line = self.serialPort.readline()
-                # print(line)
-                print(".",end="", flush=True)
-                data = line.decode().strip()
-                if data:
-                    # print(f"Received: {data}")
-                    self.process_serial_data(data)
-                self.serialStatus.setText("Connected: {}".format(self.serial_port_holder["name"]))
-            except serial.SerialException as e:
-                print(f"Error reading serial port: {e}")
-                self.serialStatus.setText("ERROR: {}".format(self.serial_port_holder["name"]))
-            finally:
-                # Schedule Next Serial Read
-                QtCore.QTimer().singleShot(10, self.read_serial)
+        data = self.UMTKSerial.readData()
+        self.serialStatus.setText(self.UMTKSerial.status_text)
+        self.process_serial_data(data)
+        # Schedule Next Serial Read
+        if (data):
+            QtCore.QTimer().singleShot(25, self.read_serial)
         else:
-            self.serialStatus.setText("Disonnected")
+            QtCore.QTimer().singleShot(500, self.read_serial)
+
 
 
     def process_serial_data(self, data):
-        if ("== TARE ==" in data):
-            # Tare
-            self.X = []
-            self.Y = []
-            print("T", end="")
-        elif ("DIRECTION" in data):
-            # Header
-            print("H", end="")
-        else:
-            try:
-            # Data
-                values = list(data.split('\t'))
-                if len(values) >= 14:
-                    i_direction, i_position, i_load, i_cur_speed, i_set_speed, i_state, \
-                    i_f_amps, i_b_amps, i_bt_up, i_bt_down, i_bt_tare, i_bt_start,\
-                    i_bt_aux, i_v_in, i_v_mot, i_t_loop = values
-                    
-                    direction = int(i_direction)
-                    if direction == 0:
-                        position = -1*float(i_position)
-                        load = -1*float(i_load)  
-                        self.test_direction = -1
-                    else:
-                        position = float(i_position)
-                        load = float(i_load)
-                        self.test_direction = 1
-                    cur_speed = float(i_cur_speed)
-                    set_speed = float(i_set_speed)
-                    state = int(i_state)
-                    f_amps = float(i_f_amps)
-                    b_amps = float(i_b_amps)
-                    bt_up = True if i_bt_up == "1" else False
-                    bt_down = True if i_bt_down == "1" else False
-                    bt_tare = True if i_bt_tare == "1" else False
-                    bt_start = True if i_bt_start == "1" else False
-                    bt_aux = True if i_bt_aux == "1" else False
-                    v_in = float(i_v_in)
-                    v_mot = float(i_v_mot)
-                    t_loop = int(i_t_loop)
+        if (data):
+            direction, position, load, cur_speed, set_speed, state, f_amps, b_amps, \
+            bt_up, bt_down, bt_tare, bt_start, bt_aux, \
+            v_in, v_mot, t_loop = data
+            
+            self.displacementLCD.display(position)
+            self.forceLCD.display(load)
+            self.speedLCD.display(cur_speed)
+            self.umtkStateDisplay.setText(self.umtk_state_to_str(state))
+            self.maxForceLCD.display(load)
+            self.direction_indicator.setText("COMPRESSION" if direction == 1 else "TENSILE")
 
-                    self.displacementLCD.display(position)
-                    self.forceLCD.display(load)
-                    self.speedLCD.display(cur_speed)
-                    self.umtkStateDisplay.setText(self.umtk_state_to_str(state))
-                    self.maxForceLCD.display(load)
-                    self.direction_indicator.setText("COMPRESSION" if direction == 1 else "TENSILE")
+            self.up_but.setStyleSheet(self.theme_btn_green) if bt_up else self.up_but.setStyleSheet(self.theme_btn_red)
+            self.down_but.setStyleSheet(self.theme_btn_green) if bt_down else self.down_but.setStyleSheet(self.theme_btn_red)
+            self.tare_but.setStyleSheet(self.theme_btn_green) if bt_tare else self.tare_but.setStyleSheet(self.theme_btn_red)
+            self.start_but.setStyleSheet(self.theme_btn_green) if bt_start else self.start_but.setStyleSheet(self.theme_btn_red)
+            self.aux_but.setStyleSheet(self.theme_btn_green) if bt_aux else self.aux_but.setStyleSheet(self.theme_btn_red)
 
-                    self.up_but.setStyleSheet(self.theme_btn_green) if bt_up else self.up_but.setStyleSheet(self.theme_btn_red)
-                    self.down_but.setStyleSheet(self.theme_btn_green) if bt_down else self.down_but.setStyleSheet(self.theme_btn_red)
-                    self.tare_but.setStyleSheet(self.theme_btn_green) if bt_tare else self.tare_but.setStyleSheet(self.theme_btn_red)
-                    self.start_but.setStyleSheet(self.theme_btn_green) if bt_start else self.start_but.setStyleSheet(self.theme_btn_red)
-                    self.aux_but.setStyleSheet(self.theme_btn_green) if bt_aux else self.aux_but.setStyleSheet(self.theme_btn_red)
-                    
-                    # print(values)
-                        
-                    # self.motorstall_eStop.setValue(int(f_amps - b_amps))
-                    # self.estopProgressBar.setValue(int(v_mot))
+            self.X.append(position)
+            self.Y.append(load)
 
-                    self.X.append(position)
-                    self.Y.append(load)
+            if len(self.X) > 1500:
+                self.X = self.X[:1000]
+                self.Y = self.Y[:1000]
+            
+            self.sp.set_data(self.X, self.Y)
+            self.ax.set_xlim(min(min(self.X), -10),max(max(self.X), 10))
+            self.ax.set_ylim(min(min(self.Y), -10), max(max(self.Y), 10))
+            self.figure.canvas.draw()
 
-                    if len(self.X) > 1500:
-                        self.X = self.X[:1000]
-                        self.Y = self.Y[:1000]
-                    
-                    self.sp.set_data(self.X, self.Y)
-                    self.ax.set_xlim(min(min(self.X), -10),max(max(self.X), 10))
-                    self.ax.set_ylim(min(min(self.Y), -10), max(max(self.Y), 10))
-                    self.figure.canvas.draw()
+            # Motor Effort, AMPs
+            motorAmp = f_amps - b_amps
+            self.motorEffortProgressBar.setValue(int(motorAmp*1000))
+            
+            # Speed
+            self.motorSpeedProgessBar.setValue(int(cur_speed*100))
 
-                    # Motor Effort, AMPs
-                    motorAmp = f_amps - b_amps
-                    self.motorEffortProgressBar.setValue(int(motorAmp*1000))
-                    
-                    # Speed
-                    self.motorSpeedProgessBar.setValue(int(cur_speed*100))
-
-            except ValueError as e:
-                print(f"Error processing serial data: {e}")
-                print(data)
 
     def increase_speed(self):
         # Increase speed functionality
-        self.serialPort.write(b'U')
+        self.UMTKSerial.write(b'U')
 
     def decrease_speed(self):
         # Decrease speed functionality
-        self.serialPort.write(b'D')
+        self.UMTKSerial.write(b'D')
 
     def tare(self):
         # Tare functionality
-        self.serialPort.write(b'Tare\n')
+        self.UMTKSerial.write(b'Tare\n')
 
     def commit_speed(self):
         try:
-            self.serialPort.write(f'V {str(float(self.setSpeed_inLine.text()))}\n'.encode())
+            self.UMTKSerial.write(f'V {str(float(self.setSpeed_inLine.text()))}\n'.encode())
         except:
             print("Error parsing set speed")
         # self.speedOutput.setText(str(self.desired_speed))
 
     def commit_calibrate(self):
         try:
-            self.serialPort.write(f'C {str(self.test_direction*float(self.calibration_inLine.text()))}\n'.encode())
+            self.UMTKSerial.write(f'C {str(self.test_direction*float(self.calibration_inLine.text()))}\n'.encode())
         except:
             print("Error parsing calibration load")
 
@@ -582,27 +502,28 @@ class Ui_MainWindow(object):
 
     def start_motor(self):
         # Start motor functionality
-        self.serialPort.write(b'Begin\n')
+        self.UMTKSerial.write(b'Begin\n')
 
     def stop_motor(self):
         # Stop motor functionality
-        self.serialPort.write(b's')
+        self.UMTKSerial.write(b's')
         
     def toggle_direction(self):
         if self.direction_indicator.text() == "COMPRESSION":
             self.set_direction_up()
         else:
             self.set_direction_down()
-        self.tare()
+            
+        QtCore.QTimer().singleShot(100, self.tare)
 
     def set_direction_down(self):
-        self.serialPort.write(b'q')
+        self.UMTKSerial.write(b'q')
 
     def set_direction_up(self):
-        self.serialPort.write(b'p')
+        self.UMTKSerial.write(b'p')
         
     def estop_clicked(self):
-        self.serialPort.write(b's')
+        self.UMTKSerial.write(b's')
 
     def umtk_state_to_str(self, state):
         match state:
@@ -614,6 +535,8 @@ class Ui_MainWindow(object):
                 return "JOG UP"
             case 4:
                 return "JOG DOWN"
+            case 8:
+                return "TARE"
             case _:
                 return "UNKNOWN"
 

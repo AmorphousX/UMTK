@@ -71,6 +71,10 @@ float vm_volts = 0.0;
 float mot1_amps = 0.0;
 float mot2_amps = 0.0;
 
+unsigned long serial_last_send_t = 0;
+unsigned long serial_last_send2_t = 0;
+long serial_send_period = 100;
+
 // PID Constants
 long T_sample = 120;
 float Kp = 20;
@@ -94,7 +98,7 @@ float pid_d_last = 0;
 
 // LED Blink
 unsigned long led_last_transition_t = 0;
-long led_period_t = 1000;
+long led_period = 1000;
 
 
 // String[] MMTKstateEnum = {"Running", "Stopped", "Hold", "Jog Forward", "Jog Back", "Fast Jog Forward", "Fast Jog Back", " - "};
@@ -107,6 +111,7 @@ enum UMTKStates_t {
   UNUSED2,
   UNUSED3,
   noChange,
+  TARE,
 };
 
 UMTKStates_t UMTKState = STANDBY;

@@ -96,7 +96,7 @@ void setup() {
   // Enable LED Indicator
   #ifdef LED_BLINKABLE
     pinMode(LED_BUILTIN, OUTPUT);
-    led_period_t = 1500;
+    led_period = 1500;
     led_last_transition_t = millis();
   #endif
 }
@@ -158,26 +158,29 @@ void loop() {
     newLsData = false;
   }
 
-  if (loopcount % 150 == 0)
+  // Force a serial test for TARE state so UI gets updated
+  if (millis() >= (unsigned long)(serial_last_send_t + serial_send_period)
+      || UMTKState == TARE)
   {
+    serial_last_send_t = millis();
     Send_to_UI();
+    serial_last_send2_t = millis();
   }
-  loopcount ++;
 
 // Blink LED to indicate status
 #ifdef LED_BLINKABLE
-  if (led_period_t < 0)
+  if (led_period < 0)
   {
     //  If negative value, LED always on
     digitalWrite(LED_BUILTIN, HIGH); 
   }
-  else if (led_period_t == 0)
+  else if (led_period == 0)
   {
     //  If 0 LED always off
     digitalWrite(LED_BUILTIN, LOW); 
 
   }
-  else if (millis() >= (unsigned long)(led_last_transition_t + led_period_t))
+  else if (millis() >= (unsigned long)(led_last_transition_t + led_period))
   {
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     led_last_transition_t = millis();
@@ -185,13 +188,14 @@ void loop() {
 #endif
 
   Update_Display();
+  loopcount ++;
 }
 
 void tareAll()
 {
+  Serial.println(" ========= TARE ==========");
   LoadCell.tare();
   Slide.tare();
-  Serial.println(" ========= TARE ==========");
   Serial.print(HEADER_TEXT);
 }
 
@@ -291,8 +295,7 @@ void Determine_Next_State()
       }
 
       if(zeroButton == press){
-        tareAll();
-        UMTKNextState = noChange;
+        UMTKNextState = TARE;
         break;
       }
       
@@ -318,6 +321,13 @@ void Determine_Next_State()
       }
       break;
     }
+
+    case TARE:
+    {
+      tareAll();
+      UMTKNextState = STANDBY;
+      break;
+    }
     
     case noChange:
       break;
@@ -336,21 +346,21 @@ void Transistion_State()
       analogWrite(M_IN1, 0);
       analogWrite(M_IN2, 500);
       UMTKState = JOG_UP;
-      led_period_t = -1;
+      led_period = -1;
       break;
 
     case JOG_DOWN:
       analogWrite(M_IN1, 1023);
       analogWrite(M_IN2, 0);
       UMTKState = JOG_DOWN;
-      led_period_t = -1;
+      led_period = -1;
       break;
 
     case STANDBY:
       analogWrite(M_IN1, 1023);
       analogWrite(M_IN2, 1023);
       UMTKState = STANDBY;
-      led_period_t = 0;
+      led_period = 0;
       break;
     
     case RUNNING:
@@ -359,7 +369,12 @@ void Transistion_State()
       pid_d_last = dis_now;
       pid_t_last = t_now;
       UMTKState = RUNNING;
-      led_period_t = 100;
+      led_period = 100;
+      break;
+    
+    case TARE:
+      UMTKState = TARE;
+      led_period = -1;
       break;
     
     default:
@@ -409,7 +424,7 @@ void Send_to_UI()
     Serial.print("\t");
     Serial.print(vm_volts);   // Motor Voltage
     Serial.print("\t");
-    Serial.print(t_loop_this - t_loop_last);         // Loop Time
+    Serial.print(millis() - serial_last_send2_t);         // Loop Time
     Serial.print("\n");
   }
 }
@@ -543,7 +558,7 @@ void Read_Serial()
     if (incomingByte == 't' || incomingByte == 'T') {
       if (Serial.readStringUntil('\n') == "are") {
         if (UMTKState != RUNNING) {
-          tareAll();
+          UMTKNextState = TARE;
         }
       }
     }
@@ -562,8 +577,15 @@ void Read_Serial()
       run_direction = UP;
     }
 
-
-    
+    // r for setting serial data rate
+    if (incomingByte == 'r' || incomingByte == 'R')
+    {
+      long newRate = Serial.parseInt();
+      if (newRate > 0 && newRate <= 200)
+      {
+        serial_send_period = 1000/newRate;
+      }
+    }
     // Other start symbols ignored
   }
 }
