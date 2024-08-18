@@ -18,6 +18,8 @@ class Ui_MainWindow(object):
     X = []
     Y = []
     test_direction = 1
+    theme_btn_red = "background-color: red"
+    theme_btn_green = "background-color: green"
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -117,6 +119,21 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addItem(spacerItem2)
         self.verticalLayout_6 = QtWidgets.QVBoxLayout()
         self.verticalLayout_6.setObjectName("verticalLayout_6")
+
+        self.horizontalLayout_6_1 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_6_1.setObjectName("horizontalLayout_6")
+        self.direction_indicator = QtWidgets.QLineEdit(parent=self.horizontalLayoutWidget)
+        self.direction_indicator.setObjectName("direction_indicator")
+        self.horizontalLayout_6_1.addWidget(self.direction_indicator)
+        self.direction_indicator.setSizePolicy(sizePolicy)
+        self.direction_indicator.setMaximumSize(QtCore.QSize(320, 16777215))
+        self.direction_indicator.setEnabled(False)
+        self.direction_change_but = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
+        self.direction_change_but.setObjectName("direction_change_but")
+        self.horizontalLayout_6_1.addWidget(self.direction_change_but)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_6_1)
+
+
         self.start2_but = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
         self.start2_but.setObjectName("start2_but")
         self.verticalLayout_6.addWidget(self.start2_but)
@@ -237,6 +254,7 @@ class Ui_MainWindow(object):
         
         self.eStop_but = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
         self.eStop_but.setObjectName("eStop_but")
+        self.eStop_but.setEnabled(False)
         self.motorstall_eStop.addWidget(self.eStop_but)
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(parent=self.centralwidget)
         self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(1070, 700, 361, 81))
@@ -332,15 +350,16 @@ class Ui_MainWindow(object):
 
         self.calibration_but.pressed.connect(self.commit_calibrate)
 
+        self.direction_change_but.clicked.connect(self.toggle_direction)
+
         self.initialize_serial_port()
 
-        
         QtCore.QTimer().singleShot(10, self.connect_serial_port)
         QtCore.QTimer().singleShot(100, self.read_serial)
 
-        # self.screen_rescale_timer = QtCore.QTimer()
-        # self.screen_rescale_timer.timeout.connect(self.scale_ui_to_screen)
-        # self.screen_rescale_timer.start(1000)
+        self.rescan_serial_timer = QtCore.QTimer()
+        self.rescan_serial_timer.timeout.connect(self.initialize_serial_port)
+        self.rescan_serial_timer.start(1000)
         
         # Auto Connect Serial Port
         # self.serialTimer.start(100)  # Read serial continuously
@@ -375,6 +394,8 @@ class Ui_MainWindow(object):
         self.start_but.setText(_translate("MainWindow", "START"))
         self.aux_but.setText(_translate("MainWindow", "AUX"))
 
+        self.direction_change_but.setText(_translate("MainWindow", "Change Direction"))
+
     # def scale_ui_to_screen(self):
     #     screen = QtWidgets.QApplication.primaryScreen()
     #     screen_size = screen.size()
@@ -388,12 +409,12 @@ class Ui_MainWindow(object):
     def initialize_serial_port(self):
         # List all available serial ports
         ports = serial.tools.list_ports.comports()
-        self.portsDropdown.clear()
-        
         if ports:
+            self.portsDropdown.clear()
             for this_port in ports:
                 self.portsDropdown.addItem(this_port.device)
         else:
+            self.portsDropdown.clear()
             self.portsDropdown.addItem("NO PORTS AVAILABLE")
     
     def connect_serial_port(self):
@@ -494,12 +515,13 @@ class Ui_MainWindow(object):
                     self.speedLCD.display(cur_speed)
                     self.umtkStateDisplay.setText(self.umtk_state_to_str(state))
                     self.maxForceLCD.display(load)
+                    self.direction_indicator.setText("COMPRESSION" if direction == 1 else "TENSILE")
 
-                    self.up_but.setStyleSheet("background-color: green") if bt_up else self.up_but.setStyleSheet("background-color: red")
-                    self.down_but.setStyleSheet("background-color: green") if bt_down else self.down_but.setStyleSheet("background-color: red")
-                    self.tare_but.setStyleSheet("background-color: green") if bt_tare else self.tare_but.setStyleSheet("background-color: red")
-                    self.start_but.setStyleSheet("background-color: green") if bt_start else self.start_but.setStyleSheet("background-color: red")
-                    self.aux_but.setStyleSheet("background-color: green") if bt_aux else self.aux_but.setStyleSheet("background-color: red")
+                    self.up_but.setStyleSheet(self.theme_btn_green) if bt_up else self.up_but.setStyleSheet(self.theme_btn_red)
+                    self.down_but.setStyleSheet(self.theme_btn_green) if bt_down else self.down_but.setStyleSheet(self.theme_btn_red)
+                    self.tare_but.setStyleSheet(self.theme_btn_green) if bt_tare else self.tare_but.setStyleSheet(self.theme_btn_red)
+                    self.start_but.setStyleSheet(self.theme_btn_green) if bt_start else self.start_but.setStyleSheet(self.theme_btn_red)
+                    self.aux_but.setStyleSheet(self.theme_btn_green) if bt_aux else self.aux_but.setStyleSheet(self.theme_btn_red)
                     
                     # print(values)
                         
@@ -566,6 +588,13 @@ class Ui_MainWindow(object):
         # Stop motor functionality
         self.serialPort.write(b's')
         
+    def toggle_direction(self):
+        if self.direction_indicator.text() == "COMPRESSION":
+            self.set_direction_up()
+        else:
+            self.set_direction_down()
+        self.tare()
+
     def set_direction_down(self):
         self.serialPort.write(b'q')
 
