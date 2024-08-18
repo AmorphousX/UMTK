@@ -17,6 +17,7 @@ class Ui_MainWindow(object):
     serialPort = None
     X = []
     Y = []
+    test_direction = 1
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -216,8 +217,8 @@ class Ui_MainWindow(object):
         self.motorstall_eStop.addWidget(self.motorEffort)
         self.motorEffortProgressBar = QtWidgets.QProgressBar(parent=self.verticalLayoutWidget)
         self.motorEffortProgressBar.setProperty("value", 5)
-        self.motorEffortProgressBar.setMinimum(-10000)
-        self.motorEffortProgressBar.setMaximum(10000)
+        self.motorEffortProgressBar.setMinimum(-5000)
+        self.motorEffortProgressBar.setMaximum(5000)
         self.motorEffortProgressBar.setObjectName("motorEffortProgressBar")
         self.motorstall_eStop.addWidget(self.motorEffortProgressBar)
         self.motorSpeed = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
@@ -229,8 +230,8 @@ class Ui_MainWindow(object):
         self.motorstall_eStop.addWidget(self.motorSpeed)
         self.motorSpeedProgessBar = QtWidgets.QProgressBar(parent=self.verticalLayoutWidget)
         self.motorSpeedProgessBar.setProperty("value", 5)
-        self.motorSpeedProgessBar.setMinimum(-1000)
-        self.motorSpeedProgessBar.setMaximum(1000)
+        self.motorSpeedProgessBar.setMinimum(-600)
+        self.motorSpeedProgessBar.setMaximum(600)
         self.motorSpeedProgessBar.setObjectName("motorSpeedProgessBar")
         self.motorstall_eStop.addWidget(self.motorSpeedProgessBar)
         
@@ -337,9 +338,9 @@ class Ui_MainWindow(object):
         QtCore.QTimer().singleShot(10, self.connect_serial_port)
         QtCore.QTimer().singleShot(100, self.read_serial)
 
-        self.screen_rescale_timer = QtCore.QTimer()
-        self.screen_rescale_timer.timeout.connect(self.scale_ui_to_screen)
-        self.screen_rescale_timer.start(1000)
+        # self.screen_rescale_timer = QtCore.QTimer()
+        # self.screen_rescale_timer.timeout.connect(self.scale_ui_to_screen)
+        # self.screen_rescale_timer.start(1000)
         
         # Auto Connect Serial Port
         # self.serialTimer.start(100)  # Read serial continuously
@@ -374,14 +375,14 @@ class Ui_MainWindow(object):
         self.start_but.setText(_translate("MainWindow", "START"))
         self.aux_but.setText(_translate("MainWindow", "AUX"))
 
-    def scale_ui_to_screen(self):
-        screen = QtWidgets.QApplication.primaryScreen()
-        screen_size = screen.size()
-        screen_width = screen_size.width()
-        screen_height = screen_size.height()
+    # def scale_ui_to_screen(self):
+    #     screen = QtWidgets.QApplication.primaryScreen()
+    #     screen_size = screen.size()
+    #     screen_width = screen_size.width()
+    #     screen_height = screen_size.height()
 
-        # Resize the window to a percentage of the screen size
-        MainWindow.resize(int(screen_width * 0.8), int(screen_height * 0.8))
+    #     # Resize the window to a percentage of the screen size
+    #     MainWindow.resize(int(screen_width * 0.8), int(screen_height * 0.8))
                           
 
     def initialize_serial_port(self):
@@ -465,9 +466,15 @@ class Ui_MainWindow(object):
                     i_f_amps, i_b_amps, i_bt_up, i_bt_down, i_bt_tare, i_bt_start,\
                     i_bt_aux, i_v_in, i_v_mot, i_t_loop = values
                     
-                    diection = int(i_direction)
-                    position = float(i_position)
-                    load = float(i_load)
+                    direction = int(i_direction)
+                    if direction == 0:
+                        position = -1*float(i_position)
+                        load = -1*float(i_load)  
+                        self.test_direction = -1
+                    else:
+                        position = float(i_position)
+                        load = float(i_load)
+                        self.test_direction = 1
                     cur_speed = float(i_cur_speed)
                     set_speed = float(i_set_speed)
                     state = int(i_state)
@@ -501,9 +508,11 @@ class Ui_MainWindow(object):
 
                     self.X.append(position)
                     self.Y.append(load)
+
                     if len(self.X) > 1500:
                         self.X = self.X[:1000]
-                        self.Y = self.Y[:1000]      
+                        self.Y = self.Y[:1000]
+                    
                     self.sp.set_data(self.X, self.Y)
                     self.ax.set_xlim(min(min(self.X), -10),max(max(self.X), 10))
                     self.ax.set_ylim(min(min(self.Y), -10), max(max(self.Y), 10))
@@ -541,7 +550,7 @@ class Ui_MainWindow(object):
 
     def commit_calibrate(self):
         try:
-            self.serialPort.write(f'C {str(float(self.calibration_inLine.text()))}\n'.encode())
+            self.serialPort.write(f'C {str(self.test_direction*float(self.calibration_inLine.text()))}\n'.encode())
         except:
             print("Error parsing calibration load")
 

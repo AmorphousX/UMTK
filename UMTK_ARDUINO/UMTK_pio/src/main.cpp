@@ -37,18 +37,18 @@ void setup() {
   // #############
   // Check EEPROM if there is a stored value. Do this by verifying eeprom magic value
   unsigned long eepromMagicRead = 0UL;
-  if (EEPROM.get(EEPROM_MAGIC_VALUE_ADDRESS, eepromMagicRead) == EEPROM_MAGIC_VALUE)
-  {
-    // eeprom magic match
-    EEPROM.get(EEPROM_LC_DIVIDER_ADDRESS, LC_divider);
-    EEPROM.get(EEPROM_LC_OFFSET_ADDRESS, LC_offset);
-  } 
-  else 
-  {
+  // if (EEPROM.get(EEPROM_MAGIC_VALUE_ADDRESS, eepromMagicRead) == EEPROM_MAGIC_VALUE)
+  // {
+  //   // eeprom magic match
+  //   EEPROM.get(EEPROM_LC_DIVIDER_ADDRESS, LC_divider);
+  //   EEPROM.get(EEPROM_LC_OFFSET_ADDRESS, LC_offset);
+  // } 
+  // else 
+  // {
     // long zero_factor_load = LoadCell.read_average(); //Get a baseline reading
     LC_offset = 0;
     LC_divider = calibration_factor_load;
-  }
+  // }
 
   LoadCell.begin(LOADCELL_DATA, LOADCELL_CLOCK);
   LoadCell.set_scale(LC_divider);
@@ -149,7 +149,7 @@ void loop() {
     newLsData = false;
   }
 
-  if (loopcount % 50 == 0)
+  if (loopcount % 150 == 0)
   {
     Send_to_UI();
   }
