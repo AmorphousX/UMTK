@@ -37,18 +37,27 @@ void setup() {
   // #############
   // Check EEPROM if there is a stored value. Do this by verifying eeprom magic value
   unsigned long eepromMagicRead = 0UL;
-  // if (EEPROM.get(EEPROM_MAGIC_VALUE_ADDRESS, eepromMagicRead) == EEPROM_MAGIC_VALUE)
-  // {
-  //   // eeprom magic match
-  //   EEPROM.get(EEPROM_LC_DIVIDER_ADDRESS, LC_divider);
-  //   EEPROM.get(EEPROM_LC_OFFSET_ADDRESS, LC_offset);
-  // } 
-  // else 
-  // {
-    // long zero_factor_load = LoadCell.read_average(); //Get a baseline reading
+  // Reset mode, if AUX and START is pressed on power up, reset the Calibration
+  if (digitalRead(SWITCH_START) == LOW && digitalRead(SWITCH_AUX) == LOW)
+  {
+    Serial.println("CALIBRATION RESET WITH BUTTONS COMBO");
+    EEPROM.put(EEPROM_MAGIC_VALUE_ADDRESS, (unsigned long)EEPROM_MAGIC_VALUE);
+    EEPROM.put(EEPROM_LC_DIVIDER_ADDRESS, calibration_factor_load);
+    EEPROM.put(EEPROM_LC_OFFSET_ADDRESS, 0);
+    delay(100);
+  }
+  if (EEPROM.get(EEPROM_MAGIC_VALUE_ADDRESS, eepromMagicRead) == EEPROM_MAGIC_VALUE)
+  {
+    // eeprom magic match
+    EEPROM.get(EEPROM_LC_DIVIDER_ADDRESS, LC_divider);
+    EEPROM.get(EEPROM_LC_OFFSET_ADDRESS, LC_offset);
+  } 
+  else 
+  {
+    long zero_factor_load = LoadCell.read_average(); //Get a baseline reading
     LC_offset = 0;
     LC_divider = calibration_factor_load;
-  // }
+  }
 
   LoadCell.begin(LOADCELL_DATA, LOADCELL_CLOCK);
   LoadCell.set_scale(LC_divider);
