@@ -134,7 +134,7 @@ void loop() {
   // Remove the if statement if you wish to print slower and only new new LoadCell value is available
 
   // Read Analogue inputs
-  power_volts = (float)(analogRead(VIN_SENSE)) / VSENSE_iK;
+  power_volts = (float)(analogRead(VMOT_SENSE)) / VSENSE_iK;
   vm_volts = (float)(analogRead(VIN_SENSE)) / VSENSE_iK;
   mot1_amps = (float)analogRead(MOTOR_ISENSE_1) / VMOT_ISENSE_iK;
   mot2_amps = (float)analogRead(MOTOR_ISENSE_2) / VMOT_ISENSE_iK;
@@ -394,37 +394,41 @@ void Send_to_UI()
   // Logging format
   // NEW_DATA SPEED POSITION LOADCELL FEEDBACK_COUNT STATE ESTOP STALL DIRECTION INPUT_VOLTAGE
   if (UMTKState != STANDBY || printWhileStopped) {  
-    Serial.print(run_direction); //Run Direction
-    Serial.print("\t");
-    Serial.print(dis_now); // Position
-    Serial.print("\t");
-    Serial.print(Load); // Load
-    Serial.print("\t");
-    Serial.print(cur_speed); // Stepper Speed
-    Serial.print("\t");
-    Serial.print(set_speed); // Commanded Speed
-    Serial.print("\t");
-    Serial.print(UMTKState); // State
-    Serial.print("\t");
+    // Serial.print(run_direction); //Run Direction
+    // Serial.print("\t");
+    // Serial.print(dis_now); // Position
+    // Serial.print("\t");
+    // Serial.print(Load); // Load
+    // Serial.print("\t");
+    // Serial.print(cur_speed); // Stepper Speed
+    // Serial.print("\t");
+    // Serial.print(set_speed); // Commanded Speed
+    // Serial.print("\t");
+    // Serial.print(UMTKState); // State
+    // Serial.print("\t");
     Serial.print(mot1_amps); // Motor Phase 1 Amps
     Serial.print("\t");
     Serial.print(mot2_amps); // Motor Phase 2 Amps
     Serial.print("\t");
-    Serial.print(upButton);  // Up Button State
+    // Serial.print(upButton);  // Up Button State
+    // Serial.print("\t");
+    // Serial.print(downButton); // Down Button State
+    // Serial.print("\t");
+    // Serial.print(zeroButton); // Tare
+    // Serial.print("\t");
+    // Serial.print(startButton); // Start Button
+    // Serial.print("\t");
+    // Serial.print(auxButton);   // Aux Button
+    // Serial.print("\t");
+    // Serial.print(power_volts);   // Input Voltage
+    // Serial.print("\t");
+    // Serial.print(vm_volts);   // Motor Voltage
+    // Serial.print("\t");
+    Serial.print(digitalRead(MOTOR_nITRIP));   // ITRIP
     Serial.print("\t");
-    Serial.print(downButton); // Down Button State
-    Serial.print("\t");
-    Serial.print(zeroButton); // Tare
-    Serial.print("\t");
-    Serial.print(startButton); // Start Button
-    Serial.print("\t");
-    Serial.print(auxButton);   // Aux Button
-    Serial.print("\t");
-    Serial.print(power_volts);   // Input Voltage
-    Serial.print("\t");
-    Serial.print(vm_volts);   // Motor Voltage
-    Serial.print("\t");
-    Serial.print(millis() - serial_last_send2_t);         // Loop Time
+    Serial.print(digitalRead(MOTOR_nFAULT));   // NFAULT
+    // Serial.print("\t");
+    // Serial.print(millis() - serial_last_send2_t);         // Loop Time
     Serial.print("\n");
   }
 }
