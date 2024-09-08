@@ -18,16 +18,23 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>640</y>
-      <width>1051</width>
-      <height>141</height>
+      <y>800</y>
+      <width>1351</width>
+      <height>201</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
-        <widget class="QComboBox" name="portsDropdown"/>
+        <widget class="QComboBox" name="portsDropdown">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QTextBrowser" name="textBrowser">
@@ -40,13 +47,19 @@
          <property name="maximumSize">
           <size>
            <width>330</width>
-           <height>25</height>
+           <height>50</height>
           </size>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="connectPort_but">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
          <property name="text">
           <string>Connect</string>
          </property>
@@ -54,6 +67,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="disconnectPort_but">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
          <property name="text">
           <string>Disconnect</string>
          </property>
@@ -64,10 +83,10 @@
      <item>
       <spacer name="horizontalSpacer_5">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -89,15 +108,14 @@
          </property>
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Calibration&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Calibration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -107,7 +125,7 @@
           <number>0</number>
          </property>
          <property name="sizeConstraint">
-          <enum>QLayout::SetMinAndMaxSize</enum>
+          <enum>QLayout::SizeConstraint::SetMinAndMaxSize</enum>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -146,7 +164,7 @@
             <string>N</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -157,7 +175,7 @@
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>40</height>
+           <height>50</height>
           </size>
          </property>
          <property name="text">
@@ -165,31 +183,15 @@
          </property>
         </widget>
        </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>3</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
       </layout>
      </item>
      <item>
       <spacer name="horizontalSpacer_6">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -202,7 +204,7 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <property name="sizeConstraint">
-        <enum>QLayout::SetMaximumSize</enum>
+        <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
        </property>
        <item>
         <widget class="QLabel" name="label">
@@ -214,40 +216,52 @@
          </property>
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Set Speed&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set Speed&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="setSpeed_inLine">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="spacing">
+          <number>0</number>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>329</width>
-           <height>16777215</height>
-          </size>
+         <property name="sizeConstraint">
+          <enum>QLayout::SizeConstraint::SetMinAndMaxSize</enum>
          </property>
-        </widget>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLineEdit" name="setSpeed_inLine">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>329</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QPushButton" name="setSpeed_but">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>40</height>
+           <height>50</height>
           </size>
          </property>
          <property name="text">
@@ -260,10 +274,10 @@
      <item>
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -342,9 +356,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
-      <width>1061</width>
-      <height>591</height>
+      <y>90</y>
+      <width>1351</width>
+      <height>711</height>
      </rect>
     </property>
    </widget>
@@ -353,8 +367,8 @@
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>1421</width>
-      <height>53</height>
+      <width>1791</width>
+      <height>91</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="banner">
@@ -369,12 +383,11 @@
        <property name="font">
         <font>
          <pointsize>20</pointsize>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
        </property>
        <property name="autoFillBackground">
         <bool>false</bool>
@@ -386,12 +399,15 @@
         <string>UNIVERSAL MECHANICAL TESTING KIT</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="cat_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -404,17 +420,20 @@
          <height>51</height>
         </size>
        </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::RightToLeft</enum>
+       </property>
        <property name="text">
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>../../Downloads/IMG_0067 (1).png</pixmap>
+        <pixmap>img/cat.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -423,10 +442,10 @@
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>1070</x>
-      <y>50</y>
-      <width>361</width>
-      <height>431</height>
+      <x>1360</x>
+      <y>90</y>
+      <width>441</width>
+      <height>501</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="display">
@@ -434,7 +453,6 @@
       <widget class="QLabel" name="displacement">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -450,7 +468,6 @@
       <widget class="QLabel" name="force">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -466,7 +483,6 @@
       <widget class="QLabel" name="speed">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -482,7 +498,6 @@
       <widget class="QLabel" name="umtkSate">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -502,16 +517,18 @@
        <property name="font">
         <font>
          <pointsize>24</pointsize>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="html">
         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:24pt; font-weight:600; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:24pt; font-weight:700; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>
@@ -519,7 +536,6 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="maxForce">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -536,10 +552,10 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>1070</x>
-      <y>480</y>
-      <width>361</width>
-      <height>221</height>
+      <x>1360</x>
+      <y>590</y>
+      <width>441</width>
+      <height>331</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="motorstall_eStop">
@@ -553,7 +569,6 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -599,9 +614,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="horizontalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>1070</x>
-      <y>700</y>
-      <width>361</width>
+      <x>1360</x>
+      <y>920</y>
+      <width>441</width>
       <height>81</height>
      </rect>
     </property>
@@ -626,7 +641,7 @@ p, li { white-space: pre-wrap; }
         <bool>false</bool>
        </property>
        <property name="inputMethodHints">
-        <set>Qt::ImhNone</set>
+        <set>Qt::InputMethodHint::ImhNone</set>
        </property>
        <property name="text">
         <string>JOG 

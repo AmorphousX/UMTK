@@ -126,7 +126,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             self.ui.aux_but.setStyleSheet(self.theme_btn_green) if bt_aux else self.ui.aux_but.setStyleSheet(self.theme_btn_red)
 
             # if state is TARE, clear graph
-            if self.umtk_state_to_str(state) == "TARE":
+            if state == 8:
                 self.X = []
                 self.Y = []
             else:
