@@ -138,6 +138,15 @@ void loop() {
   vm_volts = (float)(analogRead(VIN_SENSE)) / VSENSE_iK;
   mot1_amps = (float)analogRead(MOTOR_ISENSE_1) / VMOT_ISENSE_iK;
   mot2_amps = (float)analogRead(MOTOR_ISENSE_2) / VMOT_ISENSE_iK;
+  if (mot1_amps > MOTOR_STALL_THRESH_AMPS || mot2_amps > MOTOR_STALL_THRESH_AMPS)
+  {
+    mot_stall = true;
+  }
+  else
+  {
+    mot_stall = false;
+  }
+  
   
   Read_Slide();
 
@@ -344,7 +353,7 @@ void Transistion_State()
 
     case JOG_UP:
       analogWrite(M_IN1, 0);
-      analogWrite(M_IN2, 500);
+      analogWrite(M_IN2, 1023);
       UMTKState = JOG_UP;
       led_period = -1;
       break;
@@ -385,48 +394,45 @@ void Transistion_State()
 
 void Send_to_UI()
 {
-  // if (UMTKState == STANDBY)
-  // {
-  //   Serial.println(cur_speed); // Stepper Speed
-  // }
-  // return;
   // Logging
   // Logging format
   // NEW_DATA SPEED POSITION LOADCELL FEEDBACK_COUNT STATE ESTOP STALL DIRECTION INPUT_VOLTAGE
   if (UMTKState != STANDBY || printWhileStopped) {  
-    // Serial.print(run_direction); //Run Direction
-    // Serial.print("\t");
-    // Serial.print(dis_now); // Position
-    // Serial.print("\t");
-    // Serial.print(Load); // Load
-    // Serial.print("\t");
-    // Serial.print(cur_speed); // Stepper Speed
-    // Serial.print("\t");
-    // Serial.print(set_speed); // Commanded Speed
-    // Serial.print("\t");
-    // Serial.print(UMTKState); // State
-    // Serial.print("\t");
-    Serial.print(mot1_amps); // Motor Phase 1 Amps
+    Serial.print(run_direction); //Run Direction
     Serial.print("\t");
-    Serial.print(mot2_amps); // Motor Phase 2 Amps
+    Serial.print(dis_now); // Position
     Serial.print("\t");
-    // Serial.print(upButton);  // Up Button State
-    // Serial.print("\t");
-    // Serial.print(downButton); // Down Button State
-    // Serial.print("\t");
-    // Serial.print(zeroButton); // Tare
-    // Serial.print("\t");
-    // Serial.print(startButton); // Start Button
-    // Serial.print("\t");
-    // Serial.print(auxButton);   // Aux Button
-    // Serial.print("\t");
-    // Serial.print(power_volts);   // Input Voltage
-    // Serial.print("\t");
-    // Serial.print(vm_volts);   // Motor Voltage
-    // Serial.print("\t");
-    Serial.print(digitalRead(MOTOR_nITRIP));   // ITRIP
+    Serial.print(Load); // Load
     Serial.print("\t");
-    Serial.print(digitalRead(MOTOR_nFAULT));   // NFAULT
+    Serial.print(cur_speed); // Current Speed
+    Serial.print("\t");
+    Serial.print(set_speed); // Commanded Speed
+    Serial.print("\t");
+    Serial.print(UMTKState); // State
+    Serial.print("\t");
+    // Serial.print(mot1_amps); // Motor Phase 1 Amps
+    // Serial.print("\t");
+    // Serial.print(mot2_amps); // Motor Phase 2 Amps
+    // Serial.print("\t");
+    Serial.print(mot_stall);
+    Serial.print("/t");
+    Serial.print(upButton);  // Up Button State
+    Serial.print("\t");
+    Serial.print(downButton); // Down Button State
+    Serial.print("\t");
+    Serial.print(zeroButton); // Tare
+    Serial.print("\t");
+    Serial.print(startButton); // Start Button
+    Serial.print("\t");
+    Serial.print(auxButton);   // Aux Button
+    Serial.print("\t");
+    Serial.print(power_volts);   // Input Voltage
+    Serial.print("\t");
+    Serial.print(vm_volts);   // Motor Voltage
+    Serial.print("\t");
+    // Serial.print(digitalRead(MOTOR_nITRIP));   // ITRIP
+    // Serial.print("\t");
+    // Serial.print(digitalRead(MOTOR_nFAULT));   // NFAULT
     // Serial.print("\t");
     // Serial.print(millis() - serial_last_send2_t);         // Loop Time
     Serial.print("\n");
@@ -474,36 +480,7 @@ void PID_Control(){
       analogWrite(M_IN2, 0);
     }
     
-    // Serial.print(set_speed);
-    // Serial.print(", ");
-    // Serial.print(pid_speed);
-    // Serial.print(", ");
-    // Serial.print(error);
-    // Serial.print(", ");
-    // Serial.print(pid_p);
-    // Serial.print(", ");
-    // Serial.print(pid_d);
-    // Serial.print(", ");
-    // Serial.print(pid_i);
-    // Serial.print(", ");
-    // Serial.print(control_signal);
-    // Serial.print(", ");
-    // Serial.println();
   }
-
-
-  
-  // if (control_direction)
-  // {
-  //   analogWrite(M_IN1, 0);
-  //   analogWrite(M_IN2, control_signal);
-  // }
-  // else
-  // {
-  //   analogWrite(M_IN1, control_signal);
-  //   analogWrite(M_IN2, 0);
-  // }
-
 }
 
 
