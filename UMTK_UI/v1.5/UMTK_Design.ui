@@ -147,22 +147,6 @@
          </property>
         </widget>
        </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>2</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
       </layout>
      </item>
      <item>
@@ -288,7 +272,6 @@
        <property name="font">
         <font>
          <pointsize>20</pointsize>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -322,7 +305,6 @@
       <widget class="QLabel" name="displacement">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -338,7 +320,6 @@
       <widget class="QLabel" name="force">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -354,7 +335,6 @@
       <widget class="QLabel" name="speed">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -370,7 +350,6 @@
       <widget class="QLabel" name="umtkSate">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -386,7 +365,6 @@
       <widget class="QLabel" name="maxForce">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -414,7 +392,6 @@
       <widget class="QLabel" name="motorEffort">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -428,13 +405,15 @@
        <property name="value">
         <number>24</number>
        </property>
+       <property name="invertedAppearance">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="motorSpeed">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>

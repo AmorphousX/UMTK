@@ -144,7 +144,7 @@ class UMTKSerial:
                 return return_data
             
     def write(self, bytes):
-        if self.status in [self.SerialStates.CONNECTED, self.SerialStates.PENDING_CONNECT]:
+        if self.status in [self.SerialStates.CONNECTED, self.SerialStates.PENDING_CONNECT, self.SerialStates.ERROR]:
             self.handle.write(bytes)
         else:
             print("Send Failed, Port Not Connected")
