@@ -261,10 +261,6 @@ void Determine_Next_State()
         serial_jog_counter++;
         UMTKNextState = JOG_DOWN;
       }
-      // if(downButton == release){
-      //   UMTKNextState = STANDBY;
-      //   break;
-      // }
       else
       {
         // If jog timer expired, it's up to the button
@@ -273,10 +269,6 @@ void Determine_Next_State()
           break;
         }
       }
-      // if(downButton == release){
-      //   UMTKNextState = STANDBY;
-      //   break;
-      // }
       break;
     }
 
