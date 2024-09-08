@@ -373,6 +373,7 @@
        <property name="font">
         <font>
          <pointsize>20</pointsize>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -398,7 +399,7 @@
       <x>1070</x>
       <y>50</y>
       <width>361</width>
-      <height>401</height>
+      <height>431</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="display">
@@ -406,6 +407,7 @@
       <widget class="QLabel" name="displacement">
        <property name="font">
         <font>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -421,6 +423,7 @@
       <widget class="QLabel" name="force">
        <property name="font">
         <font>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -436,6 +439,7 @@
       <widget class="QLabel" name="speed">
        <property name="font">
         <font>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -451,6 +455,7 @@
       <widget class="QLabel" name="umtkSate">
        <property name="font">
         <font>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -460,12 +465,34 @@
       </widget>
      </item>
      <item>
-      <widget class="QLCDNumber" name="umtkStateLCD"/>
+      <widget class="QTextBrowser" name="textBrowser_2">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>24</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:24pt; font-weight:600; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;test&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="maxForce">
        <property name="font">
         <font>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -483,21 +510,28 @@
     <property name="geometry">
      <rect>
       <x>1070</x>
-      <y>450</y>
+      <y>480</y>
       <width>361</width>
-      <height>251</height>
+      <height>221</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="motorstall_eStop">
      <item>
-      <widget class="QLabel" name="motorEffort">
+      <widget class="QLabel" name="motorCurrent">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>70</height>
+        </size>
+       </property>
        <property name="font">
         <font>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="text">
-        <string>Motor Effort:</string>
+        <string>Motor Current:</string>
        </property>
       </widget>
      </item>
@@ -506,30 +540,14 @@
        <property name="enabled">
         <bool>false</bool>
        </property>
-       <property name="text">
-        <string>eStop</string>
-       </property>
-       <property name="invertedAppearance">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="motorSpeed">
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
        </property>
        <property name="text">
-        <string>Motor Speed:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QProgressBar" name="motorSpeedProgessBar">
-       <property name="value">
-        <number>24</number>
+        <string>ok</string>
        </property>
       </widget>
      </item>
@@ -537,6 +555,12 @@
       <widget class="QPushButton" name="eStop_but">
        <property name="enabled">
         <bool>false</bool>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
        </property>
        <property name="text">
         <string>eStop</string>
