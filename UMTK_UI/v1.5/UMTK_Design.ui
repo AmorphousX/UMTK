@@ -20,7 +20,7 @@
       <x>10</x>
       <y>640</y>
       <width>1051</width>
-      <height>141</height>
+      <height>160</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -87,8 +87,14 @@
            <height>30</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
-          <string>Calibration</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Calibration&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -97,8 +103,14 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <property name="sizeConstraint">
-          <enum>QLayout::SetDefaultConstraint</enum>
+          <enum>QLayout::SetMinAndMaxSize</enum>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
          </property>
          <item>
           <widget class="QLineEdit" name="calibration_inLine">
@@ -142,10 +154,48 @@
        </item>
        <item>
         <widget class="QPushButton" name="calibration_but">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
          <property name="text">
           <string>Calibrate</string>
          </property>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>2</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>2</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>
@@ -175,11 +225,17 @@
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>30</height>
+           <height>20</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
-          <string>Set Speed</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Set Speed&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -204,6 +260,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="setSpeed_but">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
          <property name="text">
           <string>Set Speed</string>
          </property>
@@ -230,7 +292,40 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLineEdit" name="changeDirection_inLine">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>60</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="changeDirection_but">
+           <property name="text">
+            <string>Change Direction</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
         <widget class="QPushButton" name="start_but_2">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
          <property name="text">
           <string>Start</string>
          </property>
@@ -238,6 +333,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="stop_but">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
          <property name="text">
           <string>Stop</string>
          </property>
@@ -401,9 +502,12 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="motorEffortProgressBar">
-       <property name="value">
-        <number>24</number>
+      <widget class="QPushButton" name="motorStall">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>eStop</string>
        </property>
        <property name="invertedAppearance">
         <bool>false</bool>
@@ -431,6 +535,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="eStop_but">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>eStop</string>
        </property>
@@ -449,7 +556,7 @@
     </property>
     <layout class="QHBoxLayout" name="buttonStatus">
      <item>
-      <widget class="QPushButton" name="fwd_but">
+      <widget class="QPushButton" name="up_but">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -471,12 +578,13 @@
         <set>Qt::ImhNone</set>
        </property>
        <property name="text">
-        <string>FWD</string>
+        <string>JOG 
+UP</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="bck_but">
+      <widget class="QPushButton" name="down_but">
        <property name="maximumSize">
         <size>
          <width>60</width>
@@ -489,7 +597,8 @@
         </font>
        </property>
        <property name="text">
-        <string>BCK</string>
+        <string>JOG 
+DOWN</string>
        </property>
       </widget>
      </item>
