@@ -8,6 +8,8 @@ import numpy as np
 import random
 import copy
 import logging
+from PyQt6.QtCore import QFile, QTextStream
+from qt_material import apply_stylesheet
 
 class Ui_MainWindow(object):
     desired_speed = 3.0
@@ -222,19 +224,17 @@ class Ui_MainWindow(object):
         self.motorstall_eStop.setContentsMargins(0, 0, 0, 0)
         self.motorstall_eStop.setObjectName("motorstall_eStop")
 
-        self.motorEffort = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
+        self.motorStall = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.motorEffort.setFont(font)
-        self.motorEffort.setObjectName("motorEffort")
-        self.motorstall_eStop.addWidget(self.motorEffort)
-        self.motorEffortProgressBar = QtWidgets.QProgressBar(parent=self.verticalLayoutWidget)
-        self.motorEffortProgressBar.setProperty("value", 5)
-        self.motorEffortProgressBar.setMinimum(-5000)
-        self.motorEffortProgressBar.setMaximum(5000)
-        self.motorEffortProgressBar.setObjectName("motorEffortProgressBar")
-        self.motorstall_eStop.addWidget(self.motorEffortProgressBar)
+        self.motorStall.setFont(font)
+        self.motorStall.setObjectName("motorStall")
+        self.motorstall_eStop.addWidget(self.motorStall)
+        self.motorStall_but = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
+        self.motorStall_but.setObjectName("motorStall_but")
+        self.motorStall_but.setEnabled(False)
+        self.motorstall_eStop.addWidget(self.motorStall_but)
         self.motorSpeed = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         font = QtGui.QFont()
         font.setBold(True)
@@ -384,7 +384,8 @@ class Ui_MainWindow(object):
         self.speed.setText(_translate("MainWindow", "Speed"))
         self.umtkSate.setText(_translate("MainWindow", "UMTK State"))
         self.maxForce.setText(_translate("MainWindow", "Max Force"))
-        self.motorEffort.setText(_translate("MainWindow", "Motor Effort"))
+        self.motorStall.setText(_translate("MainWindow", "Motor Stall"))
+        self.motorStall_but.setText(_translate("MainWindow", "ON/OFF"))
         self.motorSpeed.setText(_translate("MainWindow", "Motor Speed"))
 
         self.eStop_but.setText(_translate("MainWindow", "eStop"))
@@ -394,17 +395,7 @@ class Ui_MainWindow(object):
         self.start_but.setText(_translate("MainWindow", "START"))
         self.aux_but.setText(_translate("MainWindow", "AUX"))
 
-        self.direction_change_but.setText(_translate("MainWindow", "Change Direction"))
-
-    # def scale_ui_to_screen(self):
-    #     screen = QtWidgets.QApplication.primaryScreen()
-    #     screen_size = screen.size()
-    #     screen_width = screen_size.width()
-    #     screen_height = screen_size.height()
-
-    #     # Resize the window to a percentage of the screen size
-    #     MainWindow.resize(int(screen_width * 0.8), int(screen_height * 0.8))
-                          
+        self.direction_change_but.setText(_translate("MainWindow", "Change Direction"))                          
 
     def initialize_serial_port(self):
         self.portsDropdown.clear()
@@ -429,8 +420,6 @@ class Ui_MainWindow(object):
             QtCore.QTimer().singleShot(25, self.read_serial)
         else:
             QtCore.QTimer().singleShot(500, self.read_serial)
-
-
 
     def process_serial_data(self, data):
         if (data):
@@ -465,11 +454,10 @@ class Ui_MainWindow(object):
 
             # Motor Effort, AMPs
             motorAmp = f_amps - b_amps
-            self.motorEffortProgressBar.setValue(int(motorAmp*1000))
+            #self.motorEffortProgressBar.setValue(int(motorAmp*1000))
             
             # Speed
             self.motorSpeedProgessBar.setValue(int(cur_speed*100))
-
 
     def increase_speed(self):
         # Increase speed functionality
@@ -540,27 +528,35 @@ class Ui_MainWindow(object):
             case _:
                 return "UNKNOWN"
 
-
-
-    # def generate_random_data_for_demo(self):
-    #     # Generate and display random data for demo purposes
-    #     displacement = random.uniform(0, 100)
-    #     force = random.uniform(0, 500)
-    #     speed = random.uniform(0, 200)
-    #     umtk_state = random.randint(0, 5)
-    #     max_force = random.uniform(0, 500)
-    #     motor_stall = random.randint(0, 100)
-        
-    #     self.displacementLCD.display(displacement)
-    #     self.forceLCD.display(force)
-    #     self.speedLCD.display(speed)
-    #     self.umtkStateDisplay.display(umtk_state)
-    #     self.maxForceLCD.display(max_force)
-    #     self.motorstall_eStop.setValue(motor_stall)
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+    #app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt6())
+    # apply_stylesheet(app, theme='light_amber.xml')
+
+    # Load the QSS file
+    file = QFile("modern_style.qss")
+    if file.open(QFile.OpenModeFlag.ReadOnly | QFile.OpenModeFlag.Text):
+        stream = QTextStream(file)
+        app.setStyleSheet(stream.readAll())
+
+    # Apply Fusion style
+    # app.setStyle('Fusion')
+
+    # # Customize colors for dark theme
+    # palette = QtWidgets.QPalette()
+    # palette.setColor(QtWidgets.QPalette.Window, QtGui.QColor(53, 53, 53))
+    # palette.setColor(QtWidgets.QPalette.WindowText, QtCore.Qt.white)
+    # palette.setColor(QtWidgets.QPalette.Base, QtGui.QColor(25, 25, 25))
+    # palette.setColor(QtWidgets.QPalette.AlternateBase, QtGui.QColor(53, 53, 53))
+    # palette.setColor(QtWidgets.QPalette.ToolTipBase, QtCore.Qt.white)
+    # palette.setColor(QtWidgets.QPalette.ToolTipText, QtCore.Qt.white)
+    # palette.setColor(QtWidgets.QPalette.Text, QtCore.Qt.white)
+    # palette.setColor(QtWidgets.QPalette.Button, QtGui.QColor(53, 53, 53))
+    # palette.setColor(QtWidgets.QPalette.ButtonText, QtCore.Qt.white)
+    # palette.setColor(QtWidgets.QPalette.BrightText, QtCore.Qt.red)
+    # app.setPalette(palette)
+
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
