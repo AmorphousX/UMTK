@@ -1,0 +1,66 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/include",
+                "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/src",
+                "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/lib/slide",
+                "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/lib/setup",
+                "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/lib/MAX7219",
+                "C:/Users/mding/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/lib/HX711",
+                "C:/Users/mding/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/lib/PCB",
+                "C:/Users/mding/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "C:/Users/mding/.platformio/packages/framework-arduino-avr/variants/mega",
+                "C:/Users/mding/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "C:/Users/mding/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "C:/Users/mding/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/include",
+                    "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/src",
+                    "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/lib/slide",
+                    "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/lib/setup",
+                    "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/lib/MAX7219",
+                    "C:/Users/mding/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/lib/HX711",
+                    "C:/Users/mding/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "D:/UserFolders/Documents/GitHub/UMTK/UMTK_ARDUINO/UMTK_pio/lib/PCB",
+                    "C:/Users/mding/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "C:/Users/mding/.platformio/packages/framework-arduino-avr/variants/mega",
+                    "C:/Users/mding/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "C:/Users/mding/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "C:/Users/mding/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=60115",
+                "ARDUINO_AVR_MEGA2560",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega2560__",
+                ""
+            ],
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++11",
+            "compilerPath": "C:/Users/mding/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
+            "compilerArgs": [
+                "-mmcu=atmega2560",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
