@@ -48,8 +48,8 @@ class UMTKSerial:
             self.port_name = picked_port
             self.status_text = f"{self.port_name} Connecting..."
 
-            # Set a data rate, default 20hz
-            self.write(f'r20\n'.encode())
+            # Set a data rate, default 30hz
+            self.write(f'r30\n'.encode())
         except serial.SerialException as e:
             print(f"Error opening serial port: {e}")
         finally:
@@ -95,8 +95,6 @@ class UMTKSerial:
         return_data = []
         if ("== TARE ==" in in_data):
             # Tare
-            self.X = []
-            self.Y = []
             print("T", end="")
         elif ("DIRECTION" in in_data):
             # Header
@@ -107,23 +105,24 @@ class UMTKSerial:
                 values = list(in_data.split('\t'))
                 if len(values) >= 14:
                     i_direction, i_position, i_load, i_cur_speed, i_set_speed, i_state, \
-                    i_f_amps, i_b_amps, i_bt_up, i_bt_down, i_bt_tare, i_bt_start,\
+                    i_f_amps, i_b_amps, i_mot_stall, i_bt_up, i_bt_down, i_bt_tare, i_bt_start,\
                     i_bt_aux, i_v_in, i_v_mot, i_t_loop = values
                     
                     direction = int(i_direction)
                     if direction == 0:
                         position = -1*float(i_position)
-                        load = -1*float(i_load)  
+                        load = float(i_load)  
                         self.test_direction = -1
                     else:
                         position = float(i_position)
-                        load = float(i_load)
+                        load = -1*float(i_load)
                         self.test_direction = 1
                     cur_speed = float(i_cur_speed)
                     set_speed = float(i_set_speed)
                     state = int(i_state)
                     f_amps = float(i_f_amps)
                     b_amps = float(i_b_amps)
+                    mot_stall = True if i_mot_stall == "1" else False
                     bt_up = True if i_bt_up == "1" else False
                     bt_down = True if i_bt_down == "1" else False
                     bt_tare = True if i_bt_tare == "1" else False
@@ -134,13 +133,14 @@ class UMTKSerial:
                     t_loop = int(i_t_loop)
 
                     return_data = [direction, position, load, cur_speed, set_speed,
-                        state, f_amps, b_amps, bt_up, bt_down, bt_tare,
+                        state, f_amps, b_amps, mot_stall, bt_up, bt_down, bt_tare,
                         bt_start, bt_aux, v_in, v_mot, t_loop]
 
             except ValueError as e:
                 print(f"Error processing serial data: {e}")
                 print(in_data)
             finally:
+                # print(return_data)
                 return return_data
             
     def write(self, bytes):

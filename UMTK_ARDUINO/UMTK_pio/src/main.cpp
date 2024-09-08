@@ -205,6 +205,9 @@ void tareAll()
   Serial.println(" ========= TARE ==========");
   LoadCell.tare();
   Slide.tare();
+  dis_now = 0;
+  dis_last = 0;
+  Load = 0;
   Serial.print(HEADER_TEXT);
 }
 
@@ -402,12 +405,12 @@ void Send_to_UI()
     Serial.print("\t");
     Serial.print(UMTKState); // State
     Serial.print("\t");
-    // Serial.print(mot1_amps); // Motor Phase 1 Amps
-    // Serial.print("\t");
-    // Serial.print(mot2_amps); // Motor Phase 2 Amps
-    // Serial.print("\t");
+    Serial.print(mot1_amps); // Motor Phase 1 Amps
+    Serial.print("\t");
+    Serial.print(mot2_amps); // Motor Phase 2 Amps
+    Serial.print("\t");
     Serial.print(mot_stall);
-    Serial.print("/t");
+    Serial.print("\t");
     Serial.print(upButton);  // Up Button State
     Serial.print("\t");
     Serial.print(downButton); // Down Button State
@@ -426,7 +429,7 @@ void Send_to_UI()
     // Serial.print("\t");
     // Serial.print(digitalRead(MOTOR_nFAULT));   // NFAULT
     // Serial.print("\t");
-    // Serial.print(millis() - serial_last_send2_t);         // Loop Time
+    Serial.print(millis() - serial_last_send2_t);         // Loop Time
     Serial.print("\n");
   }
 }

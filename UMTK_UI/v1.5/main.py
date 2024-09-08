@@ -31,14 +31,14 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.ui.connectPort_but.pressed.connect(self.connect_serial_port)
         self.ui.disconnectPort_but.pressed.connect(self.disconnect_serial_port)
         
-        self.ui.fwd_but.pressed.connect(self.increase_speed)
-        self.ui.fwd_but.released.connect(self.stop_motor)
-        self.ui.fwd_but.setAutoRepeat(True)
-        self.ui.fwd_but.setAutoRepeatDelay(100)
-        self.ui.bck_but.pressed.connect(self.decrease_speed)
-        self.ui.bck_but.released.connect(self.stop_motor)
-        self.ui.bck_but.setAutoRepeat(True)
-        self.ui.bck_but.setAutoRepeatDelay(100)
+        self.ui.up_but.pressed.connect(self.increase_speed)
+        self.ui.up_but.released.connect(self.stop_motor)
+        self.ui.up_but.setAutoRepeat(True)
+        self.ui.up_but.setAutoRepeatDelay(100)
+        self.ui.down_but.pressed.connect(self.decrease_speed)
+        self.ui.down_but.released.connect(self.stop_motor)
+        self.ui.down_but.setAutoRepeat(True)
+        self.ui.down_but.setAutoRepeatDelay(100)
         self.ui.tare_but.clicked.connect(self.tare)
         # self.speedDail.valueChanged.connect(self.update_speed)
         self.ui.start_but.clicked.connect(self.start_motor)
@@ -52,7 +52,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         self.ui.calibration_but.pressed.connect(self.commit_calibrate)
 
-        # self.ui.change_direction_but.clicked.connect(self.toggle_direction)
+        self.ui.changeDirection_but.clicked.connect(self.toggle_direction)
 
         
         self.figure = Figure()
@@ -67,6 +67,15 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         self.initialize_serial_port()
 
+        # Set Serial Rate to 25Hz
+        self.UMTKSerial.write(f'r20\n'.encode())
+
+        QtCore.QTimer().singleShot(10, self.connect_serial_port)
+        QtCore.QTimer().singleShot(100, self.read_serial)
+
+        self.rescan_serial_timer = QtCore.QTimer()
+        self.rescan_serial_timer.timeout.connect(self.rescan_serial_ports)
+        self.rescan_serial_timer.start(1000)
 
     def initialize_serial_port(self):
         self.ui.portsDropdown.clear()
@@ -100,40 +109,41 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
     def process_serial_data(self, data):
         if (data):
             direction, position, load, cur_speed, set_speed, state, f_amps, b_amps, \
-            bt_up, bt_down, bt_tare, bt_start, bt_aux, \
+            mot_stall, bt_up, bt_down, bt_tare, bt_start, bt_aux, \
             v_in, v_mot, t_loop = data
             
             self.ui.displacementLCD.display(position)
             self.ui.forceLCD.display(load)
             self.ui.speedLCD.display(cur_speed)
-            self.ui.umtkStateDisplay.setText(self.umtk_state_to_str(state))
-            self.ui.maxForceLCD.display(load)
-            self.ui.direction_indicator.setText("COMPRESSION" if direction == 1 else "TENSILE")
+            self.ui.textBrowser_2.setHtml(self.umtk_state_to_str(state))
+            self.ui.maxForceLCD.display(max(self.Y) if self.Y else load)
+            self.ui.changeDirection_inLine.setText("COMPRESSION" if direction == 1 else "TENSILE")
 
-            self.ui.fwd_but.setStyleSheet(self.theme_btn_green) if bt_up else self.ui.fwd_but.setStyleSheet(self.theme_btn_red)
-            self.ui.bck_but.setStyleSheet(self.theme_btn_green) if bt_down else self.ui.bck_but.setStyleSheet(self.theme_btn_red)
+            self.ui.down_but.setStyleSheet(self.theme_btn_green) if bt_up else self.ui.down_but.setStyleSheet(self.theme_btn_red)
+            self.ui.up_but.setStyleSheet(self.theme_btn_green) if bt_down else self.ui.up_but.setStyleSheet(self.theme_btn_red)
             self.ui.tare_but.setStyleSheet(self.theme_btn_green) if bt_tare else self.ui.tare_but.setStyleSheet(self.theme_btn_red)
             self.ui.start_but.setStyleSheet(self.theme_btn_green) if bt_start else self.ui.start_but.setStyleSheet(self.theme_btn_red)
             self.ui.aux_but.setStyleSheet(self.theme_btn_green) if bt_aux else self.ui.aux_but.setStyleSheet(self.theme_btn_red)
 
-            self.X.append(position)
-            self.Y.append(load)
+            # if state is TARE, clear graph
+            if self.umtk_state_to_str(state) == "TARE":
+                self.X = []
+                self.Y = []
+            else:
+                self.X.append(position)
+                self.Y.append(load)
 
-            if len(self.X) > 1500:
-                self.X = self.X[:1000]
-                self.Y = self.Y[:1000]
-            
-            self.sp.set_data(self.X, self.Y)
-            self.ax.set_xlim(min(min(self.X), -10),max(max(self.X), 10))
-            self.ax.set_ylim(min(min(self.Y), -10), max(max(self.Y), 10))
+                if len(self.X) > 1500:
+                    self.X = self.X[:1000]
+                    self.Y = self.Y[:1000]
+                
+                self.sp.set_data(self.X, self.Y)
+                self.ax.set_xlim(min(min(self.X), -10),max(max(self.X), 10))
+                self.ax.set_ylim(min(min(self.Y), -10), max(max(self.Y), 10))
             self.figure.canvas.draw()
-
-            # Motor Effort, AMPs
-            motorAmp = f_amps - b_amps
-            #self.motorEffortProgressBar.setValue(int(motorAmp*1000))
             
             # Speed
-            self.ui.motorSpeedProgessBar.setValue(int(cur_speed*100))
+            # self.ui.motorSpeedProgessBar.setValue(int(cur_speed*100))
 
     def increase_speed(self):
         # Increase speed functionality
@@ -149,14 +159,16 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
     def commit_speed(self):
         try:
-            self.UMTKSerial.write(f'V {str(float(self.setSpeed_inLine.text()))}\n'.encode())
+            speed = str(float(self.ui.setSpeed_inLine.text()))
+            self.UMTKSerial.write(f'V {speed}\n'.encode())
+            print(f"Commanded Set Speed: {speed}")
         except:
             print("Error parsing set speed")
         # self.speedOutput.setText(str(self.desired_speed))
 
     def commit_calibrate(self):
         try:
-            self.UMTKSerial.write(f'C {str(self.test_direction*float(self.calibration_inLine.text()))}\n'.encode())
+            self.UMTKSerial.write(f'C {str(self.test_direction*float(self.ui.calibration_inLine.text()))}\n'.encode())
         except:
             print("Error parsing calibration load")
 
@@ -173,7 +185,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.UMTKSerial.write(b's')
         
     def toggle_direction(self):
-        if self.direction_indicator.text() == "COMPRESSION":
+        if self.ui.changeDirection_inLine.text() == "COMPRESSION":
             self.set_direction_up()
         else:
             self.set_direction_down()
@@ -190,19 +202,22 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.UMTKSerial.write(b's')
 
     def umtk_state_to_str(self, state):
+        state_name = ""
         match state:
             case 0:
-                return "RUNNING"
+                state_name = "RUNNING"
             case 1:
-                return "IDLE"
+                state_name = "IDLE"
             case 3:
-                return "JOG UP"
+                state_name =  "JOG UP"
             case 4:
-                return "JOG DOWN"
+                state_name =  "JOG DOWN"
             case 8:
-                return "TARE"
+                state_name =  "TARE"
             case _:
-                return "UNKNOWN"
+                state_name =  "UNKNOWN"
+            
+        return (f"<p align=\"center\" style=\" font-family:\'.AppleSystemUIFont\'; font-size:24pt; font-weight:600; font-style:normal;\">{state_name}</p>")
 
 if __name__ == "__main__":
     import sys
