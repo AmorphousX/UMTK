@@ -199,6 +199,9 @@ void tareAll()
   dis_now = 0;
   dis_last = 0;
   Load = 0;
+  Load1 = 0;
+  Load2 = 0;
+  Load3 = 0;
   Serial.print(HEADER_TEXT);
 }
 

@@ -95,10 +95,10 @@ class UMTKSerial:
         return_data = []
         if ("== TARE ==" in in_data):
             # Tare
-            print("T", end="")
+            print("T", end="", flush="True")
         elif ("DIRECTION" in in_data):
             # Header
-            print("H", end="")
+            print("H", end="", flush="True")
         else:
             try:
             # Data
@@ -136,10 +136,11 @@ class UMTKSerial:
                         bt_start, bt_aux, v_in, v_mot, t_loop]
 
             except ValueError as e:
-                print(f"Error processing serial data: {e}")
+                print(f"Error processing serial data: {e}", flush="True")
                 print(in_data)
             finally:
                 # print(return_data)
+                print(".", end="", flush="True")
                 return return_data
             
     def write(self, bytes):

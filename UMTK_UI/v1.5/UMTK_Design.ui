@@ -157,7 +157,7 @@
            <property name="maximumSize">
             <size>
              <width>35</width>
-             <height>16777215</height>
+             <height>50</height>
             </size>
            </property>
            <property name="text">
@@ -445,7 +445,7 @@
       <x>1360</x>
       <y>90</y>
       <width>441</width>
-      <height>501</height>
+      <height>801</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="display">
@@ -547,18 +547,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <item>
       <widget class="QLCDNumber" name="maxForceLCD"/>
      </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>1360</x>
-      <y>590</y>
-      <width>441</width>
-      <height>331</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="motorstall_eStop">
      <item>
       <widget class="QLabel" name="motorCurrent_label">
        <property name="maximumSize">
@@ -578,34 +566,33 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="motorCurrent_display">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>50</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>ok</string>
-       </property>
-      </widget>
+      <widget class="QLCDNumber" name="motorCurrent_display"/>
      </item>
      <item>
-      <widget class="QPushButton" name="eStop_but">
+      <widget class="QPushButton" name="eStop_display">
        <property name="enabled">
         <bool>false</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>100</height>
+        </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>50</height>
+         <height>150</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>24</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
-        <string>eStop</string>
+        <string>Emergency Stop State</string>
        </property>
       </widget>
      </item>
@@ -615,9 +602,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="geometry">
      <rect>
       <x>1360</x>
-      <y>920</y>
+      <y>890</y>
       <width>441</width>
-      <height>81</height>
+      <height>111</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="buttonStatus">

@@ -14,8 +14,15 @@ from lib.umtk_design import Ui_MainWindow as UMTK_MainWindow
 
 class Ui_MainWindow(QtWidgets.QMainWindow):
 
-    def __init__(self):
+    def __init__(self, theme):
         super(Ui_MainWindow, self).__init__()
+        
+        if theme == "Dark":
+            plt.style.use('dark_background')
+            dot_color = "yellow"
+        else:
+            dot_color = "blue"
+
 
         self.desired_speed = 3.0
         self.X = []
@@ -61,7 +68,8 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.ax.set_title("Force Displacement Graph")
         self.ax.set_xlabel("Displacement (mm)")
         self.ax.set_ylabel("Force (N)")
-        self.sp, = self.ax.plot([],[],label='',ms=10,color='blue',marker='.',ls='')
+        self.sp, = self.ax.plot([],[],label='',ms=10,color=dot_color,marker='.',ls='')
+        self.figure.tight_layout()
         self.ui.graphDisplay.setLayout(QtWidgets.QVBoxLayout())
         self.ui.graphDisplay.layout().addWidget(self.canvas)
 
@@ -143,9 +151,9 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             self.figure.canvas.draw()
             
             # Motor Power
-            motor_amps_percent = 1/((f_amps + b_amps)/5)
-            self.ui.motorCurrent_display.setText(f"{motor_amps_percent*100}%")
-            self.ui.motorCurrent_display.setStyleSheet(self.theme_btn_green) if (motor_amps_percent >= 1) else self.ui.aux_but.setStyleSheet(self.theme_btn_red)
+            motor_amps_percent = ((f_amps + b_amps)/5)*100
+            self.ui.motorCurrent_display.display("{:10.1f}".format(motor_amps_percent))
+            self.ui.motorCurrent_display.setStyleSheet("") if (motor_amps_percent < 100) else self.ui.motorCurrent_display.setStyleSheet(self.theme_btn_red)
 
 
     def increase_speed(self):
@@ -224,33 +232,23 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
 if __name__ == "__main__":
     import sys
+
+    theme = "Dark"
+
     app = QtWidgets.QApplication(sys.argv)
     #app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt6())
     # apply_stylesheet(app, theme='light_amber.xml')
+    MainWindow = Ui_MainWindow(theme)
 
     # Load the QSS file
-    file = QFile("modern_style.qss")
+    if theme == "Dark":
+        file = QFile("style/Dark.qss")
+    else:
+        file = QFile("style/modern_style.qss")
     if file.open(QFile.OpenModeFlag.ReadOnly | QFile.OpenModeFlag.Text):
         stream = QTextStream(file)
         app.setStyleSheet(stream.readAll())
+        MainWindow.setStyleSheet(stream.readAll())
 
-    # Apply Fusion style
-    # app.setStyle('Fusion')
-
-    # # Customize colors for dark theme
-    # palette = QtWidgets.QPalette()
-    # palette.setColor(QtWidgets.QPalette.Window, QtGui.QColor(53, 53, 53))
-    # palette.setColor(QtWidgets.QPalette.WindowText, QtCore.Qt.white)
-    # palette.setColor(QtWidgets.QPalette.Base, QtGui.QColor(25, 25, 25))
-    # palette.setColor(QtWidgets.QPalette.AlternateBase, QtGui.QColor(53, 53, 53))
-    # palette.setColor(QtWidgets.QPalette.ToolTipBase, QtCore.Qt.white)
-    # palette.setColor(QtWidgets.QPalette.ToolTipText, QtCore.Qt.white)
-    # palette.setColor(QtWidgets.QPalette.Text, QtCore.Qt.white)
-    # palette.setColor(QtWidgets.QPalette.Button, QtGui.QColor(53, 53, 53))
-    # palette.setColor(QtWidgets.QPalette.ButtonText, QtCore.Qt.white)
-    # palette.setColor(QtWidgets.QPalette.BrightText, QtCore.Qt.red)
-    # app.setPalette(palette)
-
-    MainWindow = Ui_MainWindow()
     MainWindow.show()
     sys.exit(app.exec())
