@@ -560,7 +560,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <layout class="QVBoxLayout" name="motorstall_eStop">
      <item>
-      <widget class="QLabel" name="motorCurrent">
+      <widget class="QLabel" name="motorCurrent_label">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -578,7 +578,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="motorStall">
+      <widget class="QPushButton" name="motorCurrent_display">
        <property name="enabled">
         <bool>false</bool>
        </property>

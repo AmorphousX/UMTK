@@ -109,7 +109,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
     def process_serial_data(self, data):
         if (data):
             direction, position, load, cur_speed, set_speed, state, f_amps, b_amps, \
-            mot_stall, bt_up, bt_down, bt_tare, bt_start, bt_aux, \
+            bt_up, bt_down, bt_tare, bt_start, bt_aux, \
             v_in, v_mot, t_loop = data
             
             self.ui.displacementLCD.display(position)
@@ -142,8 +142,11 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
                 self.ax.set_ylim(min(min(self.Y), -10), max(max(self.Y), 10))
             self.figure.canvas.draw()
             
-            # Speed
-            # self.ui.motorSpeedProgessBar.setValue(int(cur_speed*100))
+            # Motor Power
+            motor_amps_percent = 1/((f_amps + b_amps)/5)
+            self.ui.motorCurrent_display.setText(f"{motor_amps_percent*100}%")
+            self.ui.motorCurrent_display.setStyleSheet(self.theme_btn_green) if (motor_amps_percent >= 1) else self.ui.aux_but.setStyleSheet(self.theme_btn_red)
+
 
     def increase_speed(self):
         # Increase speed functionality

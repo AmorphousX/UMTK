@@ -20,7 +20,7 @@ void inline Transistion_State();
 void inline Send_to_UI();
 
 #define printWhileStopped 1
-#define HEADER_TEXT "DIRECTION\tPOSITION\tLOAD\tCUR_SPEED\tSET_SPEED\tSTATE\tMOTOR_STALL\tBT_UP\tBT_DOWN\tBT_TARE\tBT_AUX\tIN_VOLTS\tVM_VOLTS\tLOOP_T\n"
+#define HEADER_TEXT "DIRECTION\tPOSITION\tLOAD\tCUR_SPEED\tSET_SPEED\tSTATE\tBT_UP\tBT_DOWN\tBT_TARE\tBT_AUX\tIN_VOLTS\tVM_VOLTS\tLOOP_T\n"
 
 
 // EEPROM Constants
@@ -33,9 +33,6 @@ slide Slide(SLIDE_DATA, SLIDE_CLOCK);
 HX711 LoadCell(LOADCELL_DATA, LOADCELL_CLOCK);
 MAX7219 SevenSeg(DISP_CS);
 
-// Motor Stall Threashold
-// This value should be from a motor stall and not trigger during normal, but high load situations
-#define MOTOR_STALL_THRESH_AMPS 5.2
 
 //Change this calibration factor as per your load cell 
 // once it is found you many need to vary it in thousands
@@ -73,7 +70,6 @@ float power_volts = 0.0;
 float vm_volts = 0.0;
 float mot1_amps = 0.0;
 float mot2_amps = 0.0;
-bool mot_stall = false;
 
 unsigned long serial_last_send_t = 0;
 unsigned long serial_last_send2_t = 0;

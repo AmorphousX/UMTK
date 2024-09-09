@@ -105,7 +105,7 @@ class UMTKSerial:
                 values = list(in_data.split('\t'))
                 if len(values) >= 14:
                     i_direction, i_position, i_load, i_cur_speed, i_set_speed, i_state, \
-                    i_f_amps, i_b_amps, i_mot_stall, i_bt_up, i_bt_down, i_bt_tare, i_bt_start,\
+                    i_f_amps, i_b_amps, i_bt_up, i_bt_down, i_bt_tare, i_bt_start,\
                     i_bt_aux, i_v_in, i_v_mot, i_t_loop = values
                     
                     direction = int(i_direction)
@@ -122,7 +122,6 @@ class UMTKSerial:
                     state = int(i_state)
                     f_amps = float(i_f_amps)
                     b_amps = float(i_b_amps)
-                    mot_stall = True if i_mot_stall == "1" else False
                     bt_up = True if i_bt_up == "1" else False
                     bt_down = True if i_bt_down == "1" else False
                     bt_tare = True if i_bt_tare == "1" else False
@@ -133,7 +132,7 @@ class UMTKSerial:
                     t_loop = int(i_t_loop)
 
                     return_data = [direction, position, load, cur_speed, set_speed,
-                        state, f_amps, b_amps, mot_stall, bt_up, bt_down, bt_tare,
+                        state, f_amps, b_amps, bt_up, bt_down, bt_tare,
                         bt_start, bt_aux, v_in, v_mot, t_loop]
 
             except ValueError as e:

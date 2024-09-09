@@ -138,15 +138,6 @@ void loop() {
   vm_volts = (float)(analogRead(VIN_SENSE)) / VSENSE_iK;
   mot1_amps = (float)analogRead(MOTOR_ISENSE_1) / VMOT_ISENSE_iK;
   mot2_amps = (float)analogRead(MOTOR_ISENSE_2) / VMOT_ISENSE_iK;
-  if (mot1_amps > MOTOR_STALL_THRESH_AMPS || mot2_amps > MOTOR_STALL_THRESH_AMPS)
-  {
-    mot_stall = true;
-  }
-  else
-  {
-    mot_stall = false;
-  }
-  
   
   Read_Slide();
 
@@ -390,8 +381,6 @@ void Transistion_State()
 void Send_to_UI()
 {
   // Logging
-  // Logging format
-  // NEW_DATA SPEED POSITION LOADCELL FEEDBACK_COUNT STATE ESTOP STALL DIRECTION INPUT_VOLTAGE
   if (UMTKState != STANDBY || printWhileStopped) {  
     Serial.print(run_direction); //Run Direction
     Serial.print("\t");
@@ -408,8 +397,6 @@ void Send_to_UI()
     Serial.print(mot1_amps); // Motor Phase 1 Amps
     Serial.print("\t");
     Serial.print(mot2_amps); // Motor Phase 2 Amps
-    Serial.print("\t");
-    Serial.print(mot_stall);
     Serial.print("\t");
     Serial.print(upButton);  // Up Button State
     Serial.print("\t");
