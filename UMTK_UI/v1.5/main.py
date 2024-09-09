@@ -16,14 +16,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, theme):
         super(Ui_MainWindow, self).__init__()
-        
-        if theme == "Dark":
-            plt.style.use('dark_background')
-            dot_color = "yellow"
-        else:
-            dot_color = "blue"
-
-
         self.desired_speed = 3.0
         self.X = []
         self.Y = []
@@ -34,6 +26,14 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         self.ui = UMTK_MainWindow()
         self.ui.setupUi(self)
+        
+        if theme == "Dark":
+            plt.style.use('dark_background')
+            dot_color = "yellow"
+            self.ui.cat_2.setPixmap(QtGui.QPixmap(".\\img/cat_1k_dark.png"))
+        else:
+            dot_color = "blue"
+            self.ui.cat_2.setPixmap(QtGui.QPixmap(".\\img/cat_1k.png"))
 
         self.ui.connectPort_but.pressed.connect(self.connect_serial_port)
         self.ui.disconnectPort_but.pressed.connect(self.disconnect_serial_port)
@@ -228,7 +228,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             case _:
                 state_name =  "UNKNOWN"
             
-        return (f"<p align=\"center\" style=\" font-family:\'.AppleSystemUIFont\'; font-size:24pt; font-weight:600; font-style:normal;\">{state_name}</p>")
+        return (f"<p align=\"center\" style=\" font-family:\'.AppleSystemUIFont\'; font-size:20pt; font-weight:600; font-style:normal;\">{state_name}</p>")
 
 if __name__ == "__main__":
     import sys

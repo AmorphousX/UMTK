@@ -227,8 +227,8 @@ QPushButton {
   background-color: #444;
   border: 1px solid #444;
   color: #d8d8d8;
-  font-size: 12pt;
-  padding: 3px 20px;
+  font-size: 10pt;
+  padding: 3px 5px;
 }
 
 QPushButton:focus {
