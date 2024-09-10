@@ -30,10 +30,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         if theme == "Dark":
             plt.style.use('dark_background')
             dot_color = "yellow"
-            self.ui.cat_2.setPixmap(QtGui.QPixmap(".\\img/cat_1k_dark.png"))
+            self.ui.cat_2.setPixmap(QtGui.QPixmap("./img/cat_1k_dark.png"))
         else:
             dot_color = "blue"
-            self.ui.cat_2.setPixmap(QtGui.QPixmap(".\\img/cat_1k.png"))
+            self.ui.cat_2.setPixmap(QtGui.QPixmap("./img/cat_1k.png"))
 
         self.ui.connectPort_but.pressed.connect(self.connect_serial_port)
         self.ui.disconnectPort_but.pressed.connect(self.disconnect_serial_port)
@@ -78,12 +78,12 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         # Set Serial Rate to 25Hz
         self.UMTKSerial.write(f'r20\n'.encode())
 
-        QtCore.QTimer().singleShot(10, self.connect_serial_port)
+        # QtCore.QTimer().singleShot(10, self.connect_serial_port)
         QtCore.QTimer().singleShot(100, self.read_serial)
 
         self.rescan_serial_timer = QtCore.QTimer()
         self.rescan_serial_timer.timeout.connect(self.rescan_serial_ports)
-        self.rescan_serial_timer.start(1000)
+        self.rescan_serial_timer.start(10000)
 
     def initialize_serial_port(self):
         self.ui.portsDropdown.clear()
@@ -118,7 +118,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         if (data):
             direction, position, load, cur_speed, set_speed, state, f_amps, b_amps, \
             bt_up, bt_down, bt_tare, bt_start, bt_aux, \
-            v_in, v_mot, t_loop = data
+            v_mot, v_in, t_loop = data
             
             self.ui.displacementLCD.display(position)
             self.ui.forceLCD.display(load)
@@ -132,6 +132,8 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             self.ui.tare_but.setStyleSheet(self.theme_btn_green) if bt_tare else self.ui.tare_but.setStyleSheet(self.theme_btn_red)
             self.ui.start_but.setStyleSheet(self.theme_btn_green) if bt_start else self.ui.start_but.setStyleSheet(self.theme_btn_red)
             self.ui.aux_but.setStyleSheet(self.theme_btn_green) if bt_aux else self.ui.aux_but.setStyleSheet(self.theme_btn_red)
+            if (v_mot < 3):
+                self.ui.eStop_display.setStyleSheet(self.theme_btn_red)
 
             # if state is TARE, clear graph
             if state == 8:
