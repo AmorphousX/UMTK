@@ -1,0 +1,41 @@
+custom_stylesheet = """
+QWidget {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12pt;
+}
+
+QPushButton {
+    background-color: #2980b9;
+    color: #ecf0f1;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+
+QPushButton:hover {
+    background-color: #3498db;
+}
+
+QLabel {
+    color: #ecf0f1;
+}
+
+QLineEdit {
+    background-color: #34495e;
+    border: 1px solid #2980b9;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ecf0f1;
+}
+
+QComboBox {
+    background-color: #34495e;
+    border: 1px solid #2980b9;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ecf0f1;
+}
+"""
