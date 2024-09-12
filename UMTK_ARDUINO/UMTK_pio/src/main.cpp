@@ -134,8 +134,8 @@ void loop() {
   // Remove the if statement if you wish to print slower and only new new LoadCell value is available
 
   // Read Analogue inputs
-  power_volts = (float)(analogRead(VMOT_SENSE)) / VSENSE_iK;
-  vm_volts = (float)(analogRead(VIN_SENSE)) / VSENSE_iK;
+  power_volts = (float)(analogRead(VIN_SENSE)) / VSENSE_iK;
+  vm_volts = (float)(analogRead(VMOT_SENSE)) / VSENSE_iK;
   mot1_amps = (float)analogRead(MOTOR_ISENSE_1) / VMOT_ISENSE_iK;
   mot2_amps = (float)analogRead(MOTOR_ISENSE_2) / VMOT_ISENSE_iK;
   
