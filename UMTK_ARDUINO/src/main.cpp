@@ -42,11 +42,11 @@ void setup() {
   {
     Serial.println("CALIBRATION RESET WITH BUTTONS COMBO");
     EEPROM.put(EEPROM_MAGIC_VALUE_ADDRESS, (unsigned long)EEPROM_MAGIC_VALUE);
-    EEPROM.put(EEPROM_LC_DIVIDER_ADDRESS, calibration_factor_load);
+    EEPROM.put(EEPROM_LC_DIVIDER_ADDRESS, FACTORY_CALIBRATION_DEFAULT);
     EEPROM.put(EEPROM_LC_OFFSET_ADDRESS, 0);
     delay(100);
   }
-  if (EEPROM.get(EEPROM_MAGIC_VALUE_ADDRESS, eepromMagicRead) == EEPROM_MAGIC_VALUE)
+  else if (EEPROM.get(EEPROM_MAGIC_VALUE_ADDRESS, eepromMagicRead) == EEPROM_MAGIC_VALUE)
   {
     // eeprom magic match
     EEPROM.get(EEPROM_LC_DIVIDER_ADDRESS, LC_divider);
@@ -54,9 +54,8 @@ void setup() {
   } 
   else 
   {
-    long zero_factor_load = LoadCell.read_average(); //Get a baseline reading
     LC_offset = 0;
-    LC_divider = calibration_factor_load;
+    LC_divider = FACTORY_CALIBRATION_DEFAULT;
   }
 
   LoadCell.begin(LOADCELL_DATA, LOADCELL_CLOCK);
@@ -427,6 +426,8 @@ void Send_to_UI()
 {
   // Logging
   if (UMTKState != STANDBY || printWhileStopped) {  
+    Serial.print(millis()); //Print a time counter
+    Serial.print("\t");
     Serial.print(run_direction); //Run Direction
     Serial.print("\t");
     Serial.print(dis_now); // Position
@@ -481,7 +482,7 @@ void PID_Control(){
     last_error = error;
     total_error = error*(double)pid_dt + total_error;
     // clamp intergral so it doesn't cause long running issues
-    total_error = constrain(total_error, -1e6, 1e6);
+    total_error = constrain(total_error, -1e7, 1e7);
 
     control_signal = pid_p + pid_d + pid_i;
     

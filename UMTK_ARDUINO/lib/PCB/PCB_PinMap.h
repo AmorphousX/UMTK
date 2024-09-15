@@ -43,3 +43,7 @@
 #define VMOT_ISENSE_iK  126.603636364
 
 #define STALL_AMPS_THREASHOLD 5.0
+
+//Change this calibration factor as per your load cell 
+// once it is found you many need to vary it in thousands
+#define FACTORY_CALIBRATION_DEFAULT 22025 //-106600 worked for my 40Kg max scale setup 

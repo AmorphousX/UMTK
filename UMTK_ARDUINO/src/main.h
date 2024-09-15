@@ -20,7 +20,7 @@ void inline Transistion_State();
 void inline Send_to_UI();
 
 #define printWhileStopped 1
-#define HEADER_TEXT "DIRECTION\tPOSITION\tLOAD\tCUR_SPEED\tSET_SPEED\tSTATE\tMOT_F_AMPS\tMOT_B_AMPS\tBT_UP\tBT_DOWN\tBT_TARE\tBT_AUX\tIN_VOLTS\tVM_VOLTS\tLOOP_T\n"
+#define HEADER_TEXT "MILLIS\tDIRECTION\tPOSITION\tLOAD\tCUR_SPEED\tSET_SPEED\tSTATE\tMOT_F_AMPS\tMOT_B_AMPS\tBT_UP\tBT_DOWN\tBT_TARE\tBT_AUX\tIN_VOLTS\tVM_VOLTS\tLOOP_T\n"
 
 
 // EEPROM Constants
@@ -34,9 +34,6 @@ HX711 LoadCell(LOADCELL_DATA, LOADCELL_CLOCK);
 MAX7219 SevenSeg(DISP_CS);
 
 
-//Change this calibration factor as per your load cell 
-// once it is found you many need to vary it in thousands
-long calibration_factor_load = 22025; //-106600 worked for my 40Kg max scale setup 
 float calibration_factor_displacement = -98.9;
 
 int lastSWITCH_STARTState = 0;
