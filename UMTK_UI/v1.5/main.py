@@ -4,11 +4,12 @@ from matplotlib.figure import Figure
 from lib.UMTKSerial import UMTKSerial as UMTKSerial_t
 import matplotlib.pyplot as plt 
 import numpy as np
-import random
-import copy
-import logging
+from datetime import datetime
 from PyQt6.QtCore import QFile, QTextStream
 from qt_material import apply_stylesheet
+import csv
+import os
+import time
 
 from lib.umtk_design import Ui_MainWindow as UMTK_MainWindow
 
@@ -23,6 +24,13 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.theme_btn_red = "background-color: red"
         self.theme_btn_green = "background-color: green"
         self.UMTKSerial = UMTKSerial_t()
+
+        # Directory for logs
+        self.log_dir = "UMTK_runs"
+        os.makedirs(self.log_dir, exist_ok=True)
+
+        # Start a new log file
+        self.log_file = self.start_new_log()
 
         self.ui = UMTK_MainWindow()
         self.ui.setupUi(self)
@@ -85,6 +93,22 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.rescan_serial_timer.timeout.connect(self.rescan_serial_ports)
         self.rescan_serial_timer.start(10000)
 
+    def start_new_log(self):
+        """Create a new log file with a unique timestamped name."""
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+        log_file_path = os.path.join(self.log_dir, f"UMTK_run_{timestamp}.csv")
+        log_file = open(log_file_path, "w", newline='')
+        csv_writer = csv.writer(log_file)
+        csv_writer.writerow(["Timestamp", "Direction", "Position", "Load", "Current Speed", "Set Speed", "State", "F_AMPS", "B_AMPS", "BT_Up", "BT_Down", "BT_Tare", "BT_Start", "BT_Aux", "V_Mot", "V_In", "T_Loop"])
+        return log_file
+
+    def log_data(self, data):
+        """Log serial data to the CSV file."""
+        if self.log_file and data:
+            csv_writer = csv.writer(self.log_file)
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+            csv_writer.writerow([timestamp, *data])
+
     def initialize_serial_port(self):
         self.ui.portsDropdown.clear()
         self.ui.portsDropdown.addItems(self.UMTKSerial.init_serial())
@@ -110,6 +134,8 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.process_serial_data(data)
         # Schedule Next Serial Read
         if (data):
+            # Log the data continuously
+            self.log_data(data)
             QtCore.QTimer().singleShot(25, self.read_serial)
         else:
             QtCore.QTimer().singleShot(150, self.read_serial)
@@ -137,6 +163,9 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
             # if state is TARE, clear graph
             if state == 8:
+                if self.log_file:
+                    self.log_file.close()
+                    self.log_file = self.start_new_log()
                 self.X = []
                 self.Y = []
             else:
@@ -167,8 +196,12 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.UMTKSerial.write(b'D')
 
     def tare(self):
+        """Stop current logging and start a new log."""
         # Tare functionality
         self.UMTKSerial.write(b'Tare\n')
+        if self.log_file:
+            self.log_file.close()
+        self.log_file = self.start_new_log()
 
     def commit_speed(self):
         try:
@@ -231,6 +264,12 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
                 state_name =  "UNKNOWN"
             
         return (f"<p align=\"center\" style=\" font-family:\'.AppleSystemUIFont\'; font-size:20pt; font-weight:600; font-style:normal;\">{state_name}</p>")
+    
+    def closeEvent(self, event):
+        """Close the log file when the application is closed."""
+        if self.log_file:
+            self.log_file.close()
+        event.accept()
 
 if __name__ == "__main__":
     import sys
@@ -238,8 +277,7 @@ if __name__ == "__main__":
     theme = "Dark"
 
     app = QtWidgets.QApplication(sys.argv)
-    #app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt6())
-    # apply_stylesheet(app, theme='light_amber.xml')
+    
     MainWindow = Ui_MainWindow(theme)
 
     # Load the QSS file
