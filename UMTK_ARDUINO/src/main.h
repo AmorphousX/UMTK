@@ -59,6 +59,11 @@ long d_t = 0;
 float dis_now = 0;
 float dis_last = 0;
 
+// Stall detection code
+uint8_t stall_detect_counter = 0;
+static constexpr uint8_t stall_detect_trip_count  = 100;
+bool jog_lockout = false;
+
 uint8_t serial_jog_counter = 255;
 static constexpr uint8_t serial_jog_time = 250;
 

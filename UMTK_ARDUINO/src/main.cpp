@@ -187,6 +187,18 @@ void loop() {
   }
 #endif
 
+  if ((mot1_amps + mot2_amps) > STALL_AMPS_THREASHOLD)
+  {
+    if (stall_detect_counter < 254)
+    {
+      stall_detect_counter ++;
+    }
+  }
+  else
+  {
+    stall_detect_counter = 0;
+  }
+
   Update_Display();
   loopcount ++;
 }
@@ -208,8 +220,15 @@ void tareAll()
 void Update_Display()
 {
   SevenSeg.writeNumeric(0, (int)(Load));
-  SevenSeg.writeNumeric(1, int(dis_now*10),1);
-//  SevenSeg.writeNumeric(1, (int)(millis()/100), 1);
+  
+  if (dis_now < -99.9 || dis_now > 999.9)
+  {
+    SevenSeg.writeNumeric(1, int(dis_now));
+  }
+  else
+  {
+    SevenSeg.writeNumeric(1, int(dis_now*10),1);
+  }
 }
 
 void Read_Slide()
@@ -234,6 +253,12 @@ void Determine_Next_State()
   switch (UMTKState){
     case JOG_UP:
     {
+      if (stall_detect_counter  > stall_detect_trip_count)
+      {
+        jog_lockout = true;
+        UMTKNextState = STANDBY;
+        break;
+      }
       if (serial_jog_counter < serial_jog_time)
       {
         // If jog is invoked from serial, we hold it for a bit
@@ -252,6 +277,12 @@ void Determine_Next_State()
 
     case JOG_DOWN:
     {
+      if (stall_detect_counter  > stall_detect_trip_count)
+      {
+        jog_lockout = true;
+        UMTKNextState = STANDBY;
+        break;
+      }
       if (serial_jog_counter < serial_jog_time)
       {
         // If jog is invoked from serial, we hold it for a bit
@@ -282,12 +313,18 @@ void Determine_Next_State()
         }
       }
 
-      if(upButton == press || upButton == down){
+      // Clear jog logout, wait for user to release button before allowing jog again after stall
+      if (upButton == up && downButton == up)
+      {
+        jog_lockout = false;
+      }
+
+      if(!jog_lockout && (upButton == press || upButton == down)){
         UMTKNextState = JOG_UP;
         break;
       }
       
-      if(downButton == press || downButton == down){
+      if(!jog_lockout && (downButton == press || downButton == down)){
         UMTKNextState = JOG_DOWN;
         break;
       }
@@ -305,6 +342,11 @@ void Determine_Next_State()
 
     case RUNNING:
     {
+      if (stall_detect_counter  > stall_detect_trip_count)
+      {
+        UMTKNextState = STANDBY;
+        break;
+      }
       if(upButton == press){
         UMTKNextState = STANDBY;
         break;
@@ -415,10 +457,6 @@ void Send_to_UI()
     Serial.print("\t");
     Serial.print(vm_volts);   // Motor Voltage
     Serial.print("\t");
-    // Serial.print(digitalRead(MOTOR_nITRIP));   // ITRIP
-    // Serial.print("\t");
-    // Serial.print(digitalRead(MOTOR_nFAULT));   // NFAULT
-    // Serial.print("\t");
     Serial.print(millis() - serial_last_send2_t);         // Loop Time
     Serial.print("\n");
   }
