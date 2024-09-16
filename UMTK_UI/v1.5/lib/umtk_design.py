@@ -148,7 +148,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.addWidget(self.stop_but)
         self.horizontalLayout.addLayout(self.verticalLayout_6)
         self.graphDisplay = QtWidgets.QWidget(parent=self.centralwidget)
-        self.graphDisplay.setGeometry(QtCore.QRect(-20, 90, 1041, 551))
+        self.graphDisplay.setGeometry(QtCore.QRect(-20, 90, 1011, 551))
         self.graphDisplay.setObjectName("graphDisplay")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(parent=self.centralwidget)
         self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(1000, 70, 371, 611))
