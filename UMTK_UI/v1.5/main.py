@@ -176,15 +176,18 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
                     self.X = self.X[:1000]
                     self.Y = self.Y[:1000]
                 
-                self.sp.set_data(self.X, self.Y)
+                if (direction == 1):
+                    self.sp.set_data(self.X, self.Y)
+                else:
+                    self.sp.set_data(self.X, self.Y)
                 self.ax.set_xlim(min(min(self.X), -10),max(max(self.X), 10))
                 self.ax.set_ylim(min(min(self.Y), -10), max(max(self.Y), 10))
             self.figure.canvas.draw()
             
             # Motor Power
-            motor_amps_percent = ((f_amps + b_amps)/5)*100
-            self.ui.motorCurrent_display.display("{:10.1f}".format(motor_amps_percent))
-            self.ui.motorCurrent_display.setStyleSheet("") if (motor_amps_percent < 100) else self.ui.motorCurrent_display.setStyleSheet(self.theme_btn_red)
+            motor_amps= (f_amps + b_amps)
+            self.ui.motorCurrent_display.display("{:1.2f}".format(motor_amps))
+            self.ui.motorCurrent_display.setStyleSheet("") if (motor_amps < 4) else self.ui.motorCurrent_display.setStyleSheet(self.theme_btn_red)
 
 
     def increase_speed(self):
