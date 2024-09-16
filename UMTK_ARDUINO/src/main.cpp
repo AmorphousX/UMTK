@@ -37,25 +37,43 @@ void setup() {
   // #############
   // Check EEPROM if there is a stored value. Do this by verifying eeprom magic value
   unsigned long eepromMagicRead = 0UL;
+  EEPROM.get(EEPROM_MAGIC_VALUE_ADDRESS, eepromMagicRead);
   // Reset mode, if AUX and START is pressed on power up, reset the Calibration
   if (digitalRead(SWITCH_START) == LOW && digitalRead(SWITCH_AUX) == LOW)
   {
-    Serial.println("CALIBRATION RESET WITH BUTTONS COMBO");
-    EEPROM.put(EEPROM_MAGIC_VALUE_ADDRESS, (unsigned long)EEPROM_MAGIC_VALUE);
-    EEPROM.put(EEPROM_LC_DIVIDER_ADDRESS, FACTORY_CALIBRATION_DEFAULT);
-    EEPROM.put(EEPROM_LC_OFFSET_ADDRESS, 0);
-    delay(100);
+
+    EEPROM.put(EEPROM_MAGIC_VALUE_ADDRESS, (unsigned long)0x00000000);
+    EEPROM.put(EEPROM_LC_DIVIDER_ADDRESS, (unsigned long)0x00000000);
+    EEPROM.put(EEPROM_LC_OFFSET_ADDRESS, (unsigned long)0x00000000);
+    LC_offset = 0;
+    LC_divider = FACTORY_CALIBRATION_DEFAULT;
+    Serial.print("++++ CALIBRATION CLEARED WITH BUTTONS COMBO:\t");
+    Serial.print(LC_divider);
+    Serial.print("\t");
+    Serial.println(LC_offset);
+    delay(10);
   }
-  else if (EEPROM.get(EEPROM_MAGIC_VALUE_ADDRESS, eepromMagicRead) == EEPROM_MAGIC_VALUE)
+  else if (eepromMagicRead == EEPROM_MAGIC_VALUE)
   {
     // eeprom magic match
     EEPROM.get(EEPROM_LC_DIVIDER_ADDRESS, LC_divider);
     EEPROM.get(EEPROM_LC_OFFSET_ADDRESS, LC_offset);
+    Serial.print("++++ Restored Calibration From EEPROM:\t");
+    Serial.print(LC_divider);
+    Serial.print("\t");
+    Serial.println(LC_offset);
   } 
   else 
   {
+    // eeprom magic no match
     LC_offset = 0;
     LC_divider = FACTORY_CALIBRATION_DEFAULT;
+
+    Serial.print("++++ USING DEFAUT CAIBRATION:\t");
+    Serial.print(LC_divider);
+    Serial.print("\t");
+    Serial.println(LC_offset);
+    delay(100);
   }
 
   LoadCell.begin(LOADCELL_DATA, LOADCELL_CLOCK);
@@ -218,7 +236,7 @@ void tareAll()
 
 void Update_Display()
 {
-  SevenSeg.writeNumeric(0, (int)(Load));
+  SevenSeg.writeNumeric(0, abs((int)(Load)));
   
   if (dis_now < -99.9 || dis_now > 999.9)
   {
@@ -549,9 +567,14 @@ void Read_Serial()
       float calLoad = Serial.parseFloat();
       LC_divider = LoadCell.get_value(10)/calLoad;
       LoadCell.set_scale(LC_divider);
+      LC_offset = abs(LoadCell.get_offset());
       EEPROM.put(EEPROM_MAGIC_VALUE_ADDRESS, (unsigned long)EEPROM_MAGIC_VALUE);
       EEPROM.put(EEPROM_LC_DIVIDER_ADDRESS, LC_divider);
-      EEPROM.put(EEPROM_LC_OFFSET_ADDRESS, LoadCell.get_offset());
+      EEPROM.put(EEPROM_LC_OFFSET_ADDRESS, LC_offset);
+      Serial.print("Saved Calibration Factors to EEPROM: ");
+      Serial.print(LC_divider);
+      Serial.print("\t");
+      Serial.print(LC_offset);
     }
 
     if (incomingByte == 's' || incomingByte == 'S') {

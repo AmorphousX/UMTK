@@ -46,4 +46,4 @@
 
 //Change this calibration factor as per your load cell 
 // once it is found you many need to vary it in thousands
-#define FACTORY_CALIBRATION_DEFAULT 22025 //-106600 worked for my 40Kg max scale setup 
+#define FACTORY_CALIBRATION_DEFAULT 2203 //-106600 worked for my 40Kg max scale setup 
