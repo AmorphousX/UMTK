@@ -99,15 +99,19 @@ class UMTKSerial:
         elif ("DIRECTION" in in_data):
             # Header
             print("H", end="", flush="True")
+        elif ("+++" in in_data):
+            # Header
+            print("S", end="", flush="True")
         else:
             try:
             # Data
                 values = list(in_data.split('\t'))
                 if len(values) >= 14:
-                    i_direction, i_position, i_load, i_cur_speed, i_set_speed, i_state, \
+                    i_millis, i_direction, i_position, i_load, i_cur_speed, i_set_speed, i_state, \
                     i_f_amps, i_b_amps, i_bt_up, i_bt_down, i_bt_tare, i_bt_start,\
                     i_bt_aux, i_v_in, i_v_mot, i_t_loop = values
                     
+                    millis = int(i_millis)
                     direction = int(i_direction)
                     if direction == 0:
                         position = -1*float(i_position)
@@ -131,7 +135,7 @@ class UMTKSerial:
                     v_mot = float(i_v_mot)
                     t_loop = int(i_t_loop)
 
-                    return_data = [direction, position, load, cur_speed, set_speed,
+                    return_data = [millis, direction, position, load, cur_speed, set_speed,
                         state, f_amps, b_amps, bt_up, bt_down, bt_tare,
                         bt_start, bt_aux, v_in, v_mot, t_loop]
 

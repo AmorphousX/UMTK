@@ -99,7 +99,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         log_file_path = os.path.join(self.log_dir, f"UMTK_run_{timestamp}.csv")
         log_file = open(log_file_path, "w", newline='')
         csv_writer = csv.writer(log_file)
-        csv_writer.writerow(["Timestamp", "Direction", "Position", "Load", "Current Speed", "Set Speed", "State", "F_AMPS", "B_AMPS", "BT_Up", "BT_Down", "BT_Tare", "BT_Start", "BT_Aux", "V_Mot", "V_In", "T_Loop"])
+        csv_writer.writerow(["Log Timestamp", "UMTK Time Counter", "Direction", "Position", "Load", "Current Speed", "Set Speed", "State", "F_AMPS", "B_AMPS", "BT_Up", "BT_Down", "BT_Tare", "BT_Start", "BT_Aux", "V_Mot", "V_In", "T_Loop"])
         return log_file
 
     def log_data(self, data):
@@ -142,7 +142,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
     def process_serial_data(self, data):
         if (data):
-            direction, position, load, cur_speed, set_speed, state, f_amps, b_amps, \
+            millis, direction, position, load, cur_speed, set_speed, state, f_amps, b_amps, \
             bt_up, bt_down, bt_tare, bt_start, bt_aux, \
             v_mot, v_in, t_loop = data
             
