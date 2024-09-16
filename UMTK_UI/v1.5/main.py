@@ -144,7 +144,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         if (data):
             millis, direction, position, load, cur_speed, set_speed, state, f_amps, b_amps, \
             bt_up, bt_down, bt_tare, bt_start, bt_aux, \
-            v_mot, v_in, t_loop = data
+            v_in, v_mot, t_loop = data
             
             self.ui.displacementLCD.display(position)
             self.ui.forceLCD.display(load)
@@ -160,6 +160,8 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             self.ui.aux_but.setStyleSheet(self.theme_btn_green) if bt_aux else self.ui.aux_but.setStyleSheet(self.theme_btn_red)
             if (v_mot < 3):
                 self.ui.eStop_display.setStyleSheet(self.theme_btn_red)
+            else:
+                self.ui.eStop_display.setStyleSheet("")
 
             # if state is TARE, clear graph
             if state == 8:
