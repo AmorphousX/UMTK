@@ -158,7 +158,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             self.ui.tare_but.setStyleSheet(self.theme_btn_green) if bt_tare else self.ui.tare_but.setStyleSheet(self.theme_btn_red)
             self.ui.start_but.setStyleSheet(self.theme_btn_green) if bt_start else self.ui.start_but.setStyleSheet(self.theme_btn_red)
             self.ui.aux_but.setStyleSheet(self.theme_btn_green) if bt_aux else self.ui.aux_but.setStyleSheet(self.theme_btn_red)
-            if (v_mot < 3):
+            if (v_mot < 8):
                 self.ui.eStop_display.setStyleSheet(self.theme_btn_red)
             else:
                 self.ui.eStop_display.setStyleSheet("")
