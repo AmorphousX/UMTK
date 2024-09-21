@@ -95,7 +95,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
     def start_new_log(self):
         """Create a new log file with a unique timestamped name."""
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+        timestamp = datetime.now().strftime("%Y-%m-%d %H-%M-%S.%f")[:-3]
         log_file_path = os.path.join(self.log_dir, f"UMTK_run_{timestamp}.csv")
         log_file = open(log_file_path, "w", newline='')
         csv_writer = csv.writer(log_file)
