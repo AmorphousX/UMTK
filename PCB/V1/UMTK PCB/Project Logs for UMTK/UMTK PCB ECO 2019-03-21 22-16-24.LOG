@@ -1,7 +1,0 @@
-Added Pin To Net: NetName=M_DISABLE Pin=J1-1
-Added Pin To Net: NetName=M_EN/IN1 Pin=J1-2
-Added Pin To Net: NetName=M_PH/IN2 Pin=J1-3
-Added Room: Name=S1_Connections
-Added Room: Name=S2_UserInterface
-Added Room: Name=S3_Arduino
-Added Room: Name=S4_MotorDriver
