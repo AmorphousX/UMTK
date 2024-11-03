@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.15,
         "silk_text_upright": true,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.0
         }
       },
       "diff_pair_dimensions": [
@@ -66,6 +66,8 @@
         "courtyards_overlap|36353801|57058535|b5979748-f0af-4379-a856-70d503828191|c0ea877a-2549-4aa2-a1dc-68d92b64d7e4",
         "courtyards_overlap|36454767|54480801|20ac5a3e-3d99-4e3a-860e-6232db014eb5|b5979748-f0af-4379-a856-70d503828191",
         "courtyards_overlap|38807135|23114001|889082a0-1d4c-4078-8ed3-430b9bcbe98d|b5979748-f0af-4379-a856-70d503828191",
+        "lib_footprint_mismatch|108126500|38923000|1d1601a0-e645-4daf-8951-e34100ffd47a|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|112626500|38928000|5530fc22-68f9-4806-bbc1-1124424b0479|00000000-0000-0000-0000-000000000000",
         "silk_edge_clearance|100370000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|2f4f0017-f188-4a68-b3fe-8e06350367a3",
         "silk_edge_clearance|139551000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|aae742a3-aaa3-4ad6-aebd-ce4d875e32c5",
         "silk_edge_clearance|151931000|20000000|e0d34eb8-3dac-400b-9f14-42633c9d5d1e|11fa5304-f7c3-4b56-8fa8-39c0d93a4f1f",
@@ -132,8 +134,8 @@
       },
       "rules": {
         "max_error": 0.005,
-        "min_clearance": 0.0889,
-        "min_connection": 0.0889,
+        "min_clearance": 0.1016,
+        "min_connection": 0.1016,
         "min_copper_edge_clearance": 0.4,
         "min_hole_clearance": 0.33,
         "min_hole_to_hole": 0.254,
@@ -143,10 +145,10 @@
         "min_silk_clearance": 0.0,
         "min_text_height": 0.8,
         "min_text_thickness": 0.08,
-        "min_through_hole_diameter": 0.2,
-        "min_track_width": 0.0889,
-        "min_via_annular_width": 0.13,
-        "min_via_diameter": 0.25,
+        "min_through_hole_diameter": 0.3,
+        "min_track_width": 0.1016,
+        "min_via_annular_width": 0.075,
+        "min_via_diameter": 0.35,
         "solder_mask_clearance": 0.0,
         "solder_mask_min_width": 0.0,
         "solder_mask_to_copper_clearance": 0.0,
@@ -243,6 +245,14 @@
         {
           "diameter": 0.0,
           "drill": 0.0
+        },
+        {
+          "diameter": 0.25,
+          "drill": 0.15
+        },
+        {
+          "diameter": 0.35,
+          "drill": 0.2
         },
         {
           "diameter": 0.56,
