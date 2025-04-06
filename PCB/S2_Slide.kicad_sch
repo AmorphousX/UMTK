@@ -317,6 +317,156 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Diode:SS34"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SS34"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Diode_SMD:D_SMA"
+				(at 0 -4.445 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.vishay.com/docs/88751/ss32.pdf"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "40V 3A Schottky Diode, SMA"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "diode Schottky"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "D*SMA*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SS34_0_1"
+				(polyline
+					(pts
+						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SS34_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Logic_LevelTranslator:SN74LVC1T45DCK"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -2045,6 +2195,16 @@
 	)
 	(wire
 		(pts
+			(xy 102.87 110.49) (xy 104.14 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "11ae4d7e-aa12-4564-83c4-dbcda053ada7")
+	)
+	(wire
+		(pts
 			(xy 137.16 102.87) (xy 153.67 102.87)
 		)
 		(stroke
@@ -2092,16 +2252,6 @@
 			(type default)
 		)
 		(uuid "25b51a3d-0f8b-4a23-8296-e86d8220c201")
-	)
-	(wire
-		(pts
-			(xy 109.22 115.57) (xy 109.22 110.49)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2cd55933-8123-4669-a69d-7037b4b49f4f")
 	)
 	(wire
 		(pts
@@ -2255,6 +2405,16 @@
 	)
 	(wire
 		(pts
+			(xy 102.87 115.57) (xy 102.87 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "75c990c1-6234-44a0-97c9-f4ecfdcce54f")
+	)
+	(wire
+		(pts
 			(xy 153.67 113.03) (xy 153.67 110.49)
 		)
 		(stroke
@@ -2282,16 +2442,6 @@
 			(type default)
 		)
 		(uuid "7f07cece-f8f6-4a84-bbad-23895c2a5a6c")
-	)
-	(wire
-		(pts
-			(xy 109.22 110.49) (xy 114.3 110.49)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "88af16e2-ba32-45e9-9df9-9c99b3e400e8")
 	)
 	(wire
 		(pts
@@ -2455,13 +2605,13 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 115.57) (xy 109.22 115.57)
+			(xy 111.76 110.49) (xy 114.3 110.49)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fd08a65e-8b11-46da-83b4-0e59b8d0fbe8")
+		(uuid "fbb95f59-3c88-47b1-9f10-be5c19c67ff0")
 	)
 	(label "_SLIDE_CLK_"
 		(at 92.71 83.82 180)
@@ -4004,7 +4154,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 102.87 115.57 0)
+		(at 102.87 115.57 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4013,7 +4163,7 @@
 		(fields_autoplaced yes)
 		(uuid "bd92352a-9d3f-442a-9391-14e9ba2dfab0")
 		(property "Reference" "#PWR018"
-			(at 102.87 119.38 0)
+			(at 102.87 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4022,7 +4172,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 102.87 110.49 0)
+			(at 102.87 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4209,6 +4359,73 @@
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
 					(reference "#PWR053")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:SS34")
+		(at 107.95 110.49 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e2d18293-d0af-4378-be5d-61faa4df0d94")
+		(property "Reference" "D6"
+			(at 107.95 116.078 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SS34"
+			(at 108.966 114.046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SMA"
+			(at 107.95 106.045 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/88751/ss32.pdf"
+			(at 107.95 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "40V 3A Schottky Diode, SMA"
+			(at 107.95 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3f87e649-8edd-4c26-9227-0cadabbc2430")
+		)
+		(pin "2"
+			(uuid "4fb0cff8-57bb-4c44-a18f-98a8c068eb27")
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf/2a108526-cc67-4813-b443-9c33235e24c0"
+					(reference "D6")
 					(unit 1)
 				)
 			)
