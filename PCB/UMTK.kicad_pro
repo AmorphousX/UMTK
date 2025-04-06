@@ -108,6 +108,7 @@
         "solder_mask_bridge": "error",
         "starved_thermal": "error",
         "text_height": "ignore",
+        "text_on_edge_cuts": "error",
         "text_thickness": "ignore",
         "through_hole_pad_without_hole": "error",
         "too_many_vias": "error",
@@ -1078,6 +1079,10 @@
     [
       "9034045e-70ca-44cd-84b0-62f91947c95b",
       "Power"
+    ],
+    [
+      "ca12d462-919f-481b-804c-ddbf7ee28d26",
+      "Buttons"
     ],
     [
       "2a108526-cc67-4813-b443-9c33235e24c0",

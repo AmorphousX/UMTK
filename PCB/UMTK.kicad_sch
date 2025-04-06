@@ -488,6 +488,16 @@
 	)
 	(wire
 		(pts
+			(xy 152.4 116.84) (xy 165.1 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "51aa3bc2-fbc3-49ba-b6da-5f78ed5a0858")
+	)
+	(wire
+		(pts
 			(xy 152.4 50.8) (xy 165.1 50.8)
 		)
 		(stroke
@@ -505,6 +515,36 @@
 			(type default)
 		)
 		(uuid "5d9d9a46-0b51-4412-8572-e8c25adedb27")
+	)
+	(wire
+		(pts
+			(xy 152.4 121.92) (xy 165.1 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5db65ad9-0b6b-4eaf-a433-c78523be8be9")
+	)
+	(wire
+		(pts
+			(xy 152.4 124.46) (xy 165.1 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ab66a53-86a2-449e-acef-c4063d5de791")
+	)
+	(wire
+		(pts
+			(xy 152.4 119.38) (xy 165.1 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "858253a4-490b-46b7-a5ad-8e4cd9b0f8ca")
 	)
 	(wire
 		(pts
@@ -535,6 +575,16 @@
 			(type default)
 		)
 		(uuid "93f2bc31-41ec-4c04-9e92-773723413dbe")
+	)
+	(wire
+		(pts
+			(xy 152.4 127) (xy 165.1 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa8e7dd7-0b46-414b-9cb8-d5af64c266b3")
 	)
 	(wire
 		(pts
@@ -1744,6 +1794,56 @@
 				(justify left)
 			)
 		)
+		(pin "SW1" input
+			(at 152.4 116.84 0)
+			(uuid "8aec3cd5-47d4-4a2f-bc2b-94df43696cb1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SW2" input
+			(at 152.4 119.38 0)
+			(uuid "ed5fe3ef-031a-45fc-b8a8-62b05747df60")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SW3" input
+			(at 152.4 121.92 0)
+			(uuid "e3450fdb-e3cf-4f11-8101-7ace4032b4d2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SW4" input
+			(at 152.4 124.46 0)
+			(uuid "35fbbba6-b907-4c32-838e-79b59adb18a1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SW5" input
+			(at 152.4 127 0)
+			(uuid "b28dc566-fcd5-4dc2-8264-f1e406181ad7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf"
@@ -1796,7 +1896,7 @@
 	)
 	(sheet
 		(at 165.1 88.9)
-		(size 25.4 50.8)
+		(size 25.4 16.51)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -1820,7 +1920,7 @@
 			)
 		)
 		(property "Sheetfile" "S1_7Seg_Display.kicad_sch"
-			(at 165.1 140.2846 0)
+			(at 165.1 105.9946 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1934,6 +2034,98 @@
 			(project "UMTK"
 				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf"
 					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 165.1 114.3)
+		(size 24.13 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "ca12d462-919f-481b-804c-ddbf7ee28d26")
+		(property "Sheetname" "Buttons"
+			(at 165.1 113.5884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "S5_Buttons.kicad_sch"
+			(at 165.1 140.2846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "SW1" input
+			(at 165.1 116.84 180)
+			(uuid "fc40f397-adb0-4c1f-9ccf-a84e7aaf4ce6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SW2" input
+			(at 165.1 119.38 180)
+			(uuid "e92e5ab1-0c64-4b1c-aabc-e3bc5bcf6ab6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SW3" input
+			(at 165.1 121.92 180)
+			(uuid "f01ad1cd-a568-4e5c-9ffd-5078bde9f80f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SW4" input
+			(at 165.1 124.46 180)
+			(uuid "8e4a70c5-c7eb-49cc-b99a-3fb3f59e2335")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SW5" input
+			(at 165.1 127 180)
+			(uuid "ef582292-c57e-42c3-a45d-b8d0b36b04a2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "UMTK"
+				(path "/2bf3ea67-58b8-47b3-a768-ea6950b40edf"
+					(page "8")
 				)
 			)
 		)
