@@ -10527,7 +10527,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Crystal:Crystal_SMD_HC49-SD"
+		(property "Footprint" ""
 			(at 93.98 182.88 0)
 			(effects
 				(font
@@ -13927,7 +13927,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Crystal:Crystal_SMD_HC49-SD"
+		(property "Footprint" ""
 			(at 180.34 44.45 0)
 			(effects
 				(font

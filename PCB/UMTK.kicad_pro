@@ -124,8 +124,8 @@
       },
       "rules": {
         "max_error": 0.005,
-        "min_clearance": 0.1016,
-        "min_connection": 0.1016,
+        "min_clearance": 0.0889,
+        "min_connection": 0.0889,
         "min_copper_edge_clearance": 0.4,
         "min_groove_width": 0.0,
         "min_hole_clearance": 0.33,
@@ -136,10 +136,10 @@
         "min_silk_clearance": 0.0,
         "min_text_height": 0.8,
         "min_text_thickness": 0.08,
-        "min_through_hole_diameter": 0.3,
-        "min_track_width": 0.1016,
-        "min_via_annular_width": 0.075,
-        "min_via_diameter": 0.35,
+        "min_through_hole_diameter": 0.2,
+        "min_track_width": 0.0889,
+        "min_via_annular_width": 0.13,
+        "min_via_diameter": 0.25,
         "solder_mask_clearance": 0.0,
         "solder_mask_min_width": 0.0,
         "solder_mask_to_copper_clearance": 0.0,
@@ -237,14 +237,6 @@
         {
           "diameter": 0.0,
           "drill": 0.0
-        },
-        {
-          "diameter": 0.25,
-          "drill": 0.15
-        },
-        {
-          "diameter": 0.35,
-          "drill": 0.2
         },
         {
           "diameter": 0.56,
@@ -1081,12 +1073,12 @@
       "Power"
     ],
     [
-      "ca12d462-919f-481b-804c-ddbf7ee28d26",
-      "Buttons"
-    ],
-    [
       "2a108526-cc67-4813-b443-9c33235e24c0",
       "Linear Slide"
+    ],
+    [
+      "ca12d462-919f-481b-804c-ddbf7ee28d26",
+      "Buttons"
     ],
     [
       "2bf3ea67-58b8-47b3-a768-ea6950b40edf",
