@@ -4045,7 +4045,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_Changjiang_FXL0530"
+		(property "Footprint" "Inductor_SMD:L_Changjiang_FXL0630"
 			(at 109.22 97.79 0)
 			(effects
 				(font
@@ -4464,7 +4464,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 120.904 117.856 90)
 			(effects
 				(font
@@ -5157,7 +5157,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 120.9548 102.87 0)
 			(effects
 				(font
