@@ -1,11 +1,23 @@
-from PyQt6 import QtCore, QtGui, QtWidgets
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+# Support both PyQt6 and PySide6 (PyQt6 wheels may be missing for Python 3.13)
+try:
+    from PyQt6 import QtCore, QtGui, QtWidgets
+    QT_LIB = "PyQt6"
+    from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
+except ImportError:
+    try:
+        from PySide6 import QtCore, QtGui, QtWidgets
+        QT_LIB = "PySide6"
+        from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
+    except ImportError as e:
+        raise ImportError("Neither PyQt6 nor PySide6 is installed. Please install one of them.") from e
+    
 from matplotlib.figure import Figure
 from lib.UMTKSerial import UMTKSerial as UMTKSerial_t
 import matplotlib.pyplot as plt 
 import numpy as np
 from datetime import datetime
-from PyQt6.QtCore import QFile, QTextStream
+
+# Use QtCore types directly to support both bindings
 from qt_material import apply_stylesheet
 import csv
 import os
@@ -287,11 +299,11 @@ if __name__ == "__main__":
 
     # Load the QSS file
     if theme == "Dark":
-        file = QFile("style/Dark.qss")
+        file = QtCore.QFile("style/Dark.qss")
     else:
-        file = QFile("style/modern_style.qss")
-    if file.open(QFile.OpenModeFlag.ReadOnly | QFile.OpenModeFlag.Text):
-        stream = QTextStream(file)
+        file = QtCore.QFile("style/modern_style.qss")
+    if file.open(QtCore.QFile.OpenModeFlag.ReadOnly | QtCore.QFile.OpenModeFlag.Text):
+        stream = QtCore.QTextStream(file)
         app.setStyleSheet(stream.readAll())
         MainWindow.setStyleSheet(stream.readAll())
 
