@@ -25,6 +25,22 @@ import time
 
 from lib.umtk_design import Ui_MainWindow as UMTK_MainWindow
 
+# Helper to load resources when packaged (PyInstaller) or in dev
+import sys
+from pathlib import Path
+
+def resource_path(relative_path: str) -> str:
+    """Return absolute path to resource, works for dev and for PyInstaller.
+
+    In PyInstaller onefile/onedir, data files are under sys._MEIPASS.
+    In dev, they are relative to this file's directory (v1.5/).
+    """
+    try:
+        base_path = Path(getattr(sys, "_MEIPASS"))  # type: ignore[attr-defined]
+    except Exception:
+        base_path = Path(__file__).resolve().parent
+    return str(base_path.joinpath(relative_path))
+
 class Ui_MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, theme):
@@ -37,27 +53,29 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.theme_btn_green = "background-color: green"
         self.UMTKSerial = UMTKSerial_t()
 
-        # Directory for logs
-        self.log_dir = "UMTK_runs"
+        # Directory for logs (use user home to ensure write permission in packaged apps)
+        self.log_dir = str(Path.home().joinpath("UMTK_runs"))
         os.makedirs(self.log_dir, exist_ok=True)
 
         # Start a new log file
         self.log_file = self.start_new_log()
 
+        # Setup UI
         self.ui = UMTK_MainWindow()
         self.ui.setupUi(self)
-        
+
+        # Theme-dependent assets
         if theme == "Dark":
             plt.style.use('dark_background')
             dot_color = "yellow"
-            self.ui.cat_2.setPixmap(QtGui.QPixmap("./img/cat_1k_dark.png"))
+            self.ui.cat_2.setPixmap(QtGui.QPixmap(resource_path("img/cat_1k_dark.png")))
         else:
             dot_color = "blue"
-            self.ui.cat_2.setPixmap(QtGui.QPixmap("./img/cat_1k.png"))
+            self.ui.cat_2.setPixmap(QtGui.QPixmap(resource_path("img/cat_1k.png")))
 
+        # Wire signals
         self.ui.connectPort_but.pressed.connect(self.connect_serial_port)
         self.ui.disconnectPort_but.pressed.connect(self.disconnect_serial_port)
-        
         self.ui.up_but.pressed.connect(self.increase_speed)
         self.ui.up_but.released.connect(self.stop_motor)
         self.ui.up_but.setAutoRepeat(True)
@@ -76,19 +94,17 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         # self.eStop.clicked.connect(self.estop_clicked)
 
         self.ui.setSpeed_but.clicked.connect(self.commit_speed)
-
         self.ui.calibration_but.pressed.connect(self.commit_calibrate)
-
         self.ui.changeDirection_but.clicked.connect(self.toggle_direction)
 
-        
+        # Graph setup
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
         self.ax = self.figure.add_subplot(111)
         self.ax.set_title("Force Displacement Graph")
         self.ax.set_xlabel("Displacement (mm)")
         self.ax.set_ylabel("Force (N)")
-        self.sp, = self.ax.plot([],[],label='',ms=10,color=dot_color,marker='.',ls='')
+        self.sp, = self.ax.plot([], [], label='', ms=10, color=dot_color, marker='.', ls='')
         self.figure.tight_layout()
         self.ui.graphDisplay.setLayout(QtWidgets.QVBoxLayout())
         self.ui.graphDisplay.layout().addWidget(self.canvas)
@@ -299,9 +315,9 @@ if __name__ == "__main__":
 
     # Load the QSS file
     if theme == "Dark":
-        file = QtCore.QFile("style/Dark.qss")
+        file = QtCore.QFile(resource_path("style/Dark.qss"))
     else:
-        file = QtCore.QFile("style/modern_style.qss")
+        file = QtCore.QFile(resource_path("style/modern_style.qss"))
     if file.open(QtCore.QFile.OpenModeFlag.ReadOnly | QtCore.QFile.OpenModeFlag.Text):
         stream = QtCore.QTextStream(file)
         app.setStyleSheet(stream.readAll())

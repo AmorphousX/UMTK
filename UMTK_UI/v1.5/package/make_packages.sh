@@ -38,4 +38,18 @@ zip -9 -r umtk-ui-macos.zip  umtk-ui-mac
 cp umtk-ui-macos.zip  ${UI_PROJ_ROOT}/zips/
 
 
+# Optional: also build self-contained binaries with PyInstaller (run on each OS)
+if [[ "$1" == "--pyinstaller" ]]; then
+	echo "Running PyInstaller builds..."
+	if [[ "$(uname)" == "Darwin" ]]; then
+		bash ${UI_PROJ_ROOT}/package/pyinstaller/build_macos.sh
+		(cd ${UI_PROJ_ROOT}/dist && zip -9 -r umtk-ui-macos-pyi.zip umtk-ui-mac)
+	fi
+	if [[ -n "$(command -v pwsh)" ]]; then
+		pwsh ${UI_PROJ_ROOT}/package/pyinstaller/build_windows.ps1
+		(cd ${UI_PROJ_ROOT}/dist && zip -9 -r umtk-ui-windows-pyi.zip umtk-ui-windows)
+	fi
+fi
+
+
 

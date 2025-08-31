@@ -1,4 +1,0 @@
-Started Log File:     logs/MMTK 2022-09-18 21-37-22-MOCK.txt
-Data Source:     MOCK
-
-1	0.33069474	0.1	0.8920842	1	5	0	1	0	12.207101	1	1	1	0	1	

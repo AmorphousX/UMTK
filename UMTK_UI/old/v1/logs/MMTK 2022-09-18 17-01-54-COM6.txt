@@ -1,3 +1,0 @@
-Started Log File:     logs/MMTK 2022-09-18 17-01-54-COM6.txt
-Data Source:     COM6
-
