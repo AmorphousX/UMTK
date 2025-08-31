@@ -1,0 +1,10 @@
+name: Package UMTK UI
+
+on:
+  workflow_dispatch:
+    inputs:
+      dummy:
+        description: "Dummy"
+        type: string
+        required: false
+  
