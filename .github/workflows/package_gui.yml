@@ -7,4 +7,10 @@ on:
         description: "Dummy"
         type: string
         required: false
-  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do nothing
+        run: |
+          echo "Building UMTK UI..."
