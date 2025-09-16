@@ -129,12 +129,12 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="contentRow">
+    <layout class="QHBoxLayout" name="contentRow" stretch="3,1">
       <property name="spacing">
        <number>8</number>
       </property>
       <item>
-       <layout class="QVBoxLayout" name="leftColumn">
+    <layout class="QVBoxLayout" name="leftColumn" stretch="6,1">
         <property name="spacing">
          <number>8</number>
         </property>
