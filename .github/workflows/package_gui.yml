@@ -63,8 +63,15 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Path build-artifacts | Out-Null
-          Copy-Item -Recurse -Force dist\umtk-ui* build-artifacts\
-          Copy-Item -Recurse -Force img, style, lib requirements.txt build-artifacts\
+          # Copy executable(s)
+          Get-ChildItem dist -Filter 'umtk-ui*' | ForEach-Object { Copy-Item -Recurse -Force $_.FullName -Destination build-artifacts }
+          # Copy resource directories and files
+          $sources = @('img','style','lib','requirements.txt')
+          foreach ($s in $sources) {
+            if (Test-Path $s) { Copy-Item -Recurse -Force $s -Destination build-artifacts }
+          }
+          # Include UI definition files if present
+          Get-ChildItem -Path . -Filter '*.ui' | ForEach-Object { Copy-Item -Force $_.FullName -Destination build-artifacts }
           Compress-Archive -Path build-artifacts\* -DestinationPath umtk-ui-windows.zip
 
       - name: Upload artifact (Windows zip)
