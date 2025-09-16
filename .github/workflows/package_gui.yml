@@ -1,4 +1,4 @@
-name: Package UMTK UI
+name: Package / Release UMTK UI
 
 on:
   workflow_dispatch:
