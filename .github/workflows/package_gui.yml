@@ -19,6 +19,10 @@ on:
         description: "Build Linux tar.gz of source files"
         type: boolean
         default: true
+      generate_release:
+        description: "Generate A release for this build?"
+        type: boolean
+        default: false
       tag:
         description: "Tag name for the release (leave blank to auto-generate)"
         type: string
@@ -201,22 +205,27 @@ jobs:
       - name: Compute tag and name
         id: meta
         run: |
-          if [ -n "${{ inputs.tag }}" ]; then
-            echo "tag=${{ inputs.tag }}" >> $GITHUB_OUTPUT
-          else
-            echo "tag=ui-${{ github.run_number }}" >> $GITHUB_OUTPUT
-          fi
-          if [ -n "${{ inputs.release_name }}" ]; then
-            echo "name=${{ inputs.release_name }}" >> $GITHUB_OUTPUT
-          else
-            echo "name=${{ steps.meta.outputs.tag }}" >> $GITHUB_OUTPUT
-          fi
+          GIT_HASH=$(git rev-parse --short HEAD)
+          BRANCH_NAME="${GITHUB_REF_NAME}"
+          # Tag: user input overrides, else short hash
+            if [ -n "${{ inputs.tag }}" ]; then
+              echo "tag=${{ inputs.tag }}" >> $GITHUB_OUTPUT
+            else
+              echo "tag=${GIT_HASH}" >> $GITHUB_OUTPUT
+            fi
+          # Release name: user input overrides, else branch name
+            if [ -n "${{ inputs.release_name }}" ]; then
+              echo "name=${{ inputs.release_name }}" >> $GITHUB_OUTPUT
+            else
+              echo "name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+            fi
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
+        if: ${{ inputs.generate_release == true }}
         with:
           tag_name: ${{ steps.meta.outputs.tag }}
-          name: ${{ inputs.release_name || steps.meta.outputs.tag }}
+          name: ${{ steps.meta.outputs.name }}
           prerelease: ${{ inputs.prerelease }}
           files: |
             artifacts/umtk-ui-windows.zip
