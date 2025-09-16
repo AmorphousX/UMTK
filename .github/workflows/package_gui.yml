@@ -19,6 +19,10 @@ on:
         description: "Build Linux tar.gz of source files"
         type: boolean
         default: true
+      generate_release:
+        description: "Generate A release for this build?"
+        type: boolean
+        default: false
       tag:
         description: "Tag name for the release (leave blank to auto-generate)"
         type: string
@@ -214,6 +218,7 @@ jobs:
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
+        if: ${{ inputs.generate_release == true }}
         with:
           tag_name: ${{ steps.meta.outputs.tag }}
           name: ${{ inputs.release_name || steps.meta.outputs.tag }}
