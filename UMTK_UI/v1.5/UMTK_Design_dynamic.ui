@@ -341,6 +341,82 @@
         <property name="spacing">
          <number>8</number>
         </property>
+  <item>
+   <widget class="QGroupBox" name="recordingGroup">
+    <property name="title">
+     <string>Recording</string>
+    </property>
+    <layout class="QVBoxLayout" name="recordingGroupLayout">
+     <item>
+      <layout class="QFormLayout" name="recordingFormLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="recordFileNameLabel">
+         <property name="text">
+    <string>File:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="recordFileName">
+         <property name="placeholderText">
+    <string>optional_name.csv</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="recordStatusTextLabel">
+         <property name="text">
+    <string>Status:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="recordStatusLabel">
+         <property name="text">
+    <string>Idle</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="recordElapsedTextLabel">
+         <property name="text">
+    <string>Elapsed:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="recordElapsedLabel">
+         <property name="text">
+    <string>00:00</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="recordingButtonsRow">
+       <item>
+        <widget class="QPushButton" name="recordToggleButton">
+         <property name="text">
+    <string>Start</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="recordStopButton">
+         <property name="enabled">
+    <bool>false</bool>
+         </property>
+         <property name="text">
+    <string>Stop</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </item>
         <item>
          <widget class="QLabel" name="displacement">
           <property name="font">
@@ -562,6 +638,11 @@ DOWN</string>
     </rect>
    </property>
   </widget>
+  <action name="actionShowRecording">
+   <property name="text">
+    <string>Show Recording Controls</string>
+   </property>
+  </action>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
