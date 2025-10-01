@@ -83,19 +83,20 @@ class UMTKWindow(QtWidgets.QMainWindow):
 
         # Initial serial population
         self._initialize_serial_port()
-    # Set Serial Rate to 25Hz
-    self.logic.write(b'r20\n')
+        
+        # Set Serial Rate to 25Hz
+        self.logic.write(b'r20\n')
 
-    QtCore.QTimer().singleShot(100, self._read_serial)
+        QtCore.QTimer().singleShot(100, self._read_serial)
 
-    self.rescan_serial_timer = QtCore.QTimer()
-    self.rescan_serial_timer.timeout.connect(self._rescan_serial_ports)
-    self.rescan_serial_timer.start(10000)
+        self.rescan_serial_timer = QtCore.QTimer()
+        self.rescan_serial_timer.timeout.connect(self._rescan_serial_ports)
+        self.rescan_serial_timer.start(10000)
 
-    # Recording dialog
-    self.record_dialog = RecordingDialog(self.logic, self)
-    # Optionally show immediately; could be placed under a menu later
-    self.record_dialog.show()
+        # Recording dialog
+        self.record_dialog = RecordingDialog(self.logic, self)
+        # Optionally show immediately; could be placed under a menu later
+        self.record_dialog.show()
 
     # ---------------- Serial & UI sync -----------------
     def _initialize_serial_port(self):
