@@ -162,6 +162,16 @@
              <widget class="QComboBox" name="portsDropdown"/>
             </item>
             <item>
+             <widget class="QCheckBox" name="showAllPorts_check">
+              <property name="text">
+               <string>Show All Ports</string>
+              </property>
+              <property name="toolTip">
+               <string>Show all serial ports (unchecked: CH340 only)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QTextBrowser" name="textBrowser">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -342,73 +352,106 @@
          <number>8</number>
         </property>
   <item>
-   <widget class="QGroupBox" name="recordingGroup">
+   <widget class="QGroupBox" name="recordingGroupBox">
     <property name="title">
-     <string>Recording</string>
+     <string>Recording Controls</string>
     </property>
     <layout class="QVBoxLayout" name="recordingGroupLayout">
      <item>
-      <layout class="QFormLayout" name="recordingFormLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="recordFileNameLabel">
+      <layout class="QHBoxLayout" name="fileSelectionLayout">
+       <item>
+        <widget class="QLabel" name="outputFileLabel">
          <property name="text">
-    <string>File:</string>
+          <string>Output File:</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="recordFileName">
+       <item>
+        <widget class="QLineEdit" name="filename_edit">
          <property name="placeholderText">
-    <string>optional_name.csv</string>
+          <string>Choose file location...</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="recordStatusTextLabel">
+       <item>
+        <widget class="QPushButton" name="file_browse_btn">
          <property name="text">
-    <string>Status:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="recordStatusLabel">
-         <property name="text">
-    <string>Idle</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="recordElapsedTextLabel">
-         <property name="text">
-    <string>Elapsed:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="recordElapsedLabel">
-         <property name="text">
-    <string>00:00</string>
+          <string>Browse...</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="recordingButtonsRow">
+      <layout class="QHBoxLayout" name="statusLayout">
        <item>
-        <widget class="QPushButton" name="recordToggleButton">
+        <widget class="QLabel" name="statusTextLabel">
          <property name="text">
-    <string>Start</string>
+          <string>Status:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="recordStopButton">
+        <widget class="QLabel" name="recording_status_label">
+         <property name="text">
+          <string>Idle</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="statusSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="timeTextLabel">
+         <property name="text">
+          <string>Time:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="recording_elapsed_label">
+         <property name="text">
+          <string>00:00</string>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="recordingButtonsLayout">
+       <item>
+        <widget class="QPushButton" name="record_toggle_btn">
+         <property name="text">
+          <string>Start</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="record_stop_btn">
          <property name="enabled">
-    <bool>false</bool>
+          <bool>false</bool>
          </property>
          <property name="text">
-    <string>Stop</string>
+          <string>Stop</string>
          </property>
         </widget>
        </item>

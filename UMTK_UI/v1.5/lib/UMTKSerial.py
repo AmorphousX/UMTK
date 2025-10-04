@@ -1,20 +1,10 @@
 import serial
 import serial.tools.list_ports
 from enum import Enum
+import platform
+
 
 class UMTKSerial:
-    class SerialStates(Enum):
-        DISCONNECTED = 1
-        CONNECTED = 2
-        PENDING_CONNECT = 3
-        PENDING_DISCONNECT = 4
-
-    known_serial_ports = []
-    status_text = "Uninitialized"
-    status = SerialStates.DISCONNECTED
-    port_name = ""
-    handle = ""
-
     class SerialStates(Enum):
         DISCONNECTED = 1
         CONNECTED = 2
@@ -23,18 +13,89 @@ class UMTKSerial:
         ERROR = 5
         FAILED = 6
 
+    known_serial_ports = []
+    status_text = "Uninitialized"
+    status = SerialStates.DISCONNECTED
+    port_name = ""
+    handle = ""
+    show_all_ports = False
+
+    @staticmethod
+    def is_ch340_port(port_info) -> bool:
+        """Check if a serial port is likely a CH340 device."""
+        system = platform.system().lower()
+        
+        # Windows: Accept all COM ports (CH340 shows up as COM ports)
+        if system == "windows":
+            return port_info.device.startswith("COM")
+        
+        # macOS: Look for CH340 identifiers
+        elif system == "darwin":
+            # CH340 typically shows up with these patterns on macOS
+            ch340_patterns = [
+                "usbserial",
+                "ch340",
+                "CH340",
+                "wch.cn",
+                "1a86:7523",  # Common CH340 USB ID
+                "wchusbserial"
+            ]
+            port_str = str(port_info).lower()
+            description = getattr(port_info, 'description', '') or ''
+            manufacturer = getattr(port_info, 'manufacturer', '') or ''
+            
+            return any(pattern.lower() in port_str or 
+                      pattern.lower() in description.lower() or 
+                      pattern.lower() in manufacturer.lower() 
+                      for pattern in ch340_patterns)
+        
+        # Linux: Look for CH340 identifiers
+        elif system == "linux":
+            # CH340 typically shows up with these patterns on Linux
+            ch340_patterns = [
+                "ch341",
+                "ch340", 
+                "CH340",
+                "1a86:7523",  # Common CH340 USB ID
+                "QinHeng Electronics"
+            ]
+            port_str = str(port_info).lower()
+            description = getattr(port_info, 'description', '') or ''
+            manufacturer = getattr(port_info, 'manufacturer', '') or ''
+            
+            return any(pattern.lower() in port_str or 
+                      pattern.lower() in description.lower() or 
+                      pattern.lower() in manufacturer.lower() 
+                      for pattern in ch340_patterns)
+        
+        # Unknown system: show all ports
+        return True
+
     def init_serial(self) -> list:
         self.status = "Disconnected"
         return self.rescan_serial_ports()
 
-    def rescan_serial_ports(self) -> list:
+    def rescan_serial_ports(self, show_all: bool = None) -> list:
+        """Scan for serial ports, optionally filtering for CH340 devices."""
+        if show_all is not None:
+            self.show_all_ports = show_all
+            
         ports = serial.tools.list_ports.comports()
         self.known_serial_ports = []
+        
         if ports:
             for this_port in ports:
-                self.known_serial_ports.append(this_port.device)
-        else:
-            self.known_serial_ports.append("NO PORTS AVAILABLE")
+                # Apply CH340 filter unless showing all ports
+                if self.show_all_ports or self.is_ch340_port(this_port):
+                    self.known_serial_ports.append(this_port.device)
+        
+        # If no ports found after filtering, add a helpful message
+        if not self.known_serial_ports:
+            if self.show_all_ports:
+                self.known_serial_ports.append("NO PORTS AVAILABLE")
+            else:
+                self.known_serial_ports.append("NO CH340 PORTS FOUND (try 'Show All')")
+                
         return self.known_serial_ports
     
     def connect(self, picked_port:str) -> str:

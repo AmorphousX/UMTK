@@ -93,21 +93,42 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self.rescan_serial_timer.timeout.connect(self._rescan_serial_ports)
         self.rescan_serial_timer.start(10000)
 
-        # Recording dialog
-        self.record_dialog = RecordingDialog(self.logic, self)
-        # Optionally show immediately; could be placed under a menu later
-        self.record_dialog.show()
+        # Add recording controls to main UI
+        self._setup_recording_controls()
+
+    def _setup_recording_controls(self):
+        """Wire up the recording controls that are already in the UI design."""
+        # Connect the file browse button
+        self.ui.file_browse_btn.clicked.connect(self._browse_output_file)
+        
+        # Connect recording buttons
+        self.ui.record_toggle_btn.clicked.connect(self._toggle_recording)
+        self.ui.record_stop_btn.clicked.connect(self._stop_recording)
+        
+        # Add recording timer for elapsed time updates
+        self.recording_timer = QtCore.QTimer()
+        self.recording_timer.timeout.connect(self._refresh_recording_elapsed)
+        self.recording_timer.start(1000)  # Update every second
+
+        # Wire up show all ports checkbox
+        self.ui.showAllPorts_check.stateChanged.connect(self._on_show_all_ports_changed)
 
     # ---------------- Serial & UI sync -----------------
     def _initialize_serial_port(self):
         self.ui.portsDropdown.clear()
-        self.ui.portsDropdown.addItems(self.logic.init_ports())
+        show_all = self.ui.showAllPorts_check.isChecked()
+        self.ui.portsDropdown.addItems(self.logic.init_ports(show_all=show_all))
         self.ui.textBrowser.setText(self.logic.UMTKSerial.status_text)
 
     def _rescan_serial_ports(self):
         self.ui.portsDropdown.clear()
-        self.ui.portsDropdown.addItems(self.logic.rescan_ports())
+        show_all = self.ui.showAllPorts_check.isChecked()
+        self.ui.portsDropdown.addItems(self.logic.rescan_ports(show_all=show_all))
         self.ui.textBrowser.setText(self.logic.UMTKSerial.status_text)
+
+    def _on_show_all_ports_changed(self):
+        """Handle when the show all ports checkbox is toggled."""
+        self._rescan_serial_ports()
 
     def _connect_serial_port(self):
         picked_port = self.ui.portsDropdown.currentText()
@@ -206,6 +227,77 @@ class UMTKWindow(QtWidgets.QMainWindow):
         else:
             self.logic.command_set_direction_down()
         QtCore.QTimer().singleShot(100, self._tare)
+
+    # ---------------- Recording Controls ----------------
+    def _browse_output_file(self):
+        """Open file dialog to select output file location."""
+        filename, _ = QtWidgets.QFileDialog.getSaveFileName(
+            self,
+            "Select Output File",
+            str(Path.home() / "UMTK_data.csv"),  # Default filename
+            "CSV Files (*.csv);;All Files (*)"
+        )
+        if filename:
+            self.ui.filename_edit.setText(filename)
+
+    def _toggle_recording(self):
+        """Start/pause recording based on current state."""
+        if not self.logic.is_recording:
+            # Start recording
+            filename = self.ui.filename_edit.text().strip() or None
+            
+            # Check if file exists and warn user about appending
+            if filename and Path(filename).exists():
+                reply = QtWidgets.QMessageBox.question(
+                    self,
+                    "File Exists",
+                    f"The file '{Path(filename).name}' already exists.\n\n"
+                    "New data will be APPENDED to the existing file with a timestamp marker.\n"
+                    "Each recording session will be clearly separated.\n\n"
+                    "Continue with recording?",
+                    QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No,
+                    QtWidgets.QMessageBox.StandardButton.Yes
+                )
+                if reply != QtWidgets.QMessageBox.StandardButton.Yes:
+                    return
+            
+            self.logic.start_recording(filename)
+            self.ui.recording_status_label.setText("Recording")
+            self.ui.record_toggle_btn.setText("Pause")
+            self.ui.record_toggle_btn.setIcon(self.style().standardIcon(QtWidgets.QStyle.StandardPixmap.SP_MediaPause))
+            self.ui.record_stop_btn.setEnabled(True)
+        elif self.logic.is_paused:
+            # Resume recording
+            self.logic.resume_recording()
+            self.ui.recording_status_label.setText("Recording")
+            self.ui.record_toggle_btn.setText("Pause")
+            self.ui.record_toggle_btn.setIcon(self.style().standardIcon(QtWidgets.QStyle.StandardPixmap.SP_MediaPause))
+        else:
+            # Pause recording
+            self.logic.pause_recording()
+            self.ui.recording_status_label.setText("Paused")
+            self.ui.record_toggle_btn.setText("Resume")
+            self.ui.record_toggle_btn.setIcon(self.style().standardIcon(QtWidgets.QStyle.StandardPixmap.SP_MediaPlay))
+
+    def _stop_recording(self):
+        """Stop recording and reset UI."""
+        if self.logic.is_recording:
+            self.logic.stop_recording(start_new=True)
+        self.ui.recording_status_label.setText("Idle")
+        self.ui.record_toggle_btn.setText("Start")
+        self.ui.record_toggle_btn.setIcon(self.style().standardIcon(QtWidgets.QStyle.StandardPixmap.SP_MediaPlay))
+        self.ui.record_stop_btn.setEnabled(False)
+        self.ui.recording_elapsed_label.setText("00:00")
+
+    def _refresh_recording_elapsed(self):
+        """Update the elapsed time display."""
+        if self.logic.is_recording:
+            secs = int(self.logic.elapsed_recording_time())
+            mm = secs // 60
+            ss = secs % 60
+            self.ui.recording_elapsed_label.setText(f"{mm:02d}:{ss:02d}")
+        else:
+            self.ui.recording_elapsed_label.setText("00:00")
 
     # ---------------- Qt Overrides --------------------
     def closeEvent(self, event):  # noqa: N802

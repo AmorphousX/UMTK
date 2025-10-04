@@ -56,11 +56,11 @@ class UMTKLogic:
             csv_writer.writerow([timestamp, *data])
 
     # --------------- Serial --------------------
-    def init_ports(self):
-        return self.UMTKSerial.init_serial()
+    def init_ports(self, show_all: bool = False):
+        return self.UMTKSerial.rescan_serial_ports(show_all=show_all)
 
-    def rescan_ports(self):
-        return self.UMTKSerial.rescan_serial_ports()
+    def rescan_ports(self, show_all: bool = False):
+        return self.UMTKSerial.rescan_serial_ports(show_all=show_all)
 
     def connect(self, port: str):
         self.UMTKSerial.connect(port)
@@ -124,20 +124,36 @@ class UMTKLogic:
     # --------------- Recording Control -------------
     def start_recording(self, filename: str | None = None):
         if filename:
-            # Close current and open a named file instead of timestamp default
+            # Handle custom filename with append capability
             if self.log_file:
                 self.log_file.close()
             safe_name = filename.strip().replace(' ', '_')
             if not safe_name.lower().endswith('.csv'):
                 safe_name += '.csv'
             log_file_path = os.path.join(self.log_dir, safe_name)
-            self.log_file = open(log_file_path, 'w', newline='')
+            
+            # Check if file exists and append with session marker
+            file_exists = os.path.exists(log_file_path)
+            mode = 'a' if file_exists else 'w'
+            
+            self.log_file = open(log_file_path, mode, newline='')
             csv_writer = csv.writer(self.log_file)
-            csv_writer.writerow([
-                "Log Timestamp", "UMTK Time Counter", "Direction", "Position", "Load", "Current Speed", "Set Speed", "State",
-                "F_AMPS", "B_AMPS", "BT_Up", "BT_Down", "BT_Tare", "BT_Start", "BT_Aux", "V_Mot", "V_In", "T_Loop"
-            ])
+            
+            if not file_exists:
+                # Write header for new file
+                csv_writer.writerow([
+                    "Log Timestamp", "UMTK Time Counter", "Direction", "Position", "Load", "Current Speed", "Set Speed", "State",
+                    "F_AMPS", "B_AMPS", "BT_Up", "BT_Down", "BT_Tare", "BT_Start", "BT_Aux", "V_Mot", "V_In", "T_Loop"
+                ])
+            else:
+                # Add session separator with timestamp for existing file
+                session_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                csv_writer.writerow([])  # Empty row for separation
+                csv_writer.writerow([f"=== NEW RECORDING SESSION STARTED: {session_timestamp} ==="] + [""] * 17)
+                csv_writer.writerow([])  # Empty row for separation
+            
             self.current_filename_override = safe_name
+            print(f"Recording to: {log_file_path} {'(appended)' if file_exists else '(new file)'}")
         else:
             # Rotate to a new timestamped file
             self._rotate_log()

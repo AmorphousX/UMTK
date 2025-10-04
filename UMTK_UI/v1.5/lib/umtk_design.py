@@ -86,6 +86,12 @@ class Ui_MainWindow(object):
                 self.portsDropdown.setObjectName("portsDropdown")
                 self.serialCol.addWidget(self.portsDropdown)
 
+                # Show all ports checkbox
+                self.showAllPorts_check = QtWidgets.QCheckBox("Show All Ports")
+                self.showAllPorts_check.setObjectName("showAllPorts_check")
+                self.showAllPorts_check.setToolTip("Show all serial ports (unchecked: CH340 only)")
+                self.serialCol.addWidget(self.showAllPorts_check)
+
                 self.textBrowser = QtWidgets.QTextBrowser(parent=self.centralwidget)
                 self.textBrowser.setObjectName("textBrowser")
                 self.textBrowser.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed))
@@ -179,9 +185,71 @@ class Ui_MainWindow(object):
 
                 self.leftColumn.addLayout(self.controlsRow)
 
-                # Right panel: metrics and button status
+                # Right panel: recording controls first, then metrics and button status
                 self.rightPanel = QtWidgets.QVBoxLayout()
                 self.rightPanel.setSpacing(8)
+
+                # Recording controls group
+                self.recordingGroupBox = QtWidgets.QGroupBox("Recording Controls")
+                self.recordingGroupBox.setObjectName("recordingGroupBox")
+                
+                recordingGroupLayout = QtWidgets.QVBoxLayout(self.recordingGroupBox)
+                
+                # File selection layout
+                fileSelectionLayout = QtWidgets.QHBoxLayout()
+                outputFileLabel = QtWidgets.QLabel("Output File:")
+                outputFileLabel.setObjectName("outputFileLabel")
+                fileSelectionLayout.addWidget(outputFileLabel)
+                
+                self.filename_edit = QtWidgets.QLineEdit()
+                self.filename_edit.setObjectName("filename_edit")
+                self.filename_edit.setPlaceholderText("Choose file location...")
+                self.filename_edit.setReadOnly(True)
+                fileSelectionLayout.addWidget(self.filename_edit)
+                
+                self.file_browse_btn = QtWidgets.QPushButton("Browse...")
+                self.file_browse_btn.setObjectName("file_browse_btn")
+                fileSelectionLayout.addWidget(self.file_browse_btn)
+                recordingGroupLayout.addLayout(fileSelectionLayout)
+                
+                # Status layout
+                statusLayout = QtWidgets.QHBoxLayout()
+                statusTextLabel = QtWidgets.QLabel("Status:")
+                statusTextLabel.setObjectName("statusTextLabel")
+                statusLayout.addWidget(statusTextLabel)
+                
+                self.recording_status_label = QtWidgets.QLabel("Idle")
+                self.recording_status_label.setObjectName("recording_status_label")
+                statusLayout.addWidget(self.recording_status_label)
+                
+                statusSpacer = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+                statusLayout.addItem(statusSpacer)
+                
+                timeTextLabel = QtWidgets.QLabel("Time:")
+                timeTextLabel.setObjectName("timeTextLabel")
+                statusLayout.addWidget(timeTextLabel)
+                
+                self.recording_elapsed_label = QtWidgets.QLabel("00:00")
+                self.recording_elapsed_label.setObjectName("recording_elapsed_label")
+                font_elapsed = QtGui.QFont()
+                font_elapsed.setBold(True)
+                self.recording_elapsed_label.setFont(font_elapsed)
+                statusLayout.addWidget(self.recording_elapsed_label)
+                recordingGroupLayout.addLayout(statusLayout)
+                
+                # Recording buttons layout
+                recordingButtonsLayout = QtWidgets.QHBoxLayout()
+                self.record_toggle_btn = QtWidgets.QPushButton("Start")
+                self.record_toggle_btn.setObjectName("record_toggle_btn")
+                recordingButtonsLayout.addWidget(self.record_toggle_btn)
+                
+                self.record_stop_btn = QtWidgets.QPushButton("Stop")
+                self.record_stop_btn.setObjectName("record_stop_btn")
+                self.record_stop_btn.setEnabled(False)
+                recordingButtonsLayout.addWidget(self.record_stop_btn)
+                recordingGroupLayout.addLayout(recordingButtonsLayout)
+                
+                self.rightPanel.addWidget(self.recordingGroupBox)
 
                 # Metrics stack
                 self.displacement = QtWidgets.QLabel(parent=self.centralwidget)
