@@ -69,8 +69,8 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self.ax.set_ylabel("Force")
         self.sp, = self.ax.plot([], [], label='', ms=10, color=self.dot_color, marker='.', ls='')
         
-        # Reduce white borders by adjusting subplot margins
-        self.figure.subplots_adjust(left=0.08, bottom=0.08, right=0.96, top=0.94)
+        # Minimize borders - reduce margins to bring axes closer to edges
+        self.figure.subplots_adjust(left=0.05, bottom=0.05, right=0.98, top=0.96)
         
         # Apply initial graph theme
         self._update_graph_theme()
@@ -119,13 +119,9 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self._setup_large_fonts()
 
     def _setup_large_fonts(self):
-        """Ensure all numeric displays use large, readable fonts."""
-        large_font = QtGui.QFont()
-        large_font.setPointSize(64)  # Large but reasonable - 64pt
-        large_font.setBold(True)
-        
-        # Apply large fonts and styling to ensure they're visible
-        displays = [
+        """Setup dynamic font sizing for numeric displays."""
+        # Store references to large displays for dynamic sizing
+        self.large_displays = [
             self.ui.displacementLCD,
             self.ui.speedLCD,
             self.ui.forceLCD,
@@ -133,17 +129,40 @@ class UMTKWindow(QtWidgets.QMainWindow):
             self.ui.motorCurrent_display
         ]
         
-        for display in displays:
-            display.setFont(large_font)
-            # Ensure adequate space for large fonts
-            display.setMinimumSize(300, 120)
+        for display in self.large_displays:
+            # Set initial size constraints
+            display.setMinimumSize(200, 80)  # Reduced minimum size for better scaling
             display.setMaximumSize(16777215, 16777215)
             display.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
+        
+        # Apply initial dynamic font sizing
+        self._update_dynamic_fonts()
         
         # Apply theme-appropriate styling for large displays
         self._apply_large_display_theme()
         
-        print(f"Applied 64pt fonts to all numeric displays")
+        print(f"Setup dynamic fonts for all numeric displays")
+
+    def _update_dynamic_fonts(self):
+        """Update font sizes based on current widget sizes."""
+        for display in getattr(self, 'large_displays', []):
+            if display.isVisible():
+                # Calculate font size based on widget height
+                widget_height = display.height()
+                # Use approximately 60% of the widget height for font size
+                # Min 12pt, max 80pt to keep it reasonable
+                font_size = max(12, min(80, int(widget_height * 0.6)))
+                
+                font = QtGui.QFont()
+                font.setPointSize(font_size)
+                font.setBold(True)
+                display.setFont(font)
+
+    def resizeEvent(self, event):  # noqa: N802
+        """Handle window resize events to update dynamic fonts."""
+        super().resizeEvent(event)
+        # Update fonts after resize with a small delay to ensure widgets have settled
+        QtCore.QTimer.singleShot(50, self._update_dynamic_fonts)
 
     def _setup_recording_controls(self):
         """Wire up the recording controls that are already in the UI design."""
@@ -431,7 +450,12 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self.ui.maxForceLCD.setText(f"{current_max_force:.2f}")
         # Motor current (forward amps primary)
         self.ui.motorCurrent_display.setText(f"{f_amps:.2f}")
-        self.ui.changeDirection_inLine.setText("COMPRESSION" if direction == 1 else "TENSILE")
+        if direction == 1:
+            self.ui.changeDirection_inLine.setText("COMPRESSION")
+        elif direction == 0:
+            self.ui.changeDirection_inLine.setText("TENSILE")
+        else:
+            self.ui.changeDirection_inLine.setText("INVALID")
 
         self.ui.down_but.setStyleSheet(self.theme_btn_green if bt_up else self.theme_btn_red)
         self.ui.up_but.setStyleSheet(self.theme_btn_green if bt_down else self.theme_btn_red)
@@ -651,10 +675,8 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self.setStyleSheet(styles["main_window"])
         
         # Update theme toggle button icon and style
-        if theme_name == "light":
-            self.ui.themeToggleBtn.setText("🌙")  # Moon icon for switching to dark
-        else:
-            self.ui.themeToggleBtn.setText("☀")  # Sun icon for switching to light
+        # Use light bulb icon for theme switching (universal theme toggle symbol)
+        self.ui.themeToggleBtn.setText("💡")  # Light bulb icon for theme switching
         
         self.ui.themeToggleBtn.setStyleSheet(styles["theme_switcher"])
         
@@ -672,9 +694,9 @@ class UMTKWindow(QtWidgets.QMainWindow):
         # Get the appropriate text color for the theme
         text_color = "#ffffff" if self.current_theme == "dark" else "#212121"
         
+        # Note: font-size removed from CSS to allow dynamic font sizing
         large_display_style = f"""
             QLabel {{
-                font-size: 64pt;
                 font-weight: bold;
                 color: {text_color};
                 background-color: transparent;
@@ -682,19 +704,14 @@ class UMTKWindow(QtWidgets.QMainWindow):
         """
         
         # Apply to all large displays
-        displays = [
-            self.ui.displacementLCD,
-            self.ui.speedLCD,
-            self.ui.forceLCD,
-            self.ui.maxForceLCD,
-            self.ui.motorCurrent_display
-        ]
-        
-        for display in displays:
+        for display in getattr(self, 'large_displays', []):
             # Skip motorCurrent_display if it has amp alert styling
             if display == self.ui.motorCurrent_display and getattr(self, '_amp_opacity', 0) > 0:
                 continue  # Let amp alert styling take precedence
             display.setStyleSheet(large_display_style)
+        
+        # Update dynamic fonts after theme change
+        self._update_dynamic_fonts()
     
     def _apply_theme_to_controls(self, styles: dict):
         """Apply theme styles to various UI controls."""

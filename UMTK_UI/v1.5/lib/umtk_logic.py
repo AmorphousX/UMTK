@@ -17,7 +17,6 @@ class UMTKLogic:
         self.desired_speed = 3.0
         self.X: List[float] = []
         self.Y: List[float] = []
-        self.test_direction = 1
         self.UMTKSerial = UMTKSerial_t()
         
         # Recording control
@@ -90,10 +89,9 @@ class UMTKLogic:
         self.write(f'V {value}\n'.encode())
 
     def command_calibrate(self, raw_value: float):
-        # Calibration shoudn't rely on test_direction, number supplied should always be in the same value
-        # As the current force direction, so calibration value sent is sensible
-        cal_command = f'C {str(math.copysign(1, self.Y[-1]) * self.test_direction * math.fabs(raw_value))}\n'.encode()
-        print(f"Latest data point: Y={self.Y[-1] if self.Y else 'N/A'}, test_direction={self.test_direction}, raw_value={raw_value}")
+        # Calculate valid calbration value sign, user should always supply positive number
+        cal_command = f'C {str(math.copysign(1, self.Y[-1]) * -1 * self.UMTKSerial.test_direction * raw_value)}\n'.encode()
+        print(f"Latest data point: Y={self.Y[-1] if self.Y else 'N/A'}, test_direction={self.UMTKSerial.test_direction}, raw_value={raw_value}")
         print(f"Cal command: {cal_command}")
         self.write(cal_command)
 

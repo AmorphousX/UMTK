@@ -149,6 +149,7 @@ class Ui_MainWindow(object):
 
                 self.calibration_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.calibration_but.setObjectName("calibration_but")
+                self.calibration_but.setMinimumHeight(40)
                 self.calibrationCol.addWidget(self.calibration_but)
 
                 self.controlsRow.addWidget(calibrationGroup, 2)
@@ -176,6 +177,7 @@ class Ui_MainWindow(object):
 
                 self.setSpeed_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.setSpeed_but.setObjectName("setSpeed_but")
+                self.setSpeed_but.setMinimumHeight(40)
                 self.setSpeedCol.addWidget(self.setSpeed_but)
 
                 self.controlsRow.addWidget(setSpeedGroup, 2)
@@ -193,14 +195,17 @@ class Ui_MainWindow(object):
                 dirRow.addWidget(self.changeDirection_inLine)
                 self.changeDirection_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.changeDirection_but.setObjectName("changeDirection_but")
+                self.changeDirection_but.setMinimumHeight(40)
                 dirRow.addWidget(self.changeDirection_but)
                 self.dirCol.addLayout(dirRow)
 
                 self.start_but_2 = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.start_but_2.setObjectName("start_but_2")
+                self.start_but_2.setMinimumHeight(40)
                 self.dirCol.addWidget(self.start_but_2)
                 self.stop_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.stop_but.setObjectName("stop_but")
+                self.stop_but.setMinimumHeight(40)
                 self.dirCol.addWidget(self.stop_but)
 
                 self.controlsRow.addWidget(directionGroup, 2)
@@ -362,6 +367,9 @@ class Ui_MainWindow(object):
                 fontState.setBold(True)
                 self.textBrowser_2.setFont(fontState)
                 self.textBrowser_2.setFixedHeight(48)
+                # Hide scroll bars since this should always be a single line
+                self.textBrowser_2.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+                self.textBrowser_2.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
                 self.rightPanel.addWidget(self.textBrowser_2)
 
                 # Motor Current metrics with QGroupBox container
@@ -398,23 +406,23 @@ class Ui_MainWindow(object):
                 self.buttonStatus.setSpacing(6)
                 self.up_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.up_but.setObjectName("up_but")
-                self.up_but.setMinimumSize(QtCore.QSize(60, 40))
+                self.up_but.setMinimumSize(QtCore.QSize(60, 60))
                 self.buttonStatus.addWidget(self.up_but)
                 self.down_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.down_but.setObjectName("down_but")
-                self.down_but.setMinimumSize(QtCore.QSize(60, 40))
+                self.down_but.setMinimumSize(QtCore.QSize(60, 60))
                 self.buttonStatus.addWidget(self.down_but)
                 self.tare_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.tare_but.setObjectName("tare_but")
-                self.tare_but.setMinimumSize(QtCore.QSize(60, 40))
+                self.tare_but.setMinimumSize(QtCore.QSize(60, 60))
                 self.buttonStatus.addWidget(self.tare_but)
                 self.start_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.start_but.setObjectName("start_but")
-                self.start_but.setMinimumSize(QtCore.QSize(60, 40))
+                self.start_but.setMinimumSize(QtCore.QSize(60, 60))
                 self.buttonStatus.addWidget(self.start_but)
                 self.aux_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.aux_but.setObjectName("aux_but")
-                self.aux_but.setMinimumSize(QtCore.QSize(60, 40))
+                self.aux_but.setMinimumSize(QtCore.QSize(60, 60))
                 self.buttonStatus.addWidget(self.aux_but)
                 self.rightPanel.addLayout(self.buttonStatus)
 
