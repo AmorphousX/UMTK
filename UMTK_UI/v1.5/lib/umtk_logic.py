@@ -118,6 +118,14 @@ class UMTKLogic:
     # --------------- Helpers -------------------
     def _rotate_log(self):
         if self.log_file:
+            # Add end marker to CSV
+            if self.log_file:
+                csv_writer = csv.writer(self.log_file)
+                pause_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                csv_writer.writerow([])  # Empty row for separation
+                csv_writer.writerow([f"=== RECORDING STOPPED: {pause_timestamp} ===", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
+                csv_writer.writerow([])  # Empty row for separation
+                self.log_file.flush()  # Ensure immediate write
             self.log_file.close()
         self.log_file = self._start_new_log()
 
@@ -130,7 +138,18 @@ class UMTKLogic:
             safe_name = filename.strip().replace(' ', '_')
             if not safe_name.lower().endswith('.csv'):
                 safe_name += '.csv'
-            log_file_path = os.path.join(self.log_dir, safe_name)
+            
+            # Check if filename contains a path or is just a filename
+            if os.path.sep in safe_name or ('/' in safe_name and os.path.sep == '\\'):
+                # User provided full path, use it directly
+                log_file_path = safe_name
+                # Create directory if it doesn't exist
+                dir_path = os.path.dirname(log_file_path)
+                if dir_path:
+                    os.makedirs(dir_path, exist_ok=True)
+            else:
+                # User provided just filename, put it in the default log directory
+                log_file_path = os.path.join(self.log_dir, safe_name)
             
             # Check if file exists and append with session marker
             file_exists = os.path.exists(log_file_path)
@@ -149,8 +168,9 @@ class UMTKLogic:
                 # Add session separator with timestamp for existing file
                 session_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 csv_writer.writerow([])  # Empty row for separation
-                csv_writer.writerow([f"=== NEW RECORDING SESSION STARTED: {session_timestamp} ==="] + [""] * 17)
+                csv_writer.writerow([f"=== NEW RECORDING SESSION STARTED: {session_timestamp} ===", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
                 csv_writer.writerow([])  # Empty row for separation
+                self.log_file.flush()  # Ensure immediate write
             
             self.current_filename_override = safe_name
             print(f"Recording to: {log_file_path} {'(appended)' if file_exists else '(new file)'}")
@@ -170,6 +190,15 @@ class UMTKLogic:
             import time
             self.is_paused = True
             self.pause_started = time.time()
+            
+            # Add pause marker to CSV
+            if self.log_file:
+                csv_writer = csv.writer(self.log_file)
+                pause_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                csv_writer.writerow([])  # Empty row for separation
+                csv_writer.writerow([f"=== RECORDING PAUSED: {pause_timestamp} ===", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
+                csv_writer.writerow([])  # Empty row for separation
+                self.log_file.flush()  # Ensure immediate write
 
     def resume_recording(self):
         if self.is_recording and self.is_paused:
@@ -179,6 +208,15 @@ class UMTKLogic:
                 self.pause_accumulated += now - self.pause_started
             self.pause_started = None
             self.is_paused = False
+            
+            # Add resume marker to CSV
+            if self.log_file:
+                csv_writer = csv.writer(self.log_file)
+                resume_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                csv_writer.writerow([])  # Empty row for separation
+                csv_writer.writerow([f"=== RECORDING RESUMED: {resume_timestamp} ===", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
+                csv_writer.writerow([])  # Empty row for separation
+                self.log_file.flush()  # Ensure immediate write
 
     def stop_recording(self, start_new: bool = True):
         self.is_recording = False

@@ -4,8 +4,11 @@ Test script to demonstrate how recording append behavior works.
 This shows what happens when you restart recording on the same file.
 """
 
-import tempfile
+import sys
 import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import tempfile
 from pathlib import Path
 from lib.umtk_logic import UMTKLogic
 

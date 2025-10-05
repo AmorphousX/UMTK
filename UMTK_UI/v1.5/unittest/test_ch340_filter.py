@@ -3,6 +3,10 @@
 Test script to demonstrate CH340 serial port filtering.
 """
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import platform
 from lib.UMTKSerial import UMTKSerial
 

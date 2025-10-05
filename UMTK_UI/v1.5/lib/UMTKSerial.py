@@ -49,8 +49,12 @@ class UMTKSerial:
                       pattern.lower() in manufacturer.lower() 
                       for pattern in ch340_patterns)
         
-        # Linux: Look for CH340 identifiers
+        # Linux: Look for CH340 identifiers and USB ports
         elif system == "linux":
+            # Check for USB port pattern first (e.g., /dev/ttyUSB0)
+            if "usb" in port_info.device.lower():
+                return True
+                
             # CH340 typically shows up with these patterns on Linux
             ch340_patterns = [
                 "ch341",

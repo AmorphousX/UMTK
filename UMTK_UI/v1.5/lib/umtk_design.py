@@ -259,36 +259,132 @@ class Ui_MainWindow(object):
                 self.displacement.setObjectName("displacement")
                 self.rightPanel.addWidget(self.displacement)
 
-                self.displacementLCD = QtWidgets.QLCDNumber(parent=self.centralwidget)
+                # Create horizontal layout for displacement value and unit
+                self.displacementLayout = QtWidgets.QHBoxLayout()
+                self.displacementLayout.setContentsMargins(0, 0, 0, 0)
+                self.displacementLayout.setSpacing(5)
+
+                self.displacementLCD = QtWidgets.QLabel(parent=self.centralwidget)
                 self.displacementLCD.setObjectName("displacementLCD")
-                self.rightPanel.addWidget(self.displacementLCD)
+                font_disp = QtGui.QFont(); font_disp.setPointSize(64); font_disp.setBold(True)
+                self.displacementLCD.setFont(font_disp)
+                self.displacementLCD.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                self.displacementLCD.setText("0.00")
+                self.displacementLayout.addWidget(self.displacementLCD)
+
+                # Unit label for displacement
+                self.displacementUnit = QtWidgets.QLabel(parent=self.centralwidget)
+                self.displacementUnit.setObjectName("displacementUnit")
+                font_unit = QtGui.QFont(); font_unit.setPointSize(16); font_unit.setBold(True)
+                self.displacementUnit.setFont(font_unit)
+                self.displacementUnit.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignBottom)
+                self.displacementUnit.setText("mm")
+                self.displacementUnit.setFixedWidth(40)  # Limit horizontal space
+                self.displacementLayout.addWidget(self.displacementUnit)
+
+                # Add the layout to the right panel
+                displacementContainer = QtWidgets.QWidget()
+                displacementContainer.setLayout(self.displacementLayout)
+                self.rightPanel.addWidget(displacementContainer)
 
                 self.speed = QtWidgets.QLabel(parent=self.centralwidget)
                 self.speed.setFont(font3)
                 self.speed.setObjectName("speed")
                 self.rightPanel.addWidget(self.speed)
 
-                self.speedLCD = QtWidgets.QLCDNumber(parent=self.centralwidget)
+                # Create horizontal layout for speed value and unit
+                self.speedLayout = QtWidgets.QHBoxLayout()
+                self.speedLayout.setContentsMargins(0, 0, 0, 0)
+                self.speedLayout.setSpacing(5)
+
+                self.speedLCD = QtWidgets.QLabel(parent=self.centralwidget)
                 self.speedLCD.setObjectName("speedLCD")
-                self.rightPanel.addWidget(self.speedLCD)
+                font_speed = QtGui.QFont(); font_speed.setPointSize(64); font_speed.setBold(True)
+                self.speedLCD.setFont(font_speed)
+                self.speedLCD.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                self.speedLCD.setText("0.00")
+                self.speedLayout.addWidget(self.speedLCD)
+
+                # Unit label for speed
+                self.speedUnit = QtWidgets.QLabel(parent=self.centralwidget)
+                self.speedUnit.setObjectName("speedUnit")
+                font_unit = QtGui.QFont(); font_unit.setPointSize(16); font_unit.setBold(True)
+                self.speedUnit.setFont(font_unit)
+                self.speedUnit.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignBottom)
+                self.speedUnit.setText("mm/s")
+                self.speedUnit.setFixedWidth(50)  # Limit horizontal space
+                self.speedLayout.addWidget(self.speedUnit)
+
+                # Add the layout to the right panel
+                speedContainer = QtWidgets.QWidget()
+                speedContainer.setLayout(self.speedLayout)
+                self.rightPanel.addWidget(speedContainer)
 
                 self.force = QtWidgets.QLabel(parent=self.centralwidget)
                 self.force.setFont(font3)
                 self.force.setObjectName("force")
                 self.rightPanel.addWidget(self.force)
 
-                self.forceLCD = QtWidgets.QLCDNumber(parent=self.centralwidget)
+                # Create horizontal layout for force value and unit
+                self.forceLayout = QtWidgets.QHBoxLayout()
+                self.forceLayout.setContentsMargins(0, 0, 0, 0)
+                self.forceLayout.setSpacing(5)
+
+                self.forceLCD = QtWidgets.QLabel(parent=self.centralwidget)
                 self.forceLCD.setObjectName("forceLCD")
-                self.rightPanel.addWidget(self.forceLCD)
+                font_force = QtGui.QFont(); font_force.setPointSize(64); font_force.setBold(True)
+                self.forceLCD.setFont(font_force)
+                self.forceLCD.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                self.forceLCD.setText("0.00")
+                self.forceLayout.addWidget(self.forceLCD)
+
+                # Unit label for force
+                self.forceUnit = QtWidgets.QLabel(parent=self.centralwidget)
+                self.forceUnit.setObjectName("forceUnit")
+                font_unit = QtGui.QFont(); font_unit.setPointSize(16); font_unit.setBold(True)
+                self.forceUnit.setFont(font_unit)
+                self.forceUnit.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignBottom)
+                self.forceUnit.setText("N")
+                self.forceUnit.setFixedWidth(30)  # Limit horizontal space
+                self.forceLayout.addWidget(self.forceUnit)
+
+                # Add the layout to the right panel
+                forceContainer = QtWidgets.QWidget()
+                forceContainer.setLayout(self.forceLayout)
+                self.rightPanel.addWidget(forceContainer)
 
                 self.maxForce = QtWidgets.QLabel(parent=self.centralwidget)
                 self.maxForce.setFont(font3)
                 self.maxForce.setObjectName("maxForce")
                 self.rightPanel.addWidget(self.maxForce)
 
-                self.maxForceLCD = QtWidgets.QLCDNumber(parent=self.centralwidget)
+                # Create horizontal layout for max force value and unit
+                self.maxForceLayout = QtWidgets.QHBoxLayout()
+                self.maxForceLayout.setContentsMargins(0, 0, 0, 0)
+                self.maxForceLayout.setSpacing(5)
+
+                self.maxForceLCD = QtWidgets.QLabel(parent=self.centralwidget)
                 self.maxForceLCD.setObjectName("maxForceLCD")
-                self.rightPanel.addWidget(self.maxForceLCD)
+                font_max = QtGui.QFont(); font_max.setPointSize(64); font_max.setBold(True)
+                self.maxForceLCD.setFont(font_max)
+                self.maxForceLCD.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                self.maxForceLCD.setText("0.00")
+                self.maxForceLayout.addWidget(self.maxForceLCD)
+
+                # Unit label for max force
+                self.maxForceUnit = QtWidgets.QLabel(parent=self.centralwidget)
+                self.maxForceUnit.setObjectName("maxForceUnit")
+                font_unit = QtGui.QFont(); font_unit.setPointSize(16); font_unit.setBold(True)
+                self.maxForceUnit.setFont(font_unit)
+                self.maxForceUnit.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignBottom)
+                self.maxForceUnit.setText("N")
+                self.maxForceUnit.setFixedWidth(30)  # Limit horizontal space
+                self.maxForceLayout.addWidget(self.maxForceUnit)
+
+                # Add the layout to the right panel
+                maxForceContainer = QtWidgets.QWidget()
+                maxForceContainer.setLayout(self.maxForceLayout)
+                self.rightPanel.addWidget(maxForceContainer)
 
                 self.umtkSate = QtWidgets.QLabel(parent=self.centralwidget)
                 self.umtkSate.setFont(font3)
@@ -309,9 +405,33 @@ class Ui_MainWindow(object):
                 self.motorCurrent_label.setObjectName("motorCurrent_label")
                 self.rightPanel.addWidget(self.motorCurrent_label)
 
-                self.motorCurrent_display = QtWidgets.QLCDNumber(parent=self.centralwidget)
+                # Create horizontal layout for motor current value and unit
+                self.motorCurrentLayout = QtWidgets.QHBoxLayout()
+                self.motorCurrentLayout.setContentsMargins(0, 0, 0, 0)
+                self.motorCurrentLayout.setSpacing(5)
+
+                self.motorCurrent_display = QtWidgets.QLabel(parent=self.centralwidget)
                 self.motorCurrent_display.setObjectName("motorCurrent_display")
-                self.rightPanel.addWidget(self.motorCurrent_display)
+                font_amp = QtGui.QFont(); font_amp.setPointSize(64); font_amp.setBold(True)
+                self.motorCurrent_display.setFont(font_amp)
+                self.motorCurrent_display.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                self.motorCurrent_display.setText("0.00")
+                self.motorCurrentLayout.addWidget(self.motorCurrent_display)
+
+                # Unit label for motor current
+                self.motorCurrentUnit = QtWidgets.QLabel(parent=self.centralwidget)
+                self.motorCurrentUnit.setObjectName("motorCurrentUnit")
+                font_unit = QtGui.QFont(); font_unit.setPointSize(16); font_unit.setBold(True)
+                self.motorCurrentUnit.setFont(font_unit)
+                self.motorCurrentUnit.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignBottom)
+                self.motorCurrentUnit.setText("A")
+                self.motorCurrentUnit.setFixedWidth(30)  # Limit horizontal space
+                self.motorCurrentLayout.addWidget(self.motorCurrentUnit)
+
+                # Add the layout to the right panel
+                motorCurrentContainer = QtWidgets.QWidget()
+                motorCurrentContainer.setLayout(self.motorCurrentLayout)
+                self.rightPanel.addWidget(motorCurrentContainer)
 
                 self.eStop_display = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.eStop_display.setEnabled(False)
@@ -395,4 +515,4 @@ class Ui_MainWindow(object):
                 self.down_but.setText(_translate("MainWindow", "JOG \nDOWN"))
                 self.tare_but.setText(_translate("MainWindow", "TARE"))
                 self.start_but.setText(_translate("MainWindow", "START"))
-                self.aux_but.setText(_translate("MainWindow", "AUX"))
+                self.aux_but.setText(_translate("MainWindow", "AUX \n STOP"))
