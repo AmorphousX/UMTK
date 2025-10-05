@@ -12,8 +12,9 @@ except ImportError:
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 
-from .umtk_logic import UMTKLogic
 from .umtk_design import Ui_MainWindow as UMTK_MainWindow
+from .umtk_logic import UMTKLogic
+from .theme_manager import ThemeManager
 from .record_dialog import RecordingDialog
 from pathlib import Path
 import os
@@ -29,23 +30,34 @@ def resource_path(relative_path: str) -> str:
 
 
 class UMTKWindow(QtWidgets.QMainWindow):
-    def __init__(self, logic: UMTKLogic, theme: str = "Dark"):
+    def __init__(self, logic: UMTKLogic, theme: str = "dark"):
         super().__init__()
         self.logic = logic
-        self.theme = theme
-        self.theme_btn_red = "background-color: red"
-        self.theme_btn_green = "background-color: green"
-
+        
+        # Initialize theme manager
+        self.theme_manager = ThemeManager()
+        self.current_theme = theme.lower()
+        
+        # Initialize amp alert opacity (needed for theme application)
+        self._amp_opacity = 0.0  # Current background opacity (0.0 to 1.0)
+        
         self.ui = UMTK_MainWindow()
         self.ui.setupUi(self)
 
+        # Connect theme toggle button
+        self.ui.themeToggleBtn.clicked.connect(self.toggle_theme)
+
+        # Apply initial theme
+        self.apply_theme(self.current_theme)
+
         # Theme-dependent assets and matplotlib style
-        if theme == "Dark":
+        if self.current_theme == "dark":
             plt.style.use('dark_background')
-            dot_color = "yellow"
+            self.dot_color = "yellow"
             self.ui.cat_2.setPixmap(QtGui.QPixmap(resource_path("img/cat_1k_dark.png")))
         else:
-            dot_color = "blue"
+            plt.style.use('default')
+            self.dot_color = "red"
             self.ui.cat_2.setPixmap(QtGui.QPixmap(resource_path("img/cat_1k.png")))
 
         # Graph setup
@@ -53,10 +65,16 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self.canvas = FigureCanvas(self.figure)
         self.ax = self.figure.add_subplot(111)
         self.ax.set_title("Force Displacement Graph")
-        self.ax.set_xlabel("Displacement (mm)")
-        self.ax.set_ylabel("Force (N)")
-        self.sp, = self.ax.plot([], [], label='', ms=10, color=dot_color, marker='.', ls='')
-        self.figure.tight_layout()
+        self.ax.set_xlabel("Position")
+        self.ax.set_ylabel("Force")
+        self.sp, = self.ax.plot([], [], label='', ms=10, color=self.dot_color, marker='.', ls='')
+        
+        # Reduce white borders by adjusting subplot margins
+        self.figure.subplots_adjust(left=0.08, bottom=0.08, right=0.96, top=0.94)
+        
+        # Apply initial graph theme
+        self._update_graph_theme()
+        
         self.ui.graphDisplay.setLayout(QtWidgets.QVBoxLayout())
         self.ui.graphDisplay.layout().addWidget(self.canvas)
 
@@ -117,18 +135,13 @@ class UMTKWindow(QtWidgets.QMainWindow):
         
         for display in displays:
             display.setFont(large_font)
-            # Clean styling with white text for better contrast
-            display.setStyleSheet("""
-                QLabel {
-                    font-size: 64pt;
-                    font-weight: bold;
-                    color: white;
-                }
-            """)
             # Ensure adequate space for large fonts
             display.setMinimumSize(300, 120)
             display.setMaximumSize(16777215, 16777215)
             display.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
+        
+        # Apply theme-appropriate styling for large displays
+        self._apply_large_display_theme()
         
         print(f"Applied 64pt fonts to all numeric displays")
 
@@ -137,7 +150,6 @@ class UMTKWindow(QtWidgets.QMainWindow):
         # Amp alert configuration with fading background
         self.AMP_ALERT_THRESHOLD = 5.0  # Amps; adjust as needed
         self._amp_alert_active = False
-        self._amp_opacity = 0.0  # Current background opacity (0.0 to 1.0)
         
         # Animation for fading background
         self._amp_fade_animation = QtCore.QPropertyAnimation(self, b"amp_opacity")
@@ -315,12 +327,12 @@ class UMTKWindow(QtWidgets.QMainWindow):
         if has_valid_ports:
             # Valid ports found: rescan every 2 seconds
             interval = 2000
-            scan_status = "Auto-scan: 2s (device ready)"
+            scan_status = "Scanning..."
         else:
             # No valid ports: rescan every 1 second for faster detection
             interval = 1000
-            scan_status = "Auto-scan: 1s (waiting for device)"
-        
+            scan_status = "Scanning..."
+
         self.rescan_serial_timer.start(interval)
         
         # Update status to show current scan interval
@@ -331,6 +343,10 @@ class UMTKWindow(QtWidgets.QMainWindow):
         
     def _smart_rescan_serial_ports(self):
         """Smart rescanning that respects dropdown state and adjusts intervals."""
+        # Don't rescan if already connected
+        if self.logic.UMTKSerial.status == self.logic.UMTKSerial.SerialStates.CONNECTED:
+            return
+            
         # Don't rescan if dropdown is currently open (user is selecting)
         if self._is_dropdown_open():
             return
@@ -591,25 +607,167 @@ class UMTKWindow(QtWidgets.QMainWindow):
     
     def set_amp_opacity(self, opacity):
         self._amp_opacity = opacity
-        # Convert opacity to background color with alpha
-        if opacity > 0:
-            # Red background with varying opacity, preserving large font
-            alpha = int(255 * opacity)
-            self.ui.motorCurrent_display.setStyleSheet(
-                f"background-color: rgba(255, 0, 0, {alpha}); color: white; font-weight: bold; font-size: 64pt;"
-            )
-        else:
-            # Reset to normal large font styling
-            self.ui.motorCurrent_display.setStyleSheet("""
-                QLabel {
-                    font-size: 64pt;
-                    font-weight: bold;
-                    color: white;
-                }
-            """)
+        # Use themed amp alert styling
+        style = self.get_themed_amp_alert_style(opacity)
+        self.ui.motorCurrent_display.setStyleSheet(style)
     
     # Qt property for animation
     amp_opacity = QtCore.pyqtProperty(float, get_amp_opacity, set_amp_opacity) if QT_LIB == "PyQt6" else QtCore.Property(float, get_amp_opacity, set_amp_opacity)
+
+    # ---------------- Theme Management --------------------
+    def toggle_theme(self):
+        """Toggle between light and dark themes."""
+        new_theme = "light" if self.current_theme == "dark" else "dark"
+        self.switch_theme(new_theme)
+    
+    def switch_theme(self, theme_name: str):
+        """Switch to the specified theme."""
+        if theme_name != self.current_theme:
+            self.current_theme = theme_name
+            self.apply_theme(theme_name)
+            
+            # Update matplotlib style and graph colors
+            if theme_name == "dark":
+                plt.style.use('dark_background')
+                self.dot_color = "yellow"
+                self.ui.cat_2.setPixmap(QtGui.QPixmap(resource_path("img/cat_1k_dark.png")))
+            else:
+                plt.style.use('default')
+                self.dot_color = "red"
+                self.ui.cat_2.setPixmap(QtGui.QPixmap(resource_path("img/cat_1k.png")))
+            
+            # Update graph plot color and redraw
+            if hasattr(self, 'sp'):
+                self.sp.set_color(self.dot_color)
+                # Update graph background and styling
+                self._update_graph_theme()
+                self.figure.canvas.draw()
+    
+    def apply_theme(self, theme_name: str):
+        """Apply the specified theme to all UI elements."""
+        styles = self.theme_manager.get_theme_styles(theme_name)
+        
+        # Apply main window style
+        self.setStyleSheet(styles["main_window"])
+        
+        # Update theme toggle button icon and style
+        if theme_name == "light":
+            self.ui.themeToggleBtn.setText("🌙")  # Moon icon for switching to dark
+        else:
+            self.ui.themeToggleBtn.setText("☀")  # Sun icon for switching to light
+        
+        self.ui.themeToggleBtn.setStyleSheet(styles["theme_switcher"])
+        
+        # Apply styles to other UI elements
+        self._apply_theme_to_controls(styles)
+        
+        # Apply theme to large displays
+        self._apply_large_display_theme()
+        
+        # Update theme-specific button colors
+        self._update_theme_button_colors(styles)
+    
+    def _apply_large_display_theme(self):
+        """Apply theme-appropriate styling to large number displays."""
+        # Get the appropriate text color for the theme
+        text_color = "#ffffff" if self.current_theme == "dark" else "#212121"
+        
+        large_display_style = f"""
+            QLabel {{
+                font-size: 64pt;
+                font-weight: bold;
+                color: {text_color};
+                background-color: transparent;
+            }}
+        """
+        
+        # Apply to all large displays
+        displays = [
+            self.ui.displacementLCD,
+            self.ui.speedLCD,
+            self.ui.forceLCD,
+            self.ui.maxForceLCD,
+            self.ui.motorCurrent_display
+        ]
+        
+        for display in displays:
+            # Skip motorCurrent_display if it has amp alert styling
+            if display == self.ui.motorCurrent_display and getattr(self, '_amp_opacity', 0) > 0:
+                continue  # Let amp alert styling take precedence
+            display.setStyleSheet(large_display_style)
+    
+    def _apply_theme_to_controls(self, styles: dict):
+        """Apply theme styles to various UI controls."""
+        # Input fields
+        for widget in [self.ui.filename_edit, self.ui.setSpeed_inLine, self.ui.changeDirection_inLine]:
+            if hasattr(self.ui, widget.objectName()):
+                widget.setStyleSheet(styles["input_field"])
+        
+        # Combo boxes
+        if hasattr(self.ui, 'portsDropdown'):
+            self.ui.portsDropdown.setStyleSheet(styles["combo_box"])
+        
+        # Text browsers
+        if hasattr(self.ui, 'textBrowser'):
+            self.ui.textBrowser.setStyleSheet(styles["text_browser"])
+        if hasattr(self.ui, 'textBrowser_2'):
+            self.ui.textBrowser_2.setStyleSheet(styles["text_browser"])
+        
+        # Checkboxes
+        if hasattr(self.ui, 'showAllPorts_check'):
+            self.ui.showAllPorts_check.setStyleSheet(styles["checkbox"])
+        
+        # Labels
+        for widget in self.findChildren(QtWidgets.QLabel):
+            # Skip the large number displays as they have special styling
+            if widget.objectName() not in ['displacementLCD', 'speedLCD', 'forceLCD', 'maxForceLCD', 'motorCurrent_display']:
+                widget.setStyleSheet(styles["label"])
+        
+        # Group boxes (including display containers)
+        for widget in self.findChildren(QtWidgets.QGroupBox):
+            widget.setStyleSheet(styles["groupbox"])
+    
+    def _update_theme_button_colors(self, styles: dict):
+        """Update button color references for theme compatibility."""
+        self.theme_btn_red = styles["button_red"]
+        self.theme_btn_green = styles["button_green"]
+        self.theme_btn_blue = styles["button_blue"]
+        self.theme_btn_neutral = styles["button_neutral"]
+    
+    def get_themed_amp_alert_style(self, opacity: float) -> str:
+        """Get the amp alert style for the current theme."""
+        amp_styles = self.theme_manager.get_amp_alert_styles(self.current_theme)
+        if opacity > 0:
+            return amp_styles["alert"].format(opacity=opacity)
+        else:
+            return amp_styles["normal"]
+    
+    def _update_graph_theme(self):
+        """Update the graph styling to match the current theme."""
+        if self.current_theme == "dark":
+            # Dark theme - dark background, light text
+            self.ax.set_facecolor('#2b2b2b')
+            self.figure.patch.set_facecolor('#2b2b2b')
+            self.ax.tick_params(colors='white')
+            self.ax.xaxis.label.set_color('white')
+            self.ax.yaxis.label.set_color('white')
+            self.ax.title.set_color('white')
+            self.ax.spines['bottom'].set_color('white')
+            self.ax.spines['top'].set_color('white')
+            self.ax.spines['right'].set_color('white')
+            self.ax.spines['left'].set_color('white')
+        else:
+            # Light theme - white background, dark text
+            self.ax.set_facecolor('white')
+            self.figure.patch.set_facecolor('white')
+            self.ax.tick_params(colors='black')
+            self.ax.xaxis.label.set_color('black')
+            self.ax.yaxis.label.set_color('black')
+            self.ax.title.set_color('black')
+            self.ax.spines['bottom'].set_color('black')
+            self.ax.spines['top'].set_color('black')
+            self.ax.spines['right'].set_color('black')
+            self.ax.spines['left'].set_color('black')
 
     # ---------------- Qt Overrides --------------------
     def closeEvent(self, event):  # noqa: N802

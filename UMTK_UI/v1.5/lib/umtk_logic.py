@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from pathlib import Path
 from datetime import datetime
 import csv
@@ -89,7 +90,12 @@ class UMTKLogic:
         self.write(f'V {value}\n'.encode())
 
     def command_calibrate(self, raw_value: float):
-        self.write(f'C {str(self.test_direction * raw_value)}\n'.encode())
+        # Calibration shoudn't rely on test_direction, number supplied should always be in the same value
+        # As the current force direction, so calibration value sent is sensible
+        cal_command = f'C {str(math.copysign(1, self.Y[-1]) * self.test_direction * math.fabs(raw_value))}\n'.encode()
+        print(f"Latest data point: Y={self.Y[-1] if self.Y else 'N/A'}, test_direction={self.test_direction}, raw_value={raw_value}")
+        print(f"Cal command: {cal_command}")
+        self.write(cal_command)
 
     def command_start(self):
         self.write(b'Begin\n')
@@ -112,8 +118,10 @@ class UMTKLogic:
         self.X.append(x)
         self.Y.append(y)
         if len(self.X) > max_points:
-            self.X = self.X[:trim_to]
-            self.Y = self.Y[:trim_to]
+            # Remove first (len - trim_to) elements to keep the most recent trim_to elements
+            remove_count = len(self.X) - trim_to
+            self.X = self.X[remove_count:]
+            self.Y = self.Y[remove_count:]
 
     # --------------- Helpers -------------------
     def _rotate_log(self):
