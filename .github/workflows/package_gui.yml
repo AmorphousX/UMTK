@@ -67,7 +67,7 @@ jobs:
         run: |
           if exist venv\Scripts\activate (call venv\Scripts\activate)
           pip install pyinstaller
-          pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
+          pyinstaller --noconfirm --windowed --onefile --hidden-import=PyQt6.QtCore --hidden-import=PyQt6.QtGui --hidden-import=PyQt6.QtWidgets --collect-all PyQt6 main.py --name umtk-ui
 
       - name: Clean build environment
         shell: pwsh
@@ -122,7 +122,7 @@ jobs:
             source package/script/mac/gui_venv/bin/activate
           fi
           pip install pyinstaller
-          pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
+          pyinstaller --noconfirm --windowed --onefile --hidden-import=PyQt6.QtCore --hidden-import=PyQt6.QtGui --hidden-import=PyQt6.QtWidgets --collect-all PyQt6 main.py --name umtk-ui
 
       - name: Clean build environment
         run: |
@@ -169,7 +169,7 @@ jobs:
             source package/script/mac/gui_venv/bin/activate
           fi
           pip install pyinstaller
-          pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
+          pyinstaller --noconfirm --windowed --onefile --hidden-import=PyQt6.QtCore --hidden-import=PyQt6.QtGui --hidden-import=PyQt6.QtWidgets --collect-all PyQt6 main.py --name umtk-ui
 
       - name: Clean build environment
         run: |
@@ -217,7 +217,7 @@ jobs:
             source package/script/mac/gui_venv/bin/activate
           fi
           pip install pyinstaller
-          pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
+          pyinstaller --noconfirm --windowed --onefile --hidden-import=PyQt6.QtCore --hidden-import=PyQt6.QtGui --hidden-import=PyQt6.QtWidgets --collect-all PyQt6 main.py --name umtk-ui
 
       - name: Clean build environment
         run: |
@@ -264,7 +264,7 @@ jobs:
             source package/script/linux/gui_venv/bin/activate
           fi
           pip install pyinstaller
-          pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
+          pyinstaller --noconfirm --windowed --onefile --hidden-import=PyQt6.QtCore --hidden-import=PyQt6.QtGui --hidden-import=PyQt6.QtWidgets --collect-all PyQt6 main.py --name umtk-ui
 
       - name: Clean build environment
         run: |
