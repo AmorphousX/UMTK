@@ -7,10 +7,6 @@ on:
         description: "Build Windows zip"
         type: boolean
         default: true
-      build_macos:
-        description: "Build macOS zip"
-        type: boolean
-        default: true
       build_macos_intel:
         description: "Build macOS Intel (x86_64) zip"
         type: boolean
@@ -192,54 +188,6 @@ jobs:
         with:
           name: umtk-ui-macos-arm64
           path: UMTK_UI/v1.5/umtk-ui-macos-arm64.zip
-
-  # Keep original build_macos for backward compatibility (defaults to latest = arm64)
-  build_macos:
-    if: ${{ inputs.build_macos == true }}
-    runs-on: macos-latest
-    defaults:
-      run:
-        working-directory: UMTK_UI/v1.5
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install dependencies and build
-        run: |
-          cd package/script/mac
-          chmod +x install.command
-          ./install.command
-          cd ../../..
-
-      - name: Build with PyInstaller
-        run: |
-          if [ -f package/script/mac/gui_venv/bin/activate ]; then
-            source package/script/mac/gui_venv/bin/activate
-          fi
-          pip install pyinstaller
-          pyinstaller --noconfirm --windowed --onefile --hidden-import=PyQt6.QtCore --hidden-import=PyQt6.QtGui --hidden-import=PyQt6.QtWidgets --collect-all PyQt6 main.py --name umtk-ui
-
-      - name: Clean build environment
-        run: |
-          # Remove build venv to avoid path conflicts on user machines
-          rm -rf package/script/mac/gui_venv || true
-          rm -rf gui_venv || true
-
-      - name: Package zip
-        run: |
-          mkdir -p build-artifacts
-          cp dist/umtk-ui* build-artifacts/ || true
-          cp -r img style lib requirements.txt build-artifacts/
-          cp -r package/script/mac/* build-artifacts/
-          # Make scripts executable in the package
-          chmod +x build-artifacts/*.command 2>/dev/null || true
-          (cd build-artifacts && zip -r ../umtk-ui-macos.zip .)
-
-      - name: Upload artifact (macOS zip)
-        uses: actions/upload-artifact@v4
-        with:
-          name: umtk-ui-macos
-          path: UMTK_UI/v1.5/umtk-ui-macos.zip
 
   build_ubuntu_deb:
     if: ${{ inputs.build_ubuntu_deb == true }}
