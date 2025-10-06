@@ -98,7 +98,7 @@ class UMTKSerial:
             if self.show_all_ports:
                 self.known_serial_ports.append("NO PORTS AVAILABLE")
             else:
-                self.known_serial_ports.append("NO CH340 PORTS FOUND (try 'Show All')")
+                self.known_serial_ports.append("NO UMTK FOUND (try 'All') ")
                 
         return self.known_serial_ports
     

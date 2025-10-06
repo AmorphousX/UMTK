@@ -128,12 +128,19 @@ class ThemeManager:
                 }
                 QComboBox::drop-down {
                     border: none;
+                    background-color: #424242;
                 }
                 QComboBox::down-arrow {
                     image: none;
                     border-left: 5px solid transparent;
                     border-right: 5px solid transparent;
                     border-top: 5px solid #ffffff;
+                }
+                QComboBox QAbstractItemView {
+                    background-color: #424242;
+                    border: 2px solid #616161;
+                    color: #ffffff;
+                    selection-background-color: #616161;
                 }
             """,
             
@@ -315,12 +322,19 @@ class ThemeManager:
                 }
                 QComboBox::drop-down {
                     border: none;
+                    background-color: #ffffff;
                 }
                 QComboBox::down-arrow {
                     image: none;
                     border-left: 5px solid transparent;
                     border-right: 5px solid transparent;
                     border-top: 5px solid #212121;
+                }
+                QComboBox QAbstractItemView {
+                    background-color: #ffffff;
+                    border: 2px solid #BDBDBD;
+                    color: #212121;
+                    selection-background-color: #E0E0E0;
                 }
             """,
             

@@ -88,27 +88,31 @@ class Ui_MainWindow(object):
 
                 # Bottom controls area (single row, multiple vertical groups)
                 self.controlsRow = QtWidgets.QHBoxLayout()
-                self.controlsRow.setSpacing(8)
+                self.controlsRow.setSpacing(6)  # Reduced from 8 to 6 for more compactness
 
                 # Connection controls group
                 connectionGroup = QtWidgets.QGroupBox("Connection")
                 connectionGroup.setObjectName("connectionGroup")
                 self.serialCol = QtWidgets.QVBoxLayout(connectionGroup)
-                self.serialCol.setSpacing(4)
+                self.serialCol.setSpacing(3)  # Reduced from 4 to 3
+                
+                # Serial device picker and checkbox in same row
+                devicePickerRow = QtWidgets.QHBoxLayout()
                 self.portsDropdown = QtWidgets.QComboBox(parent=self.centralwidget)
                 self.portsDropdown.setObjectName("portsDropdown")
-                self.serialCol.addWidget(self.portsDropdown)
+                devicePickerRow.addWidget(self.portsDropdown)
 
-                # Show all ports checkbox
-                self.showAllPorts_check = QtWidgets.QCheckBox("Show All Ports")
+                # Show all ports checkbox with shortened name
+                self.showAllPorts_check = QtWidgets.QCheckBox("All")
                 self.showAllPorts_check.setObjectName("showAllPorts_check")
                 self.showAllPorts_check.setToolTip("Show all serial ports (unchecked: CH340 only)")
-                self.serialCol.addWidget(self.showAllPorts_check)
+                devicePickerRow.addWidget(self.showAllPorts_check)
+                self.serialCol.addLayout(devicePickerRow)
 
                 self.textBrowser = QtWidgets.QTextBrowser(parent=self.centralwidget)
                 self.textBrowser.setObjectName("textBrowser")
                 self.textBrowser.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed))
-                self.textBrowser.setFixedHeight(40)
+                self.textBrowser.setFixedHeight(28)  # Reduced from 40 to 28
                 self.serialCol.addWidget(self.textBrowser)
 
                 btnRow1 = QtWidgets.QHBoxLayout()
@@ -126,7 +130,7 @@ class Ui_MainWindow(object):
                 calibrationGroup = QtWidgets.QGroupBox("Calibration")
                 calibrationGroup.setObjectName("calibrationGroup")
                 self.calibrationCol = QtWidgets.QVBoxLayout(calibrationGroup)
-                self.calibrationCol.setSpacing(4)
+                self.calibrationCol.setSpacing(3)  # Reduced from 4 to 3
 
                 # Reference Force label
                 self.referenceForceLabel = QtWidgets.QLabel("Reference Force:")
@@ -149,7 +153,7 @@ class Ui_MainWindow(object):
 
                 self.calibration_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.calibration_but.setObjectName("calibration_but")
-                self.calibration_but.setMinimumHeight(40)
+                self.calibration_but.setMinimumHeight(28)  # Reduced from 40 to 28
                 self.calibrationCol.addWidget(self.calibration_but)
 
                 self.controlsRow.addWidget(calibrationGroup, 2)
@@ -158,7 +162,7 @@ class Ui_MainWindow(object):
                 setSpeedGroup = QtWidgets.QGroupBox("Set Speed")
                 setSpeedGroup.setObjectName("setSpeedGroup")
                 self.setSpeedCol = QtWidgets.QVBoxLayout(setSpeedGroup)
-                self.setSpeedCol.setSpacing(4)
+                self.setSpeedCol.setSpacing(3)  # Reduced from 4 to 3
 
                 # Desired Speed label
                 self.desiredSpeedLabel = QtWidgets.QLabel("Desired Speed (mm/s)")
@@ -177,7 +181,7 @@ class Ui_MainWindow(object):
 
                 self.setSpeed_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.setSpeed_but.setObjectName("setSpeed_but")
-                self.setSpeed_but.setMinimumHeight(40)
+                self.setSpeed_but.setMinimumHeight(28)  # Reduced from 40 to 28
                 self.setSpeedCol.addWidget(self.setSpeed_but)
 
                 self.controlsRow.addWidget(setSpeedGroup, 2)
@@ -186,7 +190,7 @@ class Ui_MainWindow(object):
                 directionGroup = QtWidgets.QGroupBox("Run Control")
                 directionGroup.setObjectName("directionGroup")
                 self.dirCol = QtWidgets.QVBoxLayout(directionGroup)
-                self.dirCol.setSpacing(4)
+                self.dirCol.setSpacing(3)  # Reduced from 4 to 3
                 
                 dirRow = QtWidgets.QHBoxLayout()
                 self.changeDirection_inLine = QtWidgets.QLineEdit(parent=self.centralwidget)
@@ -195,17 +199,17 @@ class Ui_MainWindow(object):
                 dirRow.addWidget(self.changeDirection_inLine)
                 self.changeDirection_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.changeDirection_but.setObjectName("changeDirection_but")
-                self.changeDirection_but.setMinimumHeight(40)
+                self.changeDirection_but.setMinimumHeight(28)  # Reduced from 40 to 28
                 dirRow.addWidget(self.changeDirection_but)
                 self.dirCol.addLayout(dirRow)
 
                 self.start_but_2 = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.start_but_2.setObjectName("start_but_2")
-                self.start_but_2.setMinimumHeight(40)
+                self.start_but_2.setMinimumHeight(28)  # Reduced from 40 to 28
                 self.dirCol.addWidget(self.start_but_2)
                 self.stop_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.stop_but.setObjectName("stop_but")
-                self.stop_but.setMinimumHeight(40)
+                self.stop_but.setMinimumHeight(28)  # Reduced from 40 to 28
                 self.dirCol.addWidget(self.stop_but)
 
                 self.controlsRow.addWidget(directionGroup, 2)
@@ -219,6 +223,8 @@ class Ui_MainWindow(object):
                 # Recording controls group
                 self.recordingGroupBox = QtWidgets.QGroupBox("Recording Controls")
                 self.recordingGroupBox.setObjectName("recordingGroupBox")
+                # Set minimum height to ensure buttons remain usable when window is small
+                self.recordingGroupBox.setMinimumHeight(120)
                 
                 recordingGroupLayout = QtWidgets.QVBoxLayout(self.recordingGroupBox)
                 
@@ -406,23 +412,23 @@ class Ui_MainWindow(object):
                 self.buttonStatus.setSpacing(6)
                 self.up_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.up_but.setObjectName("up_but")
-                self.up_but.setMinimumSize(QtCore.QSize(60, 60))
+                self.up_but.setMinimumSize(QtCore.QSize(60, 20))
                 self.buttonStatus.addWidget(self.up_but)
                 self.down_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.down_but.setObjectName("down_but")
-                self.down_but.setMinimumSize(QtCore.QSize(60, 60))
+                self.down_but.setMinimumSize(QtCore.QSize(60, 20))
                 self.buttonStatus.addWidget(self.down_but)
                 self.tare_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.tare_but.setObjectName("tare_but")
-                self.tare_but.setMinimumSize(QtCore.QSize(60, 60))
+                self.tare_but.setMinimumSize(QtCore.QSize(60, 20))
                 self.buttonStatus.addWidget(self.tare_but)
                 self.start_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.start_but.setObjectName("start_but")
-                self.start_but.setMinimumSize(QtCore.QSize(60, 60))
+                self.start_but.setMinimumSize(QtCore.QSize(60, 20))
                 self.buttonStatus.addWidget(self.start_but)
                 self.aux_but = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.aux_but.setObjectName("aux_but")
-                self.aux_but.setMinimumSize(QtCore.QSize(60, 60))
+                self.aux_but.setMinimumSize(QtCore.QSize(60, 20))
                 self.buttonStatus.addWidget(self.aux_but)
                 self.rightPanel.addLayout(self.buttonStatus)
 
@@ -464,8 +470,8 @@ class Ui_MainWindow(object):
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-weight:600;\"><br /></p></body></html>"))
                 self.eStop_display.setText(_translate("MainWindow", "Emergency Stop State"))
 
-                self.up_but.setText(_translate("MainWindow", "JOG \nUP"))
-                self.down_but.setText(_translate("MainWindow", "JOG \nDOWN"))
+                self.up_but.setText(_translate("MainWindow", "UP"))
+                self.down_but.setText(_translate("MainWindow", "DOWN"))
                 self.tare_but.setText(_translate("MainWindow", "TARE"))
                 self.start_but.setText(_translate("MainWindow", "START"))
-                self.aux_but.setText(_translate("MainWindow", "AUX \n STOP"))
+                self.aux_but.setText(_translate("MainWindow", "AUX"))

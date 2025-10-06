@@ -130,8 +130,8 @@ class UMTKWindow(QtWidgets.QMainWindow):
         ]
         
         for display in self.large_displays:
-            # Set initial size constraints
-            display.setMinimumSize(200, 80)  # Reduced minimum size for better scaling
+            # Remove minimum size constraints to allow displays to shrink properly
+            # Only set size policy to allow flexible sizing
             display.setMaximumSize(16777215, 16777215)
             display.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         
@@ -149,9 +149,13 @@ class UMTKWindow(QtWidgets.QMainWindow):
             if display.isVisible():
                 # Calculate font size based on widget height
                 widget_height = display.height()
-                # Use approximately 60% of the widget height for font size
-                # Min 12pt, max 80pt to keep it reasonable
-                font_size = max(12, min(80, int(widget_height * 0.6)))
+                # Use approximately 50% of the widget height for font size to prevent overflow
+                # Lower minimum to 8pt to handle very small windows, max 80pt
+                font_size = max(8, min(80, int(widget_height * 0.5)))
+                
+                # If widget is very small (less than 30px), use even smaller font
+                if widget_height < 30:
+                    font_size = max(6, int(widget_height * 0.4))
                 
                 font = QtGui.QFont()
                 font.setPointSize(font_size)
@@ -213,7 +217,7 @@ class UMTKWindow(QtWidgets.QMainWindow):
         ports = self.logic.rescan_ports(show_all=show_all)
         
         # Check if we have real ports (not error messages)
-        return any(port not in ["NO PORTS AVAILABLE", "NO CH340 PORTS FOUND (try 'Show All')"] 
+        return any(port not in ["NO PORTS AVAILABLE","NO UMTK FOUND (try 'All') "]
                   for port in ports)
 
     def _generate_default_filename(self) -> str:
@@ -716,7 +720,8 @@ class UMTKWindow(QtWidgets.QMainWindow):
     def _apply_theme_to_controls(self, styles: dict):
         """Apply theme styles to various UI controls."""
         # Input fields
-        for widget in [self.ui.filename_edit, self.ui.setSpeed_inLine, self.ui.changeDirection_inLine]:
+        input_fields = [self.ui.filename_edit, self.ui.setSpeed_inLine, self.ui.changeDirection_inLine, self.ui.calibration_inLine]
+        for widget in input_fields:
             if hasattr(self.ui, widget.objectName()):
                 widget.setStyleSheet(styles["input_field"])
         
