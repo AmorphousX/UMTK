@@ -359,9 +359,8 @@ jobs:
           name: ${{ steps.meta.outputs.name }}
           prerelease: ${{ inputs.prerelease }}
           files: |
-            artifacts/umtk-ui-windows.zip
-            artifacts/umtk-ui-macos.zip
-            artifacts/umtk-ui-linux.tar.gz
+            artifacts/*.zip
+            artifacts/*.tar.gz
             artifacts/*.deb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
