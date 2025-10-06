@@ -44,7 +44,7 @@ else
     elif check_python_version "python"; then
         echo "Using python"
     else
-        echo "No compatible Python found. Please run install.command first."
+        echo "No compatible Python found. Please run install.sh first."
         read -p "Press any key to continue..."
         exit 1
     fi
@@ -52,11 +52,10 @@ fi
 
 # Run main.py script
 if [ -f "main.py" ]; then
-    echo "Running main.py..."
+    echo "Starting UMTK UI..."
     $PYTHON_CMD main.py
 else
     echo "main.py not found. Please make sure it is in the same directory."
 fi
 
-# Keep the terminal open for user interaction
-read -p "Press any key to continue..."
+echo "Application closed."

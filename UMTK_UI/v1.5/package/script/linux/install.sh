@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Store the current directory
-current_dir=$(pwd)
-
-# Ensure the script is executable
-chmod +x "$0"
-
 # Change to the directory where the script is located
 cd "$(dirname "$0")"
 
@@ -45,26 +39,34 @@ elif check_python_version "python3"; then
 elif check_python_version "python"; then
     echo "Using python"
 else
-    echo "No compatible Python found (need 3.8+), installing Python 3.11..."
+    echo "No compatible Python found (need 3.8+), attempting to install..."
     
-    # Install Homebrew if it's not installed
-    if ! command -v brew &> /dev/null; then
-        echo "Homebrew not found, installing Homebrew..."
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        
-        # Add Homebrew to PATH for this session
-        if [[ -f "/opt/homebrew/bin/brew" ]]; then
-            eval "$(/opt/homebrew/bin/brew shellenv)"
-        elif [[ -f "/usr/local/bin/brew" ]]; then
-            eval "$(/usr/local/bin/brew shellenv)"
-        fi
+    # Detect package manager and install Python
+    if command -v apt &> /dev/null; then
+        echo "Using apt to install Python..."
+        sudo apt update
+        sudo apt install -y python3 python3-pip python3-venv
+        PYTHON_CMD="python3"
+    elif command -v yum &> /dev/null; then
+        echo "Using yum to install Python..."
+        sudo yum install -y python3 python3-pip
+        PYTHON_CMD="python3"
+    elif command -v dnf &> /dev/null; then
+        echo "Using dnf to install Python..."
+        sudo dnf install -y python3 python3-pip
+        PYTHON_CMD="python3"
+    elif command -v pacman &> /dev/null; then
+        echo "Using pacman to install Python..."
+        sudo pacman -S python python-pip
+        PYTHON_CMD="python3"
+    else
+        echo "Could not detect package manager. Please install Python 3.8+ manually."
+        exit 1
     fi
     
-    brew install python@3.11
-    PYTHON_CMD="python3.11"
-    
-    if ! command -v "$PYTHON_CMD" &> /dev/null; then
-        echo "Failed to install Python 3.11. Please install manually."
+    # Verify installation
+    if ! check_python_version "$PYTHON_CMD"; then
+        echo "Failed to install compatible Python. Please install manually."
         exit 1
     fi
 fi
@@ -81,21 +83,20 @@ source gui_venv/bin/activate
 echo "Upgrading pip..."
 pip install --upgrade pip
 
-# List files for debugging
-echo "Files in the directory:"
-ls -l
-
 # Install dependencies from requirements.txt
 if [ -f "requirements.txt" ]; then
     echo "Installing dependencies..."
     pip install -r requirements.txt
 else
-    echo "requirements.txt not found. Please make sure it is in the same directory."
+    echo "requirements.txt not found. Looking for it in the parent directory..."
+    if [ -f "../../../requirements.txt" ]; then
+        echo "Installing dependencies from ../../../requirements.txt..."
+        pip install -r ../../../requirements.txt
+    else
+        echo "requirements.txt not found. Please ensure it's in the correct location."
+        exit 1
+    fi
 fi
 
-# Give a message to users about how to activate the venv manually if needed
-echo "Setup is complete. The virtual environment is activated."
-echo "To activate it manually later, run: source gui_venv/bin/activate"
-
-# Keep the terminal open for user interaction
-exec "$SHELL"
+echo "Installation completed successfully!"
+echo "You can now run the application using start_ui.sh"

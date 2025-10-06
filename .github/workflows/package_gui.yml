@@ -47,20 +47,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        shell: pwsh
+      - name: Install dependencies and build
+        shell: cmd
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt pyinstaller
+          cd package\script\windows
+          call install.bat
+          cd ..\..\..
 
-      - name: Build with PyInstaller
-        shell: pwsh
+      - name: Build with PyInstaller  
+        shell: cmd
         run: |
+          if exist venv\Scripts\activate (call venv\Scripts\activate)
+          pip install pyinstaller
           pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
 
       - name: Package zip
@@ -76,6 +74,8 @@ jobs:
           }
           # Include UI definition files if present
           Get-ChildItem -Path . -Filter '*.ui' | ForEach-Object { Copy-Item -Force $_.FullName -Destination build-artifacts }
+          # Copy install and run scripts
+          Copy-Item -Recurse -Force package\script\windows\* -Destination build-artifacts
           Compress-Archive -Path build-artifacts\* -DestinationPath umtk-ui-windows.zip
 
       - name: Upload artifact (Windows zip)
@@ -94,18 +94,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
+      - name: Install dependencies and build
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt pyinstaller
+          cd package/script/mac
+          chmod +x install.command
+          ./install.command
+          cd ../../..
 
       - name: Build with PyInstaller
         run: |
+          if [ -f package/script/mac/gui_venv/bin/activate ]; then
+            source package/script/mac/gui_venv/bin/activate
+          fi
+          pip install pyinstaller
           pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
 
       - name: Package zip
@@ -113,6 +114,7 @@ jobs:
           mkdir -p build-artifacts
           cp dist/umtk-ui* build-artifacts/ || true
           cp -r img style lib requirements.txt build-artifacts/
+          cp -r package/script/mac/* build-artifacts/
           (cd build-artifacts && zip -r ../umtk-ui-macos.zip .)
 
       - name: Upload artifact (macOS zip)
@@ -131,18 +133,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
+      - name: Install dependencies and build
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt pyinstaller
+          cd package/script/linux
+          chmod +x install.sh
+          ./install.sh
+          cd ../../..
 
       - name: Build with PyInstaller
         run: |
+          if [ -f package/script/linux/gui_venv/bin/activate ]; then
+            source package/script/linux/gui_venv/bin/activate
+          fi
+          pip install pyinstaller
           pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
 
       - name: Install fpm
@@ -156,6 +159,7 @@ jobs:
           mkdir -p deb-root/usr/local/umtk-ui
           cp dist/umtk-ui* deb-root/usr/local/umtk-ui/
           cp -r img style lib requirements.txt deb-root/usr/local/umtk-ui/
+          cp -r package/script/linux/* deb-root/usr/local/umtk-ui/
           fpm -s dir -t deb -n umtk-ui -v 1.0.0 --prefix=/usr/local/umtk-ui -C deb-root .
 
       - name: Upload artifact (.deb)
@@ -178,7 +182,7 @@ jobs:
         run: |
           mkdir -p build-tar
           cp main.py requirements.txt *.ui build-tar/ || true
-          cp -r img style lib build-tar/
+          cp -r img style lib package/script/linux build-tar/
           tar czf umtk-ui-linux.tar.gz -C build-tar .
 
       - name: Upload artifact (Linux tar)
