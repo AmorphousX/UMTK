@@ -115,6 +115,8 @@ jobs:
           cp dist/umtk-ui* build-artifacts/ || true
           cp -r img style lib requirements.txt build-artifacts/
           cp -r package/script/mac/* build-artifacts/
+          # Make scripts executable in the package
+          chmod +x build-artifacts/*.command 2>/dev/null || true
           (cd build-artifacts && zip -r ../umtk-ui-macos.zip .)
 
       - name: Upload artifact (macOS zip)

@@ -3,6 +3,22 @@
 # Change to the directory where the script is located
 cd "$(dirname "$0")"
 
+echo "=== UMTK UI Launcher ==="
+echo ""
+
+# Handle potential Gatekeeper issues
+if [ -f "umtk-ui" ]; then
+    echo "Checking PyInstaller binary for quarantine..."
+    if xattr -l umtk-ui 2>/dev/null | grep -q "com.apple.quarantine"; then
+        echo "Removing quarantine from umtk-ui binary..."
+        xattr -dr com.apple.quarantine umtk-ui 2>/dev/null || true
+        chmod +x umtk-ui
+    fi
+fi
+
+echo "Starting application..."
+echo ""
+
 # Function to check if Python version is compatible (3.8+)
 check_python_version() {
     local python_cmd="$1"

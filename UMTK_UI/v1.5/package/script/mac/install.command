@@ -9,7 +9,30 @@ chmod +x "$0"
 # Change to the directory where the script is located
 cd "$(dirname "$0")"
 
-echo "Checking for compatible Python installation..."
+echo "=== UMTK UI Installation for macOS ==="
+echo ""
+
+# Handle Gatekeeper and quarantine issues for unsigned apps
+echo "Checking for quarantine attributes (Gatekeeper)..."
+if xattr -l . 2>/dev/null | grep -q "com.apple.quarantine"; then
+    echo "Quarantine attribute detected. Removing to allow execution..."
+    xattr -dr com.apple.quarantine . 2>/dev/null || true
+    echo "Quarantine removed. App should now run without Gatekeeper warnings."
+fi
+
+# Make all scripts executable
+chmod +x *.command 2>/dev/null || true
+chmod +x *.sh 2>/dev/null || true
+
+# If PyInstaller binary exists, remove quarantine from it too
+if [ -f "umtk-ui" ]; then
+    echo "Removing quarantine from umtk-ui binary..."
+    xattr -dr com.apple.quarantine umtk-ui 2>/dev/null || true
+    chmod +x umtk-ui
+fi
+
+echo ""
+echo "=== Python Environment Setup ==="
 
 # Function to check if Python version is compatible (3.8+)
 check_python_version() {
@@ -94,8 +117,18 @@ else
 fi
 
 # Give a message to users about how to activate the venv manually if needed
-echo "Setup is complete. The virtual environment is activated."
-echo "To activate it manually later, run: source gui_venv/bin/activate"
+echo "Installation completed successfully!"
+echo ""
+echo "=== Next Steps ==="
+echo "• You can now run the application using start_ui.command"
+echo "• Double-click start_ui.command to launch the UMTK UI"
+echo "• If you encounter security warnings, see README_macOS.md for solutions"
+echo ""
+echo "=== Troubleshooting ==="
+echo "• If blocked by Gatekeeper: Right-click → Open, then click 'Open' in dialog"
+echo "• For permission errors: Run 'chmod +x *.command' in Terminal"
+echo "• For other issues: Check README_macOS.md for detailed instructions"
+echo ""
 
 # Keep the terminal open for user interaction
 exec "$SHELL"
