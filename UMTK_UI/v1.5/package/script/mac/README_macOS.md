@@ -1,5 +1,15 @@
 # UMTK UI - macOS Installation Guide
 
+## Architecture Selection
+
+**Important**: Download the correct version for your Mac:
+
+- **Apple Silicon Macs** (M1, M2, M3, etc.): Download `umtk-ui-macos-arm64.zip`
+- **Intel Macs** (2020 and earlier): Download `umtk-ui-macos-intel.zip`
+- **Not sure?**: Click Apple menu → About This Mac. If you see "Apple M1/M2/M3", use arm64. If you see "Intel", use intel.
+
+**Wrong architecture error**: If you see "Bad CPU type" or "cannot be opened", you downloaded the wrong architecture.
+
 ## Running Unsigned Applications on macOS
 
 This application is not code-signed by Apple, so you may encounter Gatekeeper warnings. Here are several ways to run it:

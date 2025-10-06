@@ -11,6 +11,14 @@ on:
         description: "Build macOS zip"
         type: boolean
         default: true
+      build_macos_intel:
+        description: "Build macOS Intel (x86_64) zip"
+        type: boolean
+        default: true
+      build_macos_arm:
+        description: "Build macOS Apple Silicon (arm64) zip"
+        type: boolean
+        default: true
       build_ubuntu_deb:
         description: "Build Ubuntu .deb"
         type: boolean
@@ -61,6 +69,13 @@ jobs:
           pip install pyinstaller
           pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
 
+      - name: Clean build environment
+        shell: pwsh
+        run: |
+          # Remove build venv to avoid path conflicts on user machines
+          if (Test-Path "package\script\windows\venv") { Remove-Item -Recurse -Force "package\script\windows\venv" }
+          if (Test-Path "venv") { Remove-Item -Recurse -Force "venv" }
+
       - name: Package zip
         shell: pwsh
         run: |
@@ -84,6 +99,101 @@ jobs:
           name: umtk-ui-windows
           path: UMTK_UI/v1.5/umtk-ui-windows.zip
 
+  build_macos_intel:
+    if: ${{ inputs.build_macos_intel == true }}
+    runs-on: macos-13  # Intel runner
+    defaults:
+      run:
+        working-directory: UMTK_UI/v1.5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies and build
+        run: |
+          cd package/script/mac
+          chmod +x install.command
+          ./install.command
+          cd ../../..
+
+      - name: Build with PyInstaller
+        run: |
+          if [ -f package/script/mac/gui_venv/bin/activate ]; then
+            source package/script/mac/gui_venv/bin/activate
+          fi
+          pip install pyinstaller
+          pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
+
+      - name: Clean build environment
+        run: |
+          # Remove build venv to avoid path conflicts on user machines
+          rm -rf package/script/mac/gui_venv || true
+          rm -rf gui_venv || true
+
+      - name: Package zip
+        run: |
+          mkdir -p build-artifacts
+          cp dist/umtk-ui* build-artifacts/ || true
+          cp -r img style lib requirements.txt build-artifacts/
+          cp -r package/script/mac/* build-artifacts/
+          # Make scripts executable in the package
+          chmod +x build-artifacts/*.command 2>/dev/null || true
+          (cd build-artifacts && zip -r ../umtk-ui-macos-intel.zip .)
+
+      - name: Upload artifact (macOS Intel zip)
+        uses: actions/upload-artifact@v4
+        with:
+          name: umtk-ui-macos-intel
+          path: UMTK_UI/v1.5/umtk-ui-macos-intel.zip
+
+  build_macos_arm:
+    if: ${{ inputs.build_macos_arm == true }}
+    runs-on: macos-latest  # Apple Silicon runner
+    defaults:
+      run:
+        working-directory: UMTK_UI/v1.5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies and build
+        run: |
+          cd package/script/mac
+          chmod +x install.command
+          ./install.command
+          cd ../../..
+
+      - name: Build with PyInstaller
+        run: |
+          if [ -f package/script/mac/gui_venv/bin/activate ]; then
+            source package/script/mac/gui_venv/bin/activate
+          fi
+          pip install pyinstaller
+          pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
+
+      - name: Clean build environment
+        run: |
+          # Remove build venv to avoid path conflicts on user machines
+          rm -rf package/script/mac/gui_venv || true
+          rm -rf gui_venv || true
+
+      - name: Package zip
+        run: |
+          mkdir -p build-artifacts
+          cp dist/umtk-ui* build-artifacts/ || true
+          cp -r img style lib requirements.txt build-artifacts/
+          cp -r package/script/mac/* build-artifacts/
+          # Make scripts executable in the package
+          chmod +x build-artifacts/*.command 2>/dev/null || true
+          (cd build-artifacts && zip -r ../umtk-ui-macos-arm64.zip .)
+
+      - name: Upload artifact (macOS Apple Silicon zip)
+        uses: actions/upload-artifact@v4
+        with:
+          name: umtk-ui-macos-arm64
+          path: UMTK_UI/v1.5/umtk-ui-macos-arm64.zip
+
+  # Keep original build_macos for backward compatibility (defaults to latest = arm64)
   build_macos:
     if: ${{ inputs.build_macos == true }}
     runs-on: macos-latest
@@ -108,6 +218,12 @@ jobs:
           fi
           pip install pyinstaller
           pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
+
+      - name: Clean build environment
+        run: |
+          # Remove build venv to avoid path conflicts on user machines
+          rm -rf package/script/mac/gui_venv || true
+          rm -rf gui_venv || true
 
       - name: Package zip
         run: |
@@ -150,6 +266,12 @@ jobs:
           pip install pyinstaller
           pyinstaller --noconfirm --windowed --onefile main.py --name umtk-ui
 
+      - name: Clean build environment
+        run: |
+          # Remove build venv to avoid path conflicts on user machines
+          rm -rf package/script/linux/gui_venv || true
+          rm -rf gui_venv || true
+
       - name: Install fpm
         run: |
           sudo apt-get update
@@ -161,7 +283,8 @@ jobs:
           mkdir -p deb-root/usr/local/umtk-ui
           cp dist/umtk-ui* deb-root/usr/local/umtk-ui/
           cp -r img style lib requirements.txt deb-root/usr/local/umtk-ui/
-          cp -r package/script/linux/* deb-root/usr/local/umtk-ui/
+          # Copy install scripts but exclude any venv directories
+          cp package/script/linux/*.sh deb-root/usr/local/umtk-ui/
           fpm -s dir -t deb -n umtk-ui -v 1.0.0 --prefix=/usr/local/umtk-ui -C deb-root .
 
       - name: Upload artifact (.deb)
@@ -184,7 +307,9 @@ jobs:
         run: |
           mkdir -p build-tar
           cp main.py requirements.txt *.ui build-tar/ || true
-          cp -r img style lib package/script/linux build-tar/
+          cp -r img style lib build-tar/
+          # Copy install scripts but exclude any venv directories  
+          cp package/script/linux/*.sh build-tar/
           tar czf umtk-ui-linux.tar.gz -C build-tar .
 
       - name: Upload artifact (Linux tar)
@@ -196,7 +321,7 @@ jobs:
   release:
     name: Create GitHub Release and upload assets
     runs-on: ubuntu-latest
-    needs: [build_windows, build_macos, build_ubuntu_deb, build_linux_tar]
+    needs: [build_windows, build_macos, build_macos_intel, build_macos_arm, build_ubuntu_deb, build_linux_tar]
     if: ${{ always() }}
     steps:
       - name: Checkout

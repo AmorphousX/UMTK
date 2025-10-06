@@ -73,6 +73,8 @@ fi
 
 # Create a virtual environment in the current directory
 echo "Creating virtual environment..."
+# Remove any existing venv to ensure clean install
+rm -rf gui_venv
 $PYTHON_CMD -m venv gui_venv
 
 # Activate the virtual environment

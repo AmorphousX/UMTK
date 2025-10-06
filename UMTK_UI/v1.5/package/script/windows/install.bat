@@ -84,13 +84,15 @@ del python-3.11.exe
 :found_python
 echo Found compatible Python: %PYTHON_CMD% %PYTHON_VERSION%
 
-REM Create a virtual environment if it doesn't already exist
-if not exist "venv" (
-    echo Creating virtual environment...
-    %PYTHON_CMD% -m venv venv
-) else (
-    echo Virtual environment already exists.
+REM Remove any existing venv to ensure clean install
+if exist "venv" (
+    echo Removing existing virtual environment...
+    rmdir /s /q "venv"
 )
+
+REM Create a virtual environment if it doesn't already exist
+echo Creating virtual environment...
+%PYTHON_CMD% -m venv venv
 
 REM Activate the virtual environment
 echo Activating virtual environment...

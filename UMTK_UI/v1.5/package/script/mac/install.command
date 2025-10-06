@@ -12,6 +12,19 @@ cd "$(dirname "$0")"
 echo "=== UMTK UI Installation for macOS ==="
 echo ""
 
+# Detect and display architecture
+ARCH=$(uname -m)
+if [[ "$ARCH" == "arm64" ]]; then
+    echo "Detected: Apple Silicon Mac (arm64)"
+    echo "Make sure you downloaded: umtk-ui-macos-arm64.zip"
+elif [[ "$ARCH" == "x86_64" ]]; then
+    echo "Detected: Intel Mac (x86_64)"
+    echo "Make sure you downloaded: umtk-ui-macos-intel.zip"
+else
+    echo "Detected: Unknown architecture ($ARCH)"
+fi
+echo ""
+
 # Handle Gatekeeper and quarantine issues for unsigned apps
 echo "Checking for quarantine attributes (Gatekeeper)..."
 if xattr -l . 2>/dev/null | grep -q "com.apple.quarantine"; then
@@ -94,6 +107,8 @@ fi
 
 # Create a virtual environment in the current directory
 echo "Creating virtual environment..."
+# Remove any existing venv to ensure clean install
+rm -rf gui_venv
 $PYTHON_CMD -m venv gui_venv
 
 # Activate the virtual environment
