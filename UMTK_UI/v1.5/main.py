@@ -1,9 +1,6 @@
 """Application bootstrap: wires logic and GUI layers."""
 
-try:
-    from PyQt6 import QtCore, QtWidgets  # type: ignore
-except ImportError:
-    from PySide6 import QtCore, QtWidgets  # type: ignore
+from PyQt6 import QtCore, QtWidgets
 
 from pathlib import Path
 import sys

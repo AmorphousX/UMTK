@@ -2,10 +2,7 @@
 Chatgpu made layout dynamic
 """
 
-try:
-        from PyQt6 import QtCore, QtGui, QtWidgets
-except ImportError:  # Fallback to PySide6 if PyQt6 is unavailable
-        from PySide6 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):

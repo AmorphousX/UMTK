@@ -1,13 +1,7 @@
 from __future__ import annotations
 
-try:
-    from PyQt6 import QtCore, QtGui, QtWidgets  # type: ignore
-    QT_LIB = "PyQt6"
-    from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
-except ImportError:
-    from PySide6 import QtCore, QtGui, QtWidgets  # type: ignore
-    QT_LIB = "PySide6"
-    from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
+from PyQt6 import QtCore, QtGui, QtWidgets
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
@@ -639,8 +633,8 @@ class UMTKWindow(QtWidgets.QMainWindow):
         style = self.get_themed_amp_alert_style(opacity)
         self.ui.motorCurrent_display.setStyleSheet(style)
     
-    # Qt property for animation
-    amp_opacity = QtCore.pyqtProperty(float, get_amp_opacity, set_amp_opacity) if QT_LIB == "PyQt6" else QtCore.Property(float, get_amp_opacity, set_amp_opacity)
+    # Qt property for animation (PyQt6)
+    amp_opacity = QtCore.pyqtProperty(float, get_amp_opacity, set_amp_opacity)
 
     # ---------------- Theme Management --------------------
     def toggle_theme(self):

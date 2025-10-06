@@ -1,7 +1,4 @@
-try:
-    from PyQt6 import QtCore, QtWidgets, QtGui  # type: ignore
-except ImportError:  # pragma: no cover
-    from PySide6 import QtCore, QtWidgets, QtGui  # type: ignore
+from PyQt6 import QtCore, QtWidgets, QtGui
 
 from .umtk_logic import UMTKLogic
 
