@@ -307,8 +307,6 @@ jobs:
           name: ${{ steps.meta.outputs.name }}
           prerelease: ${{ inputs.prerelease }}
           files: |
-            *.zip
-            *.tar.gz
-            *.deb
+            artifacts/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
