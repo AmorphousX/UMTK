@@ -68,9 +68,7 @@ pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 exe = EXE(
     pyz,
     a.scripts,
-    [],                # Empty - use onedir mode
-    [],                # Empty - use onedir mode
-    [],                # Empty - use onedir mode
+    exclude_binaries=True,  # This tells PyInstaller it's onedir mode
     name='umtk-ui',
     debug=False,
     bootloader_ignore_signals=False,
