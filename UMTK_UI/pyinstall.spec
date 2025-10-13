@@ -85,7 +85,8 @@ exe = EXE(
     icon='img/icon.ico' if os.path.exists('img/icon.ico') else None,
 )
 
-# macOS-specific app bundle (only created on macOS)
+# macOS-specific app bundle (disabled for onefile builds)
+# Uncomment below if you want a .app bundle instead of single executable
 if sys.platform == 'darwin':
     app = BUNDLE(
         exe,
