@@ -1,2 +1,4 @@
 build
+guivenv
+dist
 **/__pycache__
