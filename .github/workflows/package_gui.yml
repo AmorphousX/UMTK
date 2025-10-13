@@ -97,7 +97,7 @@ jobs:
 
   build_macos_intel:
     if: ${{ inputs.build_macos_intel == true }}
-    runs-on: macos-13  # Intel runner
+    runs-on: macos-15-intel
     defaults:
       run:
         working-directory: UMTK_UI/v1.5
@@ -105,36 +105,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies and build
-        run: |
-          cd package/script/mac
-          chmod +x install.command
-          ./install.command
-          cd ../../..
-
       - name: Build with PyInstaller
         run: |
-          if [ -f package/script/mac/gui_venv/bin/activate ]; then
-            source package/script/mac/gui_venv/bin/activate
-          fi
+          python3 -m venv gui_venv
+          source gui_venv/bin/activate
           pip install pyinstaller
-          pyinstaller --noconfirm --windowed --collect-all PyQt6 main.py --name umtk-ui
-
-      - name: Clean build environment
-        run: |
-          # Remove build venv to avoid path conflicts on user machines
-          rm -rf package/script/mac/gui_venv || true
-          rm -rf gui_venv || true
+          pip install -r requirements.txt
+          pyinstaller --noconfirm --onefile --windowed --collect-all PyQt6 main.py --name umtk-ui
 
       - name: Package zip
         run: |
-          mkdir -p build-artifacts
-          cp dist/umtk-ui* build-artifacts/ || true
-          cp -r img style lib requirements.txt build-artifacts/
-          cp -r package/script/mac/* build-artifacts/
-          # Make scripts executable in the package
-          chmod +x build-artifacts/*.command 2>/dev/null || true
-          (cd build-artifacts && zip -r ../umtk-ui-macos-intel.zip .)
+          zip -r ./umtk-ui-macos-intel.zip ./dist/*
 
       - name: Upload artifact (macOS Intel zip)
         uses: actions/upload-artifact@v4
@@ -165,7 +146,7 @@ jobs:
             source package/script/mac/gui_venv/bin/activate
           fi
           pip install pyinstaller
-          pyinstaller --noconfirm --windowed --collect-all PyQt6 main.py --name umtk-ui
+          pyinstaller --noconfirm --onefile --windowed --collect-all PyQt6 main.py --name umtk-ui
 
       - name: Clean build environment
         run: |
