@@ -5,9 +5,19 @@ import os
 from PyInstaller.utils.hooks import collect_all
 import sys
 
-# Collect PyQt6 data and binaries - use standard collection for all platforms
-# The --clean flag and manual cleanup should handle macOS symlink issues
+# Collect PyQt6 data and binaries with filtering for macOS symlink issues
 pyqt6_datas, pyqt6_binaries, pyqt6_hiddenimports = collect_all('PyQt6')
+
+# Filter out problematic framework symlinks on macOS
+if sys.platform == 'darwin':
+    filtered_binaries = []
+    for binary_tuple in pyqt6_binaries:
+        binary_path = binary_tuple[0]
+        # Skip framework symlinks that cause FileExistsError
+        if not ('framework' in binary_path.lower() and 
+                any(x in binary_path for x in ['Resources', 'Versions/Current'])):
+            filtered_binaries.append(binary_tuple)
+    pyqt6_binaries = filtered_binaries
 
 # Additional hidden imports
 hiddenimports = [
@@ -95,7 +105,7 @@ coll = COLLECT(
     a.zipfiles,
     a.datas,
     strip=False,
-    upx=True,
+    upx=False if sys.platform == 'darwin' else True,  # Disable UPX on macOS to avoid conflicts
     upx_exclude=[],
     name='umtk-ui'
 )

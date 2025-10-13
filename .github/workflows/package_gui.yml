@@ -91,6 +91,8 @@ jobs:
           # Clean any previous builds and PyInstaller cache
           rm -rf build dist
           rm -rf ~/.pyinstaller_cache 2>/dev/null || true
+          # Extra cleanup for macOS framework issues
+          find . -name "*.framework" -type d -exec rm -rf {} + 2>/dev/null || true
           pyinstaller --clean --noconfirm pyinstall.spec
 
       - name: Package zip
@@ -123,6 +125,8 @@ jobs:
           # Clean any previous builds and PyInstaller cache
           rm -rf build dist
           rm -rf ~/.pyinstaller_cache 2>/dev/null || true
+          # Extra cleanup for macOS framework issues
+          find . -name "*.framework" -type d -exec rm -rf {} + 2>/dev/null || true
           pyinstaller --clean --noconfirm pyinstall.spec
 
       - name: Package zip
