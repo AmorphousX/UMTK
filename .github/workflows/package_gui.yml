@@ -88,9 +88,10 @@ jobs:
           source gui_venv/bin/activate
           pip install pyinstaller
           pip install -r requirements.txt
-          # Clean any previous builds
+          # Clean any previous builds and PyInstaller cache
           rm -rf build dist
-          pyinstaller --clean pyinstall.spec
+          rm -rf ~/.pyinstaller_cache 2>/dev/null || true
+          pyinstaller --clean --noconfirm pyinstall.spec
 
       - name: Package zip
         run: |
@@ -119,9 +120,10 @@ jobs:
           source gui_venv/bin/activate
           pip install pyinstaller
           pip install -r requirements.txt
-          # Clean any previous builds
+          # Clean any previous builds and PyInstaller cache
           rm -rf build dist
-          pyinstaller --clean pyinstall.spec
+          rm -rf ~/.pyinstaller_cache 2>/dev/null || true
+          pyinstaller --clean --noconfirm pyinstall.spec
 
       - name: Package zip
         run: |
