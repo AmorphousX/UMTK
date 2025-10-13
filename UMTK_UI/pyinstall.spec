@@ -68,9 +68,10 @@ pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 exe = EXE(
     pyz,
     a.scripts,
-    [],           # Empty - use onedir mode instead of onefile
-    [],           # Empty - use onedir mode instead of onefile  
-    [],           # Empty - use onedir mode instead of onefile
+    a.binaries,        # Include binaries in the executable (onefile mode)
+    a.zipfiles,        # Include zipfiles in the executable (onefile mode)
+    a.datas,           # Include data files in the executable (onefile mode)
+    [],
     name='umtk-ui',
     debug=False,
     bootloader_ignore_signals=False,
@@ -88,30 +89,18 @@ exe = EXE(
     icon='img/icon.ico' if os.path.exists('img/icon.ico') else None,
 )
 
-# Create a COLLECT for onedir distribution
-coll = COLLECT(
-    exe,
-    a.binaries,
-    a.zipfiles,
-    a.datas,
-    strip=False,
-    upx=True,
-    upx_exclude=[],
-    name='umtk-ui'
-)
-
 # macOS-specific app bundle (disabled for onefile builds)
 # Uncomment below if you want a .app bundle instead of single executable
-if sys.platform == 'darwin':
-    app = BUNDLE(
-        exe,
-        name='UMTK-UI.app',
-        icon='img/icon.icns' if os.path.exists('img/icon.icns') else None,
-        bundle_identifier='com.umtk.ui',
-        info_plist={
-            'NSPrincipalClass': 'NSApplication',
-            'NSAppleScriptEnabled': False,
-            'CFBundleShortVersionString': '1.0.0',
-            'NSHighResolutionCapable': True,
-        },
-    )
+# if sys.platform == 'darwin':
+#     app = BUNDLE(
+#         exe,
+#         name='UMTK-UI.app',
+#         icon='img/icon.icns' if os.path.exists('img/icon.icns') else None,
+#         bundle_identifier='com.umtk.ui',
+#         info_plist={
+#             'NSPrincipalClass': 'NSApplication',
+#             'NSAppleScriptEnabled': False,
+#             'CFBundleShortVersionString': '1.0.0',
+#             'NSHighResolutionCapable': True,
+#         },
+#     )
