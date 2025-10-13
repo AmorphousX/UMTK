@@ -25,7 +25,7 @@ hiddenimports = [
 # Data files to include
 datas = [
     ('img', 'img'),
-    ('style', 'style'),
+    ('style', 'style'), 
     ('lib', 'lib'),
 ] + pyqt6_datas
 
@@ -34,12 +34,16 @@ filtered_datas = []
 for src, dst in datas:
     if os.path.exists(src):
         filtered_datas.append((src, dst))
+        print(f"Including: {src} -> {dst}")
     elif '*' in src:
         # Handle glob patterns like *.ui
         import glob
         for file in glob.glob(src):
             if os.path.exists(file):
                 filtered_datas.append((file, dst))
+                print(f"Including: {file} -> {dst}")
+    else:
+        print(f"Warning: Path does not exist: {src}")
 
 block_cipher = None
 
@@ -64,18 +68,17 @@ pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 exe = EXE(
     pyz,
     a.scripts,
-    a.binaries,
-    a.zipfiles,
-    a.datas,
-    [],
+    [],           # Empty - use onedir mode instead of onefile
+    [],           # Empty - use onedir mode instead of onefile  
+    [],           # Empty - use onedir mode instead of onefile
     name='umtk-ui',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
     upx_exclude=[],
-    runtime_tmpdir=None,
-    console=False,  # Set to True for debugging
+    runtime_tmpdir=None,  # Use system default temp directory
+    console=True,  # Set to True for debugging
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
@@ -83,6 +86,18 @@ exe = EXE(
     entitlements_file=None,
     # Windows-specific icon (optional)
     icon='img/icon.ico' if os.path.exists('img/icon.ico') else None,
+)
+
+# Create a COLLECT for onedir distribution
+coll = COLLECT(
+    exe,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    name='umtk-ui'
 )
 
 # macOS-specific app bundle (disabled for onefile builds)

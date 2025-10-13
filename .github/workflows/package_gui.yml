@@ -51,43 +51,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies and build
+      - name: Build with PyInstaller
         shell: cmd
         run: |
-          cd package\script\windows
-          call install.bat
-          cd ..\..\..
-
-      - name: Build with PyInstaller  
-        shell: cmd
-        run: |
-          if exist venv\Scripts\activate (call venv\Scripts\activate)
+          python -m venv gui_venv
+          call gui_venv\Scripts\activate
           pip install pyinstaller
-          pyinstaller --noconfirm --windowed --onefile --hidden-import=PyQt6.QtCore --hidden-import=PyQt6.QtGui --hidden-import=PyQt6.QtWidgets --collect-all PyQt6 main.py --name umtk-ui
-
-      - name: Clean build environment
-        shell: pwsh
-        run: |
-          # Remove build venv to avoid path conflicts on user machines
-          if (Test-Path "package\script\windows\venv") { Remove-Item -Recurse -Force "package\script\windows\venv" }
-          if (Test-Path "venv") { Remove-Item -Recurse -Force "venv" }
+          pip install -r requirements.txt
+          pyinstaller pyinstall.spec
 
       - name: Package zip
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Path build-artifacts | Out-Null
-          # Copy executable(s)
-          Get-ChildItem dist -Filter 'umtk-ui*' | ForEach-Object { Copy-Item -Recurse -Force $_.FullName -Destination build-artifacts }
-          # Copy resource directories and files
-          $sources = @('img','style','lib','requirements.txt')
-          foreach ($s in $sources) {
-            if (Test-Path $s) { Copy-Item -Recurse -Force $s -Destination build-artifacts }
-          }
-          # Include UI definition files if present
-          Get-ChildItem -Path . -Filter '*.ui' | ForEach-Object { Copy-Item -Force $_.FullName -Destination build-artifacts }
-          # Copy install and run scripts
-          Copy-Item -Recurse -Force package\script\windows\* -Destination build-artifacts
-          Compress-Archive -Path build-artifacts\* -DestinationPath umtk-ui-windows.zip
+          cd ./dist
+          Compress-Archive -Path * -DestinationPath ../umtk-ui-windows.zip
 
       - name: Upload artifact (Windows zip)
         uses: actions/upload-artifact@v4
@@ -115,7 +92,8 @@ jobs:
 
       - name: Package zip
         run: |
-          zip -r ./umtk-ui-macos-intel.zip ./dist/*
+          cd ./dist
+          zip -r ./umtk-ui-macos-intel.zip .
 
       - name: Upload artifact (macOS Intel zip)
         uses: actions/upload-artifact@v4
@@ -133,36 +111,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies and build
-        run: |
-          cd package/script/mac
-          chmod +x install.command
-          ./install.command
-          cd ../../..
-
       - name: Build with PyInstaller
         run: |
-          if [ -f package/script/mac/gui_venv/bin/activate ]; then
-            source package/script/mac/gui_venv/bin/activate
-          fi
+          python3 -m venv gui_venv
+          source gui_venv/bin/activate
           pip install pyinstaller
-          pyinstaller --noconfirm --onefile --windowed --collect-all PyQt6 main.py --name umtk-ui
-
-      - name: Clean build environment
-        run: |
-          # Remove build venv to avoid path conflicts on user machines
-          rm -rf package/script/mac/gui_venv || true
-          rm -rf gui_venv || true
+          pip install -r requirements.txt
+          pyinstaller pyinstall.spec
 
       - name: Package zip
         run: |
-          mkdir -p build-artifacts
-          cp dist/umtk-ui* build-artifacts/ || true
-          cp -r img style lib requirements.txt build-artifacts/
-          cp -r package/script/mac/* build-artifacts/
-          # Make scripts executable in the package
-          chmod +x build-artifacts/*.command 2>/dev/null || true
-          (cd build-artifacts && zip -r ../umtk-ui-macos-arm64.zip .)
+          cd ./dist
+          zip -r ./umtk-ui-macos-arm64.zip .
 
       - name: Upload artifact (macOS Apple Silicon zip)
         uses: actions/upload-artifact@v4
@@ -180,26 +140,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies and build
-        run: |
-          cd package/script/linux
-          chmod +x install.sh
-          ./install.sh
-          cd ../../..
-
       - name: Build with PyInstaller
         run: |
-          if [ -f package/script/linux/gui_venv/bin/activate ]; then
-            source package/script/linux/gui_venv/bin/activate
-          fi
+          python3 -m venv gui_venv
+          source gui_venv/bin/activate
           pip install pyinstaller
-          pyinstaller --noconfirm --windowed --collect-all PyQt6 main.py --name umtk-ui
-
-      - name: Clean build environment
-        run: |
-          # Remove build venv to avoid path conflicts on user machines
-          rm -rf package/script/linux/gui_venv || true
-          rm -rf gui_venv || true
+          pip install -r requirements.txt
+          pyinstaller pyinstall.spec
 
       - name: Install fpm
         run: |
@@ -210,10 +157,7 @@ jobs:
       - name: Build .deb
         run: |
           mkdir -p deb-root/usr/local/umtk-ui
-          cp dist/umtk-ui* deb-root/usr/local/umtk-ui/
-          cp -r img style lib requirements.txt deb-root/usr/local/umtk-ui/
-          # Copy install scripts but exclude any venv directories
-          cp package/script/linux/*.sh deb-root/usr/local/umtk-ui/
+          cp -r dist/* deb-root/usr/local/umtk-ui/
           fpm -s dir -t deb -n umtk-ui -v 1.0.0 --prefix=/usr/local/umtk-ui -C deb-root .
 
       - name: Upload artifact (.deb)
