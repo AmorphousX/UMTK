@@ -111,7 +111,7 @@ jobs:
           source gui_venv/bin/activate
           pip install pyinstaller
           pip install -r requirements.txt
-          pyinstaller --spec ./package/pyinstall.spec
+          pyinstaller pyinstall.spec
 
       - name: Package zip
         run: |
