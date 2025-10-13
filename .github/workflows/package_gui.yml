@@ -88,12 +88,14 @@ jobs:
           source gui_venv/bin/activate
           pip install pyinstaller
           pip install -r requirements.txt
-          pyinstaller pyinstall.spec
+          # Clean any previous builds
+          rm -rf build dist
+          pyinstaller --clean pyinstall.spec
 
       - name: Package zip
         run: |
           cd ./dist
-          zip -r ../umtk-ui-macos-intel.zip .
+          zip -r ./umtk-ui-macos-intel.zip .
 
       - name: Upload artifact (macOS Intel zip)
         uses: actions/upload-artifact@v4
@@ -117,12 +119,14 @@ jobs:
           source gui_venv/bin/activate
           pip install pyinstaller
           pip install -r requirements.txt
-          pyinstaller pyinstall.spec
+          # Clean any previous builds
+          rm -rf build dist
+          pyinstaller --clean pyinstall.spec
 
       - name: Package zip
         run: |
           cd ./dist
-          zip -r ../umtk-ui-macos-arm64.zip .
+          zip -r ./umtk-ui-macos-arm64.zip .
 
       - name: Upload artifact (macOS Apple Silicon zip)
         uses: actions/upload-artifact@v4

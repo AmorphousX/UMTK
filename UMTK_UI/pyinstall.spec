@@ -3,9 +3,18 @@
 import sys
 import os
 from PyInstaller.utils.hooks import collect_all
+import sys
 
-# Collect all PyQt6 data and binaries
-pyqt6_datas, pyqt6_binaries, pyqt6_hiddenimports = collect_all('PyQt6')
+# Collect PyQt6 data and binaries more selectively to avoid macOS framework issues
+if sys.platform == 'darwin':
+    # On macOS, collect only essential PyQt6 components to avoid framework symlink conflicts
+    from PyInstaller.utils.hooks import collect_data_files, collect_dynamic_libs
+    pyqt6_datas = collect_data_files('PyQt6', excludes=['**/*.framework/**'])
+    pyqt6_binaries = collect_dynamic_libs('PyQt6', exclude_system=True)
+    pyqt6_hiddenimports = []
+else:
+    # On other platforms, collect all PyQt6 components
+    pyqt6_datas, pyqt6_binaries, pyqt6_hiddenimports = collect_all('PyQt6')
 
 # Additional hidden imports
 hiddenimports = [
