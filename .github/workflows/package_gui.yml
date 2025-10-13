@@ -46,7 +46,7 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        working-directory: UMTK_UI/v1.5
+        working-directory: UMTK_UI
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -93,14 +93,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: umtk-ui-windows
-          path: UMTK_UI/v1.5/umtk-ui-windows.zip
+          path: UMTK_UI/umtk-ui-windows.zip
 
   build_macos_intel:
     if: ${{ inputs.build_macos_intel == true }}
     runs-on: macos-15-intel
     defaults:
       run:
-        working-directory: UMTK_UI/v1.5
+        working-directory: UMTK_UI
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -121,14 +121,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: umtk-ui-macos-intel
-          path: UMTK_UI/v1.5/umtk-ui-macos-intel.zip
+          path: UMTK_UI/umtk-ui-macos-intel.zip
 
   build_macos_arm:
     if: ${{ inputs.build_macos_arm == true }}
     runs-on: macos-latest  # Apple Silicon runner
     defaults:
       run:
-        working-directory: UMTK_UI/v1.5
+        working-directory: UMTK_UI
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -168,14 +168,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: umtk-ui-macos-arm64
-          path: UMTK_UI/v1.5/umtk-ui-macos-arm64.zip
+          path: UMTK_UI/umtk-ui-macos-arm64.zip
 
   build_ubuntu_deb:
     if: ${{ inputs.build_ubuntu_deb == true }}
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: UMTK_UI/v1.5
+        working-directory: UMTK_UI
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -220,14 +220,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: umtk-ui-ubuntu-deb
-          path: UMTK_UI/v1.5/*.deb
+          path: UMTK_UI/*.deb
 
   build_linux_tar:
     if: ${{ inputs.build_linux_tar == true }}
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: UMTK_UI/v1.5
+        working-directory: UMTK_UI
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -245,7 +245,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: umtk-ui-linux-tar
-          path: UMTK_UI/v1.5/umtk-ui-linux.tar.gz
+          path: UMTK_UI/umtk-ui-linux.tar.gz
 
   release:
     name: Create GitHub Release and upload assets
