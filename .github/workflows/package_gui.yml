@@ -134,7 +134,7 @@ jobs:
           qt6_path = os.path.join(pyqt6_path, 'Qt6')
           if os.path.exists(qt6_path):
               print('Qt6 directory exists at:', qt6_path)
-              print('Qt6 contents:')4 Max chip
+              print('Qt6 contents:')
               for item in os.listdir(qt6_path):
                   print('  ', item)
           else:
@@ -253,22 +253,22 @@ jobs:
           python -c "import PyQt6; print('PyQt6 path:', PyQt6.__file__)"
           echo "=== Qt6 libraries check ==="
           python -c "
-import PyQt6
-import os
-pyqt6_path = os.path.dirname(PyQt6.__file__)
-print('PyQt6 directory:', pyqt6_path)
-qt6_path = os.path.join(pyqt6_path, 'Qt6')
-if os.path.exists(qt6_path):
-    print('Qt6 directory exists at:', qt6_path)
-    print('Qt6 contents:')
-    for item in os.listdir(qt6_path):
-        print('  ', item)
-else:
-    print('Qt6 directory not found!')
-    print('PyQt6 directory contents:')
-    for item in os.listdir(pyqt6_path):
-        print('  ', item)
-"
+          import PyQt6
+          import os
+          pyqt6_path = os.path.dirname(PyQt6.__file__)
+          print('PyQt6 directory:', pyqt6_path)
+          qt6_path = os.path.join(pyqt6_path, 'Qt6')
+          if os.path.exists(qt6_path):
+              print('Qt6 directory exists at:', qt6_path)
+              print('Qt6 contents:')
+              for item in os.listdir(qt6_path):
+                  print('  ', item)
+          else:
+              print('Qt6 directory not found!')
+              print('PyQt6 directory contents:')
+              for item in os.listdir(pyqt6_path):
+                  print('  ', item)
+          "
 
       - name: Build with PyInstaller
         run: |
