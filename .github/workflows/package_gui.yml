@@ -95,6 +95,18 @@ jobs:
           find . -name "*.framework" -type d -exec rm -rf {} + 2>/dev/null || true
           pyinstaller --clean --noconfirm pyinstall.spec
 
+      - name: Fix macOS PyQt6 library paths
+        run: |
+          # Fix rpath issues in the built application
+          if [ -d "dist/umtk-ui" ]; then
+            # Find and fix PyQt6 libraries
+            find dist/umtk-ui/_internal -name "*.so" -o -name "*.dylib" | while read lib; do
+              # Update library paths using install_name_tool
+              install_name_tool -add_rpath @loader_path/../.. "$lib" 2>/dev/null || true
+              install_name_tool -add_rpath @loader_path/../../PyQt6/Qt6/lib "$lib" 2>/dev/null || true
+            done
+          fi
+
       - name: Package zip
         run: |
           cd ./dist
@@ -128,6 +140,18 @@ jobs:
           # Extra cleanup for macOS framework issues
           find . -name "*.framework" -type d -exec rm -rf {} + 2>/dev/null || true
           pyinstaller --clean --noconfirm pyinstall.spec
+
+      - name: Fix macOS PyQt6 library paths
+        run: |
+          # Fix rpath issues in the built application
+          if [ -d "dist/umtk-ui" ]; then
+            # Find and fix PyQt6 libraries
+            find dist/umtk-ui/_internal -name "*.so" -o -name "*.dylib" | while read lib; do
+              # Update library paths using install_name_tool
+              install_name_tool -add_rpath @loader_path/../.. "$lib" 2>/dev/null || true
+              install_name_tool -add_rpath @loader_path/../../PyQt6/Qt6/lib "$lib" 2>/dev/null || true
+            done
+          fi
 
       - name: Package zip
         run: |
