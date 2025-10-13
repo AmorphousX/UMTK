@@ -5,16 +5,24 @@ import os
 from PyInstaller.utils.hooks import collect_all
 import sys
 
-# Collect PyQt6 data and binaries - use standard collection
-# Handle symlink issues at workflow level instead of filtering essential libraries
+# Collect PyQt6 data and binaries with additional explicit Qt library collection
 pyqt6_datas, pyqt6_binaries, pyqt6_hiddenimports = collect_all('PyQt6')
 
-# Additional hidden imports
+# Add explicit Qt library collection for macOS
+if sys.platform == 'darwin':
+    from PyInstaller.utils.hooks import collect_dynamic_libs
+    # Explicitly collect Qt libraries to ensure they're included
+    qt_binaries = collect_dynamic_libs('PyQt6.Qt6')
+    pyqt6_binaries.extend(qt_binaries)
+
+# Additional hidden imports - comprehensive PyQt6 modules
 hiddenimports = [
     'PyQt6.QtCore',
     'PyQt6.QtGui', 
     'PyQt6.QtWidgets',
     'PyQt6.QtOpenGL',
+    'PyQt6.sip',
+    'sip',
     'matplotlib.backends.backend_qt5agg',
     'matplotlib.backends.backend_qtagg',
     'serial',
