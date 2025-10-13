@@ -98,7 +98,7 @@ jobs:
       - name: Package zip
         run: |
           cd ./dist
-          zip -r ./umtk-ui-macos-intel.zip .
+          zip -r ../umtk-ui-macos-intel.zip .
 
       - name: Upload artifact (macOS Intel zip)
         uses: actions/upload-artifact@v4
@@ -132,7 +132,7 @@ jobs:
       - name: Package zip
         run: |
           cd ./dist
-          zip -r ./umtk-ui-macos-arm64.zip .
+          zip -r ../umtk-ui-macos-arm64.zip .
 
       - name: Upload artifact (macOS Apple Silicon zip)
         uses: actions/upload-artifact@v4
