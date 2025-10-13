@@ -23,6 +23,10 @@ on:
         description: "Build Linux tar.gz of source files"
         type: boolean
         default: true
+      build_source_fallback:
+        description: "Build fallback source package with install scripts"
+        type: boolean
+        default: true
       generate_release:
         description: "Generate A release for this build?"
         type: boolean
@@ -39,7 +43,6 @@ on:
         description: "Mark release as pre-release"
         type: boolean
         default: false
-
 jobs:
   build_windows:
     if: ${{ inputs.build_windows == true }}
@@ -82,12 +85,68 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build with PyInstaller
+      - name: Install system Qt (Homebrew)
+        run: |
+          # Install Qt via Homebrew as a fallback for macOS
+          brew install qt6 || echo "Homebrew Qt6 installation failed, continuing with Python-only approach"
+
+      - name: Setup and debug PyQt6 installation
         run: |
           python3 -m venv gui_venv
           source gui_venv/bin/activate
+          
+          # First try standard installation
+          pip install --upgrade pip
           pip install pyinstaller
-          pip install -r requirements.txt
+          
+          # Try multiple PyQt6 installation approaches for macOS
+          echo "=== Attempting PyQt6 installation ==="
+          pip install -r requirements.txt || {
+            echo "Standard installation failed, trying alternative approaches..."
+            
+            # Try installing Qt6 separately first
+            pip install PyQt6-Qt6 PyQt6 || {
+              echo "Qt6 installation failed, trying with --no-deps..."
+              pip install --no-deps PyQt6
+            }
+          }
+          
+          # Also try installing PyQt6 tools which might help with library detection
+          pip install PyQt6-tools || echo "PyQt6-tools installation failed, continuing..."
+          
+          # Debug PyQt6 installation
+          echo "=== Python and pip versions ==="
+          python --version
+          pip --version
+          echo "=== Installed packages ==="
+          pip list | grep -i qt
+          echo "=== PyQt6 import test ==="
+          python -c "import PyQt6; print('PyQt6 version:', PyQt6.QtCore.PYQT_VERSION_STR)"
+          python -c "from PyQt6 import QtCore; print('Qt version:', QtCore.QT_VERSION_STR)"
+          echo "=== PyQt6 installation location ==="
+          python -c "import PyQt6; print('PyQt6 path:', PyQt6.__file__)"
+          echo "=== Qt6 libraries check ==="
+          python -c "
+import PyQt6
+import os
+pyqt6_path = os.path.dirname(PyQt6.__file__)
+print('PyQt6 directory:', pyqt6_path)
+qt6_path = os.path.join(pyqt6_path, 'Qt6')
+if os.path.exists(qt6_path):
+    print('Qt6 directory exists at:', qt6_path)
+    print('Qt6 contents:')4 Max chip
+    for item in os.listdir(qt6_path):
+        print('  ', item)
+else:
+    print('Qt6 directory not found!')
+    print('PyQt6 directory contents:')
+    for item in os.listdir(pyqt6_path):
+        print('  ', item)
+"
+
+      - name: Build with PyInstaller
+        run: |
+          source gui_venv/bin/activate
           # Clean any previous builds and PyInstaller cache
           rm -rf build dist
           rm -rf ~/.pyinstaller_cache 2>/dev/null || true
@@ -152,12 +211,68 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build with PyInstaller
+      - name: Install system Qt (Homebrew)
+        run: |
+          # Install Qt via Homebrew as a fallback for macOS
+          brew install qt6 || echo "Homebrew Qt6 installation failed, continuing with Python-only approach"
+
+      - name: Setup and debug PyQt6 installation
         run: |
           python3 -m venv gui_venv
           source gui_venv/bin/activate
+          
+          # First try standard installation
+          pip install --upgrade pip
           pip install pyinstaller
-          pip install -r requirements.txt
+          
+          # Try multiple PyQt6 installation approaches for macOS
+          echo "=== Attempting PyQt6 installation ==="
+          pip install -r requirements.txt || {
+            echo "Standard installation failed, trying alternative approaches..."
+            
+            # Try installing Qt6 separately first
+            pip install PyQt6-Qt6 PyQt6 || {
+              echo "Qt6 installation failed, trying with --no-deps..."
+              pip install --no-deps PyQt6
+            }
+          }
+          
+          # Also try installing PyQt6 tools which might help with library detection
+          pip install PyQt6-tools || echo "PyQt6-tools installation failed, continuing..."
+          
+          # Debug PyQt6 installation
+          echo "=== Python and pip versions ==="
+          python --version
+          pip --version
+          echo "=== Installed packages ==="
+          pip list | grep -i qt
+          echo "=== PyQt6 import test ==="
+          python -c "import PyQt6; print('PyQt6 version:', PyQt6.QtCore.PYQT_VERSION_STR)"
+          python -c "from PyQt6 import QtCore; print('Qt version:', QtCore.QT_VERSION_STR)"
+          echo "=== PyQt6 installation location ==="
+          python -c "import PyQt6; print('PyQt6 path:', PyQt6.__file__)"
+          echo "=== Qt6 libraries check ==="
+          python -c "
+import PyQt6
+import os
+pyqt6_path = os.path.dirname(PyQt6.__file__)
+print('PyQt6 directory:', pyqt6_path)
+qt6_path = os.path.join(pyqt6_path, 'Qt6')
+if os.path.exists(qt6_path):
+    print('Qt6 directory exists at:', qt6_path)
+    print('Qt6 contents:')
+    for item in os.listdir(qt6_path):
+        print('  ', item)
+else:
+    print('Qt6 directory not found!')
+    print('PyQt6 directory contents:')
+    for item in os.listdir(pyqt6_path):
+        print('  ', item)
+"
+
+      - name: Build with PyInstaller
+        run: |
+          source gui_venv/bin/activate
           # Clean any previous builds and PyInstaller cache
           rm -rf build dist
           rm -rf ~/.pyinstaller_cache 2>/dev/null || true
@@ -210,7 +325,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: umtk-ui-macos-arm64
-          path: UMTK_UI/umtk-ui-macos-arm64.zip
+          path: UMTK_UI/*
 
   build_ubuntu_deb:
     if: ${{ inputs.build_ubuntu_deb == true }}
@@ -230,23 +345,16 @@ jobs:
           pip install -r requirements.txt
           pyinstaller pyinstall.spec
 
-      - name: Install fpm
+      - name: Package zip
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ruby ruby-dev build-essential
-          sudo gem install --no-document fpm
+          cd ./dist
+          zip -r ../umtk-ui-macos-arm64.zip .
 
-      - name: Build .deb
-        run: |
-          mkdir -p deb-root/usr/local/umtk-ui
-          cp -r dist/* deb-root/usr/local/umtk-ui/
-          fpm -s dir -t deb -n umtk-ui -v 1.0.0 --prefix=/usr/local/umtk-ui -C deb-root .
-
-      - name: Upload artifact (.deb)
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: umtk-ui-ubuntu-deb
-          path: UMTK_UI/*.deb
+          name: umtk-ui-ubuntu-zip
+          path: UMTK_UI/*
 
   build_linux_tar:
     if: ${{ inputs.build_linux_tar == true }}
@@ -273,10 +381,103 @@ jobs:
           name: umtk-ui-linux-tar
           path: UMTK_UI/umtk-ui-linux.tar.gz
 
+  build_source_fallback:
+    if: ${{ inputs.build_source_fallback == true }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: UMTK_UI
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create source fallback package
+        run: |
+          mkdir -p fallback-package/{src,windows_install,mac_install,ubuntu_install}
+          
+          # Copy source files to src folder
+          cp main.py requirements.txt fallback-package/src/
+          cp *.ui fallback-package/src/ 2>/dev/null || true
+          cp -r img style lib fallback-package/src/
+          
+          # Copy platform install scripts
+          cp -r package/script/windows/* fallback-package/windows_install/
+          cp -r package/script/mac/* fallback-package/mac_install/
+          cp -r package/script/linux/* fallback-package/ubuntu_install/
+          
+          # Make Unix scripts executable
+          chmod +x fallback-package/mac_install/*.command
+          chmod +x fallback-package/ubuntu_install/*.sh
+          
+          # Create README
+          cat > fallback-package/README.md << 'EOF'
+          # UMTK UI - Source Fallback Package
+          
+          This package is provided as a fallback when the pre-compiled executables don't work on your system.
+          
+          ## What's Included
+          
+          - `src/` - Complete Python source code and resources
+          - `windows_install/` - Windows installation scripts  
+          - `mac_install/` - macOS installation scripts
+          - `ubuntu_install/` - Ubuntu/Linux installation scripts
+          
+          ## Installation Instructions
+          
+          ### Windows
+          1. Go to the `windows_install/` folder
+          2. Double-click `install.bat` to set up Python environment
+          3. Double-click `run.bat` to start the application
+          
+          ### macOS
+          1. Go to the `mac_install/` folder  
+          2. Double-click `install.command` to set up Python environment
+          3. Double-click `run.command` to start the application
+          
+          ### Ubuntu/Linux
+          1. Go to the `ubuntu_install/` folder
+          2. Run `bash install.sh` to set up Python environment  
+          3. Run `bash run.sh` to start the application
+          
+          ### Manual Installation (All Platforms)
+          
+          If the platform scripts don't work, you can install manually:
+          
+          1. Navigate to the `src/` folder
+          2. Create a Python virtual environment: `python -m venv venv`
+          3. Activate the environment:
+             - Windows: `venv\Scripts\activate`
+             - macOS/Linux: `source venv/bin/activate`
+          4. Install dependencies: `pip install -r requirements.txt`  
+          5. Run the application: `python main.py`
+          
+          ## Requirements
+          
+          - Python 3.7 or higher
+          - Internet connection for initial setup
+          
+          ## When to Use This Package
+          
+          Use this source package if:
+          - The pre-compiled executable doesn't work on your system
+          - You want to modify the source code
+          - You prefer running from source
+          - You're having platform-specific compatibility issues
+          EOF
+          
+          # Create the zip package
+          zip -r umtk-ui-source-fallback.zip fallback-package/
+
+      - name: Upload source fallback artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: umtk-ui-source-fallback  
+          path: UMTK_UI/umtk-ui-source-fallback.zip
+
   release:
     name: Create GitHub Release and upload assets
     runs-on: ubuntu-latest
-    needs: [build_windows, build_macos_intel, build_macos_arm, build_ubuntu_deb, build_linux_tar]
+    needs: [build_windows, build_macos_intel, build_macos_arm, build_ubuntu_deb, build_linux_tar, build_source_fallback]
     if: ${{ always() }}
     steps:
       - name: Checkout

@@ -3,7 +3,6 @@
 import sys
 import os
 from PyInstaller.utils.hooks import collect_all
-import sys
 
 # Collect PyQt6 data and binaries with additional explicit Qt library collection
 pyqt6_datas, pyqt6_binaries, pyqt6_hiddenimports = collect_all('PyQt6')
@@ -11,9 +10,37 @@ pyqt6_datas, pyqt6_binaries, pyqt6_hiddenimports = collect_all('PyQt6')
 # Add explicit Qt library collection for macOS
 if sys.platform == 'darwin':
     from PyInstaller.utils.hooks import collect_dynamic_libs
-    # Explicitly collect Qt libraries to ensure they're included
-    qt_binaries = collect_dynamic_libs('PyQt6.Qt6')
-    pyqt6_binaries.extend(qt_binaries)
+    try:
+        # Try to explicitly collect Qt libraries to ensure they're included
+        qt_binaries = collect_dynamic_libs('PyQt6.Qt6')
+        pyqt6_binaries.extend(qt_binaries)
+        print("Successfully collected PyQt6.Qt6 dynamic libs")
+    except Exception as e:
+        print(f"Warning: Could not collect PyQt6.Qt6 dynamic libs: {e}")
+        # Try alternative collection approaches
+        try:
+            qt_binaries = collect_dynamic_libs('PyQt6')
+            pyqt6_binaries.extend(qt_binaries)
+            print("Successfully collected PyQt6 dynamic libs as fallback")
+        except Exception as e2:
+            print(f"Warning: Could not collect PyQt6 dynamic libs either: {e2}")
+            # Add manual library paths if they exist
+            import PyQt6
+            pyqt6_path = os.path.dirname(PyQt6.__file__)
+            possible_qt_paths = [
+                os.path.join(pyqt6_path, 'Qt6', 'lib'),
+                os.path.join(pyqt6_path, 'Qt', 'lib'),
+                pyqt6_path
+            ]
+            for qt_path in possible_qt_paths:
+                if os.path.exists(qt_path):
+                    print(f"Found Qt path: {qt_path}")
+                    # Add any .dylib files found in Qt paths
+                    import glob
+                    for dylib in glob.glob(os.path.join(qt_path, '*.dylib')):
+                        pyqt6_binaries.append((dylib, '.'))
+                    for framework in glob.glob(os.path.join(qt_path, '*.framework')):
+                        pyqt6_binaries.append((framework, os.path.basename(framework)))
 
 # Additional hidden imports - comprehensive PyQt6 modules
 hiddenimports = [
