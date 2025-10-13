@@ -111,7 +111,7 @@ jobs:
           source gui_venv/bin/activate
           pip install pyinstaller
           pip install -r requirements.txt
-          pyinstaller --noconfirm --onefile --windowed --collect-all PyQt6 main.py --name umtk-ui
+          pyinstaller --spec ./package/pyinstall.spec
 
       - name: Package zip
         run: |
