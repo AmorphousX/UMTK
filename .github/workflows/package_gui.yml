@@ -23,8 +23,8 @@ on:
         description: "Build Linux tar.gz of source files"
         type: boolean
         default: true
-      build_source_fallback:
-        description: "Build fallback source package with install scripts"
+      build_python_package:
+        description: "Build python package with install scripts"
         type: boolean
         default: true
       generate_release:
@@ -121,7 +121,7 @@ jobs:
           echo "=== Installed packages ==="
           pip list | grep -i qt
           echo "=== PyQt6 import test ==="
-          python -c "import PyQt6; print('PyQt6 version:', PyQt6.QtCore.PYQT_VERSION_STR)"
+          python -c "from PyQt6 import QtCore; print('PyQt6 version:', QtCore.PYQT_VERSION_STR)"
           python -c "from PyQt6 import QtCore; print('Qt version:', QtCore.QT_VERSION_STR)"
           echo "=== PyQt6 installation location ==="
           python -c "import PyQt6; print('PyQt6 path:', PyQt6.__file__)"
@@ -247,7 +247,7 @@ jobs:
           echo "=== Installed packages ==="
           pip list | grep -i qt
           echo "=== PyQt6 import test ==="
-          python -c "import PyQt6; print('PyQt6 version:', PyQt6.QtCore.PYQT_VERSION_STR)"
+          python -c "from PyQt6 import QtCore; print('PyQt6 version:', QtCore.PYQT_VERSION_STR)"
           python -c "from PyQt6 import QtCore; print('Qt version:', QtCore.QT_VERSION_STR)"
           echo "=== PyQt6 installation location ==="
           python -c "import PyQt6; print('PyQt6 path:', PyQt6.__file__)"
@@ -325,7 +325,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: umtk-ui-macos-arm64
-          path: UMTK_UI/*
+          path: UMTK_UI/umtk-ui-macos-arm64.zip
 
   build_ubuntu_deb:
     if: ${{ inputs.build_ubuntu_deb == true }}
@@ -354,7 +354,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: umtk-ui-ubuntu-zip
-          path: UMTK_UI/*
+          path: UMTK_UI/umtk-ui-macos-arm64.zip
 
   build_linux_tar:
     if: ${{ inputs.build_linux_tar == true }}
@@ -381,8 +381,8 @@ jobs:
           name: umtk-ui-linux-tar
           path: UMTK_UI/umtk-ui-linux.tar.gz
 
-  build_source_fallback:
-    if: ${{ inputs.build_source_fallback == true }}
+  build_python_package:
+    if: ${{ inputs.build_python_package == true }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -391,27 +391,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create source fallback package
+      - name: Create source python package
         run: |
-          mkdir -p fallback-package/{src,windows_install,mac_install,ubuntu_install}
+          mkdir -p python-package/{src,windows_install,mac_install,ubuntu_install}
           
           # Copy source files to src folder
-          cp main.py requirements.txt fallback-package/src/
-          cp *.ui fallback-package/src/ 2>/dev/null || true
-          cp -r img style lib fallback-package/src/
+          cp main.py requirements.txt python-package/src/
+          cp *.ui python-package/src/ 2>/dev/null || true
+          cp -r img style lib python-package/src/
           
           # Copy platform install scripts
-          cp -r package/script/windows/* fallback-package/windows_install/
-          cp -r package/script/mac/* fallback-package/mac_install/
-          cp -r package/script/linux/* fallback-package/ubuntu_install/
+          cp -r package/script/windows/* python-package/windows_install/
+          cp -r package/script/mac/* python-package/mac_install/
+          cp -r package/script/linux/* python-package/ubuntu_install/
           
           # Make Unix scripts executable
-          chmod +x fallback-package/mac_install/*.command
-          chmod +x fallback-package/ubuntu_install/*.sh
+          chmod +x python-package/mac_install/*.command
+          chmod +x python-package/ubuntu_install/*.sh
           
           # Create README
-          cat > fallback-package/README.md << 'EOF'
-          # UMTK UI - Source Fallback Package
+          cat > python-package/README.md << 'EOF'
+          # UMTK UI - Source Python Package
           
           This package is provided as a fallback when the pre-compiled executables don't work on your system.
           
@@ -466,18 +466,18 @@ jobs:
           EOF
           
           # Create the zip package
-          zip -r umtk-ui-source-fallback.zip fallback-package/
+          zip -r umtk-ui-python.zip python-package/
 
-      - name: Upload source fallback artifact
+      - name: Upload source python artifact
         uses: actions/upload-artifact@v4
         with:
-          name: umtk-ui-source-fallback  
-          path: UMTK_UI/umtk-ui-source-fallback.zip
+          name: umtk-ui-source-python
+          path: UMTK_UI/umtk-ui-python.zip
 
   release:
     name: Create GitHub Release and upload assets
     runs-on: ubuntu-latest
-    needs: [build_windows, build_macos_intel, build_macos_arm, build_ubuntu_deb, build_linux_tar, build_source_fallback]
+    needs: [build_windows, build_macos_intel, build_macos_arm, build_ubuntu_deb, build_linux_tar, build_python_package]
     if: ${{ always() }}
     steps:
       - name: Checkout
