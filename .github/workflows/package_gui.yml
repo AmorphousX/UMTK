@@ -16,13 +16,13 @@ on:
         type: boolean
         default: true
       build_ubuntu_deb:
-        description: "Build Ubuntu .deb"
+        description: "Build Ubuntu/Linux onefile executable"
         type: boolean
         default: true
       build_linux_tar:
         description: "Build Linux tar.gz of source files"
         type: boolean
-        default: true
+        default: false
       build_python_package:
         description: "Build python package with install scripts"
         type: boolean
@@ -30,7 +30,7 @@ on:
       generate_release:
         description: "Generate A release for this build?"
         type: boolean
-        default: false
+        default: true
       tag:
         description: "Tag name for the release (leave blank to auto-generate)"
         type: string
@@ -42,7 +42,7 @@ on:
       prerelease:
         description: "Mark release as pre-release"
         type: boolean
-        default: false
+        default: true
 jobs:
   build_windows:
     if: ${{ inputs.build_windows == true }}
@@ -61,19 +61,19 @@ jobs:
           call gui_venv\Scripts\activate
           pip install pyinstaller
           pip install -r requirements.txt
-          pyinstaller pyinstall.spec
+          pyinstaller pyinstall_onefile.spec
 
-      - name: Package zip
+      - name: Package executable
         shell: pwsh
         run: |
-          cd ./dist
-          Compress-Archive -Path * -DestinationPath ../umtk-ui-windows.zip
+          # For onefile builds, the executable is directly in dist/
+          Move-Item ./dist/umtk-ui.exe ./umtk-ui-windows.exe
 
-      - name: Upload artifact (Windows zip)
+      - name: Upload artifact (Windows executable)
         uses: actions/upload-artifact@v4
         with:
           name: umtk-ui-windows
-          path: UMTK_UI/umtk-ui-windows.zip
+          path: UMTK_UI/umtk-ui-windows.exe
 
   build_macos_intel:
     if: ${{ inputs.build_macos_intel == true }}
@@ -343,18 +343,18 @@ jobs:
           source gui_venv/bin/activate
           pip install pyinstaller
           pip install -r requirements.txt
-          pyinstaller pyinstall.spec
+          pyinstaller pyinstall_onefile.spec
 
-      - name: Package zip
+      - name: Package executable
         run: |
-          cd ./dist
-          zip -r ../umtk-ui-macos-arm64.zip .
+          # For onefile builds, the executable is directly in dist/
+          mv ./dist/umtk-ui ./umtk-ui-linux
 
-      - name: Upload artifact
+      - name: Upload artifact (Linux executable)
         uses: actions/upload-artifact@v4
         with:
-          name: umtk-ui-ubuntu-zip
-          path: UMTK_UI/umtk-ui-macos-arm64.zip
+          name: umtk-ui-linux
+          path: UMTK_UI/umtk-ui-linux
 
   build_linux_tar:
     if: ${{ inputs.build_linux_tar == true }}
