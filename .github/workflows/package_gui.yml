@@ -90,66 +90,69 @@ jobs:
       #     # Install Qt via Homebrew as a fallback for macOS
       #     brew install qt6 || echo "Homebrew Qt6 installation failed, continuing with Python-only approach"
 
-      - name: Setup and debug PyQt6 installation
-        run: |
-          python3 -m venv gui_venv
-          source gui_venv/bin/activate
+      # - name: Setup and debug PyQt6 installation
+      #   run: |
+      #     python3 -m venv gui_venv
+      #     source gui_venv/bin/activate
           
-          # First try standard installation
-          pip install --upgrade pip
-          pip install pyinstaller
+      #     # First try standard installation
+      #     pip install --upgrade pip
+      #     pip install pyinstaller
           
-          # Try multiple PyQt6 installation approaches for macOS
-          echo "=== Attempting PyQt6 installation ==="
-          pip install -r requirements.txt || {
-            echo "Standard installation failed, trying alternative approaches..."
+      #     # Try multiple PyQt6 installation approaches for macOS
+      #     echo "=== Attempting PyQt6 installation ==="
+      #     pip install -r requirements.txt || {
+      #       echo "Standard installation failed, trying alternative approaches..."
             
-            # Try installing Qt6 separately first
-            pip install PyQt6-Qt6 PyQt6 || {
-              echo "Qt6 installation failed, trying with --no-deps..."
-              pip install --no-deps PyQt6
-            }
-          }
+      #       # Try installing Qt6 separately first
+      #       pip install PyQt6-Qt6 PyQt6 || {
+      #         echo "Qt6 installation failed, trying with --no-deps..."
+      #         pip install --no-deps PyQt6
+      #       }
+      #     }
           
-          # Also try installing PyQt6 tools which might help with library detection
-          pip install PyQt6-tools || echo "PyQt6-tools installation failed, continuing..."
+      #     # Also try installing PyQt6 tools which might help with library detection
+      #     pip install PyQt6-tools || echo "PyQt6-tools installation failed, continuing..."
           
-          # Debug PyQt6 installation
-          echo "=== Python and pip versions ==="
-          python --version
-          pip --version
-          echo "=== Installed packages ==="
-          pip list | grep -i qt
-          echo "=== PyQt6 import test ==="
-          python -c "from PyQt6 import QtCore; print('PyQt6 version:', QtCore.PYQT_VERSION_STR)"
-          python -c "from PyQt6 import QtCore; print('Qt version:', QtCore.QT_VERSION_STR)"
-          echo "=== PyQt6 installation location ==="
-          python -c "import PyQt6; print('PyQt6 path:', PyQt6.__file__)"
-          echo "=== Qt6 libraries check ==="
-          python -c "
-          import PyQt6
-          import os
-          pyqt6_path = os.path.dirname(PyQt6.__file__)
-          print('PyQt6 directory:', pyqt6_path)
-          qt6_path = os.path.join(pyqt6_path, 'Qt6')
-          if os.path.exists(qt6_path):
-              print('Qt6 directory exists at:', qt6_path)
-              print('Qt6 contents:')
-              for item in os.listdir(qt6_path):
-                  print('  ', item)
-          else:
-              print('Qt6 directory not found!')
-              print('PyQt6 directory contents:')
-              for item in os.listdir(pyqt6_path):
-                  print('  ', item)
-          "
+      #     # Debug PyQt6 installation
+      #     echo "=== Python and pip versions ==="
+      #     python --version
+      #     pip --version
+      #     echo "=== Installed packages ==="
+      #     pip list | grep -i qt
+      #     echo "=== PyQt6 import test ==="
+      #     python -c "from PyQt6 import QtCore; print('PyQt6 version:', QtCore.PYQT_VERSION_STR)"
+      #     python -c "from PyQt6 import QtCore; print('Qt version:', QtCore.QT_VERSION_STR)"
+      #     echo "=== PyQt6 installation location ==="
+      #     python -c "import PyQt6; print('PyQt6 path:', PyQt6.__file__)"
+      #     echo "=== Qt6 libraries check ==="
+      #     python -c "
+      #     import PyQt6
+      #     import os
+      #     pyqt6_path = os.path.dirname(PyQt6.__file__)
+      #     print('PyQt6 directory:', pyqt6_path)
+      #     qt6_path = os.path.join(pyqt6_path, 'Qt6')
+      #     if os.path.exists(qt6_path):
+      #         print('Qt6 directory exists at:', qt6_path)
+      #         print('Qt6 contents:')
+      #         for item in os.listdir(qt6_path):
+      #             print('  ', item)
+      #     else:
+      #         print('Qt6 directory not found!')
+      #         print('PyQt6 directory contents:')
+      #         for item in os.listdir(pyqt6_path):
+      #             print('  ', item)
+      #     "
 
       - name: Build with PyInstaller
         run: |
-          source gui_venv/bin/Activate
-          
+          python3 -m venv gui_venv
+          source gui_venv/bin/activate
+          pip install --upgrade pip
+          pip install pyinstaller
+          pip install -r requirements.txt
           # Build with updated spec file path
-          pyinstaller --clean --noconfirm package/pyinstaller/pyinstall_macos.spec
+          pyinstaller --clean --noconfirm package/pyinstaller/pyinstall_onefile.spec
 
 
       - name: Package zip
@@ -177,9 +180,13 @@ jobs:
 
       - name: Build with PyInstaller
         run: |
-          source gui_venv/bin/activate          
+          python3 -m venv gui_venv
+          source gui_venv/bin/activate
+          pip install --upgrade pip
+          pip install pyinstaller
+          pip install -r requirements.txt
           # Build with updated spec file path
-          pyinstaller --clean --noconfirm package/pyinstaller/pyinstall_macos.spec
+          pyinstaller --clean --noconfirm package/pyinstaller/pyinstall_onefile.spec
 
 
       - name: Package zip
@@ -211,7 +218,7 @@ jobs:
           source gui_venv/bin/activate
           pip install pyinstaller
           pip install -r requirements.txt
-          pyinstaller package/pyinstaller/pyinstall_onefile.spec
+          pyinstaller --clean --noconfirm package/pyinstaller/pyinstall_onefile.spec
 
       - name: Package executable
         run: |
