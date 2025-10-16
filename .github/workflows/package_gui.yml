@@ -153,73 +153,9 @@ jobs:
           # Extra cleanup for macOS framework issues
           find . -name "*.framework" -type d -exec rm -rf {} + 2>/dev/null || true
           
-          # Create a custom hook to handle Qt6 framework symlink issues
-          mkdir -p hooks
-          cat > hooks/hook-PyQt6.py << 'EOF'
-import os
-from PyInstaller.utils.hooks import collect_all
+          # Build with updated spec file path
+          pyinstaller --clean --noconfirm package/pyinstaller/pyinstall_macos.spec
 
-def remove_duplicate_frameworks(binaries):
-    """Remove duplicate Qt6 frameworks that cause symlink conflicts"""
-    seen_frameworks = set()
-    filtered_binaries = []
-    
-    for binary_path, dest_path in binaries:
-        if '.framework' in binary_path:
-            framework_name = os.path.basename(binary_path.split('.framework')[0] + '.framework')
-            if framework_name not in seen_frameworks:
-                seen_frameworks.add(framework_name)
-                filtered_binaries.append((binary_path, dest_path))
-        else:
-            filtered_binaries.append((binary_path, dest_path))
-    
-    return filtered_binaries
-
-# Collect PyQt6 data and binaries
-datas, binaries, hiddenimports = collect_all('PyQt6')
-
-# Remove duplicate frameworks to prevent symlink conflicts
-binaries = remove_duplicate_frameworks(binaries)
-EOF
-          
-          # Build with custom hooks directory
-          pyinstaller --clean --noconfirm --additional-hooks-dir=hooks package/pyinstaller/pyinstall_macos.spec
-
-      - name: Debug and fix macOS PyQt6 libraries
-        run: |
-          if [ -d "dist/umtk-ui" ]; then
-            echo "=== Checking PyQt6 structure ==="
-            find dist/umtk-ui/_internal -name "*Qt*" -type f | head -20
-            echo "=== Looking for QtCore specifically ==="
-            find dist/umtk-ui/_internal -name "*QtCore*" -type f
-            echo "=== PyQt6 directory contents ==="
-            ls -la dist/umtk-ui/_internal/PyQt6/ || true
-            
-            # Create Qt6/lib directory if it doesn't exist and copy Qt libraries there
-            mkdir -p dist/umtk-ui/_internal/PyQt6/Qt6/lib
-            
-            # Find Qt libraries and ensure they're in the right place
-            find dist/umtk-ui/_internal -name "libQt*.dylib" -o -name "Qt*.framework" | while read qtlib; do
-              if [[ "$qtlib" == *.framework ]]; then
-                # Copy framework to Qt6/lib
-                cp -r "$qtlib" dist/umtk-ui/_internal/PyQt6/Qt6/lib/
-              elif [[ "$qtlib" == *.dylib ]]; then
-                # Copy dylib to Qt6/lib
-                cp "$qtlib" dist/umtk-ui/_internal/PyQt6/Qt6/lib/
-              fi
-            done
-            
-            # Fix rpath issues in the built application
-            find dist/umtk-ui/_internal -name "*.so" -o -name "*.dylib" | while read lib; do
-              # Update library paths using install_name_tool
-              install_name_tool -add_rpath @loader_path/../.. "$lib" 2>/dev/null || true
-              install_name_tool -add_rpath @loader_path/../../PyQt6/Qt6/lib "$lib" 2>/dev/null || true
-              install_name_tool -add_rpath @loader_path/../PyQt6/Qt6/lib "$lib" 2>/dev/null || true
-            done
-            
-            echo "=== Final Qt6/lib contents ==="
-            ls -la dist/umtk-ui/_internal/PyQt6/Qt6/lib/ || true
-          fi
 
       - name: Package zip
         run: |
@@ -244,65 +180,6 @@ EOF
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # - name: Install system Qt (Homebrew)
-      #   run: |
-      #     # Install Qt via Homebrew as a fallback for macOS
-      #     brew install qt6 || echo "Homebrew Qt6 installation failed, continuing with Python-only approach"
-
-      - name: Setup and debug PyQt6 installation
-        run: |
-          python3 -m venv gui_venv
-          source gui_venv/bin/activate
-          
-          # First try standard installation
-          pip install --upgrade pip
-          pip install pyinstaller
-          
-          # Try multiple PyQt6 installation approaches for macOS
-          echo "=== Attempting PyQt6 installation ==="
-          pip install -r requirements.txt || {
-            echo "Standard installation failed, trying alternative approaches..."
-            
-            # Try installing Qt6 separately first
-            pip install PyQt6-Qt6 PyQt6 || {
-              echo "Qt6 installation failed, trying with --no-deps..."
-              pip install --no-deps PyQt6
-            }
-          }
-          
-          # Also try installing PyQt6 tools which might help with library detection
-          pip install PyQt6-tools || echo "PyQt6-tools installation failed, continuing..."
-          
-          # Debug PyQt6 installation
-          echo "=== Python and pip versions ==="
-          python --version
-          pip --version
-          echo "=== Installed packages ==="
-          pip list | grep -i qt
-          echo "=== PyQt6 import test ==="
-          python -c "from PyQt6 import QtCore; print('PyQt6 version:', QtCore.PYQT_VERSION_STR)"
-          python -c "from PyQt6 import QtCore; print('Qt version:', QtCore.QT_VERSION_STR)"
-          echo "=== PyQt6 installation location ==="
-          python -c "import PyQt6; print('PyQt6 path:', PyQt6.__file__)"
-          echo "=== Qt6 libraries check ==="
-          python -c "
-          import PyQt6
-          import os
-          pyqt6_path = os.path.dirname(PyQt6.__file__)
-          print('PyQt6 directory:', pyqt6_path)
-          qt6_path = os.path.join(pyqt6_path, 'Qt6')
-          if os.path.exists(qt6_path):
-              print('Qt6 directory exists at:', qt6_path)
-              print('Qt6 contents:')
-              for item in os.listdir(qt6_path):
-                  print('  ', item)
-          else:
-              print('Qt6 directory not found!')
-              print('PyQt6 directory contents:')
-              for item in os.listdir(pyqt6_path):
-                  print('  ', item)
-          "
-
       - name: Build with PyInstaller
         run: |
           source gui_venv/bin/activate
@@ -312,73 +189,9 @@ EOF
           # Extra cleanup for macOS framework issues
           find . -name "*.framework" -type d -exec rm -rf {} + 2>/dev/null || true
           
-          # Create a custom hook to handle Qt6 framework symlink issues
-          mkdir -p hooks
-          cat > hooks/hook-PyQt6.py << 'EOF'
-import os
-from PyInstaller.utils.hooks import collect_all
+          # Build with updated spec file path
+          pyinstaller --clean --noconfirm package/pyinstaller/pyinstall_macos.spec
 
-def remove_duplicate_frameworks(binaries):
-    """Remove duplicate Qt6 frameworks that cause symlink conflicts"""
-    seen_frameworks = set()
-    filtered_binaries = []
-    
-    for binary_path, dest_path in binaries:
-        if '.framework' in binary_path:
-            framework_name = os.path.basename(binary_path.split('.framework')[0] + '.framework')
-            if framework_name not in seen_frameworks:
-                seen_frameworks.add(framework_name)
-                filtered_binaries.append((binary_path, dest_path))
-        else:
-            filtered_binaries.append((binary_path, dest_path))
-    
-    return filtered_binaries
-
-# Collect PyQt6 data and binaries
-datas, binaries, hiddenimports = collect_all('PyQt6')
-
-# Remove duplicate frameworks to prevent symlink conflicts
-binaries = remove_duplicate_frameworks(binaries)
-EOF
-          
-          # Build with custom hooks directory
-          pyinstaller --clean --noconfirm --additional-hooks-dir=hooks package/pyinstaller/pyinstall_macos.spec
-
-      - name: Debug and fix macOS PyQt6 libraries
-        run: |
-          if [ -d "dist/umtk-ui" ]; then
-            echo "=== Checking PyQt6 structure ==="
-            find dist/umtk-ui/_internal -name "*Qt*" -type f | head -20
-            echo "=== Looking for QtCore specifically ==="
-            find dist/umtk-ui/_internal -name "*QtCore*" -type f
-            echo "=== PyQt6 directory contents ==="
-            ls -la dist/umtk-ui/_internal/PyQt6/ || true
-            
-            # Create Qt6/lib directory if it doesn't exist and copy Qt libraries there
-            mkdir -p dist/umtk-ui/_internal/PyQt6/Qt6/lib
-            
-            # Find Qt libraries and ensure they're in the right place
-            find dist/umtk-ui/_internal -name "libQt*.dylib" -o -name "Qt*.framework" | while read qtlib; do
-              if [[ "$qtlib" == *.framework ]]; then
-                # Copy framework to Qt6/lib
-                cp -r "$qtlib" dist/umtk-ui/_internal/PyQt6/Qt6/lib/
-              elif [[ "$qtlib" == *.dylib ]]; then
-                # Copy dylib to Qt6/lib
-                cp "$qtlib" dist/umtk-ui/_internal/PyQt6/Qt6/lib/
-              fi
-            done
-            
-            # Fix rpath issues in the built application
-            find dist/umtk-ui/_internal -name "*.so" -o -name "*.dylib" | while read lib; do
-              # Update library paths using install_name_tool
-              install_name_tool -add_rpath @loader_path/../.. "$lib" 2>/dev/null || true
-              install_name_tool -add_rpath @loader_path/../../PyQt6/Qt6/lib "$lib" 2>/dev/null || true
-              install_name_tool -add_rpath @loader_path/../PyQt6/Qt6/lib "$lib" 2>/dev/null || true
-            done
-            
-            echo "=== Final Qt6/lib contents ==="
-            ls -la dist/umtk-ui/_internal/PyQt6/Qt6/lib/ || true
-          fi
 
       - name: Package zip
         run: |
