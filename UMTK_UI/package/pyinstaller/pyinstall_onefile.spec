@@ -4,6 +4,10 @@ import sys
 import os
 from PyInstaller.utils.hooks import collect_all
 
+# Get the project root directory (two levels up from this spec file)
+SPEC_DIR = os.path.dirname(os.path.abspath(SPEC))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SPEC_DIR))
+
 # Collect PyQt6 data and binaries
 pyqt6_datas, pyqt6_binaries, pyqt6_hiddenimports = collect_all('PyQt6')
 
@@ -26,10 +30,18 @@ hiddenimports = [
 
 # Data files to include
 datas = [
-    ('img', 'img'),
-    ('style', 'style'), 
-    ('lib', 'lib'),
-] + pyqt6_datas
+    (os.path.join(PROJECT_ROOT, 'style'), 'style'),
+    (os.path.join(PROJECT_ROOT, 'img'), 'img'),
+    (os.path.join(PROJECT_ROOT, 'lib/__init__.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'lib/umtk_design.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'lib/umtk_gui.py'), 'lib'), 
+    (os.path.join(PROJECT_ROOT, 'lib/umtk_logic.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'lib/UMTKSerial.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'lib/theme_manager.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'lib/record_dialog.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'UMTK_Design_dynamic.ui'), '.'),
+    (os.path.join(PROJECT_ROOT, 'UMTK_Design_preAI.ui'), '.'),
+]
 
 # Filter out any non-existent paths
 filtered_datas = []
@@ -50,8 +62,8 @@ for src, dst in datas:
 block_cipher = None
 
 a = Analysis(
-    ['main.py'],
-    pathex=[],
+    [os.path.join(PROJECT_ROOT, 'main.py')],
+    pathex=[PROJECT_ROOT],
     binaries=pyqt6_binaries,
     datas=filtered_datas,
     hiddenimports=hiddenimports,
@@ -89,5 +101,5 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
     # Platform-specific icon
-    icon='img/icon.ico' if os.path.exists('img/icon.ico') and sys.platform == 'win32' else None,
+    icon=os.path.join(PROJECT_ROOT, 'img/icon.ico') if os.path.exists(os.path.join(PROJECT_ROOT, 'img/icon.ico')) and sys.platform == 'win32' else None,
 )

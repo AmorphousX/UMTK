@@ -409,7 +409,7 @@ EOF
           source gui_venv/bin/activate
           pip install pyinstaller
           pip install -r requirements.txt
-          pyinstaller package/pyinstaller/pyinstall_onefile.spec
+          pyinstaller pyinstall_onefile.spec
 
       - name: Package executable
         run: |

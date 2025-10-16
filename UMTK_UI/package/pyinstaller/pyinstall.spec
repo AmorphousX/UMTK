@@ -4,6 +4,10 @@ import sys
 import os
 from PyInstaller.utils.hooks import collect_all
 
+# Get the project root directory (two levels up from this spec file)
+SPEC_DIR = os.path.dirname(os.path.abspath(SPEC))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SPEC_DIR))
+
 # Collect PyQt6 data and binaries with additional explicit Qt library collection
 pyqt6_datas, pyqt6_binaries, pyqt6_hiddenimports = collect_all('PyQt6')
 
@@ -13,14 +17,46 @@ if sys.platform == 'darwin':
     try:
         # Try to explicitly collect Qt libraries to ensure they're included
         qt_binaries = collect_dynamic_libs('PyQt6.Qt6')
-        pyqt6_binaries.extend(qt_binaries)
+        
+        # Filter out duplicate frameworks to prevent symlink conflicts
+        seen_frameworks = set()
+        filtered_qt_binaries = []
+        
+        for binary_path, dest_path in qt_binaries:
+            if '.framework' in binary_path:
+                framework_name = os.path.basename(binary_path.split('.framework')[0] + '.framework')
+                if framework_name not in seen_frameworks:
+                    seen_frameworks.add(framework_name)
+                    filtered_qt_binaries.append((binary_path, dest_path))
+                else:
+                    print(f"Skipping duplicate framework: {framework_name}")
+            else:
+                filtered_qt_binaries.append((binary_path, dest_path))
+        
+        pyqt6_binaries.extend(filtered_qt_binaries)
         print("Successfully collected PyQt6.Qt6 dynamic libs")
     except Exception as e:
         print(f"Warning: Could not collect PyQt6.Qt6 dynamic libs: {e}")
         # Try alternative collection approaches
         try:
             qt_binaries = collect_dynamic_libs('PyQt6')
-            pyqt6_binaries.extend(qt_binaries)
+            
+            # Apply same filtering to fallback binaries
+            seen_frameworks = set()
+            filtered_qt_binaries = []
+            
+            for binary_path, dest_path in qt_binaries:
+                if '.framework' in binary_path:
+                    framework_name = os.path.basename(binary_path.split('.framework')[0] + '.framework')
+                    if framework_name not in seen_frameworks:
+                        seen_frameworks.add(framework_name)
+                        filtered_qt_binaries.append((binary_path, dest_path))
+                    else:
+                        print(f"Skipping duplicate framework: {framework_name}")
+                else:
+                    filtered_qt_binaries.append((binary_path, dest_path))
+            
+            pyqt6_binaries.extend(filtered_qt_binaries)
             print("Successfully collected PyQt6 dynamic libs as fallback")
         except Exception as e2:
             print(f"Warning: Could not collect PyQt6 dynamic libs either: {e2}")
@@ -61,10 +97,18 @@ hiddenimports = [
 
 # Data files to include
 datas = [
-    ('img', 'img'),
-    ('style', 'style'), 
-    ('lib', 'lib'),
-] + pyqt6_datas
+    (os.path.join(PROJECT_ROOT, 'style'), 'style'),
+    (os.path.join(PROJECT_ROOT, 'img'), 'img'),
+    (os.path.join(PROJECT_ROOT, 'lib/__init__.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'lib/umtk_design.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'lib/umtk_gui.py'), 'lib'), 
+    (os.path.join(PROJECT_ROOT, 'lib/umtk_logic.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'lib/UMTKSerial.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'lib/theme_manager.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'lib/record_dialog.py'), 'lib'),
+    (os.path.join(PROJECT_ROOT, 'UMTK_Design_dynamic.ui'), '.'),
+    (os.path.join(PROJECT_ROOT, 'UMTK_Design_preAI.ui'), '.'),
+]
 
 # Filter out any non-existent paths
 filtered_datas = []
@@ -85,8 +129,8 @@ for src, dst in datas:
 block_cipher = None
 
 a = Analysis(
-    ['main.py'],
-    pathex=[],
+    [os.path.join(PROJECT_ROOT, 'main.py')],
+    pathex=[PROJECT_ROOT],
     binaries=pyqt6_binaries,
     datas=filtered_datas,
     hiddenimports=hiddenimports,
@@ -120,10 +164,56 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
     # Windows-specific icon (optional)
-    icon='img/icon.ico' if os.path.exists('img/icon.ico') else None,
+    icon=os.path.join(PROJECT_ROOT, 'img/icon.ico') if os.path.exists(os.path.join(PROJECT_ROOT, 'img/icon.ico')) else None,
 )
 
 # Create a COLLECT for onedir distribution
+# Clean up any problematic symlinks before creating COLLECT (macOS)
+if sys.platform == 'darwin':
+    import shutil
+    try:
+        # Remove any existing dist directory to avoid symlink conflicts
+        if os.path.exists('dist'):
+            shutil.rmtree('dist')
+            print("Cleaned existing dist directory")
+        
+        # Also clean any cached framework files that might cause conflicts
+        import tempfile
+        temp_dir = tempfile.gettempdir()
+        import glob
+        for qt_framework_cache in glob.glob(os.path.join(temp_dir, '*Qt*.framework')):
+            try:
+                if os.path.islink(qt_framework_cache):
+                    os.unlink(qt_framework_cache)
+                elif os.path.isdir(qt_framework_cache):
+                    shutil.rmtree(qt_framework_cache)
+                print(f"Cleaned framework cache: {qt_framework_cache}")
+            except Exception as e:
+                print(f"Could not clean framework cache {qt_framework_cache}: {e}")
+                
+    except Exception as e:
+        print(f"Could not clean dist directory: {e}")
+
+    # Filter binaries again at collect time to remove any remaining duplicates
+    filtered_binaries = []
+    seen_frameworks = set()
+
+    for binary in a.binaries:
+        binary_path, dest_path = binary[0], binary[1] if len(binary) > 1 else ''
+        
+        if '.framework' in binary_path:
+            framework_name = os.path.basename(binary_path.split('.framework')[0] + '.framework')
+            if framework_name not in seen_frameworks:
+                seen_frameworks.add(framework_name)
+                filtered_binaries.append(binary)
+            else:
+                print(f"Excluding duplicate framework at COLLECT: {framework_name}")
+        else:
+            filtered_binaries.append(binary)
+
+    # Replace a.binaries with filtered version
+    a.binaries = filtered_binaries
+
 coll = COLLECT(
     exe,
     a.binaries,

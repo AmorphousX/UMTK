@@ -1,45 +1,68 @@
-# Packaging UMTK UI with PyInstaller
+# PyInstaller Package Directory
 
-This produces self-contained app bundles that include a private Python interpreter and all dependencies. Users do not need system Python.
+This directory contains all PyInstaller-related files for building the UMTK GUI application.
 
-## Prereqs
-- Build on each target OS for best results.
-- Windows: PowerShell, Python 3.11+, MSVC runtime (installed by Python).
-- macOS: Xcode CLT, Python 3.11+.
+## Directory Structure
 
-## Build steps
+```
+package/pyinstaller/
+├── build.sh                    # Build script for all platforms
+├── pyinstall.spec              # Default PyInstaller spec (cross-platform)
+├── pyinstall_macos.spec        # macOS-optimized spec with framework handling
+├── pyinstall_onefile.spec      # Single-file executable spec
+└── README_macOS_Setup.txt       # User instructions for macOS quarantine removal
+```
 
-### Windows
-Run in PowerShell from `v1.5/package/pyinstaller`:
+## Files Description
 
-- One-folder (faster startup, a directory with EXE):
-  `./build_windows.ps1`
-- One-file (single EXE, slower startup):
-  `./build_windows.ps1 -OneFile`
+### Build Script
+- **build.sh** - Universal build script that:
+  - Auto-detects platform and selects appropriate spec file
+  - Supports multiple build types (default, macos, onefile)
+  - Activates virtual environment automatically
+  - Cleans previous builds
+  - Copies platform-specific documentation
 
-Artifacts: `v1.5/dist/umtk-ui-windows/UMTK_UI.exe` or single EXE.
+### PyInstaller Spec Files
+- **pyinstall.spec** - Default spec file for all platforms with Qt6 framework deduplication
+- **pyinstall_macos.spec** - macOS-specific spec with advanced symlink conflict resolution
+- **pyinstall_onefile.spec** - Creates single executable file (useful for Windows distribution)
 
-### macOS
-Run in bash from `v1.5/package/pyinstaller`:
+### Documentation
+- **README_macOS_Setup.txt** - Plain text instructions for macOS users to remove quarantine attributes
 
-- One-folder:
-  `ONEFILE=0 ./build_macos.sh`
-- One-file app bundle:
-  `ONEFILE=1 ./build_macos.sh`
+## Usage
 
-Artifacts: `v1.5/dist/umtk-ui-mac/UMTK_UI.app` (or a single binary when onefile).
+### Quick Build (Auto-detect platform)
+```bash
+./package/pyinstaller/build.sh
+```
 
-## Signing and notarization (macOS)
-To avoid Gatekeeper warnings:
-- Create a Developer ID Application cert and sign the app:
-  `codesign --deep --force --options=runtime --sign "Developer ID Application: Your Name (TEAMID)" dist/umtk-ui-mac/UMTK_UI.app`
-- Zip and notarize via notarytool.
+### Platform-specific Builds
+```bash
+./package/pyinstaller/build.sh macos     # Force macOS spec
+./package/pyinstaller/build.sh onefile   # Single file executable
+./package/pyinstaller/build.sh default   # Cross-platform spec
+```
 
-## Shipping
-- Zip the `dist/umtk-ui-windows` folder (include all files) and share it.
-- For macOS, zip the `.app` bundle or make a DMG.
+### Manual PyInstaller Usage
+```bash
+# From project root directory
+source guivenv/bin/activate
+pyinstaller --clean --noconfirm package/pyinstaller/pyinstall_macos.spec
+```
+
+## Output
+
+All builds create output in the project root `dist/` directory:
+- **dist/umtk-ui/** - Application bundle directory
+- **dist/README_macOS_Setup.txt** - Setup instructions (macOS builds only)
+
+The GitHub Actions workflow packages this into zip files for distribution.
 
 ## Notes
-- The app auto-tries PyQt6, then PySide6. Ensure at least one is installed during build. The `requirements.txt` includes PyQt6 by default.
-- We added a resource helper so images/styles load in packaged builds.
-- If matplotlib backends or missing plugins occur, add `--collect-submodules` and `--collect-data` as above.
+
+- All spec files use relative paths from the project root
+- The macOS spec includes advanced symlink conflict resolution
+- Framework deduplication prevents Qt6 packaging issues
+- Virtual environment must be set up before building
