@@ -59,8 +59,8 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self.canvas = FigureCanvas(self.figure)
         self.ax = self.figure.add_subplot(111)
         self.ax.set_title("Force Displacement Graph")
-        self.ax.set_xlabel("Position")
-        self.ax.set_ylabel("Force")
+        self.ax.set_xlabel("Position (mm)")
+        self.ax.set_ylabel("Force (N)")
         self.sp, = self.ax.plot([], [], label='', ms=10, color=self.dot_color, marker='.', ls='')
         
         # Minimize borders - reduce margins to bring axes closer to edges
