@@ -769,14 +769,17 @@ class UMTKWindow(QtWidgets.QMainWindow):
         
         self.ui.themeToggleBtn.setStyleSheet(styles["theme_switcher"])
         
-        # Apply styles to other UI elements
+        # Update theme-specific button colors first (needed for button styling helpers)
+        self._update_theme_button_colors(styles)
+
+        # Apply styles to other UI elements (excluding buttons handled separately)
         self._apply_theme_to_controls(styles)
-        
+
+        # Apply proper themed styles to buttons (cross-platform safe)
+        self._apply_button_styles(styles)
+
         # Apply theme to large displays
         self._apply_large_display_theme()
-        
-        # Update theme-specific button colors
-        self._update_theme_button_colors(styles)
     
     def _apply_large_display_theme(self):
         """Apply theme-appropriate styling to large number displays."""
@@ -834,12 +837,45 @@ class UMTKWindow(QtWidgets.QMainWindow):
         for widget in self.findChildren(QtWidgets.QGroupBox):
             widget.setStyleSheet(styles["groupbox"])
             
-        # Buttons - apply theme-appropriate text colors without affecting layout
-        button_text_color = "#ffffff" if self.current_theme == "dark" else "#212121"
-        for widget in self.findChildren(QtWidgets.QPushButton):
-            if widget.objectName() != 'themeToggleBtn':  # Skip theme toggle button as it has special styling
-                # Only apply text color, preserve existing button styling and layout
-                widget.setStyleSheet(f"QPushButton {{ color: {button_text_color}; }}")
+        # Buttons handled separately for full style merging
+        # (See _apply_button_styles).
+
+    def _apply_button_styles(self, styles: dict):
+        """Apply full themed styles to all QPushButtons ensuring text colors are respected on Linux.
+
+        We avoid overwriting with a minimal 'color' stylesheet which on Linux caused the
+        background + border style rules to be lost. Instead we assign a complete style.
+        Dynamic buttons that change color retain logic via existing state-based updates.
+        """
+        # Determine neutral style for non-dynamic buttons
+        neutral_style = self.theme_btn_neutral if hasattr(self, 'theme_btn_neutral') else styles.get('button_neutral', '')
+
+        # Buttons that use dynamic color logic elsewhere (avoid overriding their state machine)
+        dynamic_btn_names = {
+            'up_but', 'down_but', 'tare_but', 'start_but', 'start_but_2', 'aux_but'
+        }
+
+        for btn in self.findChildren(QtWidgets.QPushButton):
+            name = btn.objectName()
+            if name == 'themeToggleBtn':  # Skip theme toggle special styling already applied
+                continue
+            if name in dynamic_btn_names:
+                # Reapply current state style to include explicit text color enforcement
+                # (Ensure color property is present inside style block for Linux.)
+                current_style = btn.styleSheet() or ''
+                if 'color:' not in current_style:
+                    # Inject color line into first QPushButton block
+                    text_color = '#ffffff' if self.current_theme == 'dark' else '#212121'
+                    # Simple injection: prepend color after opening brace if pattern matches
+                    import re
+                    def inject_color(style: str) -> str:
+                        return re.sub(r'(QPushButton\s*\{)', r"\1\n    color: %s;" % text_color, style, count=1)
+                    updated = inject_color(current_style)
+                    btn.setStyleSheet(updated)
+                continue
+            # For non-dynamic buttons, apply neutral style directly
+            if neutral_style:
+                btn.setStyleSheet(neutral_style)
     
     def _update_theme_button_colors(self, styles: dict):
         """Update button color references for theme compatibility."""
