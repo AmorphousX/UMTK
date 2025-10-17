@@ -54,6 +54,9 @@ class UMTKWindow(QtWidgets.QMainWindow):
             self.dot_color = "red"
             self.ui.cat_2.setPixmap(QtGui.QPixmap(resource_path("img/cat_1k.png")))
 
+        # Now rescale cat image (after pixmap is set) to avoid initial stretch
+        QtCore.QTimer.singleShot(0, self._rescale_cat_image)
+
         # Graph setup
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
@@ -120,14 +123,15 @@ class UMTKWindow(QtWidgets.QMainWindow):
         # Fix initial layout issues (filename box squished at startup)
         # Trigger resize event simulation to activate the existing dynamic sizing system
         QtCore.QTimer.singleShot(50, self._simulate_resize_for_initial_layout)
-
-    # Cache last button and voltage states for theme restyling
-    self._btn_state_bt_up = False
-    self._btn_state_bt_down = False
-    self._btn_state_bt_tare = False
-    self._btn_state_bt_start = False
-    self._btn_state_bt_aux = False
-    self._last_v_mot = None
+        # Capture initial sizes after UI settles for later consistency checks
+        QtCore.QTimer.singleShot(120, self._capture_initial_sizes)
+        # Cache last button and voltage states for theme restyling
+        self._btn_state_bt_up = False
+        self._btn_state_bt_down = False
+        self._btn_state_bt_tare = False
+        self._btn_state_bt_start = False
+        self._btn_state_bt_aux = False
+        self._last_v_mot = None
 
     def _setup_large_fonts(self):
         """Setup dynamic font sizing for numeric displays."""
@@ -180,6 +184,8 @@ class UMTKWindow(QtWidgets.QMainWindow):
         QtCore.QTimer.singleShot(50, self._update_dynamic_fonts)
         # Also adjust graph layout for better title display on smaller screens
         QtCore.QTimer.singleShot(100, self._adjust_graph_layout)
+        # Rescale cat image smoothly preserving aspect ratio
+        QtCore.QTimer.singleShot(20, self._rescale_cat_image)
 
     def _simulate_resize_for_initial_layout(self):
         """Fix initial layout issues by simulating a resize event to trigger dynamic sizing."""
@@ -489,19 +495,16 @@ class UMTKWindow(QtWidgets.QMainWindow):
         else:
             self.ui.changeDirection_inLine.setText("INVALID")
 
-    # Cache states for theme refresh
-    self._btn_state_bt_up = bool(bt_up)
-    self._btn_state_bt_down = bool(bt_down)
-    self._btn_state_bt_tare = bool(bt_tare)
-    self._btn_state_bt_start = bool(bt_start)
-    self._btn_state_bt_aux = bool(bt_aux)
-    self._last_v_mot = v_mot
-    self._apply_button_status_styles()
-        # eStop_display retains its existing visual behavior
-        # eStop styling applied within _apply_button_status_styles for consistency
-
+        # Cache states for theme refresh
+        self._btn_state_bt_up = bool(bt_up)
+        self._btn_state_bt_down = bool(bt_down)
+        self._btn_state_bt_tare = bool(bt_tare)
+        self._btn_state_bt_start = bool(bt_start)
+        self._btn_state_bt_aux = bool(bt_aux)
+        self._last_v_mot = v_mot
+        self._apply_button_status_styles()
+        # Graph update or reset on TARE
         if state == 8:  # TARE
-            # Removed rotation on TARE; only reset graph data
             self.logic.reset_graph_data()
         else:
             self.logic.append_point(position, load)
@@ -682,6 +685,10 @@ class UMTKWindow(QtWidgets.QMainWindow):
                 self.figure.canvas.draw()
             # Reapply dynamic button styles to ensure text color/background update
             self._apply_button_status_styles()
+            # Rescale cat image after theme swap (image source changed)
+            self._rescale_cat_image()
+            # Restore initial sizes if theme switch caused unintended growth/shrink
+            self._restore_initial_sizes_if_needed()
 
     def _apply_button_status_styles(self):
         """Reapply styles for interactive buttons and eStop after theme or state changes."""
@@ -696,6 +703,58 @@ class UMTKWindow(QtWidgets.QMainWindow):
             self.ui.eStop_display.setStyleSheet(self.theme_btn_red)
         else:
             self.ui.eStop_display.setStyleSheet("")
+
+    def _rescale_cat_image(self):
+        """Rescale top-right cat image preserving aspect ratio to its QLabel size."""
+        try:
+            if not hasattr(self.ui, 'cat_2'):
+                return
+            label = self.ui.cat_2
+            pixmap = label.pixmap()
+            if pixmap is None:
+                return
+            target_size = label.size()
+            if target_size.width() <= 0 or target_size.height() <= 0:
+                return
+            scaled = pixmap.scaled(target_size, QtCore.Qt.AspectRatioMode.KeepAspectRatio, QtCore.Qt.TransformationMode.SmoothTransformation)
+            label.setPixmap(scaled)
+        except Exception as e:
+            print(f"Warning: could not rescale cat image: {e}")
+
+    def _capture_initial_sizes(self):
+        """Store initial window and cat image label sizes for later consistency enforcement."""
+        try:
+            self._initial_window_size = self.size()
+            if hasattr(self.ui, 'cat_2'):
+                self._initial_cat_label_size = self.ui.cat_2.size()
+        except Exception:
+            self._initial_window_size = None
+            self._initial_cat_label_size = None
+
+    def _restore_initial_sizes_if_needed(self):
+        """If theme switch altered startup sizes significantly, restore them to initial captured values."""
+        try:
+            # Only act if we have captured sizes and size changed > 5% in either dimension
+            if hasattr(self, '_initial_window_size') and self._initial_window_size is not None:
+                current = self.size()
+                iw = self._initial_window_size
+                if current.width() and iw.width():
+                    dw = abs(current.width() - iw.width()) / iw.width()
+                    dh = abs(current.height() - iw.height()) / iw.height()
+                    if dw > 0.05 or dh > 0.05:
+                        self.resize(iw)
+            if hasattr(self, '_initial_cat_label_size') and self._initial_cat_label_size is not None and hasattr(self.ui, 'cat_2'):
+                label = self.ui.cat_2
+                cs = label.size()
+                init_cs = self._initial_cat_label_size
+                if init_cs.width() and cs.width():
+                    dw = abs(cs.width() - init_cs.width()) / init_cs.width()
+                    dh = abs(cs.height() - init_cs.height()) / init_cs.height()
+                    if dw > 0.1 or dh > 0.1:  # More tolerant threshold for label
+                        label.resize(init_cs)
+                        self._rescale_cat_image()
+        except Exception as e:
+            print(f"Warning: could not restore initial sizes: {e}")
     
     def apply_theme(self, theme_name: str):
         """Apply the specified theme to all UI elements."""
