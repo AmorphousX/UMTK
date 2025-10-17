@@ -32,12 +32,14 @@ class UMTKLogic:
             log_dir = str(Path.home().joinpath("UMTK_runs"))
         self.log_dir = log_dir
         os.makedirs(self.log_dir, exist_ok=True)
-        self.log_file = self._start_new_log()
+        # Defer log file creation until user presses Record
+        self.log_file = None
 
     # ---------------- Logging -----------------
     def _start_new_log(self):
-        timestamp = datetime.now().strftime("%Y-%m-%d %H-%M-%S.%f")[:-3]
-        log_file_path = os.path.join(self.log_dir, f"UMTK_run_{timestamp}.csv")
+        # Unified default filename pattern (matches GUI): UMTK_MM-DD_HH-MM-SS.csv
+        timestamp = datetime.now().strftime("%m-%d_%H-%M-%S")
+        log_file_path = os.path.join(self.log_dir, f"UMTK_{timestamp}.csv")
         log_file = open(log_file_path, "w", newline='')
         csv_writer = csv.writer(log_file)
         csv_writer.writerow([
@@ -83,7 +85,18 @@ class UMTKLogic:
 
     def command_tare(self):
         self.write(b'Tare\n')
-        self._rotate_log()
+        # Removed automatic rotation on TARE; rotation now only occurs explicitly on stop
+        # Add TARE marker to log for event trace
+        if self.is_recording and self.log_file:
+            try:
+                csv_writer = csv.writer(self.log_file)
+                tare_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                csv_writer.writerow([])  # separation
+                csv_writer.writerow([f"=== TARE EXECUTED: {tare_timestamp} ===", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])  # match column count
+                csv_writer.writerow([])
+                self.log_file.flush()
+            except Exception:
+                pass  # Fail silently if logging unavailable
 
     def command_set_speed(self, value: float):
         self.write(f'V {value}\n'.encode())
@@ -123,17 +136,8 @@ class UMTKLogic:
 
     # --------------- Helpers -------------------
     def _rotate_log(self):
-        if self.log_file:
-            # Add end marker to CSV
-            if self.log_file:
-                csv_writer = csv.writer(self.log_file)
-                pause_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                csv_writer.writerow([])  # Empty row for separation
-                csv_writer.writerow([f"=== RECORDING STOPPED: {pause_timestamp} ===", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
-                csv_writer.writerow([])  # Empty row for separation
-                self.log_file.flush()  # Ensure immediate write
-            self.log_file.close()
-        self.log_file = self._start_new_log()
+        # Deprecated: rotation disabled. Kept for backward compatibility; does nothing now.
+        pass
 
     # --------------- Recording Control -------------
     def start_recording(self, filename: str | None = None):
@@ -181,8 +185,17 @@ class UMTKLogic:
             self.current_filename_override = safe_name
             print(f"Recording to: {log_file_path} {'(appended)' if file_exists else '(new file)'}")
         else:
-            # Rotate to a new timestamped file
-            self._rotate_log()
+            # Do NOT rotate on start. Use existing log file and add a session marker.
+            if self.log_file is None:
+                # Create a new default file now (first recording)
+                self.log_file = self._start_new_log()
+            else:
+                csv_writer = csv.writer(self.log_file)
+                session_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                csv_writer.writerow([])  # Empty row for separation
+                csv_writer.writerow([f"=== NEW RECORDING SESSION STARTED: {session_timestamp} ===", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
+                csv_writer.writerow([])  # Empty row for separation
+                self.log_file.flush()  # Ensure immediate write
             self.current_filename_override = None
         import time
         self.is_recording = True
@@ -224,15 +237,21 @@ class UMTKLogic:
                 csv_writer.writerow([])  # Empty row for separation
                 self.log_file.flush()  # Ensure immediate write
 
-    def stop_recording(self, start_new: bool = True):
+    def stop_recording(self, start_new: bool = True):  # start_new retained for API compatibility
         self.is_recording = False
         self.is_paused = False
         self.record_start_time = None
         self.pause_accumulated = 0.0
         self.pause_started = None
         self.current_filename_override = None
-        if start_new:
-            self._rotate_log()
+        # Write stop marker into existing file (no rotation)
+        if self.log_file:
+            csv_writer = csv.writer(self.log_file)
+            stop_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            csv_writer.writerow([])
+            csv_writer.writerow([f"=== RECORDING STOPPED: {stop_timestamp} ===", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
+            csv_writer.writerow([])
+            self.log_file.flush()
 
     def elapsed_recording_time(self) -> float:
         import time
