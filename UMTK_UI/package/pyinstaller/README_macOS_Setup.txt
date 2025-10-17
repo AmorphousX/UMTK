@@ -8,28 +8,34 @@ to protect your computer. This is normal behavior, but it means you need to
 take one extra step before the app will work properly.
 
 ================================================================================
-What You'll See
-================================================================================
-
-When you first try to run the UMTK GUI app, you might see one of these messages:
-• "UMTK GUI cannot be opened because it is from an unidentified developer"
-• "UMTK GUI cannot be opened because Apple cannot check it for malicious software"
-• The app might not start at all, or crash immediately
-
-================================================================================
 Running App for the First Time
 ================================================================================
 
 1. RIGHT-CLICK (or Control-click) on the UMTK GUI app
-2. Select "Open" from the menu
-3. If a warning appears, click "Open" again to confirm
-4. macOS will remember your choice and allow the app to run in the future
-
-NOTE: This alternative method doesn't always work for all apps, so the 
-Terminal method above is more reliable.
+2. Hold "Shift" Key and Select "Open" from the menu
+3. If a warning appears that reads "umtk-ui not opened ..." and there is not a "Open Anyway" Button
+4. Click "Done" and follow steps below
 
 ================================================================================
-Alternative Method (If first method does not work)
+Allow umtk-ui In Gatekeeper
+================================================================================
+
+If you have attempted to run umtk-ui and is unsuccessful.
+
+Go to your mac's "Settings" App and search for "Gatekeeper"
+There should be a entry in the settings app with a messages that reads like:
+
+"umtk-ui" was blocked to protect your Mac. 
+
+Click the "Open Anyway" button.
+You will see a popup, with a "Open Anyway" button. Click "Open Anyway"
+
+The UMTK UI app will now start.
+Your mac will remember this setting and nolonger block umtk-ui in the future.
+
+
+================================================================================
+Alternative Method using Terminal
 ================================================================================
 
 STEP 1: Find the Terminal App
