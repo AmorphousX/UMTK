@@ -121,6 +121,14 @@ class UMTKWindow(QtWidgets.QMainWindow):
         # Trigger resize event simulation to activate the existing dynamic sizing system
         QtCore.QTimer.singleShot(50, self._simulate_resize_for_initial_layout)
 
+    # Cache last button and voltage states for theme restyling
+    self._btn_state_bt_up = False
+    self._btn_state_bt_down = False
+    self._btn_state_bt_tare = False
+    self._btn_state_bt_start = False
+    self._btn_state_bt_aux = False
+    self._last_v_mot = None
+
     def _setup_large_fonts(self):
         """Setup dynamic font sizing for numeric displays."""
         # Store references to large displays for dynamic sizing
@@ -481,16 +489,16 @@ class UMTKWindow(QtWidgets.QMainWindow):
         else:
             self.ui.changeDirection_inLine.setText("INVALID")
 
-        self.ui.down_but.setStyleSheet(self.theme_btn_green if bt_up else self.theme_btn_red)
-        self.ui.up_but.setStyleSheet(self.theme_btn_green if bt_down else self.theme_btn_red)
-        self.ui.tare_but.setStyleSheet(self.theme_btn_green if bt_tare else self.theme_btn_red)
-        self.ui.start_but.setStyleSheet(self.theme_btn_green if bt_start else self.theme_btn_red)
-        self.ui.aux_but.setStyleSheet(self.theme_btn_green if bt_aux else self.theme_btn_red)
+    # Cache states for theme refresh
+    self._btn_state_bt_up = bool(bt_up)
+    self._btn_state_bt_down = bool(bt_down)
+    self._btn_state_bt_tare = bool(bt_tare)
+    self._btn_state_bt_start = bool(bt_start)
+    self._btn_state_bt_aux = bool(bt_aux)
+    self._last_v_mot = v_mot
+    self._apply_button_status_styles()
         # eStop_display retains its existing visual behavior
-        if v_mot < 8:
-            self.ui.eStop_display.setStyleSheet(self.theme_btn_red)
-        else:
-            self.ui.eStop_display.setStyleSheet("")
+        # eStop styling applied within _apply_button_status_styles for consistency
 
         if state == 8:  # TARE
             # Removed rotation on TARE; only reset graph data
@@ -672,6 +680,22 @@ class UMTKWindow(QtWidgets.QMainWindow):
                 # Update graph background and styling
                 self._update_graph_theme()
                 self.figure.canvas.draw()
+            # Reapply dynamic button styles to ensure text color/background update
+            self._apply_button_status_styles()
+
+    def _apply_button_status_styles(self):
+        """Reapply styles for interactive buttons and eStop after theme or state changes."""
+        # Use cached states (set in _process_serial_data)
+        self.ui.down_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_up else self.theme_btn_red)
+        self.ui.up_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_down else self.theme_btn_red)
+        self.ui.tare_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_tare else self.theme_btn_red)
+        self.ui.start_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_start else self.theme_btn_red)
+        self.ui.aux_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_aux else self.theme_btn_red)
+        # eStop
+        if self._last_v_mot is not None and self._last_v_mot < 8:
+            self.ui.eStop_display.setStyleSheet(self.theme_btn_red)
+        else:
+            self.ui.eStop_display.setStyleSheet("")
     
     def apply_theme(self, theme_name: str):
         """Apply the specified theme to all UI elements."""
