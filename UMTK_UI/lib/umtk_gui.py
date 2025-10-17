@@ -133,6 +133,25 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self._btn_state_bt_aux = False
         self._last_v_mot = None
 
+        # Normalize Run Control button heights & force theme style pass after layouts settle
+        # Some platforms inflate QPushButton height until a style is reapplied (theme toggle). We simulate that.
+        QtCore.QTimer.singleShot(150, self._normalize_run_control_buttons)
+        QtCore.QTimer.singleShot(160, lambda: self.apply_theme(self.current_theme))  # reapply same theme
+
+    def _normalize_run_control_buttons(self):
+        """Ensure start_but_2 and stop_but heights match intended reduced size, preventing collision."""
+        try:
+            if hasattr(self.ui, 'start_but_2'):
+                self.ui.start_but_2.setMinimumHeight(28)
+                self.ui.start_but_2.setMaximumHeight(32)
+            if hasattr(self.ui, 'stop_but'):
+                self.ui.stop_but.setMinimumHeight(28)
+                self.ui.stop_but.setMaximumHeight(32)
+            # Re-apply button status styles so neutral styling sticks after sizing
+            self._apply_button_status_styles()
+        except Exception as e:
+            print(f"Warning: could not normalize run control buttons: {e}")
+
     def _setup_large_fonts(self):
         """Setup dynamic font sizing for numeric displays."""
         # Store references to large displays for dynamic sizing
@@ -697,6 +716,9 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self.ui.up_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_down else self.theme_btn_red)
         self.ui.tare_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_tare else self.theme_btn_red)
         self.ui.start_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_start else self.theme_btn_red)
+        # start_but_2 now neutral like stop_but (non-dynamic)
+        if hasattr(self.ui, 'start_but_2'):
+            self.ui.start_but_2.setStyleSheet(self.theme_btn_neutral)
         self.ui.aux_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_aux else self.theme_btn_red)
         # eStop
         if self._last_v_mot is not None and self._last_v_mot < 8:
@@ -852,7 +874,7 @@ class UMTKWindow(QtWidgets.QMainWindow):
 
         # Buttons that use dynamic color logic elsewhere (avoid overriding their state machine)
         dynamic_btn_names = {
-            'up_but', 'down_but', 'tare_but', 'start_but', 'start_but_2', 'aux_but'
+            'up_but', 'down_but', 'tare_but', 'start_but', 'aux_but'  # start_but_2 removed (neutral)
         }
 
         for btn in self.findChildren(QtWidgets.QPushButton):

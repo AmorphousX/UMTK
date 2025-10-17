@@ -202,6 +202,7 @@ class Ui_MainWindow(object):
 
                 self.start_but_2 = QtWidgets.QPushButton(parent=self.centralwidget)
                 self.start_but_2.setObjectName("start_but_2")
+                # Use same reduced-height style as other vertical group buttons
                 self.start_but_2.setMinimumHeight(28)  # Reduced from 40 to 28
                 self.dirCol.addWidget(self.start_but_2)
                 self.stop_but = QtWidgets.QPushButton(parent=self.centralwidget)
