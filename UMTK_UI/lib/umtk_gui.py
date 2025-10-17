@@ -712,8 +712,8 @@ class UMTKWindow(QtWidgets.QMainWindow):
     def _apply_button_status_styles(self):
         """Reapply styles for interactive buttons and eStop after theme or state changes."""
         # Use cached states (set in _process_serial_data)
-        self.ui.down_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_up else self.theme_btn_red)
-        self.ui.up_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_down else self.theme_btn_red)
+        self.ui.up_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_up else self.theme_btn_red)
+        self.ui.down_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_down else self.theme_btn_red)
         self.ui.tare_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_tare else self.theme_btn_red)
         self.ui.start_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_start else self.theme_btn_red)
         # start_but_2 now neutral like stop_but (non-dynamic)
