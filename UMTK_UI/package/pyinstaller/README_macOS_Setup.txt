@@ -2,8 +2,6 @@
                       UMTK GUI - macOS Setup Instructions
 ================================================================================
 
-IMPORTANT: Removing Security Restrictions
-
 When you download the UMTK GUI application from the internet (including from 
 GitHub releases), macOS automatically adds a security flag called "quarantine" 
 to protect your computer. This is normal behavior, but it means you need to 
@@ -19,10 +17,20 @@ When you first try to run the UMTK GUI app, you might see one of these messages:
 • The app might not start at all, or crash immediately
 
 ================================================================================
-Step-by-Step Solution
+Running App for the First Time
 ================================================================================
 
-Don't worry! This is easy to fix. Follow these steps:
+1. RIGHT-CLICK (or Control-click) on the UMTK GUI app
+2. Select "Open" from the menu
+3. If a warning appears, click "Open" again to confirm
+4. macOS will remember your choice and allow the app to run in the future
+
+NOTE: This alternative method doesn't always work for all apps, so the 
+Terminal method above is more reliable.
+
+================================================================================
+Alternative Method (If first method does not work)
+================================================================================
 
 STEP 1: Find the Terminal App
 -----------------------------
@@ -61,19 +69,6 @@ STEP 4: Try Running the App Again
 2. Double-click on the UMTK GUI app
 3. It should now start normally!
 
-================================================================================
-Alternative Method (If You're Not Comfortable with Terminal)
-================================================================================
-
-If you prefer not to use the Terminal, you can try this approach:
-
-1. RIGHT-CLICK (or Control-click) on the UMTK GUI app
-2. Select "Open" from the menu
-3. If a warning appears, click "Open" again to confirm
-4. macOS will remember your choice and allow the app to run in the future
-
-NOTE: This alternative method doesn't always work for all apps, so the 
-Terminal method above is more reliable.
 
 ================================================================================
 Why Does This Happen?
