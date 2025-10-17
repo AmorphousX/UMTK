@@ -22,16 +22,14 @@ Allow umtk-ui In Gatekeeper
 
 If you have attempted to run umtk-ui and is unsuccessful.
 
-Go to your mac's "Settings" App and search for "Gatekeeper"
-There should be a entry in the settings app with a messages that reads like:
-
-"umtk-ui" was blocked to protect your Mac. 
-
-Click the "Open Anyway" button.
-You will see a popup, with a "Open Anyway" button. Click "Open Anyway"
-
-The UMTK UI app will now start.
-Your mac will remember this setting and nolonger block umtk-ui in the future.
+1. Go to your mac's "Settings" App and search for "Gatekeeper"
+2. There should be a entry in the settings app with a messages that reads like:
+   "umtk-ui" was blocked to protect your Mac. 
+   Click the "Open Anyway" button.
+3. You will see a popup, with a "Open Anyway" button. Click "Open Anyway"
+4. You will be asked to authorize this action by supplying your password, this is safe to do.
+5. The UMTK UI app will now start.
+6. Your mac will remember this setting and nolonger block umtk-ui in the future.
 
 
 ================================================================================
@@ -87,25 +85,6 @@ going through Apple's approval process), macOS treats it as "unknown" software.
 
 The app is completely safe to use - removing the quarantine flag simply tells 
 macOS that you trust this particular application.
-
-================================================================================
-Need Help?
-================================================================================
-
-If you're still having trouble:
-
-1. DOUBLE-CHECK THE APP NAME: Make sure you're using the exact filename in 
-   the Terminal command
-2. CHECK THE LOCATION: Ensure you're in the right folder where the app is located
-3. TRY THE ALTERNATIVE METHOD: Use the right-click → Open approach described above
-
-If you continue to have issues, please reach out to the UMTK development team 
-with details about:
-• Your macOS version (Apple menu → About This Mac)
-• The exact error message you're seeing
-• Where you downloaded the app from
-
-================================================================================
 
 This security restriction only applies to apps downloaded from the internet. 
 If you build the UMTK GUI yourself from source code, you won't encounter 
