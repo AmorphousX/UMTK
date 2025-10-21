@@ -415,47 +415,30 @@ class ThemeManager:
         if style_key in styles:
             widget.setStyleSheet(styles[style_key])
     
-    def get_amp_alert_styles(self, theme_name: str) -> dict:
-        """Get amp alert specific styles for the theme."""
+    def get_amp_alert_styles(self, theme_name: str, opacity: float = 0.0) -> str:
+        """Get amp alert style for the theme with specified opacity."""
         if theme_name == "dark":
-            return {
-                "normal": """
-                    QLabel {{
-                        color: white;
-                        font-size: 64pt;
-                        font-weight: bold;
-                        background-color: transparent;
-                    }}
-                """,
-                "alert": """
-                    QLabel {{
-                        color: white;
-                        font-size: 64pt;
-                        font-weight: bold;
-                        background-color: rgba(244, 67, 54, {opacity});
-                        border-radius: 8px;
-                        padding: 4px;
-                    }}
-                """
-            }
+            text_color = "#ffffff"
         else:  # light theme
-            return {
-                "normal": """
-                    QLabel {{
-                        color: #212121;
-                        font-size: 64pt;
-                        font-weight: bold;
-                        background-color: transparent;
-                    }}
-                """,
-                "alert": """
-                    QLabel {{
-                        color: white;
-                        font-size: 64pt;
-                        font-weight: bold;
-                        background-color: rgba(244, 67, 54, {opacity});
-                        border-radius: 8px;
-                        padding: 4px;
-                    }}
-                """
-            }
+            text_color = "#212121"
+            
+        if opacity > 0:
+            return f"""
+                QLabel {{
+                    color: {text_color};
+                    font-weight: bold;
+                    background-color: rgba(244, 67, 54, {opacity});
+                    border-radius: 8px;
+                    padding: 4px;
+                }}
+            """
+        else:
+            return f"""
+                QLabel {{
+                    color: {text_color};
+                    font-weight: bold;
+                    background-color: transparent;
+                    border-radius: 8px;
+                    padding: 4px;
+                }}
+            """

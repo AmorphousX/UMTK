@@ -653,13 +653,9 @@ class UMTKWindow(QtWidgets.QMainWindow):
         """Clear the amp alert highlighting after timeout."""
         self._amp_alert_active = False
         self._amp_opacity = 0.0
-        self.ui.motorCurrent_display.setStyleSheet("""
-                QLabel {
-                    font-size: 64pt;
-                    font-weight: bold;
-                    color: white;
-                }
-            """)
+        # Use themed normal styling instead of hardcoded
+        style = self.get_themed_amp_alert_style(0.0)
+        self.ui.motorCurrent_display.setStyleSheet(style)
 
     # Property for animation system
     def get_amp_opacity(self):
@@ -908,11 +904,7 @@ class UMTKWindow(QtWidgets.QMainWindow):
     
     def get_themed_amp_alert_style(self, opacity: float) -> str:
         """Get the amp alert style for the current theme."""
-        amp_styles = self.theme_manager.get_amp_alert_styles(self.current_theme)
-        if opacity > 0:
-            return amp_styles["alert"].format(opacity=opacity)
-        else:
-            return amp_styles["normal"]
+        return self.theme_manager.get_amp_alert_styles(self.current_theme, opacity)
     
     def _update_graph_theme(self):
         """Update the graph styling to match the current theme."""
