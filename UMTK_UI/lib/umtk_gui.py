@@ -893,7 +893,7 @@ class UMTKWindow(QtWidgets.QMainWindow):
         if self._last_v_mot is not None and self._last_v_mot < 8:
             self.ui.eStop_display.setStyleSheet(self.theme_btn_red)
         else:
-            self.ui.eStop_display.setStyleSheet("")
+            self.ui.eStop_display.setStyleSheet(self.theme_btn_neutral)
 
     def _rescale_cat_image(self):
         """Rescale top-right cat image preserving aspect ratio to its QLabel size."""
