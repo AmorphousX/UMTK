@@ -426,7 +426,6 @@ class ThemeManager:
             return f"""
                 QLabel {{
                     color: {text_color};
-                    font-weight: bold;
                     background-color: rgba(244, 67, 54, {opacity});
                     border-radius: 8px;
                     padding: 4px;
@@ -436,7 +435,6 @@ class ThemeManager:
             return f"""
                 QLabel {{
                     color: {text_color};
-                    font-weight: bold;
                     background-color: transparent;
                     border-radius: 8px;
                     padding: 4px;

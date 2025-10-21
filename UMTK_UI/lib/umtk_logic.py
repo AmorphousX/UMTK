@@ -61,8 +61,8 @@ class UMTKLogic:
     def init_ports(self, show_all: bool = False):
         return self.UMTKSerial.rescan_serial_ports(show_all=show_all)
 
-    def rescan_ports(self, show_all: bool = False):
-        return self.UMTKSerial.rescan_serial_ports(show_all=show_all)
+    def rescan_ports(self, show_all: bool = False, debug: bool = False):
+        return self.UMTKSerial.rescan_serial_ports(show_all=show_all, debug=debug)
 
     def connect(self, port: str):
         self.UMTKSerial.connect(port)
@@ -244,7 +244,7 @@ class UMTKLogic:
         self.pause_accumulated = 0.0
         self.pause_started = None
         self.current_filename_override = None
-        # Write stop marker into existing file (no rotation)
+        # Write stop marker into existing file and close it properly
         if self.log_file:
             csv_writer = csv.writer(self.log_file)
             stop_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -252,6 +252,9 @@ class UMTKLogic:
             csv_writer.writerow([f"=== RECORDING STOPPED: {stop_timestamp} ===", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
             csv_writer.writerow([])
             self.log_file.flush()
+            # Properly close the file and release the handle
+            self.log_file.close()
+            self.log_file = None
 
     def elapsed_recording_time(self) -> float:
         import time
@@ -264,8 +267,12 @@ class UMTKLogic:
         return base - self.pause_accumulated
 
     def close(self):
+        """Close any open file handles and clean up resources."""
         if self.log_file:
-            self.log_file.close()
+            try:
+                self.log_file.close()
+            except Exception:
+                pass  # File might already be closed
             self.log_file = None
 
     # --------------- Mapping -------------------

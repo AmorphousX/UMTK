@@ -35,11 +35,20 @@ class UMTKWindow(QtWidgets.QMainWindow):
         # Initialize amp alert opacity (needed for theme application)
         self._amp_opacity = 0.0  # Current background opacity (0.0 to 1.0)
         
+        # Track if this is the initial theme application
+        self._initial_theme_applied = False
+        
         self.ui = UMTK_MainWindow()
         self.ui.setupUi(self)
 
         # Connect theme toggle button
         self.ui.themeToggleBtn.clicked.connect(self.toggle_theme)
+
+        # Set reasonable initial window size before applying theme
+        self.resize(1200, 800)  # Set a reasonable default size
+        
+        # Set minimum window size to prevent UI elements from overlapping
+        self.setMinimumSize(QtCore.QSize(1100, 750))  # Further increased minimum size to prevent clipping
 
         # Apply initial theme
         self.apply_theme(self.current_theme)
@@ -160,7 +169,7 @@ class UMTKWindow(QtWidgets.QMainWindow):
             self.ui.speedLCD,
             self.ui.forceLCD,
             self.ui.maxForceLCD,
-            self.ui.motorCurrent_display
+            self.ui.motorCurrent_display  # Included for dynamic font sizing
         ]
         
         for display in self.large_displays:
@@ -169,8 +178,31 @@ class UMTKWindow(QtWidgets.QMainWindow):
             display.setMaximumSize(16777215, 16777215)
             display.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         
+        # Setup dynamic font sizing for control buttons
+        self.control_buttons = [
+            self.ui.up_but,
+            self.ui.down_but,
+            self.ui.tare_but,
+            self.ui.start_but,
+            self.ui.aux_but,
+            self.ui.stop_but,
+            self.ui.start_but_2,
+            # Recording control buttons
+            self.ui.file_browse_btn,
+            self.ui.record_toggle_btn,
+            self.ui.record_stop_btn
+        ]
+        
+        # Set minimum sizes for control buttons to ensure text visibility
+        for button in self.control_buttons:
+            # Set minimum size that can comfortably display text (increased from original)
+            button.setMinimumSize(QtCore.QSize(65, 30))
+            # Allow buttons to expand but maintain readability
+            button.setSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        
         # Apply initial dynamic font sizing
         self._update_dynamic_fonts()
+        self._update_button_fonts()
         
         # Apply theme-appropriate styling for large displays
         self._apply_large_display_theme()
@@ -179,28 +211,91 @@ class UMTKWindow(QtWidgets.QMainWindow):
 
     def _update_dynamic_fonts(self):
         """Update font sizes based on current widget sizes."""
-        for display in getattr(self, 'large_displays', []):
-            if display.isVisible():
-                # Calculate font size based on widget height
-                widget_height = display.height()
-                # Use approximately 50% of the widget height for font size to prevent overflow
-                # Lower minimum to 8pt to handle very small windows, max 80pt
-                font_size = max(8, min(80, int(widget_height * 0.5)))
-                
-                # If widget is very small (less than 30px), use even smaller font
-                if widget_height < 30:
-                    font_size = max(6, int(widget_height * 0.4))
-                
-                font = QtGui.QFont()
-                font.setPointSize(font_size)
-                font.setBold(True)
-                display.setFont(font)
+        # Calculate a consistent font size for all displays based on the minimum height
+        visible_displays = [display for display in getattr(self, 'large_displays', []) if display.isVisible()]
+        
+        if not visible_displays:
+            return
+            
+        # Use the minimum height among all visible displays to ensure consistent sizing
+        min_height = min(display.height() for display in visible_displays)
+        
+        # Calculate font size based on minimum height
+        # Use approximately 50% of the widget height for font size to prevent overflow
+        # Lower minimum to 8pt to handle very small windows, max 80pt
+        font_size = max(8, min(80, int(min_height * 0.5)))
+        
+        # If widgets are very small (less than 30px), use even smaller font
+        if min_height < 30:
+            font_size = max(6, int(min_height * 0.4))
+        
+        # Apply the same font size to all displays
+        font = QtGui.QFont()
+        font.setPointSize(font_size)
+        font.setBold(True)
+        
+        for display in visible_displays:
+            display.setFont(font)
+
+    def _update_button_fonts(self):
+        """Update font sizes for control buttons based on current button sizes."""
+        visible_buttons = [button for button in getattr(self, 'control_buttons', []) if button.isVisible()]
+        
+        if not visible_buttons:
+            return
+        
+        # Calculate a consistent font size for all buttons based on the minimum constraining dimension
+        min_dimensions = []
+        for button in visible_buttons:
+            button_height = button.height()
+            button_width = button.width()
+            # Use the smaller dimension to ensure text fits in both directions
+            min_dimension = min(button_height, button_width // 3)  # Width divided by 3 for text aspect ratio
+            min_dimensions.append(min_dimension)
+        
+        # Use the minimum constraining dimension among all buttons to ensure consistent sizing
+        overall_min_dimension = min(min_dimensions)
+        
+        # Calculate font size based on the minimum dimension
+        # More aggressive font sizing - use 40% of the constraining dimension
+        # Minimum 8pt to ensure readability, maximum 14pt for buttons
+        font_size = max(8, min(14, int(overall_min_dimension * 0.4)))
+        
+        # For very small buttons, ensure we don't go below readable size
+        if overall_min_dimension < 20:
+            font_size = 8  # Force minimum readable size
+        
+        # Apply the same font size to all buttons
+        font = QtGui.QFont()
+        font.setPointSize(font_size)
+        font.setBold(True)
+        
+        for button in visible_buttons:
+            button.setFont(font)
 
     def resizeEvent(self, event):  # noqa: N802
         """Handle window resize events to update dynamic fonts."""
+        # Enforce minimum size to prevent UI clipping
+        min_size = self.minimumSize()
+        current_size = event.size()
+        
+        if (current_size.width() < min_size.width() or 
+            current_size.height() < min_size.height()):
+            # Force resize to minimum size if window is too small
+            new_width = max(current_size.width(), min_size.width())
+            new_height = max(current_size.height(), min_size.height())
+            self.resize(new_width, new_height)
+            return  # Don't process the original resize event
+        
         super().resizeEvent(event)
         # Update fonts after resize with a small delay to ensure widgets have settled
         QtCore.QTimer.singleShot(50, self._update_dynamic_fonts)
+        QtCore.QTimer.singleShot(50, self._update_button_fonts)
+        
+        # Trigger a fake theme change to fix layout issues after resize
+        # This is similar to the initialization fake theme change but for manual resizes
+        QtCore.QTimer.singleShot(100, lambda: self.apply_theme(self.current_theme))
+        
         # Also adjust graph layout for better title display on smaller screens
         QtCore.QTimer.singleShot(100, self._adjust_graph_layout)
         # Rescale cat image smoothly preserving aspect ratio
@@ -258,6 +353,9 @@ class UMTKWindow(QtWidgets.QMainWindow):
         # Initialize recording button state
         self._update_recording_button_state()
         
+        # Set initial button text for stopped state
+        self.ui.record_toggle_btn.setText("Start New File")
+        
         # Set default filename in the edit box
         self.ui.filename_edit.setText(self._generate_default_filename())
 
@@ -289,6 +387,72 @@ class UMTKWindow(QtWidgets.QMainWindow):
         except Exception:
             pass  # Fail silently, UI will still show filename
         return str(default_dir / base_name)
+    
+    def _is_default_timestamp_filename(self, filename: str) -> bool:
+        """Check if filename follows the default timestamp pattern."""
+        import re
+        # Pattern: UMTK_MM-DD_HH-MM-SS.csv (with optional path)
+        pattern = r"UMTK_\d{2}-\d{2}_\d{2}-\d{2}-\d{2}\.csv$"
+        return bool(re.search(pattern, filename))
+    
+    def _generate_new_recording_filename(self) -> str:
+        """Generate filename for new recording based on current state."""
+        current_filename = self.ui.filename_edit.text().strip()
+        
+        # Scenario 1: Default timestamp filename - generate new timestamp
+        if not current_filename or self._is_default_timestamp_filename(current_filename):
+            return self._generate_default_filename()
+        
+        # Scenario 2: Custom filename - check if it exists first
+        from pathlib import Path
+        current_path = Path(current_filename)
+        
+        # If file doesn't exist, use the current filename as-is
+        if not current_path.exists():
+            return current_filename
+        
+        # File exists, so we need to add or increment suffix
+        return self._add_or_increment_suffix(current_filename)
+    
+    def _add_or_increment_suffix(self, filename: str) -> str:
+        """Add or increment numeric suffix to prevent file collision."""
+        import re
+        from pathlib import Path
+        
+        # Parse filename to separate path, base, extension
+        path_obj = Path(filename)
+        directory = path_obj.parent
+        base_name = path_obj.stem
+        extension = path_obj.suffix or '.csv'  # Default to .csv if no extension
+        
+        # Check if filename already has a numeric suffix pattern _XXX
+        suffix_pattern = r'_(\d{3})$'
+        match = re.search(suffix_pattern, base_name)
+        
+        if match:
+            # Increment existing suffix
+            current_num = int(match.group(1))
+            base_without_suffix = base_name[:match.start()]
+        else:
+            # Add new suffix starting from 001
+            current_num = 0
+            base_without_suffix = base_name
+        
+        # Find next available number
+        while True:
+            current_num += 1
+            new_suffix = f"_{current_num:03d}"
+            new_base = base_without_suffix + new_suffix
+            new_filename = directory / (new_base + extension)
+            
+            # Check if file exists
+            if not new_filename.exists():
+                return str(new_filename)
+            
+            # Safety check to prevent infinite loop
+            if current_num > 999:
+                # Fallback to timestamp-based filename
+                return self._generate_default_filename()
 
 
     def _is_filename_valid(self) -> bool:
@@ -570,6 +734,10 @@ class UMTKWindow(QtWidgets.QMainWindow):
     def _commit_calibrate(self):
         try:
             raw = float(self.ui.calibration_inLine.text())
+            # Convert negative numbers to positive for reference force
+            raw = abs(raw)
+            # Update the input field to show the corrected positive value
+            self.ui.calibration_inLine.setText(str(raw))
             self.logic.command_calibrate(raw)
         except Exception:
             print("Error parsing calibration load")
@@ -604,9 +772,14 @@ class UMTKWindow(QtWidgets.QMainWindow):
     def _toggle_recording(self):
         """Start/pause recording based on current state."""
         if not self.logic.is_recording:
-            # Start recording
-            filename = self.ui.filename_edit.text().strip() or None
-            self.logic.start_recording(filename)
+            # Start recording - generate new filename to avoid blank initial files
+            new_filename = self._generate_new_recording_filename()
+            
+            # Update the filename field to show the new filename
+            self.ui.filename_edit.setText(new_filename)
+            
+            # Start recording with the new filename
+            self.logic.start_recording(new_filename)
             self.ui.recording_status_label.setText("Recording")
             self.ui.record_toggle_btn.setText("Pause")
             self.ui.record_toggle_btn.setIcon(self.style().standardIcon(QtWidgets.QStyle.StandardPixmap.SP_MediaPause))
@@ -632,7 +805,7 @@ class UMTKWindow(QtWidgets.QMainWindow):
         if self.logic.is_recording:
             self.logic.stop_recording(start_new=True)
         self.ui.recording_status_label.setText("Idle")
-        self.ui.record_toggle_btn.setText("Start")
+        self.ui.record_toggle_btn.setText("Start New File")
         self.ui.record_toggle_btn.setIcon(self.style().standardIcon(QtWidgets.QStyle.StandardPixmap.SP_MediaPlay))
         self.ui.record_stop_btn.setEnabled(False)
         self.ui.recording_elapsed_label.setText("00:00")
@@ -702,8 +875,8 @@ class UMTKWindow(QtWidgets.QMainWindow):
             self._apply_button_status_styles()
             # Rescale cat image after theme swap (image source changed)
             self._rescale_cat_image()
-            # Restore initial sizes if theme switch caused unintended growth/shrink
-            self._restore_initial_sizes_if_needed()
+            # Note: Window size preservation is now handled in apply_theme()
+            # self._restore_initial_sizes_if_needed()
 
     def _apply_button_status_styles(self):
         """Reapply styles for interactive buttons and eStop after theme or state changes."""
@@ -776,7 +949,15 @@ class UMTKWindow(QtWidgets.QMainWindow):
     
     def apply_theme(self, theme_name: str):
         """Apply the specified theme to all UI elements."""
+        # Only preserve window size for theme changes after initial setup
+        preserve_size = getattr(self, '_initial_theme_applied', False)
+        current_geometry = self.geometry() if preserve_size else None
+        
         styles = self.theme_manager.get_theme_styles(theme_name)
+        
+        # Temporarily block resize events to prevent flashing (only if preserving size)
+        if preserve_size:
+            self.setUpdatesEnabled(False)
         
         # Apply main window style
         self.setStyleSheet(styles["main_window"])
@@ -798,6 +979,38 @@ class UMTKWindow(QtWidgets.QMainWindow):
 
         # Apply theme to large displays
         self._apply_large_display_theme()
+        
+        # Update button fonts after theme change
+        self._update_button_fonts()
+        
+        # Restore window geometry and re-enable updates (only if preserving size)
+        if preserve_size and current_geometry:
+            # Ensure restored size respects minimum size constraints
+            min_size = self.minimumSize()
+            restored_size = current_geometry.size()
+            
+            # If the restored size is smaller than minimum, adjust it
+            if (restored_size.width() < min_size.width() or 
+                restored_size.height() < min_size.height()):
+                # Use the larger of restored size and minimum size
+                new_width = max(restored_size.width(), min_size.width())
+                new_height = max(restored_size.height(), min_size.height())
+                # Create new geometry with adjusted size but same position
+                adjusted_geometry = QtCore.QRect(
+                    current_geometry.x(), 
+                    current_geometry.y(), 
+                    new_width, 
+                    new_height
+                )
+                self.setGeometry(adjusted_geometry)
+            else:
+                self.setGeometry(current_geometry)
+            self.setUpdatesEnabled(True)
+        elif preserve_size:
+            self.setUpdatesEnabled(True)
+        
+        # Mark that initial theme has been applied
+        self._initial_theme_applied = True
     
     def _apply_large_display_theme(self):
         """Apply theme-appropriate styling to large number displays."""
@@ -813,14 +1026,19 @@ class UMTKWindow(QtWidgets.QMainWindow):
             }}
         """
         
-        # Apply to all large displays
+                # Apply to all large displays (except motorCurrent_display which has special handling)
         for display in getattr(self, 'large_displays', []):
-            # Skip motorCurrent_display if it has amp alert styling
-            if display == self.ui.motorCurrent_display and getattr(self, '_amp_opacity', 0) > 0:
-                continue  # Let amp alert styling take precedence
-            display.setStyleSheet(large_display_style)
+            if display != self.ui.motorCurrent_display:
+                display.setStyleSheet(large_display_style)
         
-        # Update dynamic fonts after theme change
+        # Special handling for motorCurrent_display - always use amp alert styling for consistency
+        if hasattr(self.ui, 'motorCurrent_display'):
+            # Get current opacity state and apply appropriate themed amp alert style
+            current_opacity = getattr(self, '_amp_opacity', 0.0)
+            themed_style = self.get_themed_amp_alert_style(current_opacity)
+            self.ui.motorCurrent_display.setStyleSheet(themed_style)
+        
+        # Update dynamic fonts after theme change (this will apply fonts to all large_displays including motorCurrent_display)
         self._update_dynamic_fonts()
     
     def _apply_theme_to_controls(self, styles: dict):

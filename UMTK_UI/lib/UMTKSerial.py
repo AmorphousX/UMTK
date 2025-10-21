@@ -25,9 +25,40 @@ class UMTKSerial:
         """Check if a serial port is likely a CH340 device."""
         system = platform.system().lower()
         
-        # Windows: Accept all COM ports (CH340 shows up as COM ports)
+        # Windows: Look for CH340/WCH identifiers
         if system == "windows":
-            return port_info.device.startswith("COM")
+            # Only consider COM ports
+            if not port_info.device.startswith("COM"):
+                return False
+            
+            # CH340/WCH identifiers for Windows
+            ch340_patterns = [
+                "ch340",
+                "ch341", 
+                "wch",
+                "1a86:7523",  # Common CH340 USB VID:PID
+                "1a86:7522",  # Another CH340 variant
+                "1a86:5523",  # CH341 variant
+                "qinheng",
+                "usb-serial"
+            ]
+            
+            # Get port information
+            description = getattr(port_info, 'description', '') or ''
+            manufacturer = getattr(port_info, 'manufacturer', '') or ''
+            hwid = getattr(port_info, 'hwid', '') or ''
+            vid = getattr(port_info, 'vid', None)
+            pid = getattr(port_info, 'pid', None)
+            
+            # Check USB VID for WCH (0x1A86)
+            if vid == 0x1A86:
+                return True
+            
+            # Check for pattern matches in description, manufacturer, or hardware ID
+            search_strings = [description.lower(), manufacturer.lower(), hwid.lower()]
+            return any(pattern.lower() in search_str 
+                      for pattern in ch340_patterns 
+                      for search_str in search_strings)
         
         # macOS: Look for CH340 identifiers
         elif system == "darwin":
@@ -75,11 +106,28 @@ class UMTKSerial:
         # Unknown system: show all ports
         return True
 
+    @staticmethod
+    def debug_port_info(port_info):
+        """Debug function to print all available port information."""
+        print(f"=== Port Debug Info ===")
+        print(f"Device: {port_info.device}")
+        print(f"Name: {getattr(port_info, 'name', 'N/A')}")
+        print(f"Description: {getattr(port_info, 'description', 'N/A')}")
+        print(f"Manufacturer: {getattr(port_info, 'manufacturer', 'N/A')}")
+        print(f"Hardware ID: {getattr(port_info, 'hwid', 'N/A')}")
+        print(f"VID: {hex(port_info.vid) if getattr(port_info, 'vid', None) else 'N/A'}")
+        print(f"PID: {hex(port_info.pid) if getattr(port_info, 'pid', None) else 'N/A'}")
+        print(f"Serial Number: {getattr(port_info, 'serial_number', 'N/A')}")
+        print(f"Location: {getattr(port_info, 'location', 'N/A')}")
+        print(f"Interface: {getattr(port_info, 'interface', 'N/A')}")
+        print(f"Product: {getattr(port_info, 'product', 'N/A')}")
+        print(f"======================")
+
     def init_serial(self) -> list:
         self.status = "Disconnected"
         return self.rescan_serial_ports()
 
-    def rescan_serial_ports(self, show_all: bool = None) -> list:
+    def rescan_serial_ports(self, show_all: bool = None, debug: bool = False) -> list:
         """Scan for serial ports, optionally filtering for CH340 devices."""
         if show_all is not None:
             self.show_all_ports = show_all
@@ -89,9 +137,18 @@ class UMTKSerial:
         
         if ports:
             for this_port in ports:
+                # Debug output if requested
+                if debug:
+                    self.debug_port_info(this_port)
+                    print(f"CH340 Detection Result: {self.is_ch340_port(this_port)}")
+                    print("-" * 40)
+                
                 # Apply CH340 filter unless showing all ports
                 if self.show_all_ports or self.is_ch340_port(this_port):
                     self.known_serial_ports.append(this_port.device)
+        
+        # Sort ports in reverse alphabetical order for better device priority
+        self.known_serial_ports.sort(reverse=True)
         
         # If no ports found after filtering, add a helpful message
         if not self.known_serial_ports:
