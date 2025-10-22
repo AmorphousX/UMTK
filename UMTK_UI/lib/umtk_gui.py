@@ -110,8 +110,15 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self.ui.calibration_but.pressed.connect(self._commit_calibrate)
         self.ui.changeDirection_but.clicked.connect(self._toggle_direction)
 
+        # Connect calibration input field to button state validation
+        self.ui.calibration_inLine.textChanged.connect(self._update_calibration_button_state)
+
         # Initial serial population
         self._initialize_serial_port()
+        
+        # Initialize calibration button state (disabled by default)
+        # Use the robust update method that handles both styling and state
+        self._update_calibration_button_state()
         
         # Set Serial Rate to 25Hz
         self.logic.write(b'r20\n')
@@ -123,6 +130,9 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self.rescan_serial_timer.timeout.connect(self._smart_rescan_serial_ports)
         self._update_rescan_interval()  # Set initial interval based on port availability
 
+        # Configure safety monitoring systems (force and current alerts)
+        self._setup_safety_monitoring()
+        
         # Add recording controls to main UI
         self._setup_recording_controls()
         
@@ -141,11 +151,15 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self._btn_state_bt_start = False
         self._btn_state_bt_aux = False
         self._last_v_mot = None
+        self._current_load = 0.0  # Track current load for calibration validation
 
         # Normalize Run Control button heights & force theme style pass after layouts settle
         # Some platforms inflate QPushButton height until a style is reapplied (theme toggle). We simulate that.
         QtCore.QTimer.singleShot(150, self._normalize_run_control_buttons)
         QtCore.QTimer.singleShot(160, lambda: self.apply_theme(self.current_theme))  # reapply same theme
+        
+        # Ensure calibration button starts in proper disabled state after all initialization
+        QtCore.QTimer.singleShot(200, self._update_calibration_button_state)
 
     def _normalize_run_control_buttons(self):
         """Ensure start_but_2 and stop_but heights match intended reduced size, preventing collision."""
@@ -318,17 +332,24 @@ class UMTKWindow(QtWidgets.QMainWindow):
             # Fail silently to avoid disrupting startup
             print(f"Warning: Could not simulate resize for initial layout: {e}")
 
-    def _setup_recording_controls(self):
-        """Wire up the recording controls that are already in the UI design."""
-        # Amp alert configuration with fading background
+    def _setup_safety_monitoring(self):
+        """Configure safety thresholds and alert systems for motor current and force monitoring."""
+        # Motor current alert configuration with fading background
         self.AMP_ALERT_THRESHOLD = 5.0  # Amps; adjust as needed
         self._amp_alert_active = False
         
-        # Animation for fading background
+        # Force alert configuration (immediate on/off, no fading)
+        self.FORCE_ALERT_ON_THRESHOLD = 2050  # Newtons; turn red above this
+        self.FORCE_ALERT_OFF_THRESHOLD = 2000  # Newtons; turn normal below this
+        self._force_alert_active = False
+        
+        # Animation for motor current fading background alert
         self._amp_fade_animation = QtCore.QPropertyAnimation(self, b"amp_opacity")
         self._amp_fade_animation.setDuration(5000)  # 5 seconds fade
         self._amp_fade_animation.finished.connect(self._clear_amp_alert)
-        
+
+    def _setup_recording_controls(self):
+        """Wire up the recording controls that are already in the UI design."""
         # Connect the file browse button
         self.ui.file_browse_btn.clicked.connect(self._browse_output_file)
         
@@ -685,15 +706,32 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self._btn_state_bt_start = bool(bt_start)
         self._btn_state_bt_aux = bool(bt_aux)
         self._last_v_mot = v_mot
+        self._current_load = load  # Store current load for calibration validation
         self._apply_button_status_styles()
+        
+        # Update calibration button state when load changes
+        self._update_calibration_button_state()
+        
+        #Stop machine if force exceeds 2200N while running
+        if state == 0 and abs(load) > 2200:  # RUNNING state and force limit exceeded
+            print(f"Force limit exceeded ({load:.2f}N > 2200N)")
+            self.logic.command_stop()
+            # Could also show a warning dialog or update status
+        
         # Graph update or reset on TARE
         if state == 8:  # TARE
             self.logic.reset_graph_data()
         else:
             self.logic.append_point(position, load)
             self.sp.set_data(self.logic.X, self.logic.Y)
-            self.ax.set_xlim(min(min(self.logic.X), -10), max(max(self.logic.X), 10))
-            self.ax.set_ylim(min(min(self.logic.Y), -10), max(max(self.logic.Y), 10))
+            # Safely set axis limits, handling empty lists
+            if self.logic.X and self.logic.Y:
+                self.ax.set_xlim(min(min(self.logic.X), -10), max(max(self.logic.X), 10))
+                self.ax.set_ylim(min(min(self.logic.Y), -10), max(max(self.logic.Y), 10))
+            else:
+                # Default axis limits when no data is available
+                self.ax.set_xlim(-10, 10)
+                self.ax.set_ylim(-10, 10)
         self.figure.canvas.draw()
 
         motor_amps = (f_amps + b_amps)
@@ -713,7 +751,162 @@ class UMTKWindow(QtWidgets.QMainWindow):
                 self._amp_fade_animation.setEndValue(0.0)
                 self._amp_fade_animation.start()
 
+        # Force alert logic (immediate on/off, no fading)
+        force_abs = abs(load)
+        if force_abs >= self.FORCE_ALERT_ON_THRESHOLD:
+            # Force is above threshold - turn red immediately
+            if not self._force_alert_active:
+                self._force_alert_active = True
+                self._apply_force_alert_style(True)
+        elif force_abs < self.FORCE_ALERT_OFF_THRESHOLD:
+            # Force is below reset threshold - turn back to normal
+            if self._force_alert_active:
+                self._force_alert_active = False
+                self._apply_force_alert_style(False)
+
     # ---------------- Command wrappers ---------------
+    def _validate_calibration_parameters(self, user_input: float, current_load: float) -> tuple[bool, str]:
+        """
+        Validate calibration parameters.
+        
+        Args:
+            user_input: User input value from calibration field
+            current_load: Current measured force from machine
+            
+        Returns:
+            Tuple of (is_valid, error_message)
+        """
+        # Check user input range (500-2000)
+        if user_input < 500:
+            return False, f"Reference force ({user_input}) must be at least 500"
+        if user_input > 2000:
+            return False, f"Reference force ({user_input}) must be below 2000"
+        
+        # Check measured force magnitude (absolute value above 400)
+        if abs(current_load) < 400:
+            return False, f"Measured force ({current_load:.1f}) must have absolute value above 400"
+        
+        return True, ""
+
+    def _update_calibration_button_state(self):
+        """Update the enable/disable state of the calibration button based on parameter validity."""
+        # Always start by disabling the button and applying disabled styling
+        self.ui.calibration_but.setEnabled(False)
+        self._apply_calibration_button_disabled_style()
+        
+        try:
+            # Get user input value
+            input_text = self.ui.calibration_inLine.text().strip()
+            if not input_text:
+                # Empty input - keep disabled
+                self.ui.calibration_but.setToolTip("Enter a reference force value")
+                return
+            
+            # Parse input value
+            user_input = abs(float(input_text))  # Convert to positive like in _commit_calibrate
+            
+            # Validate parameters
+            is_valid, error_message = self._validate_calibration_parameters(user_input, self._current_load)
+            
+            if is_valid:
+                # Only enable if validation passes
+                self.ui.calibration_but.setEnabled(True)
+                self.ui.calibration_but.setToolTip("Calibrate with current values")
+                # Apply neutral style when enabled
+                self._apply_calibration_button_enabled_style()
+            else:
+                # Keep disabled with specific error message
+                self.ui.calibration_but.setToolTip(f"Calibration disabled: {error_message}")
+                # Disabled styling already applied above
+                
+        except (ValueError, TypeError):
+            # Invalid input format - keep disabled
+            self.ui.calibration_but.setToolTip("Enter a valid numeric value")
+            # Disabled styling already applied above
+
+    def _apply_calibration_button_disabled_style(self):
+        """Apply disabled styling to calibration button, with fallback if theme not loaded."""
+        if hasattr(self, 'theme_btn_disabled'):
+            self.ui.calibration_but.setStyleSheet(self.theme_btn_disabled)
+        else:
+            # Fallback disabled styling if theme not loaded yet - detect current theme
+            if self.current_theme == "light":
+                fallback_disabled_style = """
+                    QPushButton {
+                        background-color: #F5F5F5;
+                        border: 2px solid #E0E0E0;
+                        border-radius: 8px;
+                        color: #BDBDBD;
+                        font-weight: bold;
+                        padding: 8px;
+                    }
+                    QPushButton:disabled {
+                        background-color: #F5F5F5;
+                        border: 2px solid #E0E0E0;
+                        color: #BDBDBD;
+                    }
+                """
+            else:  # dark theme
+                fallback_disabled_style = """
+                    QPushButton {
+                        background-color: #3a3a3a;
+                        border: 2px solid #2a2a2a;
+                        border-radius: 8px;
+                        color: #777777;
+                        font-weight: bold;
+                        padding: 8px;
+                    }
+                    QPushButton:disabled {
+                        background-color: #3a3a3a;
+                        border: 2px solid #2a2a2a;
+                        color: #777777;
+                    }
+                """
+            self.ui.calibration_but.setStyleSheet(fallback_disabled_style)
+
+    def _apply_calibration_button_enabled_style(self):
+        """Apply enabled styling to calibration button, with fallback if theme not loaded."""
+        if hasattr(self, 'theme_btn_neutral'):
+            self.ui.calibration_but.setStyleSheet(self.theme_btn_neutral)
+        else:
+            # Fallback neutral styling if theme not loaded yet - detect current theme
+            if self.current_theme == "light":
+                fallback_neutral_style = """
+                    QPushButton {
+                        background-color: #BDBDBD;
+                        border: 2px solid #9E9E9E;
+                        border-radius: 8px;
+                        color: #212121;
+                        font-weight: bold;
+                        padding: 8px;
+                    }
+                    QPushButton:hover {
+                        background-color: #9E9E9E;
+                    }
+                    QPushButton:pressed {
+                        background-color: #757575;
+                        color: white;
+                    }
+                """
+            else:  # dark theme
+                fallback_neutral_style = """
+                    QPushButton {
+                        background-color: #757575;
+                        border: 2px solid #616161;
+                        border-radius: 8px;
+                        color: white;
+                        font-weight: bold;
+                        padding: 8px;
+                    }
+                    QPushButton:hover {
+                        background-color: #616161;
+                    }
+                    QPushButton:pressed {
+                        background-color: #424242;
+                    }
+                """
+            self.ui.calibration_but.setStyleSheet(fallback_neutral_style)
+
     def _increase_speed(self):
         self.logic.command_increase_speed()
 
@@ -736,6 +929,15 @@ class UMTKWindow(QtWidgets.QMainWindow):
             raw = float(self.ui.calibration_inLine.text())
             # Convert negative numbers to positive for reference force
             raw = abs(raw)
+            
+            # Validate calibration parameters
+            is_valid, error_message = self._validate_calibration_parameters(raw, self._current_load)
+            
+            if not is_valid:
+                print(f"Calibration validation failed: {error_message}")
+                # You could also show a dialog or status message to the user here
+                return
+            
             # Update the input field to show the corrected positive value
             self.ui.calibration_inLine.setText(str(raw))
             self.logic.command_calibrate(raw)
@@ -830,6 +1032,16 @@ class UMTKWindow(QtWidgets.QMainWindow):
         style = self.get_themed_amp_alert_style(0.0)
         self.ui.motorCurrent_display.setStyleSheet(style)
 
+    def _apply_force_alert_style(self, is_alert: bool):
+        """Apply force alert styling to the force display."""
+        if is_alert:
+            # Apply red background
+            style = self.get_themed_force_alert_style(True)
+        else:
+            # Apply normal styling
+            style = self.get_themed_force_alert_style(False)
+        self.ui.forceLCD.setStyleSheet(style)
+
     # Property for animation system
     def get_amp_opacity(self):
         return self._amp_opacity
@@ -890,10 +1102,18 @@ class UMTKWindow(QtWidgets.QMainWindow):
             self.ui.start_but_2.setStyleSheet(self.theme_btn_neutral)
         self.ui.aux_but.setStyleSheet(self.theme_btn_green if self._btn_state_bt_aux else self.theme_btn_red)
         # eStop
-        if self._last_v_mot is not None and self._last_v_mot < 8:
-            self.ui.eStop_display.setStyleSheet(self.theme_btn_red)
-        else:
+        if self.logic.UMTKSerial.status != self.logic.UMTKSerial.SerialStates.CONNECTED:
+            # Serial not connected - show default text
             self.ui.eStop_display.setStyleSheet(self.theme_btn_neutral)
+            self.ui.eStop_display.setText("Emergency Stop State")
+        elif self._last_v_mot is not None and self._last_v_mot < 8:
+            # Emergency stop is active (red state)
+            self.ui.eStop_display.setStyleSheet(self.theme_btn_red)
+            self.ui.eStop_display.setText("Emergency Stop")
+        else:
+            # Motor is enabled (normal state)
+            self.ui.eStop_display.setStyleSheet(self.theme_btn_neutral)
+            self.ui.eStop_display.setText("Motor Enabled")
 
     def _rescale_cat_image(self):
         """Rescale top-right cat image preserving aspect ratio to its QLabel size."""
@@ -1011,6 +1231,9 @@ class UMTKWindow(QtWidgets.QMainWindow):
         
         # Mark that initial theme has been applied
         self._initial_theme_applied = True
+        
+        # Update calibration button state to ensure proper styling after theme change
+        self._update_calibration_button_state()
     
     def _apply_large_display_theme(self):
         """Apply theme-appropriate styling to large number displays."""
@@ -1026,9 +1249,9 @@ class UMTKWindow(QtWidgets.QMainWindow):
             }}
         """
         
-                # Apply to all large displays (except motorCurrent_display which has special handling)
+                # Apply to all large displays (except motorCurrent_display and forceLCD which have special handling)
         for display in getattr(self, 'large_displays', []):
-            if display != self.ui.motorCurrent_display:
+            if display not in [self.ui.motorCurrent_display, self.ui.forceLCD]:
                 display.setStyleSheet(large_display_style)
         
         # Special handling for motorCurrent_display - always use amp alert styling for consistency
@@ -1037,6 +1260,12 @@ class UMTKWindow(QtWidgets.QMainWindow):
             current_opacity = getattr(self, '_amp_opacity', 0.0)
             themed_style = self.get_themed_amp_alert_style(current_opacity)
             self.ui.motorCurrent_display.setStyleSheet(themed_style)
+        
+        # Special handling for forceLCD - apply force alert styling if active
+        if hasattr(self.ui, 'forceLCD'):
+            force_alert_active = getattr(self, '_force_alert_active', False)
+            themed_style = self.get_themed_force_alert_style(force_alert_active)
+            self.ui.forceLCD.setStyleSheet(themed_style)
         
         # Update dynamic fonts after theme change (this will apply fonts to all large_displays including motorCurrent_display)
         self._update_dynamic_fonts()
@@ -1063,10 +1292,16 @@ class UMTKWindow(QtWidgets.QMainWindow):
         if hasattr(self.ui, 'showAllPorts_check'):
             self.ui.showAllPorts_check.setStyleSheet(styles["checkbox"])
         
+        # Small info labels (like calibration requirements)
+        if hasattr(self.ui, 'calibrationRequirementsLabel'):
+            self.ui.calibrationRequirementsLabel.setStyleSheet(styles["small_info_label"])
+        if hasattr(self.ui, 'speedRequirementsLabel'):
+            self.ui.speedRequirementsLabel.setStyleSheet(styles["small_info_label"])
+        
         # Labels
         for widget in self.findChildren(QtWidgets.QLabel):
-            # Skip the large number displays as they have special styling
-            if widget.objectName() not in ['displacementLCD', 'speedLCD', 'forceLCD', 'maxForceLCD', 'motorCurrent_display']:
+            # Skip the large number displays and special labels as they have specific styling
+            if widget.objectName() not in ['displacementLCD', 'speedLCD', 'forceLCD', 'maxForceLCD', 'motorCurrent_display', 'calibrationRequirementsLabel', 'speedRequirementsLabel']:
                 widget.setStyleSheet(styles["label"])
         
         # Group boxes (including display containers)
@@ -1119,10 +1354,15 @@ class UMTKWindow(QtWidgets.QMainWindow):
         self.theme_btn_green = styles["button_green"]
         self.theme_btn_blue = styles["button_blue"]
         self.theme_btn_neutral = styles["button_neutral"]
+        self.theme_btn_disabled = styles["button_disabled"]
     
     def get_themed_amp_alert_style(self, opacity: float) -> str:
         """Get the amp alert style for the current theme."""
         return self.theme_manager.get_amp_alert_styles(self.current_theme, opacity)
+    
+    def get_themed_force_alert_style(self, is_alert: bool) -> str:
+        """Get the force alert style for the current theme."""
+        return self.theme_manager.get_force_alert_styles(self.current_theme, is_alert)
     
     def _update_graph_theme(self):
         """Update the graph styling to match the current theme."""

@@ -103,7 +103,7 @@ class UMTKLogic:
 
     def command_calibrate(self, raw_value: float):
         # Calculate valid calbration value sign, user should always supply positive number
-        cal_command = f'C {str(math.copysign(1, self.Y[-1]) * -1 * self.UMTKSerial.test_direction * raw_value)}\n'.encode()
+        cal_command = f'C {str(math.copysign(1, self.Y[-1]) * self.UMTKSerial.test_direction * raw_value)}\n'.encode()
         print(f"Latest data point: Y={self.Y[-1] if self.Y else 'N/A'}, test_direction={self.UMTKSerial.test_direction}, raw_value={raw_value}")
         print(f"Cal command: {cal_command}")
         self.write(cal_command)
@@ -126,6 +126,11 @@ class UMTKLogic:
         self.Y = []
 
     def append_point(self, x: float, y: float, max_points: int = 1500, trim_to: int = 1000):
+        # Dont append if values are NaN or infinite
+        # print("Appending point:", x, y)
+        if math.isnan(x) or math.isnan(y) or math.isinf(x) or math.isinf(y):
+            print(f"!", end="", flush=True)
+            return
         self.X.append(x)
         self.Y.append(y)
         if len(self.X) > max_points:

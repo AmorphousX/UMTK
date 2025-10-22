@@ -99,6 +99,22 @@ class ThemeManager:
                 }
             """,
             
+            "button_disabled": """
+                QPushButton {
+                    background-color: #3a3a3a;
+                    border: 2px solid #2a2a2a;
+                    border-radius: 8px;
+                    color: #777777;
+                    font-weight: bold;
+                    padding: 8px;
+                }
+                QPushButton:disabled {
+                    background-color: #3a3a3a;
+                    border: 2px solid #2a2a2a;
+                    color: #777777;
+                }
+            """,
+            
             "input_field": """
                 QLineEdit {
                     background-color: #424242;
@@ -211,6 +227,13 @@ class ThemeManager:
                     background-color: #2196F3;
                     border: 2px solid #1976D2;
                 }
+            """,
+            
+            "small_info_label": """
+                QLabel {
+                    color: #888888;
+                    font-weight: normal;
+                }
             """
         }
     
@@ -290,6 +313,22 @@ class ThemeManager:
                 QPushButton:pressed {
                     background-color: #757575;
                     color: white;
+                }
+            """,
+            
+            "button_disabled": """
+                QPushButton {
+                    background-color: #F5F5F5;
+                    border: 2px solid #E0E0E0;
+                    border-radius: 8px;
+                    color: #BDBDBD;
+                    font-weight: bold;
+                    padding: 8px;
+                }
+                QPushButton:disabled {
+                    background-color: #F5F5F5;
+                    border: 2px solid #E0E0E0;
+                    color: #BDBDBD;
                 }
             """,
             
@@ -406,6 +445,13 @@ class ThemeManager:
                     border: 2px solid #1976D2;
                     color: white;
                 }
+            """,
+            
+            "small_info_label": """
+                QLabel {
+                    color: #666666;
+                    font-weight: normal;
+                }
             """
         }
     
@@ -429,6 +475,33 @@ class ThemeManager:
                     background-color: rgba(244, 67, 54, {opacity});
                     border-radius: 8px;
                     padding: 4px;
+                }}
+            """
+        else:
+            return f"""
+                QLabel {{
+                    color: {text_color};
+                    background-color: transparent;
+                    border-radius: 8px;
+                    padding: 4px;
+                }}
+            """
+    
+    def get_force_alert_styles(self, theme_name: str, is_alert: bool = False) -> str:
+        """Get force alert style for the theme with immediate red background when alert is active."""
+        if theme_name == "dark":
+            text_color = "#ffffff"
+        else:  # light theme
+            text_color = "#212121"
+            
+        if is_alert:
+            return f"""
+                QLabel {{
+                    color: {text_color};
+                    background-color: rgb(244, 67, 54);
+                    border-radius: 8px;
+                    padding: 4px;
+                    font-weight: bold;
                 }}
             """
         else:

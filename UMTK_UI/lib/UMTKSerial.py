@@ -237,11 +237,11 @@ class UMTKSerial:
                     direction = int(i_direction)
                     if direction == 0:
                         position = -1*float(i_position)
-                        load = float(i_load)  
+                        load = -1*float(i_load)  
                         self.test_direction = -1
                     else:
                         position = float(i_position)
-                        load = -1*float(i_load)
+                        load = float(i_load)
                         self.test_direction = 1
                     cur_speed = float(i_cur_speed)
                     set_speed = float(i_set_speed)

@@ -127,7 +127,7 @@ class Ui_MainWindow(object):
                 calibrationGroup = QtWidgets.QGroupBox("Calibration")
                 calibrationGroup.setObjectName("calibrationGroup")
                 self.calibrationCol = QtWidgets.QVBoxLayout(calibrationGroup)
-                self.calibrationCol.setSpacing(3)  # Reduced from 4 to 3
+                self.calibrationCol.setSpacing(2)  # Reduced from 3 to 2 to make room for larger requirements text
 
                 # Reference Force label
                 self.referenceForceLabel = QtWidgets.QLabel("Reference Force:")
@@ -137,13 +137,19 @@ class Ui_MainWindow(object):
                 calibRow = QtWidgets.QHBoxLayout()
                 self.calibration_inLine = QtWidgets.QLineEdit(parent=self.centralwidget)
                 self.calibration_inLine.setObjectName("calibration_inLine")
-                self.calibration_inLine.setPlaceholderText("e.g. 10")
+                self.calibration_inLine.setPlaceholderText("min: 500")
                 calibRow.addWidget(self.calibration_inLine)
                 self.newtons = QtWidgets.QLabel(parent=self.centralwidget)
                 self.newtons.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 self.newtons.setObjectName("newtons")
                 calibRow.addWidget(self.newtons)
                 self.calibrationCol.addLayout(calibRow)
+
+                # Add small validation requirements label
+                self.calibrationRequirementsLabel = QtWidgets.QLabel("Ref > 500 ; 400 < Load < 2000")
+                self.calibrationRequirementsLabel.setObjectName("calibrationRequirementsLabel")
+                self.calibrationRequirementsLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
+                self.calibrationCol.addWidget(self.calibrationRequirementsLabel)
 
                 # Add stretcher to push button to bottom
                 self.calibrationCol.addStretch()
@@ -169,9 +175,15 @@ class Ui_MainWindow(object):
                 speedRow = QtWidgets.QHBoxLayout()
                 self.setSpeed_inLine = QtWidgets.QLineEdit(parent=self.centralwidget)
                 self.setSpeed_inLine.setObjectName("setSpeed_inLine")
-                self.setSpeed_inLine.setPlaceholderText("e.g. 3.0")
+                self.setSpeed_inLine.setPlaceholderText("0.1 - 3.5")
                 speedRow.addWidget(self.setSpeed_inLine)
                 self.setSpeedCol.addLayout(speedRow)
+
+                # Add speed requirements label
+                self.speedRequirementsLabel = QtWidgets.QLabel("Min Speed: 0.1 mm/s")
+                self.speedRequirementsLabel.setObjectName("speedRequirementsLabel")
+                self.speedRequirementsLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
+                self.setSpeedCol.addWidget(self.speedRequirementsLabel)
 
                 # Add stretcher to push button to bottom
                 self.setSpeedCol.addStretch()
